@@ -26,8 +26,8 @@ enum Server {
     }
 }
 
-let bg = Color(red: 0.043, green: 0.078, blue: 0.102)
-let green = Color(red: 0, green: 0.66, blue: 0.52)
+let bg = Color(red: 0.027, green: 0.035, blue: 0.059)
+let green = Color(red: 0, green: 0.82, blue: 0.63)
 
 struct RootView: View {
     @State private var url = Server.url
@@ -95,7 +95,7 @@ struct WebView: UIViewRepresentable {
         cfg.websiteDataStore = .default()
         let w = WKWebView(frame: .zero, configuration: cfg)
         w.isOpaque = false
-        w.backgroundColor = UIColor(red: 0.043, green: 0.078, blue: 0.102, alpha: 1)
+        w.backgroundColor = UIColor(red: 0.027, green: 0.035, blue: 0.059, alpha: 1)
         w.scrollView.backgroundColor = w.backgroundColor
         w.scrollView.bounces = false
         w.scrollView.contentInsetAdjustmentBehavior = .never
