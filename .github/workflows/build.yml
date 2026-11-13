@@ -1,0 +1,111 @@
+name: Build Wasel
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  server:
+    name: Deploy Cloudflare server
+    runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy worker
+        id: deploy
+        working-directory: server
+        env:
+          RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACC: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          TURN_ID: ${{ secrets.TURN_KEY_ID }}
+          TURN_TOKEN: ${{ secrets.TURN_KEY_TOKEN }}
+        run: |
+          T=$(printf '%s' "$RAW" | tr -d '[:space:]')
+          if [ -z "$T" ]; then
+            echo "::warning::أضف CLOUDFLARE_API_TOKEN في Secrets حتى يُرفع السيرفر تلقائياً"
+            exit 0
+          fi
+          echo "::add-mask::$T"
+          if [ -z "$ACC" ]; then
+            ACC=$(curl -s -H "Authorization: Bearer $T" "https://api.cloudflare.com/client/v4/accounts?per_page=5" | jq -r '.result[0].id // empty')
+          fi
+          export CLOUDFLARE_API_TOKEN="$T" CLOUDFLARE_ACCOUNT_ID="$ACC"
+          npx --yes wrangler@4 deploy 2>&1 | tee deploy.log
+          if [ -n "$TURN_ID" ] && [ -n "$TURN_TOKEN" ]; then
+            printf '%s' "$TURN_ID"    | npx --yes wrangler@4 secret put TURN_KEY_ID
+            printf '%s' "$TURN_TOKEN" | npx --yes wrangler@4 secret put TURN_KEY_TOKEN
+          fi
+          URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy.log | head -1)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "### رابط السيرفر: $URL" >> "$GITHUB_STEP_SUMMARY"
+
+  ios:
+    name: iOS (unsigned IPA)
+    needs: server
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set server URL
+        run: |
+          URL="${{ needs.server.outputs.url }}"
+          echo "Server: $URL"
+          /usr/libexec/PlistBuddy -c "Set :WaselServerURL $URL" ios/Wasel/Info.plist
+
+      - name: Generate Xcode project
+        run: |
+          brew install xcodegen
+          cd ios && xcodegen generate
+
+      - name: Build app
+        run: |
+          cd ios
+          xcodebuild -project Wasel.xcodeproj -target Wasel -configuration Release \
+            -sdk iphoneos ARCHS=arm64 \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build
+
+      - name: Package IPA
+        run: |
+          cd ios
+          rm -rf Payload && mkdir Payload
+          cp -R build/Release-iphoneos/Wasel.app Payload/
+          zip -qry Wasel.ipa Payload
+          ls -la Wasel.ipa
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Wasel-IPA
+          path: ios/Wasel.ipa
+
+  release:
+    name: Publish
+    needs: ios
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Wasel-IPA
+          path: dist
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: واصل — آخر نسخة
+          body: |
+            **Wasel.ipa** — غير موقّع (AltStore / Sideloadly / TrollStore)
+            Commit: ${{ github.sha }}
+          make_latest: true
+          files: dist/Wasel.ipa
+
+      - name: Push IPA to builds branch
+        run: |
+          mkdir pub && cp dist/Wasel.ipa pub/ && cd pub
+          git init -q -b builds
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add . && git commit -qm "Build ${GITHUB_SHA::7}"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" builds

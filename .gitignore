@@ -1,0 +1,4 @@
+node_modules/
+.wrangler/
+ios/*.xcodeproj
+ios/build/

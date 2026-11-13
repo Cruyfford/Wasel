@@ -1,0 +1,13 @@
+name = "wasel-chat"
+main = "worker.js"
+compatibility_date = "2025-06-01"
+
+rules = [{ type = "Text", globs = ["**/*.html"], fallthrough = true }]
+
+[[durable_objects.bindings]]
+name = "HUB"
+class_name = "Hub"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Hub"]
