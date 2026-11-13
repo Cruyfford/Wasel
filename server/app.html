@@ -116,10 +116,137 @@ header h1{font-size:24px;margin:0 6px;flex:1;font-weight:800;letter-spacing:-.3p
 .cb.red svg{transform:rotate(135deg)}
 .toast{position:fixed;top:calc(var(--st) + 80px);left:50%;transform:translateX(-50%);padding:11px 18px;border-radius:22px;z-index:99;font-size:14px;font-weight:600;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--line);animation:up2 .35s var(--ease)}
 @keyframes up2{from{opacity:0;transform:translate(-50%,-14px)}}
+
+/* ---- إضافات ---- */
+.av{background-size:cover!important;background-position:center!important}
+.b{font-size:var(--fs,15.5px)}
+.b .rq{display:block;border-inline-start:3px solid #fff8;background:#0003;border-radius:10px;padding:5px 9px;margin:0 0 5px;font-size:13px;opacity:.9;max-height:54px;overflow:hidden}
+.b .rq b{display:block;font-size:12px;color:#fff}
+.b.del{font-style:italic;opacity:.6}
+.b img.mimg,.b .mthumb{display:block;max-width:240px;max-height:300px;width:100%;border-radius:16px;object-fit:cover;margin:-2px -6px 2px;min-height:90px;background:#0003}
+.b .mvid{position:relative;cursor:pointer}
+.b .mvid .play{position:absolute;inset:0;display:grid;place-items:center;font-size:44px;text-shadow:0 2px 10px #000}
+.b .mfile{display:flex;gap:10px;align-items:center;min-width:200px;cursor:pointer;padding:4px 0}
+.b .mfile .fi{width:44px;height:44px;border-radius:12px;background:#0003;display:grid;place-items:center;font-size:22px;flex:none}
+.b .mfile b{display:block;font-size:14px;word-break:break-all}
+.b .mfile small{opacity:.75;font-size:12px}
+.b .prog{position:absolute;inset:0;display:grid;place-items:center;background:#0008;border-radius:inherit;font-weight:800;font-size:15px}
+.b.media{padding:6px 8px 4px}
+.mvoice{display:flex;align-items:center;gap:10px;min-width:210px;padding:2px 0}
+.mvoice .vp{width:38px;height:38px;border-radius:50%;background:#fff3;display:grid;place-items:center;font-size:16px;flex:none}
+.mvoice .vbar{flex:1;height:4px;border-radius:2px;background:#fff4;position:relative;overflow:hidden}
+.mvoice .vbar i{position:absolute;inset:0 auto 0 0;width:0;background:#fff;border-radius:2px}
+.mvoice span{font-size:12px;opacity:.85;font-variant-numeric:tabular-nums}
+.ib.sm{width:38px;height:38px}
+.composer .ib{flex:none;background:transparent}
+.rec{flex:1;display:flex;align-items:center;gap:10px;padding:0 12px;color:var(--red);font-weight:700;font-variant-numeric:tabular-nums}
+.rec i{width:10px;height:10px;border-radius:50%;background:var(--red);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.2}}
+.replybar{margin:0 12px 6px;padding:8px 12px;border-radius:16px;background:var(--glass);border:1px solid var(--line);display:flex;gap:10px;align-items:center;font-size:13px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.replybar div{flex:1;min-width:0;border-inline-start:3px solid var(--g1);padding-inline-start:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.replybar b{display:block;color:var(--g1);font-size:12px}
+.search{margin:10px 12px 0;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:18px;background:var(--glass2);border:1px solid var(--line)}
+.search input{flex:1;background:none;border:0;outline:none;padding:12px 0;font-size:15px}
+.acts{display:flex;flex-direction:column;gap:2px}
+.acts button{display:flex;align-items:center;gap:14px;padding:14px 10px;border-radius:14px;font-size:16px;text-align:start}
+.acts button:active{background:var(--glass2)}
+.acts button.dz{color:var(--red)}
+.acts .em{font-size:22px;width:28px;text-align:center}
+/* settings */
+.set{flex:1;overflow-y:auto;padding:12px 12px calc(var(--sb) + 30px)}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-bottom:14px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.card h4{margin:0;padding:12px 16px 4px;font-size:13px;color:var(--muted);font-weight:600}
+.it{display:flex;align-items:center;gap:14px;padding:13px 16px;width:100%;text-align:start;font-size:16px;border-top:1px solid var(--line)}
+.card h4+.it,.card>.it:first-child{border-top:0}
+.it .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:17px;flex:none}
+.it .tx{flex:1;min-width:0}
+.it .tx small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.it .ch{color:var(--muted);font-size:20px}
+.it.dz{color:var(--red)}
+.sw{width:50px;height:30px;border-radius:15px;background:#ffffff26;position:relative;flex:none;transition:background .25s}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .25s var(--ease);box-shadow:0 2px 6px #0005}
+.sw.on{background:var(--g1)}
+.sw.on::after{transform:translateX(-20px)}
+.me-card{display:flex;align-items:center;gap:16px;padding:16px}
+.me-card .tx b{font-size:19px}
+.me-card .tx small{color:var(--muted)}
+.walls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}
+.walls button{aspect-ratio:9/16;border-radius:16px;border:2px solid transparent;background-size:cover;background-position:center;position:relative;font-size:13px;color:#fff;text-shadow:0 1px 3px #000}
+.walls button.on{border-color:var(--g1);box-shadow:0 0 0 3px #00d1a033}
+.seg{display:flex;gap:6px;padding:10px 14px 14px}
+.seg button{flex:1;padding:10px;border-radius:14px;background:var(--glass2);font-weight:600}
+.seg button.on{background:var(--grad);color:#fff}
+input[type=range]{width:100%;accent-color:var(--g1)}
+.preview{margin:14px;border-radius:18px;height:180px;overflow:hidden;position:relative;border:1px solid var(--line)}
+.bigav{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px}
+.bigav .av{cursor:pointer}
+.bigav .cam{position:absolute;bottom:0;left:0;width:38px;height:38px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-size:17px;border:3px solid var(--bg)}
+/* lock */
+#lock{z-index:90;align-items:center;justify-content:center;gap:22px;background:var(--bg)}
+#lock .dots{display:flex;gap:16px;direction:ltr}
+#lock .dots i{width:15px;height:15px;border-radius:50%;border:2px solid var(--muted);transition:all .15s}
+#lock .dots i.f{background:var(--g1);border-color:var(--g1);transform:scale(1.15)}
+#lock .pad{display:grid;grid-template-columns:repeat(3,76px);gap:16px;direction:ltr}
+#lock .pad button{width:76px;height:76px;border-radius:50%;background:var(--glass2);font-size:28px;font-weight:600}
+#lock.shake .dots{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(10px)}75%{transform:translateX(-10px)}}
+/* viewer */
+#viewer{position:fixed;inset:0;z-index:60;background:#000;display:flex;align-items:center;justify-content:center;animation:fade .2s}
+#viewer img,#viewer video{max-width:100%;max-height:100%}
+#viewer .vt{position:absolute;top:calc(var(--st) + 10px);left:10px;right:10px;display:flex;justify-content:space-between;z-index:2}
+#viewer .vt button{width:44px;height:44px;border-radius:50%;background:#ffffff26;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:20px}
+/* game */
+#game{background:radial-gradient(120% 80% at 50% 40%,#0e3b33 0%,#07140f 60%,#05070c 100%)}
+#game .gtop{display:flex;align-items:center;gap:8px}
+#gTable{flex:1;position:relative;overflow:hidden}
+.opp{position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px;width:78px;transform:translate(-50%,-50%);transition:all .3s}
+.opp .av{width:46px;height:46px;border-radius:16px;font-size:17px}
+.opp.turn .av{box-shadow:0 0 0 3px #ffd84a,0 0 22px #ffd84a99}
+.opp .nm{font-size:11.5px;font-weight:700;max-width:78px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.opp .cnt{font-size:11px;background:#000a;border-radius:10px;padding:1px 8px;font-weight:700}
+.opp.off{opacity:.45}
+.opp .one{position:absolute;top:-8px;left:-4px;background:#ffd84a;color:#000;font-size:10px;font-weight:900;border-radius:8px;padding:1px 6px}
+.opp .bubble{position:absolute;top:-30px;font-size:28px;animation:pop .4s var(--ease)}
+.opp .catch{position:absolute;bottom:-26px;background:var(--red);font-size:11px;font-weight:800;border-radius:10px;padding:3px 8px;animation:pulse 1s infinite}
+.center{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);display:flex;gap:18px;align-items:center}
+.ring{position:absolute;left:50%;top:46%;width:230px;height:230px;transform:translate(-50%,-50%);border-radius:50%;border:2px dashed #ffffff18;animation:spin 18s linear infinite}
+.ring.ccw{animation-direction:reverse}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.glog{position:absolute;left:50%;top:calc(46% + 95px);transform:translateX(-50%);font-size:13px;font-weight:600;background:#0008;padding:6px 14px;border-radius:14px;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis}
+.gtimer{position:absolute;left:50%;top:calc(46% - 100px);transform:translateX(-50%);font-size:12px;color:#ffd84a;font-weight:800}
+.colordot{width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 14px currentColor}
+/* cards */
+.kc{--c:#444;width:64px;height:96px;border-radius:12px;background:var(--c);position:relative;flex:none;box-shadow:0 6px 16px #0008,inset 0 0 0 3px #ffffffd9;display:grid;place-items:center;color:#fff;font-weight:900;font-family:-apple-system,system-ui,sans-serif;user-select:none;-webkit-user-select:none;overflow:hidden}
+.kc::before{content:"";position:absolute;inset:9px 7px;border-radius:50% / 40%;background:#ffffff26;transform:rotate(-24deg)}
+.kc span{position:relative;font-size:30px;text-shadow:0 2px 0 #0006}
+.kc i{position:absolute;font-style:normal;font-size:12px;top:5px;left:7px;text-shadow:0 1px 0 #0006}
+.kc i.br{top:auto;left:auto;bottom:5px;right:7px;transform:rotate(180deg)}
+.kc.r{--c:linear-gradient(145deg,#ff5f6d,#d7263d)}.kc.y{--c:linear-gradient(145deg,#ffd84a,#f5a300)}.kc.g{--c:linear-gradient(145deg,#3ee08f,#00a86b)}.kc.b{--c:linear-gradient(145deg,#4facfe,#1d5fe0)}
+.kc.w{--c:conic-gradient(#ff5f6d 0 25%,#ffd84a 0 50%,#3ee08f 0 75%,#4facfe 0)}
+.kc.back{--c:linear-gradient(145deg,#1c2433,#0b0f17)}
+.kc.back span{font-size:15px;color:#00d1a0;transform:rotate(-24deg)}
+.kc.big{width:84px;height:126px;border-radius:15px}
+.kc.big span{font-size:40px}
+.hand{display:flex;padding:16px 14px 10px;overflow-x:auto;gap:0;min-height:140px;align-items:flex-end;direction:ltr;-webkit-overflow-scrolling:touch}
+.hand .kc{margin-left:-22px;transition:transform .2s var(--ease),filter .2s}
+.hand .kc:first-child{margin-left:0}
+.hand .kc.ok{transform:translateY(-12px)}
+.hand .kc.no{filter:brightness(.55)}
+.hand .kc:active{transform:translateY(-22px) scale(1.05)}
+.gbar{display:flex;gap:8px;padding:0 12px calc(var(--sb) + 10px);align-items:center}
+.gbar .btn{padding:12px 16px;font-size:15px;flex:1}
+.gbar .btn.alt{background:var(--glass2);box-shadow:none}
+.gbar .btn.one{background:linear-gradient(135deg,#ffd84a,#ff8a00);color:#111}
+.lobby{flex:1;overflow-y:auto;padding:16px}
+.lobby .code{font:800 34px ui-monospace,Menlo,monospace;letter-spacing:6px;text-align:center;direction:ltr;background:var(--glass2);border-radius:18px;padding:14px;margin:6px 0 14px}
+.emojis{display:flex;gap:6px;justify-content:center;padding:0 0 6px}
+.emojis button{font-size:22px;padding:4px}
+.gameinv{display:flex;flex-direction:column;gap:8px;min-width:210px}
+.gameinv .gt{display:flex;gap:10px;align-items:center;font-weight:800}
+.gameinv .btn{padding:10px;font-size:14px}
 </style>
 </head>
 <body>
-
 <svg width="0" height="0" style="position:absolute">
  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6 2 11c0 2.3 1 4.4 2.6 6L3.5 21.5l4.8-1.6c1.1.4 2.4.6 3.7.6 5.5 0 10-4 10-9S17.5 2 12 2z"/></symbol>
  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></symbol>
@@ -133,12 +260,21 @@ header h1{font-size:24px;margin:0 6px;flex:1;font-weight:800;letter-spacing:-.3p
  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M20 5h-3.2L15 3H9L7.2 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-5 11.5V14H9v2.5L5.5 13 9 9.5V12h6V9.5l3.5 3.5-3.5 3.5z"/></symbol>
  <symbol id="i-camoff" viewBox="0 0 24 24"><path d="M21 6.5l-4 4V7c0-.6-.4-1-1-1H9.8L21 17.2V6.5zM3.3 2L2 3.3 4.7 6H4c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h12c.2 0 .4-.1.5-.2l3.2 3.2 1.3-1.3L3.3 2z"/></symbol>
  <symbol id="i-out" viewBox="0 0 24 24"><path d="M10 17l1.4-1.4L8.8 13H20v-2H8.8l2.6-2.6L10 7l-5 5 5 5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><path d="M19.4 13c.04-.33.06-.66.06-1s-.02-.67-.06-1l2.1-1.65c.2-.15.25-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.49.49 0 0 0 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.33-.07.67-.07 1s.03.67.07 1l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.4 13zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></symbol>
 </svg>
+
+<!-- قفل التطبيق -->
+<div id="lock" class="view hidden">
+  <div class="logo" style="text-align:center"><div style="font-size:46px">🔒</div><h2 style="margin:6px 0 0">واصل مقفل</h2><p style="color:var(--muted);margin:6px 0 0" id="lockMsg">أدخل الرمز</p></div>
+  <div class="dots" id="lockDots"></div>
+  <div class="pad" id="lockPad"></div>
+  <button class="link" id="lockBio">استخدم البصمة / الوجه</button>
+</div>
 
 <!-- تسجيل الدخول -->
 <div id="auth" class="view hidden">
   <div class="logo"><div><svg><use href="#i-chat"/></svg></div><h2>واصل</h2><p id="authSub">سجّل الدخول بالبريد الإلكتروني</p></div>
-  <input id="aName" class="field hidden" placeholder="اسمك" autocomplete="name">
+  <input id="aName" class="field hidden" placeholder="اسمك" autocomplete="name" maxlength="40">
   <input id="aEmail" class="field" type="email" placeholder="البريد الإلكتروني" autocomplete="email" autocapitalize="off" dir="ltr">
   <input id="aPass" class="field" type="password" placeholder="كلمة المرور" autocomplete="current-password" dir="ltr">
   <div class="err" id="aErr"></div>
@@ -150,12 +286,14 @@ header h1{font-size:24px;margin:0 6px;flex:1;font-weight:800;letter-spacing:-.3p
 <div id="home" class="view hidden">
   <header>
     <h1>واصل</h1>
-    <button class="ib" id="hProfile"><svg><use href="#i-user"/></svg></button>
+    <button class="ib" id="hGame" title="ألوان">🎴</button>
+    <button class="ib" id="hSettings"><svg><use href="#i-gear"/></svg></button>
   </header>
   <div class="conn hidden" id="connBar">جارٍ الاتصال…</div>
-  <div class="tabs"><button class="on" data-tab="chats">الدردشات</button><button data-tab="calls">المكالمات</button></div>
+  <div class="search"><span>🔍</span><input id="hSearch" placeholder="بحث"></div>
   <div class="list" id="chatList"></div>
   <div class="list hidden" id="callList"></div>
+  <div class="tabs"><button class="on" data-tab="chats">الدردشات</button><button data-tab="calls">المكالمات</button></div>
   <button class="fab" id="newChat"><svg><use href="#i-plus"/></svg></button>
 </div>
 
@@ -164,50 +302,172 @@ header h1{font-size:24px;margin:0 6px;flex:1;font-weight:800;letter-spacing:-.3p
   <header>
     <button class="ib" id="cBack"><svg><use href="#i-back"/></svg></button>
     <div class="av sm" id="cAv"></div>
-    <div class="who"><b id="cName"></b><span id="cStatus"></span></div>
+    <div class="who" id="cWho"><b id="cName"></b><span id="cStatus"></span></div>
     <button class="ib" id="cVideo"><svg><use href="#i-video"/></svg></button>
     <button class="ib" id="cVoice"><svg><use href="#i-phone"/></svg></button>
   </header>
   <div id="msgs"></div>
-  <div class="composer">
-    <textarea id="cInput" rows="1" maxlength="4000" placeholder="رسالة"></textarea>
-    <button class="send" id="cSend"><svg><use href="#i-send"/></svg></button>
+  <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX">✕</button></div>
+  <div class="composer" id="composer">
+    <button class="ib sm" id="cAttach">📎</button>
+    <textarea id="cInput" rows="1" placeholder="رسالة" maxlength="4000"></textarea>
+    <div class="rec hidden" id="recBox"><i></i><span id="recT">0:00</span><span style="flex:1"></span><button class="ib sm" id="recX">🗑️</button></div>
+    <button class="send" id="cSend"><svg><use href="#i-mic"/></svg></button>
+  </div>
+</div>
+
+<!-- الإعدادات -->
+<div id="settings" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الإعدادات</h1></header>
+  <div class="set">
+    <div class="card"><button class="me-card it" id="sMe"><div class="av" id="sAv"></div><div class="tx"><b id="sName"></b><small id="sAbout"></small></div><span class="ch">‹</span></button></div>
+    <div class="card">
+      <button class="it" data-go="privacy"><span class="ic" style="background:#3b82f633">👁️</span><span class="tx">الخصوصية<small>آخر ظهور، علامات القراءة</small></span><span class="ch">‹</span></button>
+      <button class="it" data-go="security"><span class="ic" style="background:#00d1a033">🛡️</span><span class="tx">الأمان والحماية<small>قفل التطبيق، كلمة المرور، الأجهزة</small></span><span class="ch">‹</span></button>
+      <button class="it" data-go="chatset"><span class="ic" style="background:#a855f733">🎨</span><span class="tx">الدردشات<small>الخلفية، حجم الخط</small></span><span class="ch">‹</span></button>
+      <button class="it" data-go="notifs"><span class="ic" style="background:#f59e0b33">🔔</span><span class="tx">الإشعارات<small>الرسائل، رنين المكالمات</small></span><span class="ch">‹</span></button>
+    </div>
+    <div class="card">
+      <button class="it" id="sGame"><span class="ic" style="background:#ef444433">🎴</span><span class="tx">لعبة ألوان<small>العب مع أصدقائك حتى 8 لاعبين</small></span><span class="ch">‹</span></button>
+      <div class="it"><span class="ic" style="background:#ffffff14">ℹ️</span><span class="tx">واصل 2.0<small>مشفّر من طرف لطرف 🔒</small></span></div>
+    </div>
+    <div class="card"><button class="it dz" id="sLogout"><span class="ic" style="background:#ff5f6d22">🚪</span><span class="tx">تسجيل الخروج</span></button></div>
   </div>
 </div>
 
 <!-- الملف الشخصي -->
 <div id="profile" class="view hidden">
-  <header><button class="ib" id="pBack"><svg><use href="#i-back"/></svg></button><h1>الملف الشخصي</h1></header>
-  <div class="body">
-    <div class="av xl" id="pAv"></div>
-    <label>الاسم</label><input class="field" id="pName" maxlength="40">
-    <label>الحالة</label><input class="field" id="pAbout" maxlength="140" placeholder="متاح">
-    <label>البريد</label><input class="field" id="pEmail" disabled dir="ltr">
-    <button class="btn" id="pSave" style="align-self:stretch">حفظ</button>
-    <button class="link" id="pLogout" style="color:var(--red)">تسجيل الخروج</button>
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الملف الشخصي</h1></header>
+  <div class="set">
+    <div class="bigav"><div style="position:relative"><div class="av xl" id="pAv"></div><span class="cam">📷</span></div><button class="link" id="pRmAv">إزالة الصورة</button></div>
+    <div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+      <label style="color:var(--muted);font-size:13px">الاسم</label><input class="field" id="pName" maxlength="40">
+      <label style="color:var(--muted);font-size:13px">الحالة</label><input class="field" id="pAbout" maxlength="140" placeholder="متاح">
+      <label style="color:var(--muted);font-size:13px">البريد</label><input class="field" id="pEmail" disabled dir="ltr">
+      <button class="btn" id="pSave">حفظ</button>
+    </div>
   </div>
 </div>
 
-<!-- دردشة جديدة -->
+<!-- الخصوصية -->
+<div id="privacy" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الخصوصية</h1></header>
+  <div class="set">
+    <div class="card">
+      <button class="it" id="prSeen"><span class="tx">إخفاء آخر ظهور والاتصال<small>لن يرى أحد متى كنت متصلاً</small></span><span class="sw"></span></button>
+      <button class="it" id="prRead"><span class="tx">علامات القراءة<small>إذا أطفأتها لن ترى أنت أيضاً علامات قراءة الآخرين</small></span><span class="sw"></span></button>
+    </div>
+    <div class="card"><h4>الحماية الدائمة</h4><div class="it"><span class="tx">🔒 كل الرسائل والصور والملفات والمكالمات مشفّرة من طرف لطرف<small>حتى سيرفر واصل لا يستطيع قراءتها</small></span></div></div>
+  </div>
+</div>
+
+<!-- الأمان -->
+<div id="security" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الأمان والحماية</h1></header>
+  <div class="set">
+    <div class="card"><h4>قفل التطبيق</h4>
+      <button class="it" id="scLock"><span class="tx">قفل برمز<small>يطلب رمزاً عند فتح التطبيق</small></span><span class="sw"></span></button>
+      <button class="it" id="scBio"><span class="tx">البصمة / بصمة الوجه<small>فتح القفل بدون رمز</small></span><span class="sw"></span></button>
+      <div class="it" id="scAfterRow"><span class="tx">القفل بعد<div class="seg" id="scAfter" style="padding:8px 0 0"><button data-v="0">فوراً</button><button data-v="60">دقيقة</button><button data-v="300">5 دقائق</button></div></span></div>
+      <button class="it" id="scSecure"><span class="tx">منع لقطة الشاشة<small>أندرويد: يحجب الشاشة في التصوير وقائمة التطبيقات</small></span><span class="sw"></span></button>
+    </div>
+    <div class="card"><h4>الحساب</h4>
+      <button class="it" id="scPass"><span class="ic" style="background:#ffffff14">🔑</span><span class="tx">تغيير كلمة المرور<small>يسجّل الخروج من باقي الأجهزة</small></span><span class="ch">‹</span></button>
+      <button class="it" id="scAll"><span class="ic" style="background:#ffffff14">📱</span><span class="tx">تسجيل الخروج من الأجهزة الأخرى<small id="scSess"></small></span><span class="ch">‹</span></button>
+      <button class="it dz" id="scDel"><span class="ic" style="background:#ff5f6d22">🗑️</span><span class="tx">حذف الحساب نهائياً</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- إعدادات الدردشة -->
+<div id="chatset" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الدردشات</h1></header>
+  <div class="set">
+    <div class="card"><h4>خلفية المحادثة</h4>
+      <div class="preview" id="wPrev"><div style="position:absolute;inset:0;padding:14px;display:flex;flex-direction:column;gap:8px"><div class="b i" style="float:none;align-self:flex-end;animation:none">أهلاً! 👋</div><div class="b o" style="float:none;align-self:flex-start;animation:none">هلا والله، كيف الحال؟</div></div></div>
+      <div class="walls" id="walls"></div>
+      <div style="padding:0 16px 14px"><label style="color:var(--muted);font-size:13px">تعتيم الخلفية</label><input type="range" id="wDim" min="0" max="80"></div>
+    </div>
+    <div class="card"><h4>حجم الخط</h4><div class="seg" id="fsSeg"><button data-v="14px">صغير</button><button data-v="15.5px">متوسط</button><button data-v="18px">كبير</button></div></div>
+    <div class="card"><button class="it" id="csEnter"><span class="tx">زر الإدخال يرسل الرسالة</span><span class="sw"></span></button></div>
+  </div>
+</div>
+
+<!-- الإشعارات -->
+<div id="notifs" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الإشعارات</h1></header>
+  <div class="set">
+    <div class="card">
+      <button class="it" id="nMsg"><span class="tx">إشعارات الرسائل<small>عندما يكون التطبيق في الخلفية</small></span><span class="sw"></span></button>
+      <button class="it" id="nCall"><span class="tx">رنين المكالمات<small>يرن حتى بعد الخروج من التطبيق</small></span><span class="sw"></span></button>
+      <button class="it" id="nSound"><span class="tx">أصوات داخل التطبيق</span><span class="sw"></span></button>
+    </div>
+    <div class="card"><div class="it"><span class="tx" style="font-size:13.5px;color:var(--muted);line-height:1.7">الإشعارات لا تعرض نص الرسالة — لأنها مشفّرة ولا يقرأها إلا التطبيق.<br>آيفون: يرن والتطبيق في الخلفية، لكن ليس إذا أغلقته بالسحب للأعلى.</span></div></div>
+  </div>
+</div>
+
+<!-- اللعبة -->
+<div id="game" class="view hidden">
+  <header class="gtop">
+    <button class="ib" id="gBack"><svg><use href="#i-back"/></svg></button>
+    <span style="font-size:22px">🎴</span><h1 style="font-size:20px;margin:0">ألوان</h1>
+    <span id="gCodeTop" dir="ltr" style="font:700 14px ui-monospace,monospace;color:var(--muted)"></span>
+  </header>
+  <div class="lobby hidden" id="gLobby">
+    <div class="card" style="padding:16px">
+      <div style="text-align:center;color:var(--muted)">رمز الغرفة</div>
+      <div class="code" id="gCode"></div>
+      <button class="btn" id="gInvite" style="width:100%">📨 ادعُ صديقاً من الدردشات</button>
+    </div>
+    <div class="card"><h4 id="gCount"></h4><div id="gPlayers"></div></div>
+    <button class="btn" id="gStart" style="width:100%">▶️ ابدأ اللعبة</button>
+    <div style="color:var(--muted);text-align:center;margin-top:12px;font-size:13px;line-height:1.8">القواعد: طابق اللون أو الرقم. تخطّي ⊘، عكس ⇄، +2، تغيير اللون، +4.<br>اضغط "واحدة!" قبل أن يبقى معك كرت واحد، وإلا يمسكك الآخرون وتسحب 2.</div>
+  </div>
+  <div id="gTable" class="hidden">
+    <div class="ring" id="gRing"></div>
+    <div class="gtimer" id="gTimer"></div>
+    <div class="center"><div class="kc back big" id="gDeck"><span>ألوان</span></div><div id="gTop"></div><span class="colordot" id="gColor"></span></div>
+    <div class="glog" id="gLog"></div>
+  </div>
+  <div id="gHandWrap" class="hidden">
+    <div class="emojis" id="gEmojis"></div>
+    <div class="hand" id="gHand"></div>
+    <div class="gbar"><button class="btn alt" id="gDraw">سحب</button><button class="btn alt hidden" id="gPass">تمرير</button><button class="btn one" id="gOne">☝️ واحدة!</button></div>
+  </div>
+</div>
+
+<!-- أوراق منبثقة -->
 <div class="sheet hidden" id="newSheet">
   <div class="box">
     <h3>دردشة جديدة</h3>
     <input class="field" id="nEmail" type="email" placeholder="بريد الشخص" dir="ltr" autocapitalize="off">
     <div class="err" id="nErr"></div>
     <button class="btn" id="nGo">ابدأ الدردشة</button>
-    <button class="link" id="nCancel">إلغاء</button>
+    <button class="link" data-close>إلغاء</button>
   </div>
 </div>
-
-<!-- رقم الأمان -->
-<div class="sheet hidden" id="safeSheet">
+<div class="sheet hidden" id="askSheet"><div class="box"><h3 id="askT"></h3><div id="askF" style="display:flex;flex-direction:column;gap:10px"></div><div class="err" id="askE"></div><button class="btn" id="askOk"></button><button class="link" id="askNo">إلغاء</button></div></div>
+<div class="sheet hidden" id="actSheet"><div class="box"><div class="acts" id="acts"></div></div></div>
+<div class="sheet hidden" id="infoSheet">
   <div class="box" style="align-items:center;text-align:center">
-    <h3>🔒 التحقق من التشفير</h3>
-    <div style="color:var(--muted);font-size:14px;line-height:1.7">قارن هذا الرقم مع الرقم عند <b id="sName"></b> (وجهاً لوجه أو بمكالمة). إذا تطابق، فالمحادثة والمكالمات مشفّرة بينكما فقط ولا يوجد أي تلاعب.</div>
-    <div id="sNum" dir="ltr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px 16px;font:600 19px ui-monospace,Menlo,monospace;letter-spacing:1px;margin:10px 0"></div>
-    <button class="btn" style="align-self:stretch" onclick="$('safeSheet').classList.add('hidden')">تم</button>
+    <div class="av xl" id="iAv"></div><h3 id="iName" style="margin:6px 0 0"></h3><div id="iAbout" style="color:var(--muted)"></div><div id="iEmail" dir="ltr" style="color:var(--muted);font-size:13px"></div>
+    <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall">📞 صوت</button><button class="btn" style="flex:1" id="iVid">📹 فيديو</button></div>
+    <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px">
+      <div style="font-weight:700">🔒 رقم الأمان</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7;margin:4px 0 8px">قارنه مع الرقم عند صديقك. إذا تطابق فالمحادثة والمكالمات مشفّرة بينكما فقط.</div>
+      <div id="sNum" dir="ltr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px 12px;font:600 17px ui-monospace,Menlo,monospace"></div>
+    </div>
+    <button class="link" data-close>إغلاق</button>
   </div>
 </div>
+<div class="sheet hidden" id="colorSheet"><div class="box" style="align-items:center"><h3>اختر اللون</h3><div style="display:flex;gap:14px" id="colorPick"></div><button class="link" data-close>إلغاء</button></div></div>
+<input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
+<input type="file" id="fAny" multiple hidden>
+<input type="file" id="fCam" accept="image/*" capture="environment" hidden>
+<input type="file" id="fAvatar" accept="image/*" hidden>
+<input type="file" id="fWall" accept="image/*" hidden>
+
+<div id="viewer" class="hidden"><div class="vt"><button id="vX">✕</button><button id="vSave">⬇️</button></div><div id="vBody" style="display:contents"></div></div>
 
 <!-- المكالمة -->
 <div id="call" class="hidden">
@@ -237,23 +497,33 @@ const S = {
   users: {}, chats: [], msgs: {}, peer: null, ws: null, wsOk: false, retry: 0,
   calls: JSON.parse(localStorage.getItem("w_calls") || "[]"),
 };
+const SET = Object.assign(
+  { wall: "glow", dim: 25, fs: "15.5px", enter: false, lock: null, bio: false, after: 0, secure: false, msgN: true, callN: true, sound: true },
+  JSON.parse(localStorage.getItem("w_set") || "{}"));
+const saveSet = () => { localStorage.setItem("w_set", JSON.stringify(SET)); applySet(); native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure }); };
 const COLORS = ["linear-gradient(135deg,#ff6a88,#ff99ac)","linear-gradient(135deg,#43e97b,#38f9d7)","linear-gradient(135deg,#f6d365,#fda085)","linear-gradient(135deg,#4facfe,#00f2fe)","linear-gradient(135deg,#a18cd1,#fbc2eb)","linear-gradient(135deg,#fa709a,#fee140)","linear-gradient(135deg,#30cfd0,#7b5cff)","linear-gradient(135deg,#ff9a44,#fc6076)"];
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const safeImg = (u) => (typeof u === "string" && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(u) ? u : null);
 function avatar(el, u, dot) {
-  el.style.background = COLORS[(u?.id || 0) % COLORS.length];
-  el.innerHTML = esc((u?.name || "?").trim().charAt(0).toUpperCase()) + (dot && u?.online ? '<i class="dot"></i>' : "");
+  const img = safeImg(u?.avatar);
+  el.style.background = img ? `center/cover no-repeat url("${img}")` : COLORS[(u?.id || 0) % COLORS.length];
+  el.innerHTML = (img ? "" : esc((u?.name || "?").trim().charAt(0).toUpperCase())) + (dot && u?.online ? '<i class="dot"></i>' : "");
 }
-function toast(t) { const d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 2600); }
-function show(id) { for (const v of ["auth", "home", "chat", "profile"]) $(v).classList.toggle("hidden", v !== id); }
+function toast(t) { const d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 2800); }
+const VIEWS = ["auth", "home", "chat", "settings", "profile", "privacy", "security", "chatset", "notifs", "game"];
+function show(id) { for (const v of VIEWS) $(v).classList.toggle("hidden", v !== id); S.view = id; }
+function go(id) { show(id); history.pushState({ v: id }, ""); }
 const pad = (n) => String(n).padStart(2, "0");
-function hm(ts) { const d = new Date(ts); return pad(d.getHours()) + ":" + pad(d.getMinutes()); }
+const hm = (ts) => { const d = new Date(ts); return pad(d.getHours()) + ":" + pad(d.getMinutes()); };
 function dayLabel(ts) {
-  const d = new Date(ts), n = new Date(); const y = new Date(n); y.setDate(n.getDate() - 1);
+  const d = new Date(ts), n = new Date(), y = new Date(n); y.setDate(n.getDate() - 1);
   if (d.toDateString() === n.toDateString()) return "اليوم";
   if (d.toDateString() === y.toDateString()) return "أمس";
   return d.toLocaleDateString("ar", { day: "numeric", month: "long", year: "numeric" });
 }
-function shortTime(ts) { const d = new Date(ts); return d.toDateString() === new Date().toDateString() ? hm(ts) : dayLabel(ts) === "أمس" ? "أمس" : d.toLocaleDateString("ar", { day: "numeric", month: "numeric" }); }
+const shortTime = (ts) => { const d = new Date(ts); return d.toDateString() === new Date().toDateString() ? hm(ts) : dayLabel(ts) === "أمس" ? "أمس" : d.toLocaleDateString("ar", { day: "numeric", month: "numeric" }); };
+const fmtDur = (s) => Math.floor(s / 60) + ":" + pad(Math.floor(s % 60));
+const fmtSize = (b) => b > 1048576 ? (b / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(b / 1024)) + " KB";
 function lastSeen(u) {
   if (!u) return "";
   if (u.online) return "متصل الآن";
@@ -268,10 +538,27 @@ async function api(path, body) {
     body: body ? JSON.stringify(body) : undefined,
   });
   const d = await r.json().catch(() => ({}));
-  if (r.status === 401 && S.token && !path.includes("login")) { logout(); throw new Error("انتهت الجلسة"); }
+  if (r.status === 401 && S.token && !path.includes("login")) { logout(true); throw new Error("انتهت الجلسة"); }
   if (!r.ok) throw new Error(d.error || "خطأ في الاتصال");
   return d;
 }
+
+// ---------- الجسر مع التطبيق (آيفون / أندرويد) ----------
+const NAT = {
+  ios: !!(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.wasel),
+  android: !!window.WaselNative,
+};
+NAT.any = NAT.ios || NAT.android;
+NAT.bio = !!(window.WASEL_BIO || (NAT.android && window.WaselNative.hasBio && window.WaselNative.hasBio()));
+function native(o) {
+  try {
+    if (NAT.ios) window.webkit.messageHandlers.wasel.postMessage(o);
+    else if (NAT.android) window.WaselNative.post(JSON.stringify(o));
+  } catch {}
+}
+const nativeWaiters = {};
+window.waselNative = (ev) => { const f = nativeWaiters[ev.type]; if (f) { delete nativeWaiters[ev.type]; f(ev); } };
+const nativeAsk = (o, type) => new Promise((res) => { nativeWaiters[type] = res; native(o); });
 
 // ---------- التشفير من طرف لطرف ----------
 const TE = new TextEncoder(), TD = new TextDecoder();
@@ -279,7 +566,6 @@ const b64 = (buf) => { const a = new Uint8Array(buf); let s = ""; for (let i = 0
 const ub64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
 const EC = { name: "ECDH", namedCurve: "P-256" };
 const pwKey = (pass) => crypto.subtle.importKey("raw", TE.encode(pass), "PBKDF2", false, ["deriveBits", "deriveKey"]);
-// كلمة المرور الحقيقية لا تُرسل للسيرفر أبداً؛ يُرسل بدلها مفتاح مشتق منها
 async function authKey(email, pass) {
   const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: TE.encode("wasel-auth:" + email.trim().toLowerCase()), iterations: 200000 }, await pwKey(pass), 256);
   return b64(bits);
@@ -287,13 +573,16 @@ async function authKey(email, pass) {
 async function wrapKey(pass, salt) {
   return crypto.subtle.deriveKey({ name: "PBKDF2", hash: "SHA-256", salt, iterations: 200000 }, await pwKey(pass), { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
 }
+async function makeBackup(pass, privB64) {
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await wrapKey(pass, salt), ub64(privB64));
+  return b64(salt) + "." + b64(iv) + "." + b64(ct);
+}
 async function newIdentity(pass) {
   const kp = await crypto.subtle.generateKey(EC, true, ["deriveKey"]);
   const pub = b64(await crypto.subtle.exportKey("raw", kp.publicKey));
-  const pk8 = await crypto.subtle.exportKey("pkcs8", kp.privateKey);
-  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
-  const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await wrapKey(pass, salt), pk8);
-  return { pub, priv: b64(pk8), backup: b64(salt) + "." + b64(iv) + "." + b64(ct) };
+  const priv = b64(await crypto.subtle.exportKey("pkcs8", kp.privateKey));
+  return { pub, priv, backup: await makeBackup(pass, priv) };
 }
 async function openBackup(pass, backup) {
   const [salt, iv, ct] = backup.split(".").map(ub64);
@@ -327,15 +616,86 @@ async function dec(uid, body) {
   } catch { return "🔒 تعذّر فك التشفير"; }
 }
 const txt = (m) => m.text ?? (PT.has(m.body) ? PT.get(m.body) : m.body && m.body.startsWith("e1:") ? "🔒 …" : m.body);
+const meta = (m) => { if (m.meta) return m.meta; try { return (m.meta = JSON.parse(txt(m))); } catch { return null; } };
 const decAll = (peer, list) => Promise.all(list.map((m) => dec(peer, m.body)));
-// رقم الأمان: نفس الرقم يظهر عند الطرفين إذا لم يتلاعب أحد بالمفاتيح
 async function safetyNumber(uid) {
   const keys = [S.me.pub, S.users[uid].pub].sort();
   const h = new Uint8Array(await crypto.subtle.digest("SHA-256", TE.encode(keys.join("|"))));
-  const groups = [];
-  for (let i = 0; i < 12; i++) groups.push(String(((h[i * 2] << 8) | h[i * 2 + 1]) % 100000).padStart(5, "0"));
-  return groups;
+  const g = [];
+  for (let i = 0; i < 12; i++) g.push(String(((h[i * 2] << 8) | h[i * 2 + 1]) % 100000).padStart(5, "0"));
+  return g;
 }
+function preview(m) {
+  if (!m) return "";
+  if (m.deleted) return "🚫 تم حذف الرسالة";
+  if (m.kind === "file") { const x = meta(m); if (!x) return "📎 ملف"; return x.mime?.startsWith("image/") ? "📷 صورة" : x.mime?.startsWith("video/") ? "🎥 فيديو" : "📄 " + x.name; }
+  if (m.kind === "voice") return "🎤 رسالة صوتية";
+  if (m.kind === "game") return "🎴 دعوة للعب ألوان";
+  return (m.kind === "call" ? "📞 " : "") + txt(m);
+}
+
+// ---------- الإعدادات المطبّقة ----------
+const WALLS = {
+  glow: { n: "افتراضي", css: "transparent" },
+  night: { n: "ليل", css: "linear-gradient(160deg,#0f2027,#203a43,#2c5364)" },
+  ocean: { n: "محيط", css: "linear-gradient(160deg,#1a1a2e,#16213e,#0f3460)" },
+  forest: { n: "غابة", css: "linear-gradient(160deg,#0b3d2e,#06251c,#020d0a)" },
+  plum: { n: "بنفسجي", css: "linear-gradient(160deg,#41295a,#2f0743)" },
+  sunset: { n: "غروب", css: "linear-gradient(160deg,#ff7e5f,#a8336a,#2b1055)" },
+  dots: { n: "نقاط", css: "#0b0e14 url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Ccircle cx='13' cy='13' r='1.6' fill='%23ffffff22'/%3E%3C/svg%3E\")" },
+  black: { n: "أسود", css: "#000" },
+  custom: { n: "صورتك", css: "" },
+};
+function wallCss(key) {
+  if (key === "custom") { const img = localStorage.getItem("w_wall"); return img ? `center/cover no-repeat url("${img}")` : WALLS.glow.css; }
+  return (WALLS[key] || WALLS.glow).css;
+}
+function applySet() {
+  document.documentElement.style.setProperty("--fs", SET.fs);
+  const bg = wallCss(SET.wall), dim = SET.dim / 100;
+  const css = `linear-gradient(rgba(0,0,0,${dim}),rgba(0,0,0,${dim})),${bg}`;
+  $("msgs").style.background = css;
+  $("wPrev").style.background = css;
+}
+
+// ---------- قفل التطبيق ----------
+async function pinHash(pin, salt) {
+  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: TE.encode(salt), iterations: 150000 }, await pwKey(pin), 256);
+  return b64(bits);
+}
+let lockEntry = "", locked = false, hiddenAt = 0;
+function buildPad() {
+  $("lockPad").innerHTML = [1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "⌫"].map((k) => `<button ${k === "" ? 'style="visibility:hidden"' : ""} data-k="${k}">${k}</button>`).join("");
+  $("lockPad").onclick = (e) => { const k = e.target.dataset?.k; if (k === undefined || k === "") return; lockKey(k); };
+}
+function lockDots() { $("lockDots").innerHTML = Array.from({ length: SET.lock?.len || 4 }, (_, i) => `<i class="${i < lockEntry.length ? "f" : ""}"></i>`).join(""); }
+async function lockKey(k) {
+  if (k === "⌫") lockEntry = lockEntry.slice(0, -1); else if (lockEntry.length < (SET.lock.len || 4)) lockEntry += k;
+  lockDots();
+  if (lockEntry.length === SET.lock.len) {
+    if ((await pinHash(lockEntry, SET.lock.salt)) === SET.lock.hash) unlock();
+    else { $("lock").classList.add("shake"); setTimeout(() => $("lock").classList.remove("shake"), 450); lockEntry = ""; lockDots(); $("lockMsg").textContent = "رمز خاطئ"; }
+  }
+}
+function lockNow() {
+  if (!SET.lock || locked || C) return;
+  locked = true; lockEntry = ""; lockDots(); $("lockMsg").textContent = "أدخل الرمز";
+  $("lock").classList.remove("hidden");
+  $("lockBio").classList.toggle("hidden", !(SET.bio && NAT.bio));
+  if (SET.bio && NAT.bio) setTimeout(tryBio, 300);
+}
+async function tryBio() { const r = await nativeAsk({ type: "bio", reason: "افتح واصل" }, "bio"); if (r.ok) unlock(); }
+function unlock() { locked = false; $("lock").classList.add("hidden"); }
+$("lockBio").onclick = tryBio;
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) hiddenAt = Date.now();
+  else {
+    if (SET.lock && hiddenAt && Date.now() - hiddenAt >= SET.after * 1000) lockNow();
+    if (C && C.state === "incoming") ring("in");
+    if (!S.wsOk && S.token) connect();
+    if (S.peer && S.view === "chat") wsSend({ t: "read", to: S.peer.id });
+  }
+});
 
 // ---------- الدخول ----------
 let regMode = false;
@@ -362,7 +722,7 @@ $("aGo").onclick = async () => {
     } else {
       try { d = await api("/api/login", { email, password: ak }); }
       catch (e) {
-        // حسابات قديمة قبل التشفير: ندخل بالطريقة القديمة ثم نحدّثها
+        if (/دقيقة/.test(e.message)) throw e;
         d = await api("/api/login", { email, password: pass }).catch(() => { throw e; });
         S.token = d.token; await api("/api/upgrade", { password: ak });
       }
@@ -370,35 +730,41 @@ $("aGo").onclick = async () => {
       if (d.backup) priv = await openBackup(pass, d.backup);
       else {
         const id = await newIdentity(pass);
-        const r = await api("/api/keys", { pub: id.pub, backup: id.backup });
-        d.user = r.user; priv = id.priv;
+        d.user = (await api("/api/keys", { pub: id.pub, backup: id.backup })).user; priv = id.priv;
       }
     }
     localStorage.setItem("w_priv", priv); PRIV = null;
     $("aErr").textContent = "";
     S.token = d.token; S.me = d.user;
     localStorage.setItem("w_token", d.token); localStorage.setItem("w_me", JSON.stringify(d.user));
+    $("aPass").value = "";
     start();
   } catch (e) { $("aErr").textContent = e.message; }
   $("aGo").disabled = false;
 };
 $("aPass").onkeydown = (e) => { if (e.key === "Enter") $("aGo").click(); };
 
-function logout() {
-  if (S.token) fetch(API + "/api/logout", { method: "POST", headers: { authorization: "Bearer " + S.token } }).catch(() => {});
-  localStorage.clear(); PRIV = null; PT.clear(); S.token = null; S.me = null; S.msgs = {}; S.chats = []; S.calls = [];
+function logout(silent) {
+  if (S.token && !silent) fetch(API + "/api/logout", { method: "POST", headers: { authorization: "Bearer " + S.token } }).catch(() => {});
+  native({ type: "logout" });
+  const keep = localStorage.getItem("w_set"), wall = localStorage.getItem("w_wall");
+  localStorage.clear();
+  if (keep) { const s = JSON.parse(keep); delete s.lock; s.bio = false; localStorage.setItem("w_set", JSON.stringify(s)); SET.lock = null; SET.bio = false; }
+  if (wall) localStorage.setItem("w_wall", wall);
+  PRIV = null; PT.clear(); S.token = null; S.me = null; S.msgs = {}; S.chats = []; S.calls = [];
   try { S.ws && S.ws.close(); } catch {}
   show("auth");
 }
 
 // ---------- الاتصال اللحظي ----------
 function connect() {
-  if (!S.token) return;
+  if (!S.token || (S.ws && S.ws.readyState <= 1)) return;
   const ws = new WebSocket(API.replace(/^http/, "ws") + "/ws?token=" + encodeURIComponent(S.token));
   S.ws = ws;
-  ws.onopen = () => { S.wsOk = true; S.retry = 0; $("connBar").classList.add("hidden"); loadChats(); if (S.peer) openChat(S.peer.id, true); flushQueue(); };
-  ws.onclose = () => {
+  ws.onopen = () => { S.wsOk = true; S.retry = 0; $("connBar").classList.add("hidden"); loadChats(); if (S.peer && S.view === "chat") openChat(S.peer.id, true); flushQueue(); };
+  ws.onclose = (e) => {
     S.wsOk = false; if (!S.token) return;
+    if (e.code === 4001) { logout(true); toast("تم تسجيل خروجك من هذا الجهاز"); return; }
     $("connBar").classList.remove("hidden");
     setTimeout(connect, Math.min(10000, 800 * 2 ** S.retry++));
   };
@@ -413,13 +779,13 @@ async function onWs(m) {
     if (m.user) S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
     await dec(peer, msg.body);
     pushMsg(peer, msg);
-    if (S.peer && S.peer.id === peer && !document.hidden && !$("chat").classList.contains("hidden")) wsSend({ t: "read", to: peer });
-    else if (msg.a !== S.me.id) beep(1);
+    const open = S.peer && S.peer.id === peer && !document.hidden && S.view === "chat";
+    if (open) wsSend({ t: "read", to: peer }); else if (msg.a !== S.me.id && SET.sound && !document.hidden) beep();
     bumpChat(peer, msg, msg.a !== S.me.id);
   } else if (m.t === "ack") {
     const peer = m.m.b, list = S.msgs[peer] || [];
     const i = list.findIndex((x) => x.cid === m.cid);
-    if (i >= 0) list[i] = m.m; else list.push(m.m);
+    if (i >= 0) { const old = list[i]; list[i] = Object.assign(m.m, { meta: old.meta, local: old.local }); } else list.push(m.m);
     S.queue = (S.queue || []).filter((q) => q.cid !== m.cid);
     if (S.peer && S.peer.id === peer) renderMsgs();
     bumpChat(peer, m.m, false);
@@ -428,13 +794,23 @@ async function onWs(m) {
     const c = S.chats.find((c) => c.user.id === m.with); if (c && c.last.a === S.me.id) c.last.status = Math.max(c.last.status, m.status);
     if (S.peer && S.peer.id === m.with) renderMsgs();
     renderChats();
+  } else if (m.t === "deleted") {
+    const peer = m.a === S.me.id ? m.b : m.a;
+    for (const x of S.msgs[peer] || []) if (x.id === m.id) { x.deleted = 1; x.body = ""; x.meta = null; }
+    const c = S.chats.find((c) => c.user.id === peer); if (c && c.last.id === m.id) c.last.deleted = 1;
+    if (S.peer && S.peer.id === peer) renderMsgs();
+    renderChats();
   } else if (m.t === "presence") {
     const u = S.users[m.id]; if (u) { u.online = m.online; u.last_seen = m.last_seen; }
     if (S.peer && S.peer.id === m.id) $("cStatus").textContent = lastSeen(u);
     renderChats();
+  } else if (m.t === "profile") {
+    S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
+    renderChats();
+    if (S.peer && S.peer.id === m.user.id) { avatar($("cAv"), m.user); $("cName").textContent = m.user.name; }
   } else if (m.t === "typing") {
     if (S.peer && S.peer.id === m.from) {
-      $("cStatus").textContent = "يكتب…";
+      $("cStatus").textContent = m.rec ? "يسجّل صوتاً… 🎤" : "يكتب…";
       clearTimeout(S.typT); S.typT = setTimeout(() => ($("cStatus").textContent = lastSeen(S.users[m.from])), 3000);
     }
   } else if (m.t === "signal") {
@@ -457,32 +833,34 @@ function bumpChat(peer, msg, incoming) {
   let c = S.chats.find((c) => c.user.id === peer);
   if (!c) { c = { user: S.users[peer] || { id: peer, name: "…" }, last: msg, unread: 0 }; S.chats.unshift(c); if (!S.users[peer]) fetchUser(peer); }
   c.last = msg;
-  if (incoming && !(S.peer && S.peer.id === peer && !$("chat").classList.contains("hidden"))) c.unread++;
+  if (incoming && !(S.peer && S.peer.id === peer && S.view === "chat")) c.unread++;
   S.chats.sort((a, b) => (b.last.ts || 0) - (a.last.ts || 0));
   renderChats();
 }
 async function fetchUser(id) { try { const d = await api("/api/user?id=" + id); S.users[id] = d.user; renderChats(); } catch {} }
 function ticks(m) {
-  if (m.a !== S.me.id) return "";
+  if (m.a !== S.me.id || m.deleted) return "";
   if (!m.id) return '<span class="tick">🕓</span>';
   return m.status >= 2 ? '<span class="tick r">✓✓</span>' : m.status === 1 ? '<span class="tick">✓✓</span>' : '<span class="tick">✓</span>';
 }
 function renderChats() {
-  const el = $("chatList");
-  if (!S.chats.length) { el.innerHTML = '<div class="empty">لا توجد دردشات بعد.<br>اضغط + وابدأ دردشة ببريد صديقك.</div>'; return; }
+  const el = $("chatList"), q = $("hSearch").value.trim().toLowerCase();
+  const list = S.chats.filter((c) => { if (!q) return true; const u = S.users[c.user.id] || c.user; return (u.name || "").toLowerCase().includes(q) || preview(c.last).toLowerCase().includes(q); });
+  if (!list.length) { el.innerHTML = `<div class="empty">${q ? "لا توجد نتائج" : "لا توجد دردشات بعد.<br>اضغط + وابدأ دردشة ببريد صديقك."}</div>`; return; }
   el.innerHTML = ""; let i = 0;
-  for (const c of S.chats) {
+  for (const c of list) {
     const u = S.users[c.user.id] || c.user;
-    const r = document.createElement("div"); r.className = "row"; if (!el.dataset.shown) r.style.animationDelay = Math.min(i++, 12) * 30 + "ms"; else r.style.animation = "none";
-    const pv = (c.last.kind === "call" ? "📞 " : "") + txt(c.last);
+    const r = document.createElement("div"); r.className = "row";
+    if (!el.dataset.shown) r.style.animationDelay = Math.min(i++, 12) * 30 + "ms"; else r.style.animation = "none";
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm">${esc(u.name)}</span><span class="tm ${c.unread ? "u" : ""}">${shortTime(c.last.ts)}</span></div>
-      <div class="sub"><span class="pv">${ticks(c.last)} ${esc(pv)}</span>${c.unread ? `<span class="badge">${c.unread}</span>` : ""}</div></div>`;
+      <div class="sub"><span class="pv">${ticks(c.last)} ${esc(preview(c.last))}</span>${c.unread ? `<span class="badge">${c.unread}</span>` : ""}</div></div>`;
     avatar(r.querySelector(".av"), u, true);
     r.onclick = () => openChat(u.id);
     el.append(r);
   }
   el.dataset.shown = 1;
 }
+$("hSearch").oninput = renderChats;
 function pushMsg(peer, msg) {
   const list = (S.msgs[peer] ||= []);
   if (msg.id && list.some((x) => x.id === msg.id)) return;
@@ -495,8 +873,7 @@ async function openChat(id, refresh) {
   S.peer = u;
   if (!refresh) {
     avatar($("cAv"), u); $("cName").textContent = u.name; $("cStatus").textContent = lastSeen(u);
-    show("chat"); renderMsgs(true);
-    history.pushState({ v: "chat" }, "");
+    setReply(null); go("chat"); renderMsgs(true);
   }
   try {
     const [d, ud] = await Promise.all([api("/api/messages?with=" + id), api("/api/user?id=" + id)]);
@@ -510,32 +887,115 @@ async function openChat(id, refresh) {
   wsSend({ t: "read", to: id });
   const c = S.chats.find((c) => c.user.id === id); if (c) { c.unread = 0; renderChats(); }
 }
+
+function bubbleBody(m) {
+  if (m.deleted) return "🚫 تم حذف هذه الرسالة";
+  const x = m.kind === "file" || m.kind === "voice" || m.kind === "game" ? meta(m) : null;
+  const prog = m.prog !== undefined ? `<div class="prog">${m.prog}%</div>` : "";
+  if (m.kind === "voice" && x) {
+    return `<div class="mvoice" data-fid="${esc(x.fid)}"><button class="vp">▶</button><div class="vbar"><i></i></div><span>${fmtDur(x.dur || 0)}</span></div>${prog}`;
+  }
+  if (m.kind === "game" && x) {
+    return `<div class="gameinv"><div class="gt"><span style="font-size:30px">🎴</span><span>دعوة للعب ألوان<br><small style="font-weight:400;opacity:.8" dir="ltr">${esc(x.code)}</small></span></div><button class="btn" data-join="${esc(x.code)}">انضم للعبة</button></div>`;
+  }
+  if (m.kind === "file" && x) {
+    const url = FILES.get(x.fid)?.url || m.local;
+    if (x.mime?.startsWith("image/"))
+      return `<div style="position:relative"><img class="mimg" data-fid="${esc(x.fid)}" src="${esc(url || safeImg(x.thumb) || "")}">${prog}</div>`;
+    if (x.mime?.startsWith("video/"))
+      return `<div class="mvid" data-fid="${esc(x.fid)}" style="position:relative"><img class="mthumb" src="${esc(safeImg(x.thumb) || "")}"><span class="play">▶</span>${prog}</div>`;
+    return `<div class="mfile" data-fid="${esc(x.fid)}" style="position:relative"><span class="fi">📄</span><span><b>${esc(x.name)}</b><small>${fmtSize(x.size)}</small></span>${prog}</div>`;
+  }
+  return (m.kind === "call" ? "📞 " : "") + esc(txt(m));
+}
 function renderMsgs(scroll) {
+  if (!S.peer) return;
   const box = $("msgs"), atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
   const list = S.msgs[S.peer.id] || [];
-  let html = "", lastDay = "", idx = 0;
+  let html = '<div class="e2e" id="e2eNote">🔒 الرسائل والمكالمات والملفات مشفّرة من طرف لطرف. لا أحد غيركما يقدر يقرأها أو يسمعها، ولا حتى السيرفر. اضغط للتحقق.</div>';
+  let lastDay = "", idx = 0;
   const prev = (S.rc ||= {})[S.peer.id] ?? list.length;
+  const byId = {}; for (const m of list) if (m.id) byId[m.id] = m;
   for (const m of list) {
     const dl = dayLabel(m.ts);
     if (dl !== lastDay) { html += `<div class="day clr"><span>${dl}</span></div>`; lastDay = dl; }
-    const mine = m.a === S.me.id;
-    html += `<div class="b ${idx++ >= prev ? "a " : ""}${mine ? "o" : "i"} ${m.kind === "call" ? "call" : ""}">${m.kind === "call" ? "📞 " : ""}${esc(txt(m))}<span class="meta">${hm(m.ts)}${ticks(m)}</span></div>`;
+    const mine = m.a === S.me.id, media = !m.deleted && (m.kind === "file" || m.kind === "voice");
+    let rq = "";
+    if (m.reply && byId[m.reply]) { const r = byId[m.reply]; rq = `<span class="rq"><b>${r.a === S.me.id ? "أنت" : esc(S.peer.name)}</b>${esc(preview(r)).slice(0, 90)}</span>`; }
+    html += `<div class="b ${idx++ >= prev ? "a " : ""}${mine ? "o" : "i"}${m.kind === "call" ? " call" : ""}${m.deleted ? " del" : ""}${media ? " media" : ""}" data-i="${idx - 1}">${rq}${bubbleBody(m)}<span class="meta">${hm(m.ts)}${ticks(m)}</span></div>`;
   }
   S.rc[S.peer.id] = list.length;
-  html = '<div class="e2e" onclick="showSafety()">🔒 الرسائل والمكالمات مشفّرة من طرف لطرف. لا أحد غيركما يقدر يقرأها أو يسمعها، ولا حتى السيرفر. اضغط للتحقق.</div>' + html;
   box.innerHTML = html + '<div class="clr"></div>';
   if (scroll || atBottom) box.scrollTop = box.scrollHeight;
+  // تحميل الصور تلقائياً
+  for (const img of box.querySelectorAll("img.mimg")) {
+    const fid = img.dataset.fid;
+    if (FILES.get(fid)?.url) continue;
+    const m = list.find((x) => meta(x)?.fid === fid);
+    if (m && m.id) loadFile(meta(m)).then((f) => { for (const el of document.querySelectorAll(`img.mimg[data-fid="${CSS.escape(fid)}"]`)) el.src = f.url; }).catch(() => {});
+  }
 }
-async function send(text, kind) {
+
+// تفاعل مع الفقاعات: ضغط مطوّل = خيارات، ضغط = فتح الوسائط
+(function bubbleEvents() {
+  const box = $("msgs");
+  let t = null, startY = 0;
+  const msgOf = (el) => { const b = el.closest(".b"); return b ? (S.msgs[S.peer.id] || [])[Number(b.dataset.i)] : null; };
+  box.addEventListener("pointerdown", (e) => {
+    const m = msgOf(e.target); if (!m) return; startY = e.clientY;
+    t = setTimeout(() => { t = null; msgActions(m); if (navigator.vibrate) navigator.vibrate(15); }, 450);
+  });
+  const cancel = () => { clearTimeout(t); t = null; };
+  box.addEventListener("pointerup", cancel); box.addEventListener("pointercancel", cancel);
+  box.addEventListener("pointermove", (e) => { if (Math.abs(e.clientY - startY) > 8) cancel(); });
+  box.addEventListener("contextmenu", (e) => { const m = msgOf(e.target); if (m) { e.preventDefault(); msgActions(m); } });
+  box.addEventListener("click", async (e) => {
+    if (e.target.closest("#e2eNote")) return showInfo();
+    const j = e.target.closest("[data-join]"); if (j) return joinGame(j.dataset.join);
+    const m = msgOf(e.target); if (!m || m.deleted) return;
+    const x = meta(m); if (!x || !m.id) return;
+    if (e.target.closest(".vp")) return playVoice(e.target.closest(".mvoice"), x);
+    if (e.target.closest(".mimg,.mvid")) return openViewer(x);
+    if (e.target.closest(".mfile")) { toast("⏬ جارٍ التحميل…"); try { saveFile(await loadFile(x), x); } catch { toast("تعذّر تحميل الملف"); } }
+  });
+})();
+
+function msgActions(m) {
+  if (m.deleted || !m.id) return;
+  const mine = m.a === S.me.id;
+  const items = [["↩️", "رد", () => setReply(m)]];
+  if (m.kind === "text") items.push(["📋", "نسخ", () => { navigator.clipboard?.writeText(txt(m)).then(() => toast("تم النسخ")).catch(() => toast("تعذّر النسخ")); }]);
+  if (m.kind === "file") items.push(["⬇️", "حفظ", async () => { try { saveFile(await loadFile(meta(m)), meta(m)); } catch { toast("تعذّر التحميل"); } }]);
+  if (mine) items.push(["🗑️", "حذف عند الجميع", () => wsSend({ t: "delete", id: m.id }), "dz"]);
+  $("acts").innerHTML = items.map((it, i) => `<button data-a="${i}" class="${it[3] || ""}"><span class="em">${it[0]}</span>${it[1]}</button>`).join("");
+  $("acts").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; closeSheets(); items[Number(b.dataset.a)][2](); };
+  openSheet("actSheet");
+}
+function setReply(m) {
+  S.reply = m || null;
+  $("replyBar").classList.toggle("hidden", !m);
+  if (m) { $("rbName").textContent = m.a === S.me.id ? "أنت" : S.peer.name; $("rbText").textContent = preview(m); $("cInput").focus(); }
+}
+$("rbX").onclick = () => setReply(null);
+
+// ---------- الإرسال ----------
+function updateSendBtn() {
+  const has = $("cInput").value.trim().length > 0 || REC.on;
+  $("cSend").innerHTML = `<svg><use href="#i-${has ? "send" : "mic"}"/></svg>`;
+}
+async function send(text, kind, extra = {}) {
   if (!S.peer || !text.trim()) return;
   const peer = S.peer.id, cid = Math.random().toString(36).slice(2);
-  const m = { cid, a: S.me.id, b: peer, body: "", text, kind: kind || "text", ts: Date.now(), status: 0 };
+  const reply = S.reply?.id || null; setReply(null);
+  const m = { cid, a: S.me.id, b: peer, body: "", text, kind: kind || "text", ts: Date.now(), status: 0, reply, ...extra };
   pushMsg(peer, m); renderMsgs(true);
   let body;
   try { body = await enc(peer, text); }
   catch { toast("هذا المستخدم يحتاج تحديث التطبيق لاستقبال الرسائل المشفّرة"); S.msgs[peer] = S.msgs[peer].filter((x) => x !== m); renderMsgs(); return; }
-  (S.queue ||= []).push({ t: "send", to: peer, body, kind, cid });
-  wsSend({ t: "send", to: peer, body, kind, cid });
+  const q = { t: "send", to: peer, body, kind, cid, reply };
+  (S.queue ||= []).push(q);
+  wsSend(q);
+  return m;
 }
 async function sendTo(peer, text, kind) {
   try { wsSend({ t: "send", to: peer, body: await enc(peer, text), kind, cid: Math.random().toString(36).slice(2) }); } catch {}
@@ -545,49 +1005,345 @@ function flushQueue() { for (const q of S.queue || []) wsSend(q); }
 const inp = $("cInput");
 inp.oninput = () => {
   inp.style.height = "auto"; inp.style.height = Math.min(120, inp.scrollHeight) + "px";
+  updateSendBtn();
   const now = Date.now(); if (now - (S.lastTyp || 0) > 2000) { S.lastTyp = now; wsSend({ t: "typing", to: S.peer.id }); }
 };
-$("cSend").onclick = () => { const v = inp.value; inp.value = ""; inp.style.height = "auto"; send(v); inp.focus(); };
+inp.onkeydown = (e) => { if (SET.enter && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("cSend").click(); } };
+$("cSend").onclick = () => {
+  if (REC.on) return stopRec(true);
+  const v = inp.value;
+  if (!v.trim()) return startRec();
+  inp.value = ""; inp.style.height = "auto"; updateSendBtn(); send(v); inp.focus();
+};
 $("cBack").onclick = () => history.back();
-$("pBack").onclick = () => history.back();
-window.onpopstate = () => { if (!$("call").classList.contains("hidden")) return; S.peer = null; show("home"); renderChats(); };
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) { if (!S.wsOk && S.token) connect(); if (S.peer && !$("chat").classList.contains("hidden")) wsSend({ t: "read", to: S.peer.id }); }
-});
-
-// تبويبات
-for (const b of document.querySelectorAll(".tabs button")) b.onclick = () => {
-  for (const x of document.querySelectorAll(".tabs button")) x.classList.toggle("on", x === b);
-  $("chatList").classList.toggle("hidden", b.dataset.tab !== "chats");
-  $("callList").classList.toggle("hidden", b.dataset.tab !== "calls");
-  $("newChat").classList.toggle("hidden", b.dataset.tab !== "chats");
-  renderCalls();
+for (const b of document.querySelectorAll("[data-back]")) b.onclick = () => history.back();
+window.onpopstate = () => {
+  if (!$("call").classList.contains("hidden")) return;
+  if (!$("viewer").classList.contains("hidden")) { closeViewer(); return; }
+  if (S.view === "game") leaveGameView();
+  const v = history.state?.v || "home";
+  if (v === "chat" && S.peer) show("chat");
+  else if (VIEWS.includes(v) && v !== "auth" && v !== "chat") { show(v); if (v === "settings") renderSettings(); }
+  else { S.peer = null; show("home"); renderChats(); }
 };
 
+// ---------- الملفات (مشفّرة) ----------
+const FILES = new Map();
+const CHUNK = 1000000;
+const randHexJS = (n) => [...crypto.getRandomValues(new Uint8Array(n))].map((x) => x.toString(16).padStart(2, "0")).join("");
+async function makeThumb(file) {
+  try {
+    const url = URL.createObjectURL(file);
+    let src;
+    if (file.type.startsWith("image/")) { src = new Image(); src.src = url; await src.decode(); }
+    else if (file.type.startsWith("video/")) {
+      src = document.createElement("video"); src.muted = true; src.playsInline = true; src.preload = "auto"; src.src = url;
+      await new Promise((res, rej) => { src.onloadeddata = res; src.onerror = rej; setTimeout(res, 4000); });
+      src.currentTime = Math.min(0.5, (src.duration || 1) / 2);
+      await new Promise((res) => { src.onseeked = res; setTimeout(res, 2000); });
+    } else return null;
+    const w = src.naturalWidth || src.videoWidth, h = src.naturalHeight || src.videoHeight;
+    if (!w || !h) return null;
+    const sc = Math.min(1, 320 / Math.max(w, h));
+    const c = document.createElement("canvas"); c.width = Math.round(w * sc); c.height = Math.round(h * sc);
+    c.getContext("2d").drawImage(src, 0, 0, c.width, c.height);
+    URL.revokeObjectURL(url);
+    return { thumb: c.toDataURL("image/jpeg", 0.6), w, h, dur: src.duration || 0 };
+  } catch { return null; }
+}
+async function sendFile(file, kind = "file", extra = {}) {
+  if (!S.peer) return;
+  if (file.size > 58 * 1048576) return toast("الحد الأقصى للملف 58MB");
+  const peer = S.peer.id;
+  try { await sharedKey(peer); } catch { return toast("هذا المستخدم يحتاج تحديث التطبيق"); }
+  const th = kind === "file" ? await makeThumb(file) : null;
+  const fid = randHexJS(16);
+  const key = crypto.getRandomValues(new Uint8Array(32)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const x = { fid, k: b64(key), iv: b64(iv), name: file.name || "file", mime: file.type || "application/octet-stream", size: file.size, n: 0, ...(th || {}), ...extra };
+  const local = URL.createObjectURL(file);
+  FILES.set(fid, { url: local, blob: file });
+  const cid = Math.random().toString(36).slice(2);
+  const m = { cid, a: S.me.id, b: peer, body: "", kind, ts: Date.now(), status: 0, meta: x, local, prog: 0 };
+  pushMsg(peer, m); renderMsgs(true);
+  try {
+    const ck = await crypto.subtle.importKey("raw", key, "AES-GCM", false, ["encrypt"]);
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, ck, await file.arrayBuffer()));
+    x.n = Math.ceil(ct.length / CHUNK);
+    for (let i = 0; i < x.n; i++) {
+      const r = await fetch(`${API}/api/upload?id=${fid}&i=${i}`, { method: "POST", headers: { authorization: "Bearer " + S.token }, body: ct.subarray(i * CHUNK, (i + 1) * CHUNK) });
+      if (!r.ok) throw new Error("upload");
+      m.prog = Math.round(((i + 1) / x.n) * 100);
+      if (S.peer && S.peer.id === peer) { const el = document.querySelector(`.b[data-i="${S.msgs[peer].indexOf(m)}"] .prog`); if (el) el.textContent = m.prog + "%"; }
+    }
+    delete m.prog;
+    const body = await enc(peer, JSON.stringify(x));
+    const q = { t: "send", to: peer, body, kind, cid };
+    (S.queue ||= []).push(q); wsSend(q);
+    renderMsgs();
+  } catch {
+    S.msgs[peer] = S.msgs[peer].filter((y) => y !== m); renderMsgs();
+    toast("فشل رفع الملف");
+  }
+}
+async function loadFile(x) {
+  const have = FILES.get(x.fid);
+  if (have?.url) return have;
+  if (have?.p) return have.p;
+  const p = (async () => {
+    const parts = [];
+    for (let i = 0; i < x.n; i++) {
+      const r = await fetch(`${API}/api/file?id=${x.fid}&i=${i}`);
+      if (!r.ok) throw new Error("dl");
+      parts.push(new Uint8Array(await r.arrayBuffer()));
+    }
+    const all = new Uint8Array(parts.reduce((a, b) => a + b.length, 0));
+    let o = 0; for (const p of parts) { all.set(p, o); o += p.length; }
+    const ck = await crypto.subtle.importKey("raw", ub64(x.k), "AES-GCM", false, ["decrypt"]);
+    const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(x.iv) }, ck, all);
+    const blob = new Blob([plain], { type: x.mime });
+    const f = { blob, url: URL.createObjectURL(blob) };
+    FILES.set(x.fid, f);
+    return f;
+  })();
+  FILES.set(x.fid, { p });
+  p.catch(() => FILES.delete(x.fid));
+  return p;
+}
+async function saveFile(f, x) {
+  if (NAT.any) {
+    native({ type: "save", name: x.name || "file", mime: x.mime, data: b64(await f.blob.arrayBuffer()) });
+    return;
+  }
+  const a = document.createElement("a"); a.href = f.url; a.download = x.name || "file"; a.click();
+}
+async function openViewer(x) {
+  $("viewer").classList.remove("hidden");
+  $("vBody").innerHTML = '<div style="color:#fff">⏳</div>';
+  history.pushState({ v: S.view, viewer: 1 }, "");
+  try {
+    const f = await loadFile(x);
+    $("vBody").innerHTML = x.mime.startsWith("video/") ? `<video src="${f.url}" controls autoplay playsinline></video>` : `<img src="${f.url}">`;
+    $("vSave").onclick = () => saveFile(f, x);
+  } catch { $("vBody").innerHTML = '<div style="color:#fff">تعذّر التحميل</div>'; }
+}
+function closeViewer() { $("viewer").classList.add("hidden"); $("vBody").innerHTML = ""; }
+$("vX").onclick = () => history.back();
+
+// المرفقات
+$("cAttach").onclick = () => {
+  const items = [["🖼️", "صور وفيديو", () => $("fMedia").click()], ["📸", "الكاميرا", () => $("fCam").click()], ["📄", "ملف", () => $("fAny").click()], ["🎴", "دعوة للعب ألوان", () => inviteToGame(S.peer.id)]];
+  $("acts").innerHTML = items.map((it, i) => `<button data-a="${i}"><span class="em">${it[0]}</span>${it[1]}</button>`).join("");
+  $("acts").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; closeSheets(); items[Number(b.dataset.a)][2](); };
+  openSheet("actSheet");
+};
+for (const id of ["fMedia", "fAny", "fCam"]) $(id).onchange = async (e) => { const fs = [...e.target.files]; e.target.value = ""; for (const f of fs) await sendFile(f); };
+
+// ---------- الرسائل الصوتية ----------
+const REC = { on: false };
+async function startRec() {
+  if (!S.peer) return;
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
+    const mime = ["audio/mp4", "audio/webm;codecs=opus", "audio/webm"].find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || "";
+    const rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+    Object.assign(REC, { on: true, rec, stream, chunks: [], t0: Date.now(), mime: rec.mimeType || mime || "audio/mp4" });
+    rec.ondataavailable = (e) => e.data.size && REC.chunks.push(e.data);
+    rec.start(250);
+    $("cInput").classList.add("hidden"); $("cAttach").classList.add("hidden"); $("recBox").classList.remove("hidden");
+    updateSendBtn();
+    REC.timer = setInterval(() => { $("recT").textContent = fmtDur((Date.now() - REC.t0) / 1000); wsSend({ t: "typing", to: S.peer.id, rec: true }); }, 1000);
+    $("recT").textContent = "0:00";
+  } catch { toast("اسمح للتطبيق باستخدام المايك"); }
+}
+function stopRec(sendIt) {
+  if (!REC.on) return;
+  const { rec, stream, t0 } = REC;
+  clearInterval(REC.timer);
+  rec.onstop = () => {
+    stream.getTracks().forEach((t) => t.stop());
+    const dur = (Date.now() - t0) / 1000;
+    if (sendIt && dur >= 0.8) {
+      const blob = new Blob(REC.chunks, { type: REC.mime.split(";")[0] });
+      const ext = blob.type.includes("webm") ? "webm" : "m4a";
+      sendFile(new File([blob], `voice.${ext}`, { type: blob.type }), "voice", { dur });
+    }
+  };
+  rec.stop();
+  REC.on = false;
+  $("cInput").classList.remove("hidden"); $("cAttach").classList.remove("hidden"); $("recBox").classList.add("hidden");
+  updateSendBtn();
+}
+$("recX").onclick = () => stopRec(false);
+let VA = null, VEL = null;
+async function playVoice(el, x) {
+  if (VA && VEL === el) { if (VA.paused) VA.play(); else VA.pause(); return; }
+  if (VA) { VA.pause(); if (VEL) VEL.querySelector(".vp").textContent = "▶"; }
+  el.querySelector(".vp").textContent = "⏳";
+  try {
+    const f = await loadFile(x);
+    VA = new Audio(f.url); VEL = el;
+    VA.onplay = () => (el.querySelector(".vp").textContent = "⏸");
+    VA.onpause = () => (el.querySelector(".vp").textContent = "▶");
+    VA.ontimeupdate = () => { const d = VA.duration && isFinite(VA.duration) ? VA.duration : x.dur || 1; el.querySelector(".vbar i").style.width = (VA.currentTime / d) * 100 + "%"; el.querySelector("span").textContent = fmtDur(VA.currentTime); };
+    VA.onended = () => { el.querySelector(".vp").textContent = "▶"; el.querySelector(".vbar i").style.width = "0"; el.querySelector("span").textContent = fmtDur(x.dur || 0); VA = null; VEL = null; };
+    await VA.play();
+  } catch { el.querySelector(".vp").textContent = "▶"; toast("تعذّر تشغيل الرسالة الصوتية"); }
+}
+
+// ---------- الأوراق المنبثقة ----------
+function openSheet(id) { $(id).classList.remove("hidden"); }
+function closeSheets() { for (const s of document.querySelectorAll(".sheet")) s.classList.add("hidden"); }
+for (const s of document.querySelectorAll(".sheet")) s.addEventListener("click", (e) => { if (e.target === s || e.target.closest("[data-close]")) { s.classList.add("hidden"); if (s.id === "askSheet" && S.askRes) { S.askRes(null); S.askRes = null; } } });
+function ask(title, fields, ok) {
+  $("askT").textContent = title; $("askE").textContent = ""; $("askOk").textContent = ok;
+  $("askF").innerHTML = fields.map((f, i) => `<input class="field" data-i="${i}" type="${f.type || "text"}" placeholder="${esc(f.ph)}" ${f.type === "password" ? 'dir="ltr"' : ""} ${f.mode ? `inputmode="${f.mode}"` : ""} maxlength="${f.max || 100}">`).join("");
+  openSheet("askSheet");
+  setTimeout(() => $("askF").querySelector("input")?.focus(), 80);
+  return new Promise((res) => {
+    S.askRes = res;
+    $("askOk").onclick = () => { const v = [...$("askF").querySelectorAll("input")].map((x) => x.value); $("askSheet").classList.add("hidden"); S.askRes = null; res(v); };
+    $("askNo").onclick = () => { $("askSheet").classList.add("hidden"); S.askRes = null; res(null); };
+  });
+}
+
+// معلومات جهة الاتصال + رقم الأمان
+async function showInfo() {
+  if (!S.peer) return;
+  const u = S.users[S.peer.id] || S.peer;
+  avatar($("iAv"), u); $("iName").textContent = u.name; $("iAbout").textContent = u.about || ""; $("iEmail").textContent = u.email || "";
+  $("sNum").innerHTML = "…";
+  openSheet("infoSheet");
+  try { if (!u.pub) await sharedKey(u.id); $("sNum").innerHTML = (await safetyNumber(u.id)).map((g) => `<span>${g}</span>`).join(""); }
+  catch { $("sNum").textContent = "هذا المستخدم لم يفعّل التشفير بعد"; }
+}
+$("cWho").onclick = showInfo; $("cAv").onclick = showInfo;
+$("iCall").onclick = () => { closeSheets(); startCall(false); };
+$("iVid").onclick = () => { closeSheets(); startCall(true); };
+
 // دردشة جديدة
-$("newChat").onclick = () => { $("newSheet").classList.remove("hidden"); $("nErr").textContent = ""; $("nEmail").value = ""; setTimeout(() => $("nEmail").focus(), 50); };
-$("nCancel").onclick = () => $("newSheet").classList.add("hidden");
+$("newChat").onclick = () => { openSheet("newSheet"); $("nErr").textContent = ""; $("nEmail").value = ""; setTimeout(() => $("nEmail").focus(), 50); };
 $("nGo").onclick = async () => {
   try {
     const d = await api("/api/find?email=" + encodeURIComponent($("nEmail").value.trim()));
     if (d.user.id === S.me.id) throw new Error("هذا بريدك أنت");
-    S.users[d.user.id] = d.user; $("newSheet").classList.add("hidden"); openChat(d.user.id);
+    S.users[d.user.id] = d.user; closeSheets(); openChat(d.user.id);
   } catch (e) { $("nErr").textContent = e.message; }
 };
 
+// تبويبات
+for (const b of document.querySelectorAll(".tabs button")) b.onclick = () => {
+  for (const x of document.querySelectorAll(".tabs button")) x.classList.toggle("on", x === b);
+  const chats = b.dataset.tab === "chats";
+  $("chatList").classList.toggle("hidden", !chats); $("callList").classList.toggle("hidden", chats);
+  $("newChat").classList.toggle("hidden", !chats); document.querySelector(".search").classList.toggle("hidden", !chats);
+  renderCalls();
+};
+
+// ---------- الإعدادات ----------
+function sw(id, on) { $(id).querySelector(".sw").classList.toggle("on", !!on); }
+function renderSettings() {
+  avatar($("sAv"), S.me); $("sName").textContent = S.me.name; $("sAbout").textContent = S.me.about || S.me.email;
+}
+$("hSettings").onclick = () => { renderSettings(); go("settings"); };
+$("sLogout").onclick = async () => { const r = await ask("تسجيل الخروج؟", [], "خروج"); if (r) logout(); };
+for (const b of document.querySelectorAll("[data-go]")) b.onclick = () => { const v = b.dataset.go; go(v); ({ privacy: renderPrivacy, security: renderSecurity, chatset: renderChatSet, notifs: renderNotifs })[v]?.(); };
+
 // الملف الشخصي
-$("hProfile").onclick = () => {
-  avatar($("pAv"), S.me); $("pName").value = S.me.name; $("pAbout").value = S.me.about || ""; $("pEmail").value = S.me.email;
-  show("profile"); history.pushState({ v: "profile" }, "");
+$("sMe").onclick = () => { avatar($("pAv"), S.me); $("pName").value = S.me.name; $("pAbout").value = S.me.about || ""; $("pEmail").value = S.me.email; go("profile"); };
+$("pAv").onclick = () => $("fAvatar").click();
+document.querySelector(".bigav .cam").onclick = () => $("fAvatar").click();
+async function resizeImage(file, max, square, q = 0.82) {
+  const url = URL.createObjectURL(file); const img = new Image(); img.src = url; await img.decode();
+  let sx = 0, sy = 0, sw2 = img.naturalWidth, sh = img.naturalHeight;
+  if (square) { const m = Math.min(sw2, sh); sx = (sw2 - m) / 2; sy = (sh - m) / 2; sw2 = sh = m; }
+  const sc = Math.min(1, max / Math.max(sw2, sh));
+  const c = document.createElement("canvas"); c.width = Math.round(sw2 * sc); c.height = Math.round(sh * sc);
+  c.getContext("2d").drawImage(img, sx, sy, sw2, sh, 0, 0, c.width, c.height);
+  URL.revokeObjectURL(url);
+  return c.toDataURL("image/jpeg", q);
+}
+async function setMe(patch) {
+  const d = await api("/api/me", patch);
+  S.me = { ...S.me, ...d.user }; localStorage.setItem("w_me", JSON.stringify(S.me));
+  native({ type: "auth", token: S.token, me: S.me.id, server: API, name: S.me.name });
+}
+$("fAvatar").onchange = async (e) => {
+  const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+  try { await setMe({ avatar: await resizeImage(f, 320, true, 0.8) }); avatar($("pAv"), S.me); renderSettings(); toast("تم تحديث الصورة"); }
+  catch (er) { toast(er.message || "تعذّر رفع الصورة"); }
 };
-$("pSave").onclick = async () => {
-  try { const d = await api("/api/me", { name: $("pName").value, about: $("pAbout").value }); S.me = d.user; localStorage.setItem("w_me", JSON.stringify(d.user)); toast("تم الحفظ"); avatar($("pAv"), S.me); } catch (e) { toast(e.message); }
+$("pRmAv").onclick = async () => { await setMe({ avatar: null }); avatar($("pAv"), S.me); renderSettings(); };
+$("pSave").onclick = async () => { try { await setMe({ name: $("pName").value, about: $("pAbout").value }); toast("تم الحفظ"); renderSettings(); } catch (e) { toast(e.message); } };
+
+// الخصوصية
+function renderPrivacy() { sw("prSeen", S.me.hide_seen); sw("prRead", S.me.receipts !== false); }
+$("prSeen").onclick = async () => { await setMe({ hide_seen: !S.me.hide_seen }); renderPrivacy(); };
+$("prRead").onclick = async () => { await setMe({ receipts: S.me.receipts === false }); renderPrivacy(); };
+
+// الأمان
+function renderSecurity() {
+  sw("scLock", SET.lock); sw("scBio", SET.bio); sw("scSecure", SET.secure);
+  $("scBio").classList.toggle("hidden", !NAT.bio || !SET.lock);
+  $("scAfterRow").classList.toggle("hidden", !SET.lock);
+  $("scSecure").classList.toggle("hidden", !NAT.android);
+  for (const b of $("scAfter").children) b.classList.toggle("on", Number(b.dataset.v) === SET.after);
+  api("/api/sessions").then((d) => ($("scSess").textContent = `مسجّل في ${d.count} ${d.count === 1 ? "جهاز" : "أجهزة"}`)).catch(() => {});
+}
+$("scLock").onclick = async () => {
+  if (SET.lock) { const r = await ask("إيقاف قفل التطبيق؟", [{ ph: "الرمز الحالي", type: "password", mode: "numeric", max: 6 }], "إيقاف"); if (!r) return; if ((await pinHash(r[0], SET.lock.salt)) !== SET.lock.hash) return toast("رمز خاطئ"); SET.lock = null; SET.bio = false; saveSet(); return renderSecurity(); }
+  const r = await ask("رمز القفل", [{ ph: "رمز من 4 إلى 6 أرقام", type: "password", mode: "numeric", max: 6 }, { ph: "أعد كتابة الرمز", type: "password", mode: "numeric", max: 6 }], "تفعيل");
+  if (!r) return;
+  if (!/^\d{4,6}$/.test(r[0])) return toast("الرمز يجب أن يكون 4 إلى 6 أرقام");
+  if (r[0] !== r[1]) return toast("الرمزان غير متطابقين");
+  const salt = randHexJS(16);
+  SET.lock = { salt, hash: await pinHash(r[0], salt), len: r[0].length };
+  saveSet(); renderSecurity(); toast("🔒 تم تفعيل القفل");
 };
-$("pLogout").onclick = () => { if (confirm("تسجيل الخروج؟")) logout(); };
+$("scBio").onclick = async () => { if (!SET.bio) { const r = await nativeAsk({ type: "bio", reason: "تفعيل البصمة" }, "bio"); if (!r.ok) return; } SET.bio = !SET.bio; saveSet(); renderSecurity(); };
+$("scAfter").onclick = (e) => { const v = e.target.dataset.v; if (v === undefined) return; SET.after = Number(v); saveSet(); renderSecurity(); };
+$("scSecure").onclick = () => { SET.secure = !SET.secure; saveSet(); renderSecurity(); };
+$("scPass").onclick = async () => {
+  const r = await ask("تغيير كلمة المرور", [{ ph: "كلمة المرور الحالية", type: "password" }, { ph: "كلمة المرور الجديدة", type: "password" }, { ph: "أعد كتابة الجديدة", type: "password" }], "تغيير");
+  if (!r) return;
+  if (r[1].length < 6) return toast("كلمة المرور قصيرة");
+  if (r[1] !== r[2]) return toast("كلمتا المرور غير متطابقتين");
+  try {
+    toast("🔐 جارٍ إعادة تشفير المفاتيح…");
+    const backup = await makeBackup(r[1], localStorage.getItem("w_priv"));
+    await api("/api/password", { old: await authKey(S.me.email, r[0]), password: await authKey(S.me.email, r[1]), backup });
+    toast("✅ تم تغيير كلمة المرور"); renderSecurity();
+  } catch (e) { toast(e.message); }
+};
+$("scAll").onclick = async () => { const r = await ask("تسجيل الخروج من كل الأجهزة الأخرى؟", [], "تأكيد"); if (!r) return; await api("/api/logout-all", {}); toast("تم"); renderSecurity(); };
+$("scDel").onclick = async () => {
+  const r = await ask("⚠️ حذف الحساب وكل الرسائل نهائياً", [{ ph: "اكتب كلمة المرور للتأكيد", type: "password" }], "حذف نهائياً");
+  if (!r) return;
+  try { await api("/api/delete-account", { password: await authKey(S.me.email, r[0]) }); logout(true); toast("تم حذف الحساب"); } catch (e) { toast(e.message); }
+};
+
+// إعدادات الدردشة
+function renderChatSet() {
+  $("walls").innerHTML = Object.entries(WALLS).map(([k, w]) => `<button data-w="${k}" class="${SET.wall === k ? "on" : ""}" style="background:${k === "glow" ? "radial-gradient(circle at 30% 20%,#00d1a055,transparent 60%),radial-gradient(circle at 80% 70%,#00a3ff44,transparent 60%),#07090f" : k === "custom" ? (localStorage.getItem("w_wall") ? wallCss("custom") : "#ffffff14") : w.css}">${k === "custom" ? "📷<br>" : ""}${w.n}</button>`).join("");
+  $("wDim").value = SET.dim;
+  for (const b of $("fsSeg").children) b.classList.toggle("on", b.dataset.v === SET.fs);
+  sw("csEnter", SET.enter);
+  applySet();
+}
+$("walls").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; if (b.dataset.w === "custom") return $("fWall").click(); SET.wall = b.dataset.w; saveSet(); renderChatSet(); };
+$("fWall").onchange = async (e) => { const f = e.target.files[0]; e.target.value = ""; if (!f) return; try { localStorage.setItem("w_wall", await resizeImage(f, 1400, false, 0.8)); SET.wall = "custom"; saveSet(); renderChatSet(); } catch { toast("الصورة كبيرة جداً"); } };
+$("wDim").oninput = () => { SET.dim = Number($("wDim").value); saveSet(); };
+$("fsSeg").onclick = (e) => { const v = e.target.dataset.v; if (!v) return; SET.fs = v; saveSet(); renderChatSet(); };
+$("csEnter").onclick = () => { SET.enter = !SET.enter; saveSet(); renderChatSet(); };
+
+// الإشعارات
+function renderNotifs() { sw("nMsg", SET.msgN); sw("nCall", SET.callN); sw("nSound", SET.sound); }
+$("nMsg").onclick = () => { SET.msgN = !SET.msgN; saveSet(); renderNotifs(); };
+$("nCall").onclick = () => { SET.callN = !SET.callN; saveSet(); renderNotifs(); };
+$("nSound").onclick = () => { SET.sound = !SET.sound; saveSet(); renderNotifs(); };
 
 // ---------- الأصوات ----------
 let AC;
-function ac() { return (AC ||= new (window.AudioContext || window.webkitAudioContext)()); }
+const ac = () => (AC ||= new (window.AudioContext || window.webkitAudioContext)());
 function tone(f, d, v = 0.15) { try { const a = ac(), o = a.createOscillator(), g = a.createGain(); o.frequency.value = f; g.gain.value = v; o.connect(g).connect(a.destination); o.start(); o.stop(a.currentTime + d); } catch {} }
 function beep() { tone(880, 0.08); setTimeout(() => tone(1175, 0.1), 110); }
 let ringT;
@@ -601,19 +1357,17 @@ function stopRing() { clearInterval(ringT); }
 document.addEventListener("touchstart", () => { try { ac().resume(); } catch {} }, { once: true });
 
 // ---------- المكالمات (WebRTC) ----------
-let C = null; // {peer, id, video, pc, local, state, out, start, pendingIce, offer}
+let C = null;
 let ICE = null;
 async function iceServers() {
   if (ICE && ICE.t > Date.now() - 3600e3) return ICE.s;
   try { const d = await (await fetch(API + "/api/turn")).json(); ICE = { s: d.iceServers, t: Date.now() }; return d.iceServers; }
   catch { return [{ urls: "stun:stun.l.google.com:19302" }]; }
 }
-async function getMedia(video, facing = "user") {
-  return navigator.mediaDevices.getUserMedia({
-    audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-    video: video ? { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } } : false,
-  });
-}
+const getMedia = (video, facing = "user") => navigator.mediaDevices.getUserMedia({
+  audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+  video: video ? { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } } : false,
+});
 function callUI(state) {
   const u = S.users[C.peer] || { id: C.peer, name: "…" };
   $("call").classList.remove("hidden");
@@ -625,8 +1379,9 @@ function callUI(state) {
   for (const b of document.querySelectorAll(".vidonly")) b.classList.toggle("hidden", !C.video);
   $("lv").classList.toggle("hidden", !C.video || state === "incoming");
   $("rv").classList.toggle("hidden", !C.video || state !== "live");
-  const txt = { incoming: C.video ? "مكالمة فيديو واردة…" : "مكالمة صوتية واردة…", calling: "جارٍ الاتصال…", ringing: "يرن…", connecting: "جارٍ التوصيل…", live: "00:00" };
-  $("kState").textContent = txt[state] || state;
+  const t = { incoming: C.video ? "مكالمة فيديو واردة…" : "مكالمة صوتية واردة…", calling: "جارٍ الاتصال…", ringing: "يرن…", connecting: "جارٍ التوصيل…", live: "00:00" };
+  $("kState").textContent = t[state] || state;
+  native({ type: "call", active: true });
 }
 function makePC(servers) {
   const pc = new RTCPeerConnection({ iceServers: servers });
@@ -657,13 +1412,13 @@ function sig(data) {
 function goLive() {
   C.state = "live"; C.start = Date.now(); stopRing(); callUI("live");
   clearInterval(C.timer);
-  C.timer = setInterval(() => { const s = Math.floor((Date.now() - C.start) / 1000); $("kState").textContent = pad(Math.floor(s / 60)) + ":" + pad(s % 60); }, 1000);
+  C.timer = setInterval(() => { $("kState").textContent = fmtDur((Date.now() - C.start) / 1000).padStart(5, "0"); }, 1000);
 }
-
 async function startCall(video) {
-  if (C) return;
+  if (C || !S.peer) return;
   if (!S.wsOk) return toast("غير متصل بالسيرفر");
   const peer = S.peer.id;
+  try { await sharedKey(peer); } catch { return toast("هذا المستخدم يحتاج تحديث التطبيق"); }
   C = { peer, id: Math.random().toString(36).slice(2), video, out: true, state: "calling", pendingIce: [] };
   callUI("calling"); ring("out");
   try {
@@ -677,34 +1432,26 @@ async function startCall(video) {
     await C.pc.setLocalDescription(offer);
     sig({ kind: "offer", sdp: offer.sdp, video });
     C.noAns = setTimeout(() => { if (C && C.state !== "live") { toast("لا يوجد رد"); endCall(true, "noanswer"); } }, 45000);
-  } catch (e) {
-    toast("لم يُسمح بالمايك/الكاميرا"); cleanup();
-  }
+  } catch { toast("لم يُسمح بالمايك/الكاميرا"); cleanup(); }
 }
 $("cVoice").onclick = () => startCall(false);
 $("cVideo").onclick = () => startCall(true);
-async function showSafety() {
-  if (!S.peer) return;
-  try {
-    if (!S.users[S.peer.id].pub) await sharedKey(S.peer.id);
-    $("sNum").innerHTML = (await safetyNumber(S.peer.id)).map((g) => `<span>${g}</span>`).join("");
-    $("sName").textContent = S.users[S.peer.id].name;
-    $("safeSheet").classList.remove("hidden");
-  } catch { toast("هذا المستخدم لم يفعّل التشفير بعد"); }
-}
-$("cName").onclick = showSafety;
 
 async function onSignal(from, d) {
   if (d.e) {
     const plain = await dec(from, d.e);
-    try { Object.assign(d, JSON.parse(plain)); } catch { return; } // إشارة لا يمكن فك تشفيرها = مرفوضة
+    try { Object.assign(d, JSON.parse(plain)); } catch { return; }
     delete d.e;
   }
   if (d.kind === "offer") {
+    if (C && C.id === d.callId) return;
     if (C) { wsSend({ t: "signal", to: from, data: { kind: "busy", callId: d.callId } }); return; }
     if (!d.sdp) return;
     C = { peer: from, id: d.callId, video: !!d.video, out: false, state: "incoming", offer: d.sdp, pendingIce: [] };
-    callUI("incoming"); ring("in");
+    if (locked) unlock();
+    callUI("incoming");
+    if (!(document.hidden && NAT.any)) ring("in");
+    if (window.WASEL_AUTOANSWER === d.callId) { window.WASEL_AUTOANSWER = null; setTimeout(() => $("kAccept").click(), 400); }
     wsSend({ t: "signal", to: from, data: { kind: "ringing", callId: d.callId } });
     C.missT = setTimeout(() => { if (C && C.state === "incoming") { logCall("missed"); cleanup(); } }, 45000);
     return;
@@ -721,6 +1468,7 @@ async function onSignal(from, d) {
     case "ice":
       if (C.pc && C.pc.remoteDescription) C.pc.addIceCandidate(d.c).catch(() => {}); else C.pendingIce.push(d.c);
       break;
+    case "handled": if (C.state === "incoming") cleanup(); break;
     case "reject": toast("تم رفض المكالمة"); endCall(false, "rejected"); break;
     case "busy": toast("الطرف الآخر في مكالمة"); endCall(false, "busy"); break;
     case "unavailable": toast("غير متصل حالياً"); endCall(false, "unavailable"); break;
@@ -729,7 +1477,6 @@ async function onSignal(from, d) {
       break;
   }
 }
-
 $("kAccept").onclick = async () => {
   if (!C || C.state !== "incoming") return;
   clearTimeout(C.missT); stopRing(); C.state = "connecting"; callUI("connecting");
@@ -746,7 +1493,7 @@ $("kAccept").onclick = async () => {
     const ans = await C.pc.createAnswer();
     await C.pc.setLocalDescription(ans);
     sig({ kind: "answer", sdp: ans.sdp });
-  } catch (e) { toast("لم يُسمح بالمايك/الكاميرا"); sig({ kind: "reject" }); cleanup(); }
+  } catch { toast("لم يُسمح بالمايك/الكاميرا"); sig({ kind: "reject" }); cleanup(); }
 };
 $("kReject").onclick = () => { if (!C) return; sig({ kind: "reject" }); logCall("declined"); cleanup(); };
 $("kHang").onclick = () => endCall(true);
@@ -773,17 +1520,12 @@ $("kFlip").onclick = async () => {
     $("lv").srcObject = C.local; $("lv").style.transform = C.facing === "user" ? "scaleX(-1)" : "none";
   } catch { toast("تعذّر تبديل الكاميرا"); }
 };
-
 function endCall(notify, reason) {
   if (!C) return;
   if (notify) sig({ kind: "end" });
   const dur = C.start ? Math.floor((Date.now() - C.start) / 1000) : 0;
   logCall(C.out ? (dur ? "out" : reason === "noanswer" ? "noanswer" : "cancelled") : dur ? "in" : "missed", dur);
-  // سجل المكالمة داخل الدردشة (يرسله المتصل فقط)
-  if (C.out) {
-    const label = (C.video ? "مكالمة فيديو" : "مكالمة صوتية") + (dur ? " • " + Math.floor(dur / 60) + ":" + pad(dur % 60) : " • لم يتم الرد");
-    sendTo(C.peer, label, "call");
-  }
+  if (C.out) sendTo(C.peer, (C.video ? "مكالمة فيديو" : "مكالمة صوتية") + (dur ? " • " + fmtDur(dur) : " • لم يتم الرد"), "call");
   cleanup();
 }
 function cleanup() {
@@ -797,6 +1539,7 @@ function cleanup() {
   $("lv").style.transform = "";
   $("call").classList.add("hidden");
   C = null;
+  native({ type: "call", active: false });
 }
 function logCall(type, dur = 0) {
   if (!C) return;
@@ -809,24 +1552,172 @@ function renderCalls() {
   const el = $("callList");
   if (!S.calls.length) { el.innerHTML = '<div class="empty">لا توجد مكالمات بعد.</div>'; return; }
   const L = { out: ["↗", "صادرة", ""], in: ["↙", "واردة", ""], missed: ["↙", "فائتة", "var(--red)"], declined: ["↙", "مرفوضة", "var(--red)"], noanswer: ["↗", "لم يتم الرد", "var(--red)"], cancelled: ["↗", "ملغاة", ""], rejected: ["↗", "مرفوضة", "var(--red)"], busy: ["↗", "مشغول", ""], unavailable: ["↗", "غير متصل", ""] };
-  el.innerHTML = ""; let i = 0;
+  el.innerHTML = "";
   for (const c of S.calls) {
     const u = S.users[c.peer] || { id: c.peer, name: "…" }; const l = L[c.type] || L.out;
-    const r = document.createElement("div"); r.className = "row"; if (!el.dataset.shown) r.style.animationDelay = Math.min(i++, 12) * 30 + "ms"; else r.style.animation = "none";
+    const r = document.createElement("div"); r.className = "row"; r.style.animation = "none";
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm" style="color:${l[2] || "inherit"}">${esc(u.name)}</span><span class="tm">${shortTime(c.ts)} ${hm(c.ts)}</span></div>
-      <div class="sub"><span class="pv">${l[0]} ${l[1]}${c.dur ? " • " + Math.floor(c.dur / 60) + ":" + pad(c.dur % 60) : ""}</span><span>${c.video ? "📹" : "📞"}</span></div></div>`;
+      <div class="sub"><span class="pv">${l[0]} ${l[1]}${c.dur ? " • " + fmtDur(c.dur) : ""}</span><span>${c.video ? "📹" : "📞"}</span></div></div>`;
     avatar(r.querySelector(".av"), u);
     r.onclick = () => { S.peer = u; S.users[u.id] ||= u; startCall(c.video); };
     el.append(r);
   }
 }
 
+// ---------- لعبة ألوان ----------
+const G = { ws: null, s: null, code: null };
+const CARD_SYM = { S: "⊘", R: "⇄", D: "+2", W: "✦", 4: "+4" };
+const COLOR_NAMES = { r: "أحمر", y: "أصفر", g: "أخضر", b: "أزرق" };
+function cardHtml(c, cls = "") {
+  if (!c) return "";
+  const k = c[0], v = c[1], sym = CARD_SYM[v] || v;
+  return `<div class="kc ${k} ${cls}" data-c="${esc(c)}"><i>${sym}</i><span>${sym}</span><i class="br">${sym}</i></div>`;
+}
+const genCode = () => Array.from(crypto.getRandomValues(new Uint8Array(6)), (x) => "ABCDEFGHJKMNPQRSTUVWXYZ23456789"[x % 31]).join("");
+$("hGame").onclick = $("sGame").onclick = async () => {
+  const r = await ask("🎴 لعبة ألوان", [{ ph: "رمز الغرفة للانضمام (اتركه فارغاً لإنشاء غرفة)", max: 8 }], "متابعة");
+  if (!r) return;
+  joinGame(r[0].trim().toUpperCase() || genCode());
+};
+function joinGame(code) {
+  if (!/^[A-Z0-9]{4,8}$/.test(code)) return toast("رمز غير صحيح");
+  if (G.ws) { try { G.ws.close(); } catch {} }
+  G.code = code; G.s = null;
+  $("gCode").textContent = code; $("gCodeTop").textContent = code;
+  go("game");
+  $("gLobby").classList.remove("hidden"); $("gTable").classList.add("hidden"); $("gHandWrap").classList.add("hidden");
+  $("gPlayers").innerHTML = '<div class="empty">⏳ جارٍ الاتصال…</div>';
+  const ws = new WebSocket(API.replace(/^http/, "ws") + `/game?room=${code}&token=${encodeURIComponent(S.token)}`);
+  G.ws = ws;
+  ws.onmessage = (e) => {
+    const m = JSON.parse(e.data);
+    if (m.t === "state") { G.s = m.s; renderGame(); }
+    else if (m.t === "err") toast(m.msg);
+    else if (m.t === "fx") gameFx(m);
+  };
+  ws.onclose = (e) => { if (G.ws === ws && S.view === "game" && e.code !== 1000) { if (e.code === 4000) { toast("لا يمكن الدخول"); history.back(); } else setTimeout(() => G.ws === ws && joinGame(code), 1500); } };
+}
+const gSend = (o) => G.ws && G.ws.readyState === 1 && G.ws.send(JSON.stringify(o));
+function leaveGameView() { if (G.ws) { const w = G.ws; G.ws = null; try { w.send(JSON.stringify({ a: "leave" })); } catch {} setTimeout(() => { try { w.close(1000); } catch {} }, 200); } clearInterval(G.tick); }
+$("gBack").onclick = async () => { if (G.s?.status === "play") { const r = await ask("مغادرة اللعبة؟", [], "مغادرة"); if (!r) return; } history.back(); };
+$("gStart").onclick = () => gSend({ a: "start" });
+$("gInvite").onclick = () => inviteToGame();
+async function inviteToGame(peerId) {
+  if (!peerId) {
+    const opts = S.chats.slice(0, 30);
+    if (!opts.length) return toast("لا توجد دردشات — ارسل الرمز لصديقك: " + G.code);
+    $("acts").innerHTML = opts.map((c, i) => `<button data-a="${i}"><span class="em">👤</span>${esc((S.users[c.user.id] || c.user).name)}</button>`).join("");
+    $("acts").onclick = async (e) => { const b = e.target.closest("button"); if (!b) return; closeSheets(); const u = opts[Number(b.dataset.a)].user; await sendGameInvite(u.id, G.code); toast("📨 تم إرسال الدعوة"); };
+    return openSheet("actSheet");
+  }
+  const code = genCode();
+  await sendGameInvite(peerId, code);
+  joinGame(code);
+}
+async function sendGameInvite(peerId, code) {
+  const prevPeer = S.peer;
+  S.peer = S.users[peerId] || { id: peerId };
+  await send(JSON.stringify({ code }), "game", { meta: { code } });
+  S.peer = prevPeer;
+}
+function renderGame() {
+  const s = G.s; if (!s) return;
+  const me = S.me.id, isHost = s.host === me;
+  const lobby = s.status === "lobby";
+  $("gLobby").classList.toggle("hidden", !lobby);
+  $("gTable").classList.toggle("hidden", lobby);
+  $("gHandWrap").classList.toggle("hidden", lobby);
+  if (lobby) {
+    $("gCount").textContent = `اللاعبون ${s.players.length}/8`;
+    $("gPlayers").innerHTML = s.players.map((p) => `<div class="it"><div class="av sm" data-av="${p.id}"></div><span class="tx">${esc(p.name)}${p.id === s.host ? " 👑" : ""}${p.wins ? ` <small>🏆 ${p.wins}</small>` : ""}</span>${isHost && p.id !== me ? `<button class="link" data-kick="${p.id}">إخراج</button>` : ""}</div>`).join("");
+    for (const el of $("gPlayers").querySelectorAll("[data-av]")) { const p = s.players.find((x) => x.id == el.dataset.av); avatar(el, p); }
+    $("gPlayers").onclick = (e) => { const k = e.target.dataset.kick; if (k) gSend({ a: "kick", target: Number(k) }); };
+    $("gStart").classList.toggle("hidden", !isHost);
+    $("gStart").disabled = s.players.length < 2;
+    $("gStart").textContent = s.players.length < 2 ? "بانتظار لاعب آخر…" : "▶️ ابدأ اللعبة";
+    return;
+  }
+  // الطاولة: اللاعبون حول الدائرة بدءاً مني
+  const table = $("gTable");
+  for (const el of table.querySelectorAll(".opp")) el.remove();
+  const ps = s.players, myIdx = Math.max(0, ps.findIndex((p) => p.id === me)), n = ps.length;
+  ps.forEach((p, i) => {
+    if (p.id === me) return;
+    const rel = (i - myIdx + n) % n;
+    const ang = Math.PI / 2 + (rel / n) * Math.PI * 2;
+    const x = 50 + Math.cos(ang) * 40, y = 44 + Math.sin(ang) * 36;
+    const el = document.createElement("div");
+    el.className = `opp${s.turn === p.id ? " turn" : ""}${p.left || !p.online ? " off" : ""}`;
+    el.style.left = x + "%"; el.style.top = y + "%"; el.dataset.pid = p.id;
+    el.innerHTML = `<div class="av"></div><div class="nm">${esc(p.name)}</div><div class="cnt">🂠 ${p.count}</div>${p.said1 ? '<span class="one">واحدة!</span>' : ""}${s.vuln === p.id ? `<button class="catch" data-catch="${p.id}">امسكه!</button>` : ""}`;
+    avatar(el.querySelector(".av"), p);
+    table.append(el);
+  });
+  table.onclick = (e) => { const c = e.target.closest("[data-catch]"); if (c) gSend({ a: "catch", target: Number(c.dataset.catch) }); };
+  $("gTop").innerHTML = cardHtml(s.top, "big");
+  const cc = { r: "#ff5f6d", y: "#ffd84a", g: "#3ee08f", b: "#4facfe" }[s.color];
+  $("gColor").style.background = cc; $("gColor").style.color = cc;
+  $("gRing").classList.toggle("ccw", s.dir < 0);
+  $("gLog").textContent = s.log || "";
+  const myTurn = s.turn === me;
+  const meP = ps.find((p) => p.id === me);
+  if (s.status === "over") {
+    const w = ps.find((p) => p.id === s.winner);
+    $("gLog").textContent = `🏆 ${w ? w.name : ""} فاز!`;
+    $("gTimer").textContent = isHost ? "" : "بانتظار صاحب الغرفة…";
+    if (isHost) { $("gTimer").innerHTML = '<button class="btn" id="gAgain" style="padding:8px 18px;font-size:14px">🔁 جولة جديدة</button>'; $("gAgain").onclick = () => gSend({ a: "lobby" }); }
+  }
+  // يدي
+  const playable = new Set(s.playable);
+  $("gHand").innerHTML = s.hand.map((c) => cardHtml(c, myTurn ? (playable.has(c) ? "ok" : "no") : "")).join("");
+  $("gHand").onclick = (e) => {
+    const k = e.target.closest(".kc"); if (!k || !myTurn) return;
+    const c = k.dataset.c;
+    if (!playable.has(c)) return toast("لا يمكن لعب هذا الكرت");
+    if (c[0] === "w") return pickColor(c);
+    gSend({ a: "play", card: c });
+  };
+  $("gDraw").disabled = !myTurn || s.drew; $("gDraw").textContent = myTurn ? "سحب 🂠" : "ليس دورك";
+  $("gPass").classList.toggle("hidden", !(myTurn && s.drew));
+  $("gOne").classList.toggle("hidden", !meP || meP.count > 2 || meP.said1 || s.status !== "play");
+  clearInterval(G.tick);
+  const tick = () => { if (s.status !== "play") return; const left = Math.max(0, Math.ceil((s.deadline - Date.now()) / 1000)); const who = ps.find((p) => p.id === s.turn); $("gTimer").textContent = (myTurn ? "دورك! " : `دور ${who ? who.name : ""} `) + `⏱️ ${left}`; };
+  tick(); G.tick = setInterval(tick, 500);
+  if (myTurn && SET.sound && G.lastTurn !== s.turn + ":" + s.deadline) tone(990, 0.12);
+  G.lastTurn = s.turn + ":" + s.deadline;
+}
+function pickColor(card) {
+  $("colorPick").innerHTML = ["r", "y", "g", "b"].map((k) => `<button class="kc ${k}" data-k="${k}" style="width:58px;height:58px;border-radius:50%"><span style="font-size:13px">${COLOR_NAMES[k]}</span></button>`).join("");
+  $("colorPick").onclick = (e) => { const b = e.target.closest("[data-k]"); if (!b) return; closeSheets(); gSend({ a: "play", card, color: b.dataset.k }); };
+  openSheet("colorSheet");
+}
+$("gDraw").onclick = () => gSend({ a: "draw" });
+$("gPass").onclick = () => gSend({ a: "pass" });
+$("gOne").onclick = () => gSend({ a: "one" });
+$("gEmojis").innerHTML = ["😂", "😡", "😎", "🔥", "👏", "😭"].map((e) => `<button>${e}</button>`).join("");
+$("gEmojis").onclick = (e) => { if (e.target.tagName === "BUTTON") gSend({ a: "emoji", e: e.target.textContent }); };
+function gameFx(m) {
+  if (m.kind === "emoji" || m.kind === "one" || m.kind === "catch") {
+    const el = document.querySelector(`.opp[data-pid="${m.by}"]`);
+    const txtE = m.kind === "emoji" ? m.e : m.kind === "one" ? "☝️" : "🫵";
+    if (el) { const b = document.createElement("div"); b.className = "bubble"; b.textContent = txtE; el.append(b); setTimeout(() => b.remove(), 1800); }
+    else if (m.by === S.me.id) toast(txtE);
+    if (m.kind === "catch" && m.target === S.me.id) toast("🫵 مسكوك! تسحب 2");
+  }
+  if (m.kind === "play" && SET.sound) tone(520, 0.06, 0.1);
+}
+
 // ---------- البدء ----------
 function start() {
-  show("home"); renderChats(); renderCalls(); loadChats(); connect();
+  show("home"); renderChats(); renderCalls(); loadChats(); connect(); applySet();
   history.replaceState({ v: "home" }, "");
+  native({ type: "auth", token: S.token, me: S.me.id, server: API, name: S.me.name });
+  native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure });
+  api("/api/me").then((d) => { S.me = { ...S.me, ...d.user }; localStorage.setItem("w_me", JSON.stringify(S.me)); }).catch(() => {});
 }
-if (S.token && S.me) start(); else show("auth");
+buildPad(); applySet();
+if (S.token && S.me && localStorage.getItem("w_priv")) { start(); if (SET.lock) lockNow(); } else { if (S.token) logout(true); show("auth"); }
+
 </script>
 </body>
 </html>

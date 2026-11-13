@@ -1,0 +1,224 @@
+
+<!-- قفل التطبيق -->
+<div id="lock" class="view hidden">
+  <div class="logo" style="text-align:center"><div style="font-size:46px">🔒</div><h2 style="margin:6px 0 0">واصل مقفل</h2><p style="color:var(--muted);margin:6px 0 0" id="lockMsg">أدخل الرمز</p></div>
+  <div class="dots" id="lockDots"></div>
+  <div class="pad" id="lockPad"></div>
+  <button class="link" id="lockBio">استخدم البصمة / الوجه</button>
+</div>
+
+<!-- تسجيل الدخول -->
+<div id="auth" class="view hidden">
+  <div class="logo"><div><svg><use href="#i-chat"/></svg></div><h2>واصل</h2><p id="authSub">سجّل الدخول بالبريد الإلكتروني</p></div>
+  <input id="aName" class="field hidden" placeholder="اسمك" autocomplete="name" maxlength="40">
+  <input id="aEmail" class="field" type="email" placeholder="البريد الإلكتروني" autocomplete="email" autocapitalize="off" dir="ltr">
+  <input id="aPass" class="field" type="password" placeholder="كلمة المرور" autocomplete="current-password" dir="ltr">
+  <div class="err" id="aErr"></div>
+  <button class="btn" id="aGo">دخول</button>
+  <button class="link" id="aSwitch">ليس لديك حساب؟ أنشئ حساباً</button>
+</div>
+
+<!-- القائمة -->
+<div id="home" class="view hidden">
+  <header>
+    <h1>واصل</h1>
+    <button class="ib" id="hGame" title="ألوان">🎴</button>
+    <button class="ib" id="hSettings"><svg><use href="#i-gear"/></svg></button>
+  </header>
+  <div class="conn hidden" id="connBar">جارٍ الاتصال…</div>
+  <div class="search"><span>🔍</span><input id="hSearch" placeholder="بحث"></div>
+  <div class="list" id="chatList"></div>
+  <div class="list hidden" id="callList"></div>
+  <div class="tabs"><button class="on" data-tab="chats">الدردشات</button><button data-tab="calls">المكالمات</button></div>
+  <button class="fab" id="newChat"><svg><use href="#i-plus"/></svg></button>
+</div>
+
+<!-- المحادثة -->
+<div id="chat" class="view hidden">
+  <header>
+    <button class="ib" id="cBack"><svg><use href="#i-back"/></svg></button>
+    <div class="av sm" id="cAv"></div>
+    <div class="who" id="cWho"><b id="cName"></b><span id="cStatus"></span></div>
+    <button class="ib" id="cVideo"><svg><use href="#i-video"/></svg></button>
+    <button class="ib" id="cVoice"><svg><use href="#i-phone"/></svg></button>
+  </header>
+  <div id="msgs"></div>
+  <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX">✕</button></div>
+  <div class="composer" id="composer">
+    <button class="ib sm" id="cAttach">📎</button>
+    <textarea id="cInput" rows="1" placeholder="رسالة" maxlength="4000"></textarea>
+    <div class="rec hidden" id="recBox"><i></i><span id="recT">0:00</span><span style="flex:1"></span><button class="ib sm" id="recX">🗑️</button></div>
+    <button class="send" id="cSend"><svg><use href="#i-mic"/></svg></button>
+  </div>
+</div>
+
+<!-- الإعدادات -->
+<div id="settings" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الإعدادات</h1></header>
+  <div class="set">
+    <div class="card"><button class="me-card it" id="sMe"><div class="av" id="sAv"></div><div class="tx"><b id="sName"></b><small id="sAbout"></small></div><span class="ch">‹</span></button></div>
+    <div class="card">
+      <button class="it" data-go="privacy"><span class="ic" style="background:#3b82f633">👁️</span><span class="tx">الخصوصية<small>آخر ظهور، علامات القراءة</small></span><span class="ch">‹</span></button>
+      <button class="it" data-go="security"><span class="ic" style="background:#00d1a033">🛡️</span><span class="tx">الأمان والحماية<small>قفل التطبيق، كلمة المرور، الأجهزة</small></span><span class="ch">‹</span></button>
+      <button class="it" data-go="chatset"><span class="ic" style="background:#a855f733">🎨</span><span class="tx">الدردشات<small>الخلفية، حجم الخط</small></span><span class="ch">‹</span></button>
+      <button class="it" data-go="notifs"><span class="ic" style="background:#f59e0b33">🔔</span><span class="tx">الإشعارات<small>الرسائل، رنين المكالمات</small></span><span class="ch">‹</span></button>
+    </div>
+    <div class="card">
+      <button class="it" id="sGame"><span class="ic" style="background:#ef444433">🎴</span><span class="tx">لعبة ألوان<small>العب مع أصدقائك حتى 8 لاعبين</small></span><span class="ch">‹</span></button>
+      <div class="it"><span class="ic" style="background:#ffffff14">ℹ️</span><span class="tx">واصل 2.0<small>مشفّر من طرف لطرف 🔒</small></span></div>
+    </div>
+    <div class="card"><button class="it dz" id="sLogout"><span class="ic" style="background:#ff5f6d22">🚪</span><span class="tx">تسجيل الخروج</span></button></div>
+  </div>
+</div>
+
+<!-- الملف الشخصي -->
+<div id="profile" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الملف الشخصي</h1></header>
+  <div class="set">
+    <div class="bigav"><div style="position:relative"><div class="av xl" id="pAv"></div><span class="cam">📷</span></div><button class="link" id="pRmAv">إزالة الصورة</button></div>
+    <div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+      <label style="color:var(--muted);font-size:13px">الاسم</label><input class="field" id="pName" maxlength="40">
+      <label style="color:var(--muted);font-size:13px">الحالة</label><input class="field" id="pAbout" maxlength="140" placeholder="متاح">
+      <label style="color:var(--muted);font-size:13px">البريد</label><input class="field" id="pEmail" disabled dir="ltr">
+      <button class="btn" id="pSave">حفظ</button>
+    </div>
+  </div>
+</div>
+
+<!-- الخصوصية -->
+<div id="privacy" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الخصوصية</h1></header>
+  <div class="set">
+    <div class="card">
+      <button class="it" id="prSeen"><span class="tx">إخفاء آخر ظهور والاتصال<small>لن يرى أحد متى كنت متصلاً</small></span><span class="sw"></span></button>
+      <button class="it" id="prRead"><span class="tx">علامات القراءة<small>إذا أطفأتها لن ترى أنت أيضاً علامات قراءة الآخرين</small></span><span class="sw"></span></button>
+    </div>
+    <div class="card"><h4>الحماية الدائمة</h4><div class="it"><span class="tx">🔒 كل الرسائل والصور والملفات والمكالمات مشفّرة من طرف لطرف<small>حتى سيرفر واصل لا يستطيع قراءتها</small></span></div></div>
+  </div>
+</div>
+
+<!-- الأمان -->
+<div id="security" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الأمان والحماية</h1></header>
+  <div class="set">
+    <div class="card"><h4>قفل التطبيق</h4>
+      <button class="it" id="scLock"><span class="tx">قفل برمز<small>يطلب رمزاً عند فتح التطبيق</small></span><span class="sw"></span></button>
+      <button class="it" id="scBio"><span class="tx">البصمة / بصمة الوجه<small>فتح القفل بدون رمز</small></span><span class="sw"></span></button>
+      <div class="it" id="scAfterRow"><span class="tx">القفل بعد<div class="seg" id="scAfter" style="padding:8px 0 0"><button data-v="0">فوراً</button><button data-v="60">دقيقة</button><button data-v="300">5 دقائق</button></div></span></div>
+      <button class="it" id="scSecure"><span class="tx">منع لقطة الشاشة<small>أندرويد: يحجب الشاشة في التصوير وقائمة التطبيقات</small></span><span class="sw"></span></button>
+    </div>
+    <div class="card"><h4>الحساب</h4>
+      <button class="it" id="scPass"><span class="ic" style="background:#ffffff14">🔑</span><span class="tx">تغيير كلمة المرور<small>يسجّل الخروج من باقي الأجهزة</small></span><span class="ch">‹</span></button>
+      <button class="it" id="scAll"><span class="ic" style="background:#ffffff14">📱</span><span class="tx">تسجيل الخروج من الأجهزة الأخرى<small id="scSess"></small></span><span class="ch">‹</span></button>
+      <button class="it dz" id="scDel"><span class="ic" style="background:#ff5f6d22">🗑️</span><span class="tx">حذف الحساب نهائياً</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- إعدادات الدردشة -->
+<div id="chatset" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الدردشات</h1></header>
+  <div class="set">
+    <div class="card"><h4>خلفية المحادثة</h4>
+      <div class="preview" id="wPrev"><div style="position:absolute;inset:0;padding:14px;display:flex;flex-direction:column;gap:8px"><div class="b i" style="float:none;align-self:flex-end;animation:none">أهلاً! 👋</div><div class="b o" style="float:none;align-self:flex-start;animation:none">هلا والله، كيف الحال؟</div></div></div>
+      <div class="walls" id="walls"></div>
+      <div style="padding:0 16px 14px"><label style="color:var(--muted);font-size:13px">تعتيم الخلفية</label><input type="range" id="wDim" min="0" max="80"></div>
+    </div>
+    <div class="card"><h4>حجم الخط</h4><div class="seg" id="fsSeg"><button data-v="14px">صغير</button><button data-v="15.5px">متوسط</button><button data-v="18px">كبير</button></div></div>
+    <div class="card"><button class="it" id="csEnter"><span class="tx">زر الإدخال يرسل الرسالة</span><span class="sw"></span></button></div>
+  </div>
+</div>
+
+<!-- الإشعارات -->
+<div id="notifs" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الإشعارات</h1></header>
+  <div class="set">
+    <div class="card">
+      <button class="it" id="nMsg"><span class="tx">إشعارات الرسائل<small>عندما يكون التطبيق في الخلفية</small></span><span class="sw"></span></button>
+      <button class="it" id="nCall"><span class="tx">رنين المكالمات<small>يرن حتى بعد الخروج من التطبيق</small></span><span class="sw"></span></button>
+      <button class="it" id="nSound"><span class="tx">أصوات داخل التطبيق</span><span class="sw"></span></button>
+    </div>
+    <div class="card"><div class="it"><span class="tx" style="font-size:13.5px;color:var(--muted);line-height:1.7">الإشعارات لا تعرض نص الرسالة — لأنها مشفّرة ولا يقرأها إلا التطبيق.<br>آيفون: يرن والتطبيق في الخلفية، لكن ليس إذا أغلقته بالسحب للأعلى.</span></div></div>
+  </div>
+</div>
+
+<!-- اللعبة -->
+<div id="game" class="view hidden">
+  <header class="gtop">
+    <button class="ib" id="gBack"><svg><use href="#i-back"/></svg></button>
+    <span style="font-size:22px">🎴</span><h1 style="font-size:20px;margin:0">ألوان</h1>
+    <span id="gCodeTop" dir="ltr" style="font:700 14px ui-monospace,monospace;color:var(--muted)"></span>
+  </header>
+  <div class="lobby hidden" id="gLobby">
+    <div class="card" style="padding:16px">
+      <div style="text-align:center;color:var(--muted)">رمز الغرفة</div>
+      <div class="code" id="gCode"></div>
+      <button class="btn" id="gInvite" style="width:100%">📨 ادعُ صديقاً من الدردشات</button>
+    </div>
+    <div class="card"><h4 id="gCount"></h4><div id="gPlayers"></div></div>
+    <button class="btn" id="gStart" style="width:100%">▶️ ابدأ اللعبة</button>
+    <div style="color:var(--muted);text-align:center;margin-top:12px;font-size:13px;line-height:1.8">القواعد: طابق اللون أو الرقم. تخطّي ⊘، عكس ⇄، +2، تغيير اللون، +4.<br>اضغط "واحدة!" قبل أن يبقى معك كرت واحد، وإلا يمسكك الآخرون وتسحب 2.</div>
+  </div>
+  <div id="gTable" class="hidden">
+    <div class="ring" id="gRing"></div>
+    <div class="gtimer" id="gTimer"></div>
+    <div class="center"><div class="kc back big" id="gDeck"><span>ألوان</span></div><div id="gTop"></div><span class="colordot" id="gColor"></span></div>
+    <div class="glog" id="gLog"></div>
+  </div>
+  <div id="gHandWrap" class="hidden">
+    <div class="emojis" id="gEmojis"></div>
+    <div class="hand" id="gHand"></div>
+    <div class="gbar"><button class="btn alt" id="gDraw">سحب</button><button class="btn alt hidden" id="gPass">تمرير</button><button class="btn one" id="gOne">☝️ واحدة!</button></div>
+  </div>
+</div>
+
+<!-- أوراق منبثقة -->
+<div class="sheet hidden" id="newSheet">
+  <div class="box">
+    <h3>دردشة جديدة</h3>
+    <input class="field" id="nEmail" type="email" placeholder="بريد الشخص" dir="ltr" autocapitalize="off">
+    <div class="err" id="nErr"></div>
+    <button class="btn" id="nGo">ابدأ الدردشة</button>
+    <button class="link" data-close>إلغاء</button>
+  </div>
+</div>
+<div class="sheet hidden" id="askSheet"><div class="box"><h3 id="askT"></h3><div id="askF" style="display:flex;flex-direction:column;gap:10px"></div><div class="err" id="askE"></div><button class="btn" id="askOk"></button><button class="link" id="askNo">إلغاء</button></div></div>
+<div class="sheet hidden" id="actSheet"><div class="box"><div class="acts" id="acts"></div></div></div>
+<div class="sheet hidden" id="infoSheet">
+  <div class="box" style="align-items:center;text-align:center">
+    <div class="av xl" id="iAv"></div><h3 id="iName" style="margin:6px 0 0"></h3><div id="iAbout" style="color:var(--muted)"></div><div id="iEmail" dir="ltr" style="color:var(--muted);font-size:13px"></div>
+    <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall">📞 صوت</button><button class="btn" style="flex:1" id="iVid">📹 فيديو</button></div>
+    <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px">
+      <div style="font-weight:700">🔒 رقم الأمان</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7;margin:4px 0 8px">قارنه مع الرقم عند صديقك. إذا تطابق فالمحادثة والمكالمات مشفّرة بينكما فقط.</div>
+      <div id="sNum" dir="ltr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px 12px;font:600 17px ui-monospace,Menlo,monospace"></div>
+    </div>
+    <button class="link" data-close>إغلاق</button>
+  </div>
+</div>
+<div class="sheet hidden" id="colorSheet"><div class="box" style="align-items:center"><h3>اختر اللون</h3><div style="display:flex;gap:14px" id="colorPick"></div><button class="link" data-close>إلغاء</button></div></div>
+<input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
+<input type="file" id="fAny" multiple hidden>
+<input type="file" id="fCam" accept="image/*" capture="environment" hidden>
+<input type="file" id="fAvatar" accept="image/*" hidden>
+<input type="file" id="fWall" accept="image/*" hidden>
+
+<div id="viewer" class="hidden"><div class="vt"><button id="vX">✕</button><button id="vSave">⬇️</button></div><div id="vBody" style="display:contents"></div></div>
+
+<!-- المكالمة -->
+<div id="call" class="hidden">
+  <video id="rv" autoplay playsinline class="hidden"></video>
+  <video id="lv" autoplay playsinline muted class="hidden"></video>
+  <audio id="ra" autoplay playsinline></audio>
+  <div class="info"><div class="av xl" id="kAv"></div><b id="kName"></b><span id="kState"></span></div>
+  <div class="ctrls" id="kIncoming">
+    <button class="cb grn" id="kAccept"><svg><use href="#i-phone"/></svg></button>
+    <button class="cb red" id="kReject"><svg><use href="#i-phone"/></svg></button>
+  </div>
+  <div class="ctrls hidden" id="kActive">
+    <button class="cb" id="kMute"><svg><use href="#i-mic"/></svg></button>
+    <button class="cb vidonly" id="kCam"><svg><use href="#i-video"/></svg></button>
+    <button class="cb vidonly" id="kFlip"><svg><use href="#i-cam"/></svg></button>
+    <button class="cb red" id="kHang"><svg><use href="#i-phone"/></svg></button>
+  </div>
+</div>

@@ -9,6 +9,7 @@ struct WaselApp: App {
         try? s.setCategory(.playAndRecord, mode: .videoChat, options: [.defaultToSpeaker, .allowBluetooth, .allowBluetoothA2DP])
         try? s.setActive(true)
         UIApplication.shared.isIdleTimerDisabled = true
+        NativeHub.shared.setup()
     }
     var body: some Scene {
         WindowGroup { RootView().preferredColorScheme(.dark) }
@@ -93,6 +94,11 @@ struct WebView: UIViewRepresentable {
         cfg.allowsInlineMediaPlayback = true
         cfg.mediaTypesRequiringUserActionForPlayback = []
         cfg.websiteDataStore = .default()
+        let uc = WKUserContentController()
+        uc.add(NativeHub.shared, name: "wasel")
+        uc.addUserScript(WKUserScript(source: "window.WASEL_BIO=\(NativeHub.hasBiometrics);window.WASEL_PLATFORM='ios';",
+                                      injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        cfg.userContentController = uc
         let w = WKWebView(frame: .zero, configuration: cfg)
         w.isOpaque = false
         w.backgroundColor = UIColor(red: 0.027, green: 0.035, blue: 0.059, alpha: 1)
@@ -102,6 +108,7 @@ struct WebView: UIViewRepresentable {
         w.allowsBackForwardNavigationGestures = true
         w.uiDelegate = context.coordinator
         w.navigationDelegate = context.coordinator
+        NativeHub.shared.webView = w
         context.coordinator.load(w)
         return w
     }
@@ -134,6 +141,14 @@ struct WebView: UIViewRepresentable {
             if (e as NSError).code == NSURLErrorCancelled { return }
             DispatchQueue.main.async { self.parent.failed = true }
         }
+        func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            if let u = action.request.url, let host = u.host, let mine = URL(string: parent.url)?.host,
+               host != mine, action.navigationType == .linkActivated {
+                UIApplication.shared.open(u); decisionHandler(.cancel); return
+            }
+            decisionHandler(.allow)
+        }
+
         func webViewWebContentProcessDidTerminate(_ webView: WKWebView) { webView.reload() }
 
         func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String,

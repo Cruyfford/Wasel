@@ -12,8 +12,8 @@ android {
         applicationId = "com.cruyfford.wasel"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "2.0"
         buildConfigField("String", "SERVER_URL", "\"$serverUrl\"")
     }
     signingConfigs {
@@ -41,4 +41,6 @@ android {
 dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.biometric:biometric:1.1.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
