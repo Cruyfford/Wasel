@@ -59,11 +59,13 @@ export class Hub {
       CREATE INDEX IF NOT EXISTS msg_pair ON messages(a, b, id);
       CREATE INDEX IF NOT EXISTS msg_to ON messages(b, status);
     `);
+    // مفاتيح التشفير: المفتاح العام + نسخة مشفّرة من المفتاح الخاص (لا يستطيع السيرفر فتحها)
+    for (const c of ["pub TEXT", "backup TEXT"]) { try { this.sql.exec(`ALTER TABLE users ADD COLUMN ${c}`); } catch {} }
   }
 
   one(q, ...a) { return this.sql.exec(q, ...a).toArray()[0] || null; }
   all(q, ...a) { return this.sql.exec(q, ...a).toArray(); }
-  pub(u) { return u && { id: u.id, email: u.email, name: u.name, about: u.about, online: this.online(u.id), last_seen: u.last_seen }; }
+  pub(u) { return u && { id: u.id, email: u.email, name: u.name, about: u.about, pub: u.pub || null, online: this.online(u.id), last_seen: u.last_seen }; }
   online(uid) { return this.ctx.getWebSockets(String(uid)).length > 0; }
   sendTo(uid, obj) {
     const s = JSON.stringify(obj);
@@ -119,7 +121,9 @@ export class Hub {
         if (this.one("SELECT id FROM users WHERE email=?", email)) return json({ error: "هذا البريد مسجّل مسبقاً" }, 409);
         const salt = randHex(16);
         const hash = await hashPass(pass, salt);
-        this.sql.exec("INSERT INTO users(email,name,salt,hash,created) VALUES(?,?,?,?,?)", email, name, salt, hash, Date.now());
+        const pubk = typeof body.pub === "string" ? body.pub.slice(0, 200) : null;
+        const backup = typeof body.backup === "string" ? body.backup.slice(0, 2000) : null;
+        this.sql.exec("INSERT INTO users(email,name,salt,hash,created,pub,backup) VALUES(?,?,?,?,?,?,?)", email, name, salt, hash, Date.now(), pubk, backup);
         const u = this.one("SELECT * FROM users WHERE email=?", email);
         return json({ token: this.newSession(u.id), user: this.pub(u) });
       }
@@ -129,7 +133,7 @@ export class Hub {
         const u = this.one("SELECT * FROM users WHERE email=?", email);
         if (!u || (await hashPass(String(body.password || ""), u.salt)) !== u.hash)
           return json({ error: "البريد أو كلمة المرور غير صحيحة" }, 401);
-        return json({ token: this.newSession(u.id), user: this.pub(u) });
+        return json({ token: this.newSession(u.id), user: this.pub(u), backup: u.backup || null });
       }
 
       const me = this.auth(req, url);
@@ -142,6 +146,18 @@ export class Hub {
           this.sql.exec("UPDATE users SET name=?, about=? WHERE id=?", name, about, me.id);
         }
         return json({ user: this.pub(this.one("SELECT * FROM users WHERE id=?", me.id)) });
+      }
+
+      if (p === "/api/keys") {
+        if (me.pub) return json({ error: "المفاتيح موجودة مسبقاً" }, 409);
+        this.sql.exec("UPDATE users SET pub=?, backup=? WHERE id=?", String(body.pub || "").slice(0, 200), String(body.backup || "").slice(0, 2000), me.id);
+        return json({ user: this.pub(this.one("SELECT * FROM users WHERE id=?", me.id)) });
+      }
+
+      if (p === "/api/upgrade") {
+        const salt = randHex(16);
+        this.sql.exec("UPDATE users SET salt=?, hash=? WHERE id=?", salt, await hashPass(String(body.password || ""), salt), me.id);
+        return json({ ok: true });
       }
 
       if (p === "/api/logout") {
@@ -203,7 +219,7 @@ export class Hub {
         break;
       case "send": {
         if (!to || !this.one("SELECT id FROM users WHERE id=?", to)) return;
-        const body = String(m.body || "").slice(0, 4000);
+        const body = String(m.body || "").slice(0, 16000);
         const kind = m.kind === "call" ? "call" : "text";
         if (!body.trim()) return;
         const status = this.online(to) ? 1 : 0;

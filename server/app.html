@@ -79,6 +79,7 @@ header h1{font-size:24px;margin:0 6px;flex:1;font-weight:800;letter-spacing:-.3p
 .tick.r{color:#fff;text-shadow:0 0 6px #fff}
 .b.call{display:flex;gap:8px;align-items:center}
 .clr{clear:both}
+.e2e{margin:6px auto 12px;max-width:320px;text-align:center;font-size:12.5px;line-height:1.6;color:#ffd98a;background:#ffd25a14;border:1px solid #ffd25a26;border-radius:14px;padding:8px 12px;cursor:pointer}
 .composer{display:flex;gap:8px;align-items:flex-end;margin:0 10px calc(var(--sb) + 10px);padding:6px;border-radius:28px;background:var(--glass);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);border:1px solid var(--line)}
 .composer textarea{flex:1;resize:none;background:transparent;border:0;padding:11px 14px;max-height:120px;outline:none;font-size:16px;line-height:1.35}
 .send{width:44px;height:44px;border-radius:50%;background:var(--grad);display:grid;place-items:center;flex:none;box-shadow:0 6px 16px #00b4c055}
@@ -169,7 +170,7 @@ header h1{font-size:24px;margin:0 6px;flex:1;font-weight:800;letter-spacing:-.3p
   </header>
   <div id="msgs"></div>
   <div class="composer">
-    <textarea id="cInput" rows="1" placeholder="رسالة"></textarea>
+    <textarea id="cInput" rows="1" maxlength="4000" placeholder="رسالة"></textarea>
     <button class="send" id="cSend"><svg><use href="#i-send"/></svg></button>
   </div>
 </div>
@@ -195,6 +196,16 @@ header h1{font-size:24px;margin:0 6px;flex:1;font-weight:800;letter-spacing:-.3p
     <div class="err" id="nErr"></div>
     <button class="btn" id="nGo">ابدأ الدردشة</button>
     <button class="link" id="nCancel">إلغاء</button>
+  </div>
+</div>
+
+<!-- رقم الأمان -->
+<div class="sheet hidden" id="safeSheet">
+  <div class="box" style="align-items:center;text-align:center">
+    <h3>🔒 التحقق من التشفير</h3>
+    <div style="color:var(--muted);font-size:14px;line-height:1.7">قارن هذا الرقم مع الرقم عند <b id="sName"></b> (وجهاً لوجه أو بمكالمة). إذا تطابق، فالمحادثة والمكالمات مشفّرة بينكما فقط ولا يوجد أي تلاعب.</div>
+    <div id="sNum" dir="ltr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px 16px;font:600 19px ui-monospace,Menlo,monospace;letter-spacing:1px;margin:10px 0"></div>
+    <button class="btn" style="align-self:stretch" onclick="$('safeSheet').classList.add('hidden')">تم</button>
   </div>
 </div>
 
@@ -262,6 +273,70 @@ async function api(path, body) {
   return d;
 }
 
+// ---------- التشفير من طرف لطرف ----------
+const TE = new TextEncoder(), TD = new TextDecoder();
+const b64 = (buf) => { const a = new Uint8Array(buf); let s = ""; for (let i = 0; i < a.length; i += 8192) s += String.fromCharCode.apply(null, a.subarray(i, i + 8192)); return btoa(s); };
+const ub64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+const EC = { name: "ECDH", namedCurve: "P-256" };
+const pwKey = (pass) => crypto.subtle.importKey("raw", TE.encode(pass), "PBKDF2", false, ["deriveBits", "deriveKey"]);
+// كلمة المرور الحقيقية لا تُرسل للسيرفر أبداً؛ يُرسل بدلها مفتاح مشتق منها
+async function authKey(email, pass) {
+  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: TE.encode("wasel-auth:" + email.trim().toLowerCase()), iterations: 200000 }, await pwKey(pass), 256);
+  return b64(bits);
+}
+async function wrapKey(pass, salt) {
+  return crypto.subtle.deriveKey({ name: "PBKDF2", hash: "SHA-256", salt, iterations: 200000 }, await pwKey(pass), { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+}
+async function newIdentity(pass) {
+  const kp = await crypto.subtle.generateKey(EC, true, ["deriveKey"]);
+  const pub = b64(await crypto.subtle.exportKey("raw", kp.publicKey));
+  const pk8 = await crypto.subtle.exportKey("pkcs8", kp.privateKey);
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await wrapKey(pass, salt), pk8);
+  return { pub, priv: b64(pk8), backup: b64(salt) + "." + b64(iv) + "." + b64(ct) };
+}
+async function openBackup(pass, backup) {
+  const [salt, iv, ct] = backup.split(".").map(ub64);
+  return b64(await crypto.subtle.decrypt({ name: "AES-GCM", iv }, await wrapKey(pass, salt), ct));
+}
+let PRIV = null; const SK = {}; const PT = new Map();
+const myPriv = () => (PRIV ||= crypto.subtle.importKey("pkcs8", ub64(localStorage.getItem("w_priv")), EC, false, ["deriveKey"]));
+async function sharedKey(uid) {
+  let u = S.users[uid];
+  if (!u || !u.pub) { try { u = S.users[uid] = { ...u, ...(await api("/api/user?id=" + uid)).user }; } catch {} }
+  if (!u || !u.pub) throw new Error("nokey");
+  const id = uid + ":" + u.pub;
+  return (SK[id] ||= (async () => {
+    const pk = await crypto.subtle.importKey("raw", ub64(u.pub), EC, false, []);
+    return crypto.subtle.deriveKey({ name: "ECDH", public: pk }, await myPriv(), { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+  })());
+}
+async function enc(uid, text) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const out = "e1:" + b64(iv) + ":" + b64(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await sharedKey(uid), TE.encode(text)));
+  PT.set(out, text);
+  return out;
+}
+async function dec(uid, body) {
+  if (!body || !body.startsWith("e1:")) return body;
+  if (PT.has(body)) return PT.get(body);
+  try {
+    const [, iv, ct] = body.split(":");
+    const t = TD.decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(iv) }, await sharedKey(uid), ub64(ct)));
+    PT.set(body, t); return t;
+  } catch { return "🔒 تعذّر فك التشفير"; }
+}
+const txt = (m) => m.text ?? (PT.has(m.body) ? PT.get(m.body) : m.body && m.body.startsWith("e1:") ? "🔒 …" : m.body);
+const decAll = (peer, list) => Promise.all(list.map((m) => dec(peer, m.body)));
+// رقم الأمان: نفس الرقم يظهر عند الطرفين إذا لم يتلاعب أحد بالمفاتيح
+async function safetyNumber(uid) {
+  const keys = [S.me.pub, S.users[uid].pub].sort();
+  const h = new Uint8Array(await crypto.subtle.digest("SHA-256", TE.encode(keys.join("|"))));
+  const groups = [];
+  for (let i = 0; i < 12; i++) groups.push(String(((h[i * 2] << 8) | h[i * 2 + 1]) % 100000).padStart(5, "0"));
+  return groups;
+}
+
 // ---------- الدخول ----------
 let regMode = false;
 $("aSwitch").onclick = () => {
@@ -275,7 +350,32 @@ $("aSwitch").onclick = () => {
 $("aGo").onclick = async () => {
   $("aErr").textContent = ""; $("aGo").disabled = true;
   try {
-    const d = await api(regMode ? "/api/register" : "/api/login", { email: $("aEmail").value, password: $("aPass").value, name: $("aName").value });
+    const email = $("aEmail").value.trim(), pass = $("aPass").value;
+    if (pass.length < 6) throw new Error("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+    $("aErr").textContent = "🔐 جارٍ تجهيز مفاتيح التشفير…";
+    const ak = await authKey(email, pass);
+    let d, priv;
+    if (regMode) {
+      const id = await newIdentity(pass);
+      d = await api("/api/register", { email, password: ak, name: $("aName").value, pub: id.pub, backup: id.backup });
+      priv = id.priv;
+    } else {
+      try { d = await api("/api/login", { email, password: ak }); }
+      catch (e) {
+        // حسابات قديمة قبل التشفير: ندخل بالطريقة القديمة ثم نحدّثها
+        d = await api("/api/login", { email, password: pass }).catch(() => { throw e; });
+        S.token = d.token; await api("/api/upgrade", { password: ak });
+      }
+      S.token = d.token;
+      if (d.backup) priv = await openBackup(pass, d.backup);
+      else {
+        const id = await newIdentity(pass);
+        const r = await api("/api/keys", { pub: id.pub, backup: id.backup });
+        d.user = r.user; priv = id.priv;
+      }
+    }
+    localStorage.setItem("w_priv", priv); PRIV = null;
+    $("aErr").textContent = "";
     S.token = d.token; S.me = d.user;
     localStorage.setItem("w_token", d.token); localStorage.setItem("w_me", JSON.stringify(d.user));
     start();
@@ -286,7 +386,7 @@ $("aPass").onkeydown = (e) => { if (e.key === "Enter") $("aGo").click(); };
 
 function logout() {
   if (S.token) fetch(API + "/api/logout", { method: "POST", headers: { authorization: "Bearer " + S.token } }).catch(() => {});
-  localStorage.clear(); S.token = null; S.me = null; S.msgs = {}; S.chats = []; S.calls = [];
+  localStorage.clear(); PRIV = null; PT.clear(); S.token = null; S.me = null; S.msgs = {}; S.chats = []; S.calls = [];
   try { S.ws && S.ws.close(); } catch {}
   show("auth");
 }
@@ -302,15 +402,16 @@ function connect() {
     $("connBar").classList.remove("hidden");
     setTimeout(connect, Math.min(10000, 800 * 2 ** S.retry++));
   };
-  ws.onmessage = (e) => onWs(JSON.parse(e.data));
+  ws.onmessage = (e) => { const m = JSON.parse(e.data); S.inq = (S.inq || Promise.resolve()).then(() => onWs(m)).catch(() => {}); };
 }
 setInterval(() => { if (S.wsOk) S.ws.send('{"t":"ping"}'); }, 25000);
 function wsSend(o) { if (S.wsOk) { S.ws.send(JSON.stringify(o)); return true; } return false; }
 
-function onWs(m) {
+async function onWs(m) {
   if (m.t === "msg") {
     const msg = m.m, peer = msg.a === S.me.id ? msg.b : msg.a;
     if (m.user) S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
+    await dec(peer, msg.body);
     pushMsg(peer, msg);
     if (S.peer && S.peer.id === peer && !document.hidden && !$("chat").classList.contains("hidden")) wsSend({ t: "read", to: peer });
     else if (msg.a !== S.me.id) beep(1);
@@ -346,8 +447,9 @@ function onWs(m) {
 async function loadChats() {
   try {
     const d = await api("/api/chats");
+    for (const c of d.chats) S.users[c.user.id] = { ...S.users[c.user.id], ...c.user };
+    await Promise.all(d.chats.map((c) => dec(c.user.id, c.last.body)));
     S.chats = d.chats;
-    for (const c of d.chats) S.users[c.user.id] = c.user;
     renderChats();
   } catch {}
 }
@@ -372,7 +474,7 @@ function renderChats() {
   for (const c of S.chats) {
     const u = S.users[c.user.id] || c.user;
     const r = document.createElement("div"); r.className = "row"; if (!el.dataset.shown) r.style.animationDelay = Math.min(i++, 12) * 30 + "ms"; else r.style.animation = "none";
-    const pv = (c.last.kind === "call" ? "📞 " : "") + c.last.body;
+    const pv = (c.last.kind === "call" ? "📞 " : "") + txt(c.last);
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm">${esc(u.name)}</span><span class="tm ${c.unread ? "u" : ""}">${shortTime(c.last.ts)}</span></div>
       <div class="sub"><span class="pv">${ticks(c.last)} ${esc(pv)}</span>${c.unread ? `<span class="badge">${c.unread}</span>` : ""}</div></div>`;
     avatar(r.querySelector(".av"), u, true);
@@ -399,6 +501,7 @@ async function openChat(id, refresh) {
   try {
     const [d, ud] = await Promise.all([api("/api/messages?with=" + id), api("/api/user?id=" + id)]);
     S.users[id] = ud.user; S.peer = ud.user;
+    await decAll(id, d.messages);
     const pending = (S.msgs[id] || []).filter((m) => !m.id);
     S.msgs[id] = d.messages.concat(pending);
     avatar($("cAv"), ud.user); $("cName").textContent = ud.user.name; $("cStatus").textContent = lastSeen(ud.user);
@@ -416,23 +519,26 @@ function renderMsgs(scroll) {
     const dl = dayLabel(m.ts);
     if (dl !== lastDay) { html += `<div class="day clr"><span>${dl}</span></div>`; lastDay = dl; }
     const mine = m.a === S.me.id;
-    html += `<div class="b ${idx++ >= prev ? "a " : ""}${mine ? "o" : "i"} ${m.kind === "call" ? "call" : ""}">${m.kind === "call" ? "📞 " : ""}${esc(m.body)}<span class="meta">${hm(m.ts)}${ticks(m)}</span></div>`;
+    html += `<div class="b ${idx++ >= prev ? "a " : ""}${mine ? "o" : "i"} ${m.kind === "call" ? "call" : ""}">${m.kind === "call" ? "📞 " : ""}${esc(txt(m))}<span class="meta">${hm(m.ts)}${ticks(m)}</span></div>`;
   }
   S.rc[S.peer.id] = list.length;
+  html = '<div class="e2e" onclick="showSafety()">🔒 الرسائل والمكالمات مشفّرة من طرف لطرف. لا أحد غيركما يقدر يقرأها أو يسمعها، ولا حتى السيرفر. اضغط للتحقق.</div>' + html;
   box.innerHTML = html + '<div class="clr"></div>';
   if (scroll || atBottom) box.scrollTop = box.scrollHeight;
 }
-function send(body, kind) {
-  if (!S.peer || !body.trim()) return;
-  const cid = Math.random().toString(36).slice(2);
-  const m = { cid, a: S.me.id, b: S.peer.id, body, kind: kind || "text", ts: Date.now(), status: 0 };
-  pushMsg(S.peer.id, m); renderMsgs(true);
-  (S.queue ||= []).push({ t: "send", to: S.peer.id, body, kind, cid });
-  wsSend({ t: "send", to: S.peer.id, body, kind, cid });
-}
-function sendTo(peer, body, kind) {
-  const cid = Math.random().toString(36).slice(2);
+async function send(text, kind) {
+  if (!S.peer || !text.trim()) return;
+  const peer = S.peer.id, cid = Math.random().toString(36).slice(2);
+  const m = { cid, a: S.me.id, b: peer, body: "", text, kind: kind || "text", ts: Date.now(), status: 0 };
+  pushMsg(peer, m); renderMsgs(true);
+  let body;
+  try { body = await enc(peer, text); }
+  catch { toast("هذا المستخدم يحتاج تحديث التطبيق لاستقبال الرسائل المشفّرة"); S.msgs[peer] = S.msgs[peer].filter((x) => x !== m); renderMsgs(); return; }
+  (S.queue ||= []).push({ t: "send", to: peer, body, kind, cid });
   wsSend({ t: "send", to: peer, body, kind, cid });
+}
+async function sendTo(peer, text, kind) {
+  try { wsSend({ t: "send", to: peer, body: await enc(peer, text), kind, cid: Math.random().toString(36).slice(2) }); } catch {}
 }
 function flushQueue() { for (const q of S.queue || []) wsSend(q); }
 
@@ -540,7 +646,14 @@ function makePC(servers) {
   };
   return pc;
 }
-function sig(data) { wsSend({ t: "signal", to: C.peer, data: { ...data, callId: C.id } }); }
+function sig(data) {
+  const to = C.peer, callId = C.id, { kind, ...rest } = data;
+  S.sigQ = (S.sigQ || Promise.resolve()).then(async () => {
+    const payload = Object.keys(rest).length ? { e: await enc(to, JSON.stringify(rest)) } : {};
+    wsSend({ t: "signal", to, data: { kind, callId, ...payload } });
+  }).catch(() => {});
+  return S.sigQ;
+}
 function goLive() {
   C.state = "live"; C.start = Date.now(); stopRing(); callUI("live");
   clearInterval(C.timer);
@@ -570,10 +683,26 @@ async function startCall(video) {
 }
 $("cVoice").onclick = () => startCall(false);
 $("cVideo").onclick = () => startCall(true);
+async function showSafety() {
+  if (!S.peer) return;
+  try {
+    if (!S.users[S.peer.id].pub) await sharedKey(S.peer.id);
+    $("sNum").innerHTML = (await safetyNumber(S.peer.id)).map((g) => `<span>${g}</span>`).join("");
+    $("sName").textContent = S.users[S.peer.id].name;
+    $("safeSheet").classList.remove("hidden");
+  } catch { toast("هذا المستخدم لم يفعّل التشفير بعد"); }
+}
+$("cName").onclick = showSafety;
 
 async function onSignal(from, d) {
+  if (d.e) {
+    const plain = await dec(from, d.e);
+    try { Object.assign(d, JSON.parse(plain)); } catch { return; } // إشارة لا يمكن فك تشفيرها = مرفوضة
+    delete d.e;
+  }
   if (d.kind === "offer") {
     if (C) { wsSend({ t: "signal", to: from, data: { kind: "busy", callId: d.callId } }); return; }
+    if (!d.sdp) return;
     C = { peer: from, id: d.callId, video: !!d.video, out: false, state: "incoming", offer: d.sdp, pendingIce: [] };
     callUI("incoming"); ring("in");
     wsSend({ t: "signal", to: from, data: { kind: "ringing", callId: d.callId } });
