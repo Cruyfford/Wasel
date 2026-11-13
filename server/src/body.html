@@ -22,7 +22,6 @@
 <div id="home" class="view hidden">
   <header>
     <h1>واصل</h1>
-    <button class="ib" id="hGame" title="ألوان">🎴</button>
     <button class="ib" id="hSettings"><svg><use href="#i-gear"/></svg></button>
   </header>
   <div class="conn hidden" id="connBar">جارٍ الاتصال…</div>
@@ -56,6 +55,7 @@
 <div id="settings" class="view hidden">
   <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الإعدادات</h1></header>
   <div class="set">
+    <div class="card pincard"><h4>كودك الخاص</h4><div class="pinrow"><span class="pinv" id="sPin" dir="ltr"></span><button class="ib" id="sPinCopy">📋</button><button class="ib" id="sPinShare">📤</button></div><small>أعطه لأصدقائك ليضيفوك — مثل PIN البلاك بيري</small></div>
     <div class="card"><button class="me-card it" id="sMe"><div class="av" id="sAv"></div><div class="tx"><b id="sName"></b><small id="sAbout"></small></div><span class="ch">‹</span></button></div>
     <div class="card">
       <button class="it" data-go="privacy"><span class="ic" style="background:#3b82f633">👁️</span><span class="tx">الخصوصية<small>آخر ظهور، علامات القراءة</small></span><span class="ch">‹</span></button>
@@ -64,7 +64,6 @@
       <button class="it" data-go="notifs"><span class="ic" style="background:#f59e0b33">🔔</span><span class="tx">الإشعارات<small>الرسائل، رنين المكالمات</small></span><span class="ch">‹</span></button>
     </div>
     <div class="card">
-      <button class="it" id="sGame"><span class="ic" style="background:#ef444433">🎴</span><span class="tx">لعبة ألوان<small>العب مع أصدقائك حتى 8 لاعبين</small></span><span class="ch">‹</span></button>
       <div class="it"><span class="ic" style="background:#ffffff14">ℹ️</span><span class="tx">واصل 2.0<small>مشفّر من طرف لطرف 🔒</small></span></div>
     </div>
     <div class="card"><button class="it dz" id="sLogout"><span class="ic" style="background:#ff5f6d22">🚪</span><span class="tx">تسجيل الخروج</span></button></div>
@@ -79,7 +78,7 @@
     <div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px">
       <label style="color:var(--muted);font-size:13px">الاسم</label><input class="field" id="pName" maxlength="40">
       <label style="color:var(--muted);font-size:13px">الحالة</label><input class="field" id="pAbout" maxlength="140" placeholder="متاح">
-      <label style="color:var(--muted);font-size:13px">البريد</label><input class="field" id="pEmail" disabled dir="ltr">
+      <label style="color:var(--muted);font-size:13px">البريد (لا يراه أحد غيرك)</label><input class="field" id="pEmail" disabled dir="ltr">
       <button class="btn" id="pSave">حفظ</button>
     </div>
   </div>
@@ -142,41 +141,13 @@
   </div>
 </div>
 
-<!-- اللعبة -->
-<div id="game" class="view hidden">
-  <header class="gtop">
-    <button class="ib" id="gBack"><svg><use href="#i-back"/></svg></button>
-    <span style="font-size:22px">🎴</span><h1 style="font-size:20px;margin:0">ألوان</h1>
-    <span id="gCodeTop" dir="ltr" style="font:700 14px ui-monospace,monospace;color:var(--muted)"></span>
-  </header>
-  <div class="lobby hidden" id="gLobby">
-    <div class="card" style="padding:16px">
-      <div style="text-align:center;color:var(--muted)">رمز الغرفة</div>
-      <div class="code" id="gCode"></div>
-      <button class="btn" id="gInvite" style="width:100%">📨 ادعُ صديقاً من الدردشات</button>
-    </div>
-    <div class="card"><h4 id="gCount"></h4><div id="gPlayers"></div></div>
-    <button class="btn" id="gStart" style="width:100%">▶️ ابدأ اللعبة</button>
-    <div style="color:var(--muted);text-align:center;margin-top:12px;font-size:13px;line-height:1.8">القواعد: طابق اللون أو الرقم. تخطّي ⊘، عكس ⇄، +2، تغيير اللون، +4.<br>اضغط "واحدة!" قبل أن يبقى معك كرت واحد، وإلا يمسكك الآخرون وتسحب 2.</div>
-  </div>
-  <div id="gTable" class="hidden">
-    <div class="ring" id="gRing"></div>
-    <div class="gtimer" id="gTimer"></div>
-    <div class="center"><div class="kc back big" id="gDeck"><span>ألوان</span></div><div id="gTop"></div><span class="colordot" id="gColor"></span></div>
-    <div class="glog" id="gLog"></div>
-  </div>
-  <div id="gHandWrap" class="hidden">
-    <div class="emojis" id="gEmojis"></div>
-    <div class="hand" id="gHand"></div>
-    <div class="gbar"><button class="btn alt" id="gDraw">سحب</button><button class="btn alt hidden" id="gPass">تمرير</button><button class="btn one" id="gOne">☝️ واحدة!</button></div>
-  </div>
-</div>
-
 <!-- أوراق منبثقة -->
 <div class="sheet hidden" id="newSheet">
   <div class="box">
-    <h3>دردشة جديدة</h3>
-    <input class="field" id="nEmail" type="email" placeholder="بريد الشخص" dir="ltr" autocapitalize="off">
+    <h3>إضافة شخص</h3>
+    <div style="color:var(--muted);font-size:14px">اكتب كود الشخص (8 خانات)</div>
+    <input class="field pinin" id="nPin" placeholder="2A7F3C91" dir="ltr" autocapitalize="characters" autocomplete="off" maxlength="9">
+    <div style="color:var(--muted);font-size:13px;text-align:center">كودك: <b id="nMyPin" dir="ltr" style="color:var(--g1);letter-spacing:2px"></b></div>
     <div class="err" id="nErr"></div>
     <button class="btn" id="nGo">ابدأ الدردشة</button>
     <button class="link" data-close>إلغاء</button>
@@ -186,7 +157,7 @@
 <div class="sheet hidden" id="actSheet"><div class="box"><div class="acts" id="acts"></div></div></div>
 <div class="sheet hidden" id="infoSheet">
   <div class="box" style="align-items:center;text-align:center">
-    <div class="av xl" id="iAv"></div><h3 id="iName" style="margin:6px 0 0"></h3><div id="iAbout" style="color:var(--muted)"></div><div id="iEmail" dir="ltr" style="color:var(--muted);font-size:13px"></div>
+    <div class="av xl" id="iAv"></div><h3 id="iName" style="margin:6px 0 0"></h3><div id="iAbout" style="color:var(--muted)"></div><div id="iEmail" dir="ltr" style="color:var(--g1);font:700 15px ui-monospace,Menlo,monospace;letter-spacing:2px"></div>
     <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall">📞 صوت</button><button class="btn" style="flex:1" id="iVid">📹 فيديو</button></div>
     <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px">
       <div style="font-weight:700">🔒 رقم الأمان</div>
@@ -196,7 +167,6 @@
     <button class="link" data-close>إغلاق</button>
   </div>
 </div>
-<div class="sheet hidden" id="colorSheet"><div class="box" style="align-items:center"><h3>اختر اللون</h3><div style="display:flex;gap:14px" id="colorPick"></div><button class="link" data-close>إلغاء</button></div></div>
 <input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
 <input type="file" id="fAny" multiple hidden>
 <input type="file" id="fCam" accept="image/*" capture="environment" hidden>

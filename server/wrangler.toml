@@ -12,10 +12,10 @@ class_name = "Hub"
 tag = "v1"
 new_sqlite_classes = ["Hub"]
 
-[[durable_objects.bindings]]
-name = "GAME"
-class_name = "GameRoom"
-
 [[migrations]]
 tag = "v2"
 new_sqlite_classes = ["GameRoom"]
+
+[[migrations]]
+tag = "v3"
+deleted_classes = ["GameRoom"]

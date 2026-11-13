@@ -20,7 +20,7 @@ function avatar(el, u, dot) {
   el.innerHTML = (img ? "" : esc((u?.name || "?").trim().charAt(0).toUpperCase())) + (dot && u?.online ? '<i class="dot"></i>' : "");
 }
 function toast(t) { const d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 2800); }
-const VIEWS = ["auth", "home", "chat", "settings", "profile", "privacy", "security", "chatset", "notifs", "game"];
+const VIEWS = ["auth", "home", "chat", "settings", "profile", "privacy", "security", "chatset", "notifs"];
 function show(id) { for (const v of VIEWS) $(v).classList.toggle("hidden", v !== id); S.view = id; }
 function go(id) { show(id); history.pushState({ v: id }, ""); }
 const pad = (n) => String(n).padStart(2, "0");
@@ -140,7 +140,7 @@ function preview(m) {
   if (m.deleted) return "🚫 تم حذف الرسالة";
   if (m.kind === "file") { const x = meta(m); if (!x) return "📎 ملف"; return x.mime?.startsWith("image/") ? "📷 صورة" : x.mime?.startsWith("video/") ? "🎥 فيديو" : "📄 " + x.name; }
   if (m.kind === "voice") return "🎤 رسالة صوتية";
-  if (m.kind === "game") return "🎴 دعوة للعب ألوان";
+  if (m.kind === "game") return "🎴 دعوة لعبة";
   return (m.kind === "call" ? "📞 " : "") + txt(m);
 }
 
@@ -356,7 +356,7 @@ function ticks(m) {
 function renderChats() {
   const el = $("chatList"), q = $("hSearch").value.trim().toLowerCase();
   const list = S.chats.filter((c) => { if (!q) return true; const u = S.users[c.user.id] || c.user; return (u.name || "").toLowerCase().includes(q) || preview(c.last).toLowerCase().includes(q); });
-  if (!list.length) { el.innerHTML = `<div class="empty">${q ? "لا توجد نتائج" : "لا توجد دردشات بعد.<br>اضغط + وابدأ دردشة ببريد صديقك."}</div>`; return; }
+  if (!list.length) { el.innerHTML = `<div class="empty">${q ? "لا توجد نتائج" : "لا توجد دردشات بعد.<br>اضغط + وأضف صديقك بكوده الخاص."}</div>`; return; }
   el.innerHTML = ""; let i = 0;
   for (const c of list) {
     const u = S.users[c.user.id] || c.user;
@@ -405,9 +405,7 @@ function bubbleBody(m) {
   if (m.kind === "voice" && x) {
     return `<div class="mvoice" data-fid="${esc(x.fid)}"><button class="vp">▶</button><div class="vbar"><i></i></div><span>${fmtDur(x.dur || 0)}</span></div>${prog}`;
   }
-  if (m.kind === "game" && x) {
-    return `<div class="gameinv"><div class="gt"><span style="font-size:30px">🎴</span><span>دعوة للعب ألوان<br><small style="font-weight:400;opacity:.8" dir="ltr">${esc(x.code)}</small></span></div><button class="btn" data-join="${esc(x.code)}">انضم للعبة</button></div>`;
-  }
+  if (m.kind === "game") return "🎴 دعوة لعبة (لم تعد متاحة)";
   if (m.kind === "file" && x) {
     const url = FILES.get(x.fid)?.url || m.local;
     if (x.mime?.startsWith("image/"))
@@ -461,7 +459,6 @@ function renderMsgs(scroll) {
   box.addEventListener("contextmenu", (e) => { const m = msgOf(e.target); if (m) { e.preventDefault(); msgActions(m); } });
   box.addEventListener("click", async (e) => {
     if (e.target.closest("#e2eNote")) return showInfo();
-    const j = e.target.closest("[data-join]"); if (j) return joinGame(j.dataset.join);
     const m = msgOf(e.target); if (!m || m.deleted) return;
     const x = meta(m); if (!x || !m.id) return;
     if (e.target.closest(".vp")) return playVoice(e.target.closest(".mvoice"), x);
@@ -530,7 +527,6 @@ for (const b of document.querySelectorAll("[data-back]")) b.onclick = () => hist
 window.onpopstate = () => {
   if (!$("call").classList.contains("hidden")) return;
   if (!$("viewer").classList.contains("hidden")) { closeViewer(); return; }
-  if (S.view === "game") leaveGameView();
   const v = history.state?.v || "home";
   if (v === "chat" && S.peer) show("chat");
   else if (VIEWS.includes(v) && v !== "auth" && v !== "chat") { show(v); if (v === "settings") renderSettings(); }
@@ -641,7 +637,7 @@ $("vX").onclick = () => history.back();
 
 // المرفقات
 $("cAttach").onclick = () => {
-  const items = [["🖼️", "صور وفيديو", () => $("fMedia").click()], ["📸", "الكاميرا", () => $("fCam").click()], ["📄", "ملف", () => $("fAny").click()], ["🎴", "دعوة للعب ألوان", () => inviteToGame(S.peer.id)]];
+  const items = [["🖼️", "صور وفيديو", () => $("fMedia").click()], ["📸", "الكاميرا", () => $("fCam").click()], ["📄", "ملف", () => $("fAny").click()]];
   $("acts").innerHTML = items.map((it, i) => `<button data-a="${i}"><span class="em">${it[0]}</span>${it[1]}</button>`).join("");
   $("acts").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; closeSheets(); items[Number(b.dataset.a)][2](); };
   openSheet("actSheet");
@@ -720,7 +716,7 @@ function ask(title, fields, ok) {
 async function showInfo() {
   if (!S.peer) return;
   const u = S.users[S.peer.id] || S.peer;
-  avatar($("iAv"), u); $("iName").textContent = u.name; $("iAbout").textContent = u.about || ""; $("iEmail").textContent = u.email || "";
+  avatar($("iAv"), u); $("iName").textContent = u.name; $("iAbout").textContent = u.about || ""; $("iEmail").textContent = u.pin ? "PIN " + u.pin : "";
   $("sNum").innerHTML = "…";
   openSheet("infoSheet");
   try { if (!u.pub) await sharedKey(u.id); $("sNum").innerHTML = (await safetyNumber(u.id)).map((g) => `<span>${g}</span>`).join(""); }
@@ -731,11 +727,16 @@ $("iCall").onclick = () => { closeSheets(); startCall(false); };
 $("iVid").onclick = () => { closeSheets(); startCall(true); };
 
 // دردشة جديدة
-$("newChat").onclick = () => { openSheet("newSheet"); $("nErr").textContent = ""; $("nEmail").value = ""; setTimeout(() => $("nEmail").focus(), 50); };
+const normPin = (v) => v.toUpperCase().replace(/[^0-9A-F]/g, "").slice(0, 8);
+$("newChat").onclick = () => { openSheet("newSheet"); $("nErr").textContent = ""; $("nPin").value = ""; $("nMyPin").textContent = S.me.pin || ""; setTimeout(() => $("nPin").focus(), 50); };
+$("nPin").oninput = () => { const v = normPin($("nPin").value); if ($("nPin").value !== v) $("nPin").value = v; if (v.length === 8) $("nGo").focus(); };
+$("nPin").onkeydown = (e) => { if (e.key === "Enter") $("nGo").click(); };
 $("nGo").onclick = async () => {
   try {
-    const d = await api("/api/find?email=" + encodeURIComponent($("nEmail").value.trim()));
-    if (d.user.id === S.me.id) throw new Error("هذا بريدك أنت");
+    const pin = normPin($("nPin").value);
+    if (pin.length !== 8) throw new Error("الكود يتكون من 8 خانات (أرقام وحروف A-F)");
+    const d = await api("/api/find?pin=" + pin);
+    if (d.user.id === S.me.id) throw new Error("هذا كودك أنت 🙂");
     S.users[d.user.id] = d.user; closeSheets(); openChat(d.user.id);
   } catch (e) { $("nErr").textContent = e.message; }
 };
@@ -753,8 +754,15 @@ for (const b of document.querySelectorAll(".tabs button")) b.onclick = () => {
 function sw(id, on) { $(id).querySelector(".sw").classList.toggle("on", !!on); }
 function renderSettings() {
   avatar($("sAv"), S.me); $("sName").textContent = S.me.name; $("sAbout").textContent = S.me.about || S.me.email;
+  $("sPin").textContent = S.me.pin || "…";
 }
 $("hSettings").onclick = () => { renderSettings(); go("settings"); };
+$("sPinCopy").onclick = () => navigator.clipboard?.writeText(S.me.pin).then(() => toast("تم نسخ الكود")).catch(() => toast(S.me.pin));
+$("sPinShare").onclick = () => {
+  const t = `أضفني على واصل 💬\nكودي: ${S.me.pin}`;
+  if (navigator.share) navigator.share({ text: t }).catch(() => {});
+  else navigator.clipboard?.writeText(t).then(() => toast("تم نسخ رسالة المشاركة"));
+};
 $("sLogout").onclick = async () => { const r = await ask("تسجيل الخروج؟", [], "خروج"); if (r) logout(); };
 for (const b of document.querySelectorAll("[data-go]")) b.onclick = () => { const v = b.dataset.go; go(v); ({ privacy: renderPrivacy, security: renderSecurity, chatset: renderChatSet, notifs: renderNotifs })[v]?.(); };
 
@@ -1088,149 +1096,6 @@ function renderCalls() {
   }
 }
 
-// ---------- لعبة ألوان ----------
-const G = { ws: null, s: null, code: null };
-const CARD_SYM = { S: "⊘", R: "⇄", D: "+2", W: "✦", 4: "+4" };
-const COLOR_NAMES = { r: "أحمر", y: "أصفر", g: "أخضر", b: "أزرق" };
-function cardHtml(c, cls = "") {
-  if (!c) return "";
-  const k = c[0], v = c[1], sym = CARD_SYM[v] || v;
-  return `<div class="kc ${k} ${cls}" data-c="${esc(c)}"><i>${sym}</i><span>${sym}</span><i class="br">${sym}</i></div>`;
-}
-const genCode = () => Array.from(crypto.getRandomValues(new Uint8Array(6)), (x) => "ABCDEFGHJKMNPQRSTUVWXYZ23456789"[x % 31]).join("");
-$("hGame").onclick = $("sGame").onclick = async () => {
-  const r = await ask("🎴 لعبة ألوان", [{ ph: "رمز الغرفة للانضمام (اتركه فارغاً لإنشاء غرفة)", max: 8 }], "متابعة");
-  if (!r) return;
-  joinGame(r[0].trim().toUpperCase() || genCode());
-};
-function joinGame(code) {
-  if (!/^[A-Z0-9]{4,8}$/.test(code)) return toast("رمز غير صحيح");
-  if (G.ws) { try { G.ws.close(); } catch {} }
-  G.code = code; G.s = null;
-  $("gCode").textContent = code; $("gCodeTop").textContent = code;
-  go("game");
-  $("gLobby").classList.remove("hidden"); $("gTable").classList.add("hidden"); $("gHandWrap").classList.add("hidden");
-  $("gPlayers").innerHTML = '<div class="empty">⏳ جارٍ الاتصال…</div>';
-  const ws = new WebSocket(API.replace(/^http/, "ws") + `/game?room=${code}&token=${encodeURIComponent(S.token)}`);
-  G.ws = ws;
-  ws.onmessage = (e) => {
-    const m = JSON.parse(e.data);
-    if (m.t === "state") { G.s = m.s; renderGame(); }
-    else if (m.t === "err") toast(m.msg);
-    else if (m.t === "fx") gameFx(m);
-  };
-  ws.onclose = (e) => { if (G.ws === ws && S.view === "game" && e.code !== 1000) { if (e.code === 4000) { toast("لا يمكن الدخول"); history.back(); } else setTimeout(() => G.ws === ws && joinGame(code), 1500); } };
-}
-const gSend = (o) => G.ws && G.ws.readyState === 1 && G.ws.send(JSON.stringify(o));
-function leaveGameView() { if (G.ws) { const w = G.ws; G.ws = null; try { w.send(JSON.stringify({ a: "leave" })); } catch {} setTimeout(() => { try { w.close(1000); } catch {} }, 200); } clearInterval(G.tick); }
-$("gBack").onclick = async () => { if (G.s?.status === "play") { const r = await ask("مغادرة اللعبة؟", [], "مغادرة"); if (!r) return; } history.back(); };
-$("gStart").onclick = () => gSend({ a: "start" });
-$("gInvite").onclick = () => inviteToGame();
-async function inviteToGame(peerId) {
-  if (!peerId) {
-    const opts = S.chats.slice(0, 30);
-    if (!opts.length) return toast("لا توجد دردشات — ارسل الرمز لصديقك: " + G.code);
-    $("acts").innerHTML = opts.map((c, i) => `<button data-a="${i}"><span class="em">👤</span>${esc((S.users[c.user.id] || c.user).name)}</button>`).join("");
-    $("acts").onclick = async (e) => { const b = e.target.closest("button"); if (!b) return; closeSheets(); const u = opts[Number(b.dataset.a)].user; await sendGameInvite(u.id, G.code); toast("📨 تم إرسال الدعوة"); };
-    return openSheet("actSheet");
-  }
-  const code = genCode();
-  await sendGameInvite(peerId, code);
-  joinGame(code);
-}
-async function sendGameInvite(peerId, code) {
-  const prevPeer = S.peer;
-  S.peer = S.users[peerId] || { id: peerId };
-  await send(JSON.stringify({ code }), "game", { meta: { code } });
-  S.peer = prevPeer;
-}
-function renderGame() {
-  const s = G.s; if (!s) return;
-  const me = S.me.id, isHost = s.host === me;
-  const lobby = s.status === "lobby";
-  $("gLobby").classList.toggle("hidden", !lobby);
-  $("gTable").classList.toggle("hidden", lobby);
-  $("gHandWrap").classList.toggle("hidden", lobby);
-  if (lobby) {
-    $("gCount").textContent = `اللاعبون ${s.players.length}/8`;
-    $("gPlayers").innerHTML = s.players.map((p) => `<div class="it"><div class="av sm" data-av="${p.id}"></div><span class="tx">${esc(p.name)}${p.id === s.host ? " 👑" : ""}${p.wins ? ` <small>🏆 ${p.wins}</small>` : ""}</span>${isHost && p.id !== me ? `<button class="link" data-kick="${p.id}">إخراج</button>` : ""}</div>`).join("");
-    for (const el of $("gPlayers").querySelectorAll("[data-av]")) { const p = s.players.find((x) => x.id == el.dataset.av); avatar(el, p); }
-    $("gPlayers").onclick = (e) => { const k = e.target.dataset.kick; if (k) gSend({ a: "kick", target: Number(k) }); };
-    $("gStart").classList.toggle("hidden", !isHost);
-    $("gStart").disabled = s.players.length < 2;
-    $("gStart").textContent = s.players.length < 2 ? "بانتظار لاعب آخر…" : "▶️ ابدأ اللعبة";
-    return;
-  }
-  // الطاولة: اللاعبون حول الدائرة بدءاً مني
-  const table = $("gTable");
-  for (const el of table.querySelectorAll(".opp")) el.remove();
-  const ps = s.players, myIdx = Math.max(0, ps.findIndex((p) => p.id === me)), n = ps.length;
-  ps.forEach((p, i) => {
-    if (p.id === me) return;
-    const rel = (i - myIdx + n) % n;
-    const ang = Math.PI / 2 + (rel / n) * Math.PI * 2;
-    const x = 50 + Math.cos(ang) * 40, y = 44 + Math.sin(ang) * 36;
-    const el = document.createElement("div");
-    el.className = `opp${s.turn === p.id ? " turn" : ""}${p.left || !p.online ? " off" : ""}`;
-    el.style.left = x + "%"; el.style.top = y + "%"; el.dataset.pid = p.id;
-    el.innerHTML = `<div class="av"></div><div class="nm">${esc(p.name)}</div><div class="cnt">🂠 ${p.count}</div>${p.said1 ? '<span class="one">واحدة!</span>' : ""}${s.vuln === p.id ? `<button class="catch" data-catch="${p.id}">امسكه!</button>` : ""}`;
-    avatar(el.querySelector(".av"), p);
-    table.append(el);
-  });
-  table.onclick = (e) => { const c = e.target.closest("[data-catch]"); if (c) gSend({ a: "catch", target: Number(c.dataset.catch) }); };
-  $("gTop").innerHTML = cardHtml(s.top, "big");
-  const cc = { r: "#ff5f6d", y: "#ffd84a", g: "#3ee08f", b: "#4facfe" }[s.color];
-  $("gColor").style.background = cc; $("gColor").style.color = cc;
-  $("gRing").classList.toggle("ccw", s.dir < 0);
-  $("gLog").textContent = s.log || "";
-  const myTurn = s.turn === me;
-  const meP = ps.find((p) => p.id === me);
-  if (s.status === "over") {
-    const w = ps.find((p) => p.id === s.winner);
-    $("gLog").textContent = `🏆 ${w ? w.name : ""} فاز!`;
-    $("gTimer").textContent = isHost ? "" : "بانتظار صاحب الغرفة…";
-    if (isHost) { $("gTimer").innerHTML = '<button class="btn" id="gAgain" style="padding:8px 18px;font-size:14px">🔁 جولة جديدة</button>'; $("gAgain").onclick = () => gSend({ a: "lobby" }); }
-  }
-  // يدي
-  const playable = new Set(s.playable);
-  $("gHand").innerHTML = s.hand.map((c) => cardHtml(c, myTurn ? (playable.has(c) ? "ok" : "no") : "")).join("");
-  $("gHand").onclick = (e) => {
-    const k = e.target.closest(".kc"); if (!k || !myTurn) return;
-    const c = k.dataset.c;
-    if (!playable.has(c)) return toast("لا يمكن لعب هذا الكرت");
-    if (c[0] === "w") return pickColor(c);
-    gSend({ a: "play", card: c });
-  };
-  $("gDraw").disabled = !myTurn || s.drew; $("gDraw").textContent = myTurn ? "سحب 🂠" : "ليس دورك";
-  $("gPass").classList.toggle("hidden", !(myTurn && s.drew));
-  $("gOne").classList.toggle("hidden", !meP || meP.count > 2 || meP.said1 || s.status !== "play");
-  clearInterval(G.tick);
-  const tick = () => { if (s.status !== "play") return; const left = Math.max(0, Math.ceil((s.deadline - Date.now()) / 1000)); const who = ps.find((p) => p.id === s.turn); $("gTimer").textContent = (myTurn ? "دورك! " : `دور ${who ? who.name : ""} `) + `⏱️ ${left}`; };
-  tick(); G.tick = setInterval(tick, 500);
-  if (myTurn && SET.sound && G.lastTurn !== s.turn + ":" + s.deadline) tone(990, 0.12);
-  G.lastTurn = s.turn + ":" + s.deadline;
-}
-function pickColor(card) {
-  $("colorPick").innerHTML = ["r", "y", "g", "b"].map((k) => `<button class="kc ${k}" data-k="${k}" style="width:58px;height:58px;border-radius:50%"><span style="font-size:13px">${COLOR_NAMES[k]}</span></button>`).join("");
-  $("colorPick").onclick = (e) => { const b = e.target.closest("[data-k]"); if (!b) return; closeSheets(); gSend({ a: "play", card, color: b.dataset.k }); };
-  openSheet("colorSheet");
-}
-$("gDraw").onclick = () => gSend({ a: "draw" });
-$("gPass").onclick = () => gSend({ a: "pass" });
-$("gOne").onclick = () => gSend({ a: "one" });
-$("gEmojis").innerHTML = ["😂", "😡", "😎", "🔥", "👏", "😭"].map((e) => `<button>${e}</button>`).join("");
-$("gEmojis").onclick = (e) => { if (e.target.tagName === "BUTTON") gSend({ a: "emoji", e: e.target.textContent }); };
-function gameFx(m) {
-  if (m.kind === "emoji" || m.kind === "one" || m.kind === "catch") {
-    const el = document.querySelector(`.opp[data-pid="${m.by}"]`);
-    const txtE = m.kind === "emoji" ? m.e : m.kind === "one" ? "☝️" : "🫵";
-    if (el) { const b = document.createElement("div"); b.className = "bubble"; b.textContent = txtE; el.append(b); setTimeout(() => b.remove(), 1800); }
-    else if (m.by === S.me.id) toast(txtE);
-    if (m.kind === "catch" && m.target === S.me.id) toast("🫵 مسكوك! تسحب 2");
-  }
-  if (m.kind === "play" && SET.sound) tone(520, 0.06, 0.1);
-}
-
 // ---------- البدء ----------
 function start() {
   show("home"); renderChats(); renderCalls(); loadChats(); connect(); applySet();
@@ -1238,7 +1103,7 @@ function start() {
   native({ type: "auth", token: S.token, me: S.me.id, server: API, name: S.me.name });
   native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure });
   iceServers();
-  api("/api/me").then((d) => { S.me = { ...S.me, ...d.user }; localStorage.setItem("w_me", JSON.stringify(S.me)); }).catch(() => {});
+  api("/api/me").then((d) => { S.me = { ...S.me, ...d.user }; localStorage.setItem("w_me", JSON.stringify(S.me)); if (S.view === "settings") renderSettings(); }).catch(() => {});
 }
 buildPad(); applySet();
 if (S.token && S.me && localStorage.getItem("w_priv")) { start(); if (SET.lock) lockNow(); } else { if (S.token) logout(true); show("auth"); }

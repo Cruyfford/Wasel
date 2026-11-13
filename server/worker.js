@@ -1,7 +1,6 @@
 // Wasel — سيرفر المراسلة والمكالمات (Cloudflare Worker + Durable Objects)
 // السيرفر لا يرى أي محتوى: الرسائل والملفات والإشارات مشفّرة على الجهاز قبل الإرسال.
 import APP_HTML from "./app.html";
-export { GameRoom } from "./game.js";
 
 const CORS = { "access-control-allow-origin": "*" };
 const JSON_H = { "content-type": "application/json; charset=utf-8", ...CORS };
@@ -25,11 +24,6 @@ export default {
       return new Response(null, { headers: { ...CORS, "access-control-allow-headers": "*", "access-control-allow-methods": "GET,POST" } });
     if (url.pathname === "/" || url.pathname === "/index.html") return new Response(APP_HTML, { headers: HTML_H });
     if (url.pathname === "/api/turn") return turn(env);
-    if (url.pathname === "/game") {
-      const code = (url.searchParams.get("room") || "").toUpperCase();
-      if (!/^[A-Z0-9]{4,8}$/.test(code)) return new Response("bad room", { status: 400 });
-      return env.GAME.get(env.GAME.idFromName(code)).fetch(req);
-    }
     if (url.pathname === "/api/file") return env.HUB.get(env.HUB.idFromName("files")).fetch(req);
     if (url.pathname.startsWith("/api/") || url.pathname === "/ws") return env.HUB.get(env.HUB.idFromName("main")).fetch(req);
     return new Response("Not found", { status: 404 });
@@ -80,11 +74,20 @@ export class Hub {
       CREATE TABLE IF NOT EXISTS attempts(email TEXT PRIMARY KEY, n INTEGER, until INTEGER);
       CREATE TABLE IF NOT EXISTS files(id TEXT, i INTEGER, data BLOB, ts INTEGER, PRIMARY KEY(id, i));
     `);
-    const cols = ["pub TEXT", "backup TEXT", "avatar TEXT", "hide_seen INTEGER DEFAULT 0", "receipts INTEGER DEFAULT 1"];
+    const cols = ["pub TEXT", "backup TEXT", "avatar TEXT", "hide_seen INTEGER DEFAULT 0", "receipts INTEGER DEFAULT 1", "pin TEXT"];
     for (const c of cols) { try { this.sql.exec(`ALTER TABLE users ADD COLUMN ${c}`); } catch {} }
+    this.sql.exec("CREATE UNIQUE INDEX IF NOT EXISTS users_pin ON users(pin)");
+    // كل مستخدم له كود خاص (مثل PIN البلاك بيري) — نولّده للحسابات القديمة
+    for (const r of this.all("SELECT id FROM users WHERE pin IS NULL AND hash<>''")) this.sql.exec("UPDATE users SET pin=? WHERE id=?", this.newPin(), r.id);
     for (const c of ["reply INTEGER", "deleted INTEGER DEFAULT 0"]) { try { this.sql.exec(`ALTER TABLE messages ADD COLUMN ${c}`); } catch {} }
   }
 
+  newPin() {
+    for (;;) {
+      const pin = randHex(4).toUpperCase();
+      if (!/^0/.test(pin) && !this.one("SELECT id FROM users WHERE pin=?", pin)) return pin;
+    }
+  }
   one(q, ...a) { return this.sql.exec(q, ...a).toArray()[0] || null; }
   all(q, ...a) { return this.sql.exec(q, ...a).toArray(); }
   user(id) { return this.one("SELECT * FROM users WHERE id=?", id); }
@@ -92,9 +95,9 @@ export class Hub {
     if (!u) return null;
     const hide = !self && u.hide_seen;
     return {
-      id: u.id, email: u.email, name: u.name, about: u.about, pub: u.pub || null, avatar: u.avatar || null,
+      id: u.id, pin: u.pin, name: u.name, about: u.about, pub: u.pub || null, avatar: u.avatar || null,
       online: hide ? false : this.online(u.id), last_seen: hide ? 0 : u.last_seen,
-      ...(self ? { hide_seen: !!u.hide_seen, receipts: u.receipts !== 0 } : {}),
+      ...(self ? { email: u.email, hide_seen: !!u.hide_seen, receipts: u.receipts !== 0 } : {}),
     };
   }
   online(uid) { return this.ctx.getWebSockets(String(uid)).length > 0; }
@@ -191,7 +194,7 @@ export class Hub {
         const hash = await hashPass(pass, salt);
         const pubk = typeof body.pub === "string" ? body.pub.slice(0, 200) : null;
         const backup = typeof body.backup === "string" ? body.backup.slice(0, 2000) : null;
-        this.sql.exec("INSERT INTO users(email,name,salt,hash,created,pub,backup) VALUES(?,?,?,?,?,?,?)", email, name, salt, hash, Date.now(), pubk, backup);
+        this.sql.exec("INSERT INTO users(email,name,salt,hash,created,pub,backup,pin) VALUES(?,?,?,?,?,?,?,?)", email, name, salt, hash, Date.now(), pubk, backup, this.newPin());
         const u = this.one("SELECT * FROM users WHERE email=?", email);
         return json({ token: this.newSession(u.id), user: this.pub(u, true) });
       }
@@ -269,14 +272,15 @@ export class Hub {
         if (!(await this.checkPass(me, body.password))) return json({ error: "كلمة المرور غير صحيحة" }, 403);
         this.sql.exec("DELETE FROM sessions WHERE uid=?", me.id);
         this.sql.exec("DELETE FROM messages WHERE a=? OR b=?", me.id, me.id);
-        this.sql.exec("UPDATE users SET email=?, name='حساب محذوف', about='', avatar=NULL, pub=NULL, backup=NULL, hash='' WHERE id=?", "deleted-" + me.id + "-" + randHex(4), me.id);
+        this.sql.exec("UPDATE users SET email=?, name='حساب محذوف', about='', avatar=NULL, pub=NULL, backup=NULL, hash='', pin=NULL WHERE id=?", "deleted-" + me.id + "-" + randHex(4), me.id);
         return json({ ok: true });
       }
 
       if (p === "/api/find") {
-        const q = String(url.searchParams.get("email") || "").trim().toLowerCase();
-        const u = this.one("SELECT * FROM users WHERE email=?", q);
-        if (!u) return json({ error: "لا يوجد مستخدم بهذا البريد" }, 404);
+        const q = String(url.searchParams.get("pin") || "").toUpperCase().replace(/[^0-9A-F]/g, "");
+        if (q.length !== 8) return json({ error: "الكود يتكون من 8 خانات" }, 400);
+        const u = this.one("SELECT * FROM users WHERE pin=?", q);
+        if (!u || !u.hash) return json({ error: "لا يوجد مستخدم بهذا الكود" }, 404);
         return json({ user: this.pub(u) });
       }
 
