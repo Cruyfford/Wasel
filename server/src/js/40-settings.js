@@ -65,6 +65,7 @@ function renderSecurity() {
   $("scAfterRow").classList.toggle("hidden", !SET.lock);
   $("scSecure").classList.toggle("hidden", !NAT.android);
   for (const b of $("scAfter").children) b.classList.toggle("on", Number(b.dataset.v) === SET.after);
+  api("/api/recovery/status").then((d) => { $("scRecS").textContent = d.set ? "✅ محفوظ — اضغط لإنشاء مفتاح جديد" : "⚠️ غير محفوظ — بدونه تفقد حسابك إذا نسيت كلمة المرور"; }).catch(() => {});
   api("/api/sessions").then((d) => ($("scSess").textContent = `مسجّل في ${d.count} ${d.count === 1 ? "جهاز" : "أجهزة"}`)).catch(() => {});
 }
 $("scLock").onclick = async () => {
@@ -92,6 +93,8 @@ $("scPass").onclick = async () => {
     toast("✅ تم تغيير كلمة المرور"); renderSecurity();
   } catch (e) { toast(e.message); }
 };
+$("scRec").onclick = setupRecovery;
+$("scLink").onclick = scanQR;
 $("scAll").onclick = async () => { const r = await ask("تسجيل الخروج من كل الأجهزة الأخرى؟", [], "تأكيد"); if (!r) return; await api("/api/logout-all", {}); toast("تم"); renderSecurity(); };
 $("scDel").onclick = async () => {
   const r = await ask("⚠️ حذف الحساب وكل الرسائل نهائياً", [{ ph: "اكتب كلمة المرور للتأكيد", type: "password" }], "حذف نهائياً");

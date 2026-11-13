@@ -295,10 +295,88 @@ input[type=range]{width:100%;accent-color:var(--g1)}
 .tabs{right:14px;left:88px;transform:none;justify-content:space-between}
 .tabs button{flex:1;padding:11px 6px;white-space:nowrap;font-size:14.5px;text-align:center}
 .fab{bottom:calc(var(--sb) + 14px);width:60px;height:60px}
+/* v4 */
+.b.o{background:var(--bub,var(--grad))}
+.b.bare{background:none!important;box-shadow:none!important;border:0!important;padding:0 4px}
+.b.bare .meta{background:#0008;border-radius:8px;padding:1px 6px}
+.stk{display:inline-block;font-size:30px}
+.stk.big{font-size:96px;line-height:1.1}
+.stk.bounce{animation:sb 1.4s ease-in-out infinite}
+.stk.pulse{animation:sp 1.2s ease-in-out infinite}
+.stk.wiggle{animation:sw 1s ease-in-out infinite}
+.stk.spin{animation:ss 2.4s linear infinite}
+.stk.wave{animation:sv 1.4s ease-in-out infinite;transform-origin:70% 80%}
+@keyframes sb{50%{transform:translateY(-14%)}}
+@keyframes sp{50%{transform:scale(1.15)}}
+@keyframes sw{25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+@keyframes ss{to{transform:rotate(360deg)}}
+@keyframes sv{20%,60%{transform:rotate(18deg)}40%,80%{transform:rotate(-8deg)}}
+.emojipanel{margin:0 10px 6px;border-radius:22px;background:var(--glass);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--line);overflow:hidden}
+.emtabs{display:flex;border-bottom:1px solid var(--line)}
+.emtabs button{flex:1;padding:9px;color:var(--muted);font-weight:700;font-size:13px}
+.emtabs button.on{color:#fff;background:var(--glass2)}
+.emgrid{display:grid;grid-template-columns:repeat(8,1fr);max-height:220px;overflow-y:auto;padding:6px}
+.emgrid button{font-size:26px;padding:4px 0;border-radius:10px}
+.emgrid.st{grid-template-columns:repeat(4,1fr)}
+.emgrid.st button{padding:10px 0}
+.emgrid.st .stk{font-size:46px}
+.mentionbox{margin:0 12px 6px;border-radius:18px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);overflow:hidden}
+.mentionbox button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;text-align:start}
+.mentionbox .av{width:30px;height:30px;font-size:13px;border-radius:10px}
+.mention{color:#9be7ff;font-weight:700}
+.mention.me{background:#ffd84a33;border-radius:6px;padding:0 3px;color:#ffe27a}
+.pollb{min-width:240px}
+.poll{display:flex;flex-direction:column;gap:6px;min-width:230px}
+.poll small{opacity:.75;font-size:12px}
+.popt{position:relative;display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:12px;background:#0003;overflow:hidden;text-align:start}
+.popt .pbar{position:absolute;inset:0 auto 0 0;background:#ffffff26;transition:width .4s}
+.popt .pchk{width:20px;height:20px;border-radius:50%;border:2px solid #fff9;display:grid;place-items:center;font-size:12px;position:relative;flex:none}
+.popt.on .pchk{background:#fff;color:#0a7}
+.popt .ptx{flex:1;position:relative}
+.popt .pct{position:relative;font-weight:800;font-size:13px}
+.pvw{font-size:12.5px;padding:2px;color:inherit;opacity:.85}
+.mvn{position:relative;width:200px;height:200px;border-radius:50%;overflow:hidden;cursor:pointer;background:#0006;border:3px solid #ffffff30}
+.mvn video{width:100%;height:100%;object-fit:cover}
+.mvn .play{position:absolute;inset:0;display:grid;place-items:center;font-size:40px;text-shadow:0 2px 10px #000;pointer-events:none}
+.mvn video[data-ready]+.play{display:none}
+.mvn .vnd{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:12px;background:#0009;padding:1px 8px;border-radius:8px}
+.mvn.loading .play{animation:sp 1s infinite}
+.vspd{font-size:11px;font-weight:800;background:#fff3;border-radius:9px;padding:2px 7px;flex:none}
+.updbar{display:block;margin:8px 12px 0;padding:10px 14px;border-radius:16px;background:linear-gradient(135deg,#00d1a033,#00a3ff33);border:1px solid #00d1a055;color:#fff;text-decoration:none;font-size:13.5px;font-weight:700;position:relative}
+.updbar span{position:absolute;left:12px;top:8px;opacity:.7;padding:2px 6px}
+.recwords{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font:600 14px ui-monospace,Menlo,monospace}
+.recwords span{background:var(--glass2);border-radius:10px;padding:7px 6px;display:flex;gap:5px}
+.recwords i{font-style:normal;color:var(--muted);font-size:11px;min-width:16px}
+.qrbox{background:#fff;padding:10px;border-radius:18px;width:260px;height:260px}
+.qrbox svg{width:100%;height:100%}
+#scanner{position:fixed;inset:0;z-index:95;background:#000;display:flex;align-items:center;justify-content:center}
+#scanner video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scanframe{width:240px;height:240px;border:3px solid #00d1a0;border-radius:24px;box-shadow:0 0 0 2000px #0008;position:relative;z-index:1}
+.scantx{position:absolute;bottom:calc(var(--sb) + 80px);z-index:1;font-weight:700}
+#scanX{position:absolute;top:calc(var(--st) + 14px);left:14px;z-index:2;background:#fff3}
+#vnote{position:fixed;inset:0;z-index:80;background:#05070cee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.vnwrap{position:relative;width:248px;height:248px}
+.vnwrap video{position:absolute;inset:8px;width:232px;height:232px;border-radius:50%;object-fit:cover;transform:scaleX(-1)}
+.vnwrap svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.vnwrap circle{fill:none;stroke:var(--g1);stroke-width:6;stroke-dasharray:754;stroke-dashoffset:0;stroke-linecap:round}
+#vnT{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.vnctl{display:flex;gap:40px;align-items:center}
+.vnrec{width:76px;height:76px;border-radius:50%;background:var(--red);border:5px solid #fff}
+.vnrec.on{border-radius:24px;transform:scale(.85)}
+#vnote small{color:var(--muted)}
+.bubpick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:6px 6px 14px}
+.bubpick button{aspect-ratio:1;border-radius:50%;border:3px solid transparent}
+.bubpick button.on{border-color:#fff}
 /* منع التحديد بالضغط المطوّل (مثل التطبيقات الأصلية) — مسموح فقط في حقول الكتابة */
 html,body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 input,textarea,[contenteditable]{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
 img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
+
+/* السحب للحذف */
+.swrap{position:relative;overflow:hidden;border-radius:22px}
+.swrap .row{position:relative;z-index:1;background:var(--bg);touch-action:pan-y}
+.sdel{position:absolute;left:6px;top:6px;bottom:6px;width:86px;border-radius:18px;background:linear-gradient(135deg,#ff5f6d,#d7263d);color:#fff;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:20px;box-shadow:0 6px 18px #ff5f6d55}
+.sdel span{font-size:13px}
 </style>
 </head>
 <body>
@@ -335,6 +413,7 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
   <div class="err" id="aErr"></div>
   <button class="btn" id="aGo">دخول</button>
   <button class="link" id="aSwitch">ليس لديك حساب؟ أنشئ حساباً</button>
+  <div style="display:flex;justify-content:center;gap:18px"><button class="link" id="aForgot">🔑 نسيت كلمة المرور؟</button><button class="link" id="aQR">🖥️ ربط بالجوال (QR)</button></div>
 </div>
 
 <!-- القائمة -->
@@ -344,6 +423,7 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
     <button class="ib" id="hSettings"><svg><use href="#i-gear"/></svg></button>
   </header>
   <div class="conn hidden" id="connBar">جارٍ الاتصال…</div>
+  <a class="updbar hidden" id="updBar">⬆️ نسخة جديدة من التطبيق متوفرة — اضغط للتحميل <span id="updX">✕</span></a>
   <div class="search"><span>🔍</span><input id="hSearch" placeholder="بحث"></div>
   <div class="list" id="chatList"></div>
   <div class="list hidden" id="callList"></div>
@@ -365,8 +445,11 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
   <div id="msgs"></div>
   <button class="blockedbar hidden" id="blockedBar">🚫 هذا الشخص محظور — اضغط لإلغاء الحظر</button>
   <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX">✕</button></div>
+  <div class="mentionbox hidden" id="mentionBox"></div>
+  <div class="emojipanel hidden" id="emojiPanel"><div class="emtabs" id="emTabs"><button data-t="e" class="on">😀 إيموجي</button><button data-t="s">✨ ملصقات</button></div><div class="emgrid" id="emGrid"></div></div>
   <div class="composer" id="composer">
     <button class="ib sm" id="cAttach">📎</button>
+    <button class="ib sm" id="cEmoji">😊</button>
     <textarea id="cInput" rows="1" placeholder="رسالة" maxlength="4000"></textarea>
     <div class="rec hidden" id="recBox"><i></i><span id="recT">0:00</span><span style="flex:1"></span><button class="ib sm" id="recX">🗑️</button></div>
     <button class="send" id="cSend"><svg><use href="#i-mic"/></svg></button>
@@ -437,6 +520,8 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
     </div>
     <div class="card"><h4>الحساب</h4>
       <button class="it" id="scPass"><span class="ic" style="background:#ffffff14">🔑</span><span class="tx">تغيير كلمة المرور<small>يسجّل الخروج من باقي الأجهزة</small></span><span class="ch">‹</span></button>
+      <button class="it" id="scRec"><span class="ic" style="background:#ffffff14">🧩</span><span class="tx">مفتاح الاسترجاع (24 كلمة)<small id="scRecS"></small></span><span class="ch">‹</span></button>
+      <button class="it" id="scLink"><span class="ic" style="background:#ffffff14">🖥️</span><span class="tx">ربط جهاز (كمبيوتر)<small>امسح رمز QR من صفحة الدخول على الكمبيوتر</small></span><span class="ch">‹</span></button>
       <button class="it" id="scAll"><span class="ic" style="background:#ffffff14">📱</span><span class="tx">تسجيل الخروج من الأجهزة الأخرى<small id="scSess"></small></span><span class="ch">‹</span></button>
       <button class="it dz" id="scDel"><span class="ic" style="background:#ff5f6d22">🗑️</span><span class="tx">حذف الحساب نهائياً</span></button>
     </div>
@@ -501,6 +586,20 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
 </div>
 <div class="sheet hidden" id="pickSheet"><div class="box"><h3 id="pickT"></h3><div id="pickList" class="picklist"></div><button class="btn" id="pickOk">تم</button><button class="link" id="pickNo">إلغاء</button></div></div>
 <div class="sheet hidden" id="mediaSheet"><div class="box"><h3>🖼️ الوسائط والملفات</h3><div id="mediaGrid" class="mgrid"></div><button class="link" data-close>إغلاق</button></div></div>
+<div class="sheet hidden" id="recSheet"><div class="box">
+  <h3>🧩 مفتاح الاسترجاع</h3>
+  <div style="color:var(--muted);font-size:13.5px;line-height:1.7">اكتب هذه الكلمات بالترتيب واحفظها في مكان آمن (ورقة أو خزنة). هي الطريقة الوحيدة لاسترجاع حسابك ورسائلك إذا نسيت كلمة المرور. <b style="color:var(--red)">لا تعطها لأحد.</b></div>
+  <div class="recwords" id="recWords" dir="ltr"></div>
+  <button class="btn alt" id="recCopy" style="background:var(--glass2)">📋 نسخ</button>
+  <button class="btn" id="recOk">حفظتها ✅</button><button class="link" data-close>لاحقاً</button>
+</div></div>
+<div class="sheet hidden" id="qrSheet"><div class="box" style="align-items:center;text-align:center">
+  <h3>🖥️ ربط بالجوال</h3>
+  <div style="color:var(--muted);font-size:13.5px;line-height:1.7">على جوالك افتح واصل ← الإعدادات ← الأمان ← ربط جهاز، ثم امسح هذا الرمز.</div>
+  <div class="qrbox" id="qrBox"></div><button class="link" data-close>إلغاء</button>
+</div></div>
+<div id="scanner" class="hidden"><video id="scanVid" playsinline muted></video><div class="scanframe"></div><div class="scantx">وجّه الكاميرا إلى رمز QR على الكمبيوتر</div><button class="ib" id="scanX">✕</button></div>
+<div id="vnote" class="hidden"><div class="vnwrap"><video id="vnVid" playsinline muted autoplay></video><svg viewBox="0 0 248 248"><circle cx="124" cy="124" r="120" id="vnRing"/></svg></div><span id="vnT">0:00</span><div class="vnctl"><button class="ib" id="vnX">✕</button><button class="vnrec" id="vnRec"></button></div><small>اضغط للتسجيل، واضغط مرة أخرى للإرسال (حتى 60 ثانية)</small></div>
 <input type="file" id="fStatus" accept="image/*" hidden>
 <input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
 <input type="file" id="fAny" multiple hidden>
@@ -718,6 +817,9 @@ function preview(m) {
   if (m.deleted) return "🚫 تم حذف الرسالة";
   if (m.kind === "sys") return m.body;
   if (m.kind === "loc") return "📍 موقع";
+  if (m.kind === "poll") return "📊 " + (meta(m)?.q || "استطلاع");
+  if (m.kind === "sticker") return (meta(m)?.e || "") + " ملصق";
+  if (m.kind === "vnote") return "⭕ رسالة فيديو";
   if (m.kind === "contact") return "👤 " + (meta(m)?.name || "جهة اتصال");
   if (m.kind === "link") return meta(m)?.t || "🔗 رابط";
   if (m.kind === "file") { const x = meta(m); if (!x) return "📎 ملف"; return x.mime?.startsWith("image/") ? "📷 صورة" : x.mime?.startsWith("video/") ? "🎥 فيديو" : "📄 " + x.name; }
@@ -849,6 +951,8 @@ function logout(silent) {
 }
 
 
+const WORDS = "abandon ability able about above absent absorb abstract absurd abuse access accident account accuse achieve acid acoustic acquire across act action actor actress actual adapt add addict address adjust admit adult advance advice aerobic affair afford afraid again age agent agree ahead aim air airport aisle alarm album alcohol alert alien all alley allow almost alone alpha already also alter always amateur amazing among amount amused analyst anchor ancient anger angle angry animal ankle announce annual another answer antenna antique anxiety any apart apology appear apple approve april arch arctic area arena argue arm armed armor army around arrange arrest arrive arrow art artefact artist artwork ask aspect assault asset assist assume asthma athlete atom attack attend attitude attract auction audit august aunt author auto autumn average avocado avoid awake aware away awesome awful awkward axis baby bachelor bacon badge bag balance balcony ball bamboo banana banner bar barely bargain barrel base basic basket battle beach bean beauty because become beef before begin behave behind believe below belt bench benefit best betray better between beyond bicycle bid bike bind biology bird birth bitter black blade blame blanket blast bleak bless blind blood blossom blouse blue blur blush board boat body boil bomb bone bonus book boost border boring borrow boss bottom bounce box boy bracket brain brand brass brave bread breeze brick bridge brief bright bring brisk broccoli broken bronze broom brother brown brush bubble buddy budget buffalo build bulb bulk bullet bundle bunker burden burger burst bus business busy butter buyer buzz cabbage cabin cable cactus cage cake call calm camera camp can canal cancel candy cannon canoe canvas canyon capable capital captain car carbon card cargo carpet carry cart case cash casino castle casual cat catalog catch category cattle caught cause caution cave ceiling celery cement census century cereal certain chair chalk champion change chaos chapter charge chase chat cheap check cheese chef cherry chest chicken chief child chimney choice choose chronic chuckle chunk churn cigar cinnamon circle citizen city civil claim clap clarify claw clay clean clerk clever click client cliff climb clinic clip clock clog close cloth cloud clown club clump cluster clutch coach coast coconut code coffee coil coin collect color column combine come comfort comic common company concert conduct confirm congress connect consider control convince cook cool copper copy coral core corn correct cost cotton couch country couple course cousin cover coyote crack cradle craft cram crane crash crater crawl crazy cream credit creek crew cricket crime crisp critic crop cross crouch crowd crucial cruel cruise crumble crunch crush cry crystal cube culture cup cupboard curious current curtain curve cushion custom cute cycle dad damage damp dance danger daring dash daughter dawn day deal debate debris decade december decide decline decorate decrease deer defense define defy degree delay deliver demand demise denial dentist deny depart depend deposit depth deputy derive describe desert design desk despair destroy detail detect develop device devote diagram dial diamond diary dice diesel diet differ digital dignity dilemma dinner dinosaur direct dirt disagree discover disease dish dismiss disorder display distance divert divide divorce dizzy doctor document dog doll dolphin domain donate donkey donor door dose double dove draft dragon drama drastic draw dream dress drift drill drink drip drive drop drum dry duck dumb dune during dust dutch duty dwarf dynamic eager eagle early earn earth easily east easy echo ecology economy edge edit educate effort egg eight either elbow elder electric elegant element elephant elevator elite else embark embody embrace emerge emotion employ empower empty enable enact end endless endorse enemy energy enforce engage engine enhance enjoy enlist enough enrich enroll ensure enter entire entry envelope episode equal equip era erase erode erosion error erupt escape essay essence estate eternal ethics evidence evil evoke evolve exact example excess exchange excite exclude excuse execute exercise exhaust exhibit exile exist exit exotic expand expect expire explain expose express extend extra eye eyebrow fabric face faculty fade faint faith fall false fame family famous fan fancy fantasy farm fashion fat fatal father fatigue fault favorite feature february federal fee feed feel female fence festival fetch fever few fiber fiction field figure file film filter final find fine finger finish fire firm first fiscal fish fit fitness fix flag flame flash flat flavor flee flight flip float flock floor flower fluid flush fly foam focus fog foil fold follow food foot force forest forget fork fortune forum forward fossil foster found fox fragile frame frequent fresh friend fringe frog front frost frown frozen fruit fuel fun funny furnace fury future gadget gain galaxy gallery game gap garage garbage garden garlic garment gas gasp gate gather gauge gaze general genius genre gentle genuine gesture ghost giant gift giggle ginger giraffe girl give glad glance glare glass glide glimpse globe gloom glory glove glow glue goat goddess gold good goose gorilla gospel gossip govern gown grab grace grain grant grape grass gravity great green grid grief grit grocery group grow grunt guard guess guide guilt guitar gun gym habit hair half hammer hamster hand happy harbor hard harsh harvest hat have hawk hazard head health heart heavy hedgehog height hello helmet help hen hero hidden high hill hint hip hire history hobby hockey hold hole holiday hollow home honey hood hope horn horror horse hospital host hotel hour hover hub huge human humble humor hundred hungry hunt hurdle hurry hurt husband hybrid ice icon idea identify idle ignore ill illegal illness image imitate immense immune impact impose improve impulse inch include income increase index indicate indoor industry infant inflict inform inhale inherit initial inject injury inmate inner innocent input inquiry insane insect inside inspire install intact interest into invest invite involve iron island isolate issue item ivory jacket jaguar jar jazz jealous jeans jelly jewel job join joke journey joy judge juice jump jungle junior junk just kangaroo keen keep ketchup key kick kid kidney kind kingdom kiss kit kitchen kite kitten kiwi knee knife knock know lab label labor ladder lady lake lamp language laptop large later latin laugh laundry lava law lawn lawsuit layer lazy leader leaf learn leave lecture left leg legal legend leisure lemon lend length lens leopard lesson letter level liar liberty library license life lift light like limb limit link lion liquid list little live lizard load loan lobster local lock logic lonely long loop lottery loud lounge love loyal lucky luggage lumber lunar lunch luxury lyrics machine mad magic magnet maid mail main major make mammal man manage mandate mango mansion manual maple marble march margin marine market marriage mask mass master match material math matrix matter maximum maze meadow mean measure meat mechanic medal media melody melt member memory mention menu mercy merge merit merry mesh message metal method middle midnight milk million mimic mind minimum minor minute miracle mirror misery miss mistake mix mixed mixture mobile model modify mom moment monitor monkey monster month moon moral more morning mosquito mother motion motor mountain mouse move movie much muffin mule multiply muscle museum mushroom music must mutual myself mystery myth naive name napkin narrow nasty nation nature near neck need negative neglect neither nephew nerve nest net network neutral never news next nice night noble noise nominee noodle normal north nose notable note nothing notice novel now nuclear number nurse nut oak obey object oblige obscure observe obtain obvious occur ocean october odor off offer office often oil okay old olive olympic omit once one onion online only open opera opinion oppose option orange orbit orchard order ordinary organ orient original orphan ostrich other outdoor outer output outside oval oven over own owner oxygen oyster ozone pact paddle page pair palace palm panda panel panic panther paper parade parent park parrot party pass patch path patient patrol pattern pause pave payment peace peanut pear peasant pelican pen penalty pencil people pepper perfect permit person pet phone photo phrase physical piano picnic picture piece pig pigeon pill pilot pink pioneer pipe pistol pitch pizza place planet plastic plate play please pledge pluck plug plunge poem poet point polar pole police pond pony pool popular portion position possible post potato pottery poverty powder power practice praise predict prefer prepare present pretty prevent price pride primary print priority prison private prize problem process produce profit program project promote proof property prosper protect proud provide public pudding pull pulp pulse pumpkin punch pupil puppy purchase purity purpose purse push put puzzle pyramid quality quantum quarter question quick quit quiz quote rabbit raccoon race rack radar radio rail rain raise rally ramp ranch random range rapid rare rate rather raven raw razor ready real reason rebel rebuild recall receive recipe record recycle reduce reflect reform refuse region regret regular reject relax release relief rely remain remember remind remove render renew rent reopen repair repeat replace report require rescue resemble resist resource response result retire retreat return reunion reveal review reward rhythm rib ribbon rice rich ride ridge rifle right rigid ring riot ripple risk ritual rival river road roast robot robust rocket romance roof rookie room rose rotate rough round route royal rubber rude rug rule run runway rural sad saddle sadness safe sail salad salmon salon salt salute same sample sand satisfy satoshi sauce sausage save say scale scan scare scatter scene scheme school science scissors scorpion scout scrap screen script scrub sea search season seat second secret section security seed seek segment select sell seminar senior sense sentence series service session settle setup seven shadow shaft shallow share shed shell sheriff shield shift shine ship shiver shock shoe shoot shop short shoulder shove shrimp shrug shuffle shy sibling sick side siege sight sign silent silk silly silver similar simple since sing siren sister situate six size skate sketch ski skill skin skirt skull slab slam sleep slender slice slide slight slim slogan slot slow slush small smart smile smoke smooth snack snake snap sniff snow soap soccer social sock soda soft solar soldier solid solution solve someone song soon sorry sort soul sound soup source south space spare spatial spawn speak special speed spell spend sphere spice spider spike spin spirit split spoil sponsor spoon sport spot spray spread spring spy square squeeze squirrel stable stadium staff stage stairs stamp stand start state stay steak steel stem step stereo stick still sting stock stomach stone stool story stove strategy street strike strong struggle student stuff stumble style subject submit subway success such sudden suffer sugar suggest suit summer sun sunny sunset super supply supreme sure surface surge surprise surround survey suspect sustain swallow swamp swap swarm swear sweet swift swim swing switch sword symbol symptom syrup system table tackle tag tail talent talk tank tape target task taste tattoo taxi teach team tell ten tenant tennis tent term test text thank that theme then theory there they thing this thought three thrive throw thumb thunder ticket tide tiger tilt timber time tiny tip tired tissue title toast tobacco today toddler toe together toilet token tomato tomorrow tone tongue tonight tool tooth top topic topple torch tornado tortoise toss total tourist toward tower town toy track trade traffic tragic train transfer trap trash travel tray treat tree trend trial tribe trick trigger trim trip trophy trouble truck true truly trumpet trust truth try tube tuition tumble tuna tunnel turkey turn turtle twelve twenty twice twin twist two type typical ugly umbrella unable unaware uncle uncover under undo unfair unfold unhappy uniform unique unit universe unknown unlock until unusual unveil update upgrade uphold upon upper upset urban urge usage use used useful useless usual utility vacant vacuum vague valid valley valve van vanish vapor various vast vault vehicle velvet vendor venture venue verb verify version very vessel veteran viable vibrant vicious victory video view village vintage violin virtual virus visa visit visual vital vivid vocal voice void volcano volume vote voyage wage wagon wait walk wall walnut want warfare warm warrior wash wasp waste water wave way wealth weapon wear weasel weather web wedding weekend weird welcome west wet whale what wheat wheel when where whip whisper wide width wife wild will win window wine wing wink winner winter wire wisdom wise wish witness wolf woman wonder wood wool word work world worry worth wrap wreck wrestle wrist write wrong yard year yellow you young youth zebra zero zone zoo".split(" ");
+
 // ---------- المحادثات (فردية u<id> وجماعية g<id>) ----------
 S.convs = new Map();
 const keyOfMsg = (m) => (m.gid ? "g" + m.gid : "u" + (m.a === S.me.id ? m.b : m.a));
@@ -864,7 +968,7 @@ function ensureConv(key, extra = {}) {
   if (c.user) S.users[c.user.id] = { ...S.users[c.user.id], ...c.user };
   return c;
 }
-function convName(c) { return c.type === "g" ? c.group?.name || "مجموعة" : (S.users[c.id] || c.user || {}).name || "…"; }
+function convName(c) { if (c.type === "u" && c.id === S.me?.id) return "⭐ الرسائل المحفوظة"; return c.type === "g" ? c.group?.name || "مجموعة" : (S.users[c.id] || c.user || {}).name || "…"; }
 function convAv(c) { return c.type === "g" ? { id: c.id + 3, name: c.group?.name || "؟", avatar: c.group?.avatar } : S.users[c.id] || c.user || { id: c.id, name: "…" }; }
 const memberIds = (c) => (c.group?.members || []).map((m) => m.id);
 const isAdmin = (c) => !!(c.group?.members || []).find((m) => m.id === S.me.id && m.admin);
@@ -912,7 +1016,7 @@ async function onWs(m) {
       await decMsg(msg);
       pushMsg(key, msg);
       if (isOpen(key)) markRead(key);
-      else if (msg.a !== S.me.id && msg.kind !== "sys" && SET.sound && !document.hidden && !c.prefs.muted) beep();
+      else if (msg.a !== S.me.id && msg.kind !== "sys" && SET.sound && !document.hidden && (!c.prefs.muted || mentionsMe(PT.get(msg.body), c))) beep();
       bumpConv(key, msg, msg.a !== S.me.id && msg.kind !== "sys");
       break;
     }
@@ -985,6 +1089,13 @@ async function onWs(m) {
     case "gsignal": onGSignal(m.from, m.gid, m.data); break;
     case "gcall": onGCall(m); break;
     case "status-new": case "status-view": loadStatuses(); break;
+    case "votes": {
+      const key = keyOfMsg(m), x = (S.msgs[key] || []).find((y) => y.id === m.id);
+      if (x) { x.votes = m.votes; if (S.cur === key) renderMsgs(); }
+      break;
+    }
+    case "scheduled": toast("⏰ تمت الجدولة: " + new Date(m.at).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })); break;
+    case "err": toast(m.msg); break;
   }
 }
 
@@ -1040,7 +1151,7 @@ function renderChats() {
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm">${gc}${esc(convName(c))}</span><span class="tm ${c.unread && !c.prefs.muted ? "u" : ""}">${c.last ? shortTime(c.last.ts) : ""}</span></div>
       <div class="sub"><span class="pv">${ticks(c.last)} ${esc(lastSender + preview(c.last))}</span><span class="ics">${icons}${c.unread ? `<span class="badge${c.prefs.muted ? " mut" : ""}">${c.unread}</span>` : ""}</span></div></div>`;
     avatar(r.querySelector(".av"), convAv(c), c.type === "u");
-    el.append(r);
+    el.append(swipeable(r, () => clearChat(c, true)));
   }
   el.dataset.shown = 1;
   bindRows();
@@ -1049,9 +1160,38 @@ function bindRows() {
   const el = $("chatList");
   el.onclick = (e) => {
     const a = e.target.closest("[data-arch]"); if (a) { S.showArchived = a.dataset.arch === "1"; renderChats(); return; }
-    const r = e.target.closest(".row[data-key]"); if (r && !S.lpFired) openChat(r.dataset.key);
+    const r = e.target.closest(".row[data-key]"); if (r && !S.lpFired && !S.swiping) openChat(r.dataset.key);
   };
   longPress(el, ".row[data-key]", (r) => chatActions(S.convs.get(r.dataset.key)));
+}
+// السحب لليمين يكشف زر حذف أحمر
+function swipeable(row, onDelete) {
+  const w = document.createElement("div"); w.className = "swrap";
+  const del = document.createElement("button"); del.className = "sdel"; del.innerHTML = "🗑️<span>حذف</span>";
+  w.append(del, row);
+  let x0 = 0, y0 = 0, dx = 0, drag = false, decided = false, open = false;
+  const set = (x, anim) => { row.style.transition = anim ? "transform .25s cubic-bezier(.2,.9,.25,1)" : "none"; row.style.transform = x ? `translateX(${x}px)` : ""; };
+  const close = () => { open = false; set(0, true); };
+  row.addEventListener("pointerdown", (e) => { x0 = e.clientX; y0 = e.clientY; dx = 0; drag = true; decided = false; });
+  row.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    const mx = e.clientX - x0, my = e.clientY - y0;
+    if (!decided) { if (Math.abs(mx) < 8 && Math.abs(my) < 8) return; decided = true; if (Math.abs(my) > Math.abs(mx)) { drag = false; return; } S.swiping = true; }
+    dx = Math.max(0, Math.min(140, (open ? 96 : 0) + mx));
+    set(dx);
+  });
+  const end = () => {
+    if (!drag) return; drag = false;
+    if (!decided) return;
+    open = dx > 60; set(open ? 96 : 0, true);
+    if (open) { for (const o of document.querySelectorAll(".swrap.open")) if (o !== w) o.querySelector(".row").style.transform = ""; }
+    w.classList.toggle("open", open);
+    setTimeout(() => (S.swiping = false), 50);
+  };
+  row.addEventListener("pointerup", end); row.addEventListener("pointercancel", end);
+  row.addEventListener("click", (e) => { if (S.swiping) { e.stopPropagation(); return; } if (open) { e.stopPropagation(); close(); w.classList.remove("open"); } }, true);
+  del.onclick = (e) => { e.stopPropagation(); close(); w.classList.remove("open"); onDelete(); };
+  return w;
 }
 function longPress(root, sel, fn) {
   if (root.dataset.lp) return; root.dataset.lp = 1;
@@ -1060,6 +1200,7 @@ function longPress(root, sel, fn) {
   const cancel = () => { clearTimeout(t); t = null; };
   root.addEventListener("pointerup", cancel); root.addEventListener("pointercancel", cancel);
   root.addEventListener("pointermove", (e) => { if (Math.abs(e.clientY - y0) > 8 || Math.abs(e.clientX - x0) > 8) cancel(); });
+  root.addEventListener("scroll", cancel, true);
   root.addEventListener("contextmenu", (e) => { const el = e.target.closest(sel); if (el) { e.preventDefault(); fn(el); } });
 }
 async function setPref(c, patch) {
@@ -1073,6 +1214,8 @@ function chatActions(c) {
     [c.prefs.pinned ? "📍" : "📌", c.prefs.pinned ? "إلغاء التثبيت" : "تثبيت في الأعلى", () => setPref(c, { pinned: !c.prefs.pinned })],
     [c.prefs.muted ? "🔔" : "🔕", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
     [c.prefs.archived ? "📤" : "📦", c.prefs.archived ? "إلغاء الأرشفة" : "أرشفة", () => setPref(c, { archived: !c.prefs.archived })],
+    ["🧹", "مسح محتوى المحادثة", () => clearChat(c, false), "dz"],
+    ["🗑️", "حذف الدردشة", () => clearChat(c, true), "dz"],
   ], convName(c));
 }
 $("hSearch").oninput = renderChats;
@@ -1092,6 +1235,8 @@ function markRead(key) {
 function setHeader() {
   const c = cur(); if (!c) return;
   avatar($("cAv"), convAv(c)); $("cName").textContent = (c.ttl ? "⏱️ " : "") + convName(c);
+  $("cVoice").classList.toggle("hidden", isSelf(c)); $("cVideo").classList.toggle("hidden", isSelf(c));
+  if (isSelf(c)) { $("cStatus").textContent = "رسائلك لنفسك — ملاحظات وملفات"; $("composer").classList.remove("hidden"); $("blockedBar").classList.add("hidden"); return; }
   if (c.type === "g") {
     const mem = c.group?.members || [];
     const live = (S.gcallState[c.id] || []).length;
@@ -1145,10 +1290,13 @@ function textOf(m) { if (m.kind === "link") return meta(m)?.t ?? ""; return txt(
 function bubbleBody(m) {
   if (m.deleted) return "🚫 تم حذف هذه الرسالة";
   const k = m.kind;
-  const x = ["file", "voice", "loc", "contact", "link", "game"].includes(k) ? meta(m) : null;
+  const x = ["file", "voice", "loc", "contact", "link", "game", "sticker", "poll", "vnote"].includes(k) ? meta(m) : null;
   const prog = m.prog !== undefined ? `<div class="prog">${m.prog}%</div>` : "";
-  if (k === "voice" && x) return `<div class="mvoice" data-fid="${esc(x.fid)}"><button class="vp">▶</button><div class="vbar"><i></i></div><span>${fmtDur(x.dur || 0)}</span></div>${prog}`;
+  if (k === "voice" && x) return `<div class="mvoice" data-fid="${esc(x.fid)}"><button class="vp">▶</button><div class="vbar"><i></i></div><span>${fmtDur(x.dur || 0)}</span><button class="vspd">${SET.vspeed || 1}×</button></div>${prog}`;
   if (k === "game") return "🎴 دعوة لعبة (لم تعد متاحة)";
+  if (k === "sticker" && x) return `<span class="stk big ${esc(x.a || "")}">${esc(x.e || "")}</span>`;
+  if (k === "poll" && x) return pollHtml(m, x);
+  if (k === "vnote" && x) return `<div class="mvn" data-fid="${esc(x.fid)}"><video playsinline poster="${esc(safeImg(x.thumb) || "")}" ${m.local ? `src="${m.local}"` : ""}></video><span class="play">▶</span><span class="vnd">${fmtDur(x.dur || 0)}</span>${prog}</div>`;
   if (k === "loc" && x) return `<div class="mloc"><div class="mapic">📍</div><b>موقع</b><small dir="ltr">${(+x.lat).toFixed(5)}, ${(+x.lng).toFixed(5)}</small><a class="btn sm" href="${mapsUrl(x.lat, x.lng)}" ${NAT.any ? "" : 'target="_blank" rel="noopener"'}>فتح في الخرائط</a></div>`;
   if (k === "contact" && x) return `<div class="mcontact"><div class="av sm" data-cav='${esc(JSON.stringify({ id: x.id, name: x.name, avatar: safeImg(x.avatar) }))}'></div><span><b>${esc(x.name)}</b><small dir="ltr">PIN ${esc(x.pin)}</small></span><button class="btn sm" data-msgto="${esc(x.id)}">مراسلة</button></div>`;
   if (k === "link" && x) {
@@ -1162,7 +1310,7 @@ function bubbleBody(m) {
     return `<div class="mfile" data-fid="${esc(x.fid)}" style="position:relative"><span class="fi">📄</span><span><b>${esc(x.name)}</b><small>${fmtSize(x.size)}</small></span>${prog}</div>`;
   }
   if (k === "call") return "📞 " + esc(txt(m));
-  return linkify(txt(m));
+  return mentionsHtml(linkify(txt(m)), S.convs.get(keyOfMsg(m)));
 }
 const mapsUrl = (lat, lng) => (window.WASEL_PLATFORM === "ios" ? `https://maps.apple.com/?q=${+lat},${+lng}` : `https://www.google.com/maps?q=${+lat},${+lng}`);
 const NAME_COLORS = ["#ff8fa3", "#7ee0a1", "#ffd36e", "#7cc8ff", "#c7a6ff", "#ff9e6e", "#6ee7e0", "#f9a8d4"];
@@ -1187,7 +1335,8 @@ function renderMsgs(scroll) {
     const dl = dayLabel(m.ts);
     if (dl !== lastDay) { html += `<div class="day clr"><span>${dl}</span></div>`; lastDay = dl; prevA = null; }
     if (m.kind === "sys") { html += `<div class="sys clr"><span>${esc(m.body)}</span></div>`; prevA = null; continue; }
-    const mine = m.a === S.me.id, media = !m.deleted && ["file", "voice"].includes(m.kind);
+    const mine = m.a === S.me.id, media = !m.deleted && ["file", "voice", "vnote"].includes(m.kind);
+    const bare = !m.deleted && ["sticker", "vnote"].includes(m.kind);
     let head = "";
     if (c.type === "g" && !mine && prevA !== m.a) { const u = S.users[m.a] || {}; head = `<span class="snd" style="color:${NAME_COLORS[m.a % NAME_COLORS.length]}">${esc(u.name || "…")}</span>`; }
     prevA = m.a;
@@ -1195,10 +1344,11 @@ function renderMsgs(scroll) {
     if (m.reply && byId[m.reply]) { const r = byId[m.reply]; rq = `<span class="rq" data-goto="${r.id}"><b>${r.a === S.me.id ? "أنت" : esc(S.users[r.a]?.name || "")}</b>${esc(preview(r)).slice(0, 90)}</span>`; }
     const fw = m.fwd && !m.deleted ? '<span class="fwd">↪️ محوّلة</span>' : "";
     const re = m.reacts && Object.keys(m.reacts).length ? `<span class="reacts">${reactSummary(m.reacts)}</span>` : "";
-    html += `<div class="b ${i >= prev ? "a " : ""}${mine ? "o" : "i"}${m.kind === "call" ? " call" : ""}${m.deleted ? " del" : ""}${media ? " media" : ""}${re ? " hasr" : ""}" data-i="${i}" data-id="${m.id || ""}">${head}${fw}${rq}${bubbleBody(m)}<span class="meta">${m.edited ? "معدّلة · " : ""}${m.expires ? "⏱️ " : ""}${hm(m.ts)}${ticks(m)}</span>${re}</div>`;
+    html += `<div class="b ${i >= prev ? "a " : ""}${mine ? "o" : "i"}${m.kind === "call" ? " call" : ""}${m.deleted ? " del" : ""}${media ? " media" : ""}${bare ? " bare" : ""}${m.kind === "poll" ? " pollb" : ""}${re ? " hasr" : ""}" data-i="${i}" data-id="${m.id || ""}">${head}${fw}${rq}${bubbleBody(m)}<span class="meta">${m.edited ? "معدّلة · " : ""}${m.expires ? "⏱️ " : ""}${hm(m.ts)}${ticks(m)}</span>${re}</div>`;
     idx++;
   }
   S.rc[S.cur] = all.length;
+  box.style.setProperty("--bub", bubbleColor(S.cur) || "var(--grad)");
   box.innerHTML = html + '<div class="clr"></div>';
   if ($("olderBtn")) $("olderBtn").onclick = loadOlder;
   for (const el of box.querySelectorAll("[data-cav]")) { try { avatar(el, JSON.parse(el.dataset.cav)); } catch {} }
@@ -1228,8 +1378,11 @@ function reactSummary(r) {
     if (e.target.closest(".reacts")) { const m = msgOf(e.target); if (m) return showReacts(m); }
     if (e.target.closest("a")) return;
     const m = msgOf(e.target); if (!m || m.deleted) return;
+    if (e.target.closest(".vspd")) return cycleSpeed();
+    if (m.kind === "poll" && m.id > 0) { const v = e.target.closest("[data-vote]"); if (v) return vote(m, Number(v.dataset.vote)); if (e.target.closest("[data-voters]")) return showVoters(m); return; }
     const x = meta(m); if (!x || !m.id) return;
     if (e.target.closest(".vp")) return playVoice(e.target.closest(".mvoice"), x);
+    if (e.target.closest(".mvn")) return playVnote(e.target.closest(".mvn"), x);
     if (e.target.closest(".mimg,.mvid")) return openViewer(x);
     if (e.target.closest(".mfile")) { toast("⏬ جارٍ التحميل…"); try { saveFile(await loadFile(x), x); } catch { toast("الملف غير متاح (ربما انتهت صلاحيته)"); } }
   });
@@ -1244,7 +1397,7 @@ function msgActions(m) {
   const items = [["↩️", "رد", () => setReply(m)], ["↪️", "تحويل", () => forward(m)]];
   if (["text", "link"].includes(m.kind)) items.push(["📋", "نسخ", () => { navigator.clipboard?.writeText(textOf(m)).then(() => toast("تم النسخ")).catch(() => toast("تعذّر النسخ")); }]);
   if (mine && ["text", "link"].includes(m.kind) && Date.now() - m.ts < 2 * 86400000) items.push(["✏️", "تعديل", () => setEdit(m)]);
-  if (m.kind === "file") items.push(["⬇️", "حفظ", async () => { try { saveFile(await loadFile(meta(m)), meta(m)); } catch { toast("تعذّر التحميل"); } }]);
+  if (["file", "vnote"].includes(m.kind)) items.push(["⬇️", "حفظ", async () => { try { saveFile(await loadFile(meta(m)), meta(m)); } catch { toast("تعذّر التحميل"); } }]);
   if (mine) items.push(["🗑️", "حذف عند الجميع", async () => { if (await ask("حذف الرسالة عند الجميع؟", [], "حذف")) wsSend({ t: "delete", id: m.id }); }, "dz"]);
   const myR = m.reacts?.[S.me.id];
   sheetMenu(items, null, `<div class="qreact">${QUICK.map((e) => `<button data-e="${e}" class="${myR === e ? "on" : ""}">${e}</button>`).join("")}</div>`, (e) => { closeSheets(); wsSend({ t: "react", id: m.id, e: myR === e ? "" : e }); });
@@ -1310,7 +1463,7 @@ async function sendEdit(m, text) {
 const inp = $("cInput");
 inp.oninput = () => {
   inp.style.height = "auto"; inp.style.height = Math.min(120, inp.scrollHeight) + "px";
-  updateSendBtn();
+  updateSendBtn(); mentionCheck();
   const now = Date.now(); if (now - (S.lastTyp || 0) > 2000 && S.cur) { S.lastTyp = now; wsSend({ t: "typing", ...wsTarget(S.cur) }); }
 };
 inp.onkeydown = (e) => { if (SET.enter && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("cSend").click(); } };
@@ -1318,7 +1471,7 @@ $("cSend").onclick = () => {
   if (REC.on) return stopRec(true);
   const v = inp.value;
   if (!v.trim()) return startRec();
-  inp.value = ""; inp.style.height = "auto"; updateSendBtn();
+  inp.value = ""; inp.style.height = "auto"; updateSendBtn(); $("mentionBox").classList.add("hidden"); $("emojiPanel").classList.add("hidden");
   if (S.editing) sendEdit(S.editing, v); else sendText(v);
   inp.focus();
 };
@@ -1333,6 +1486,17 @@ window.onpopstate = () => {
   else if (VIEWS.includes(v) && v !== "auth" && v !== "chat") { show(v); if (v === "settings") renderSettings(); }
   else { S.cur = null; show("home"); renderChats(); }
 };
+
+async function clearChat(c, hide) {
+  if (!(await ask(hide ? `حذف الدردشة "${convName(c)}"؟ تُحذف الرسائل من جهازك فقط.` : "مسح كل الرسائل في هذه المحادثة من عندك؟", [], hide ? "حذف" : "مسح"))) return;
+  try {
+    await api("/api/chat/clear", { c: c.key, hide });
+    S.msgs[c.key] = []; S.rc && (S.rc[c.key] = 0); c.unread = 0;
+    if (hide) { c.last = null; if (c.type === "u") S.convs.delete(c.key); if (S.cur === c.key) history.back(); }
+    else if (S.cur === c.key) renderMsgs();
+    renderChats(); toast(hide ? "🗑️ تم حذف الدردشة" : "🧹 تم مسح المحادثة");
+  } catch (e) { toast(e.message); }
+}
 
 // بحث داخل المحادثة
 $("csInput").oninput = () => { S.search = $("csInput").value; renderMsgs(); };
@@ -1415,7 +1579,7 @@ async function uploadEncrypted(blob, onProg) {
 async function sendFile(file, kind = "file", extra = {}) {
   const key = S.cur; if (!key) return;
   if (file.size > 58 * 1048576) return toast("الحد الأقصى للملف 58MB");
-  const th = kind === "file" ? await makeThumb(file) : null;
+  const th = kind === "file" || kind === "vnote" ? await makeThumb(file) : null;
   const x = { name: file.name || "file", mime: file.type || "application/octet-stream", size: file.size, ...(th || {}), ...extra };
   const local = URL.createObjectURL(file);
   x.fid = "local-" + randHexJS(6);
@@ -1487,6 +1651,9 @@ $("cAttach").onclick = () => sheetMenu([
   ["📄", "ملف", () => $("fAny").click()],
   ["📍", "موقعي", sendLocation],
   ["👤", "جهة اتصال", sendContact],
+  ["⭕", "رسالة فيديو", videoNote],
+  ["📊", "استطلاع", newPoll],
+  ["⏰", "جدولة رسالة", scheduleMsg],
 ]);
 for (const id of ["fMedia", "fAny", "fCam"]) $(id).onchange = async (e) => { const fs = [...e.target.files]; e.target.value = ""; for (const f of fs) await sendFile(f); };
 function sendLocation() {
@@ -1552,7 +1719,7 @@ async function playVoice(el, x) {
   el.querySelector(".vp").textContent = "⏳";
   try {
     const f = await loadFile(x);
-    VA = new Audio(f.url); VEL = el;
+    VA = new Audio(f.url); VEL = el; VA.playbackRate = SET.vspeed || 1;
     VA.onplay = () => (el.querySelector(".vp").textContent = "⏸");
     VA.onpause = () => (el.querySelector(".vp").textContent = "▶");
     VA.ontimeupdate = () => { const d = VA.duration && isFinite(VA.duration) ? VA.duration : x.dur || 1; el.querySelector(".vbar i").style.width = (VA.currentTime / d) * 100 + "%"; el.querySelector("span").textContent = fmtDur(VA.currentTime); };
@@ -1618,12 +1785,16 @@ async function showInfo() {
     ["🔍", "بحث في المحادثة", () => { closeSheets(); openSearch(); }],
     [c.prefs.muted ? "🔔" : "🔕", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
     ["⏱️", "الرسائل المختفية: " + TTL_LABEL[c.ttl || 0], () => chooseTTL(c)],
+    ["🎨", "لون الفقاعات", () => chooseColor(c)],
+    ["⏰", "الرسائل المجدولة", showScheduled],
+    ["🧹", "مسح محتوى المحادثة", () => clearChat(c, false)],
   );
-  if (c.type === "u") rows.push([c.blocked ? "✅" : "🚫", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
+  if (isSelf(c)) { /* لا حظر لنفسك */ } else if (c.type === "u") rows.push([c.blocked ? "✅" : "🚫", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
   else rows.push(["🚪", "مغادرة المجموعة", async () => { if (await ask("مغادرة المجموعة؟", [], "مغادرة")) { await api("/api/group/remove", { gid: c.id, uid: S.me.id }).catch((e) => toast(e.message)); } }, "dz"]);
   $("infoActs").innerHTML = rows.map((r, i) => `<button class="it ${r[3] || ""}" data-r="${i}"><span class="ic" style="background:#ffffff12">${r[0]}</span><span class="tx">${esc(r[1])}</span></button>`).join("");
   $("infoActs").onclick = (e) => { const b = e.target.closest("[data-r]"); if (b) { const fn = rows[Number(b.dataset.r)][2]; if (!["الوسائط والملفات", "بحث في المحادثة"].includes(rows[Number(b.dataset.r)][1])) closeSheets(); fn(); } };
-  $("iCall").classList.toggle("hidden", !!c.blocked); $("iVid").classList.toggle("hidden", !!c.blocked);
+  $("iCall").classList.toggle("hidden", !!c.blocked || isSelf(c)); $("iVid").classList.toggle("hidden", !!c.blocked || isSelf(c));
+  if (isSelf(c)) $("iSafe").classList.add("hidden");
   openSheet("infoSheet");
 }
 $("cWho").onclick = () => { const c = cur(); if (c?.type === "g" && (S.gcallState[c.id] || []).length && !GC) return joinGroupCall(c.id, false); showInfo(); };
@@ -1690,7 +1861,7 @@ async function addMember(c) {
 const normPin = (v) => v.toUpperCase().replace(/[^0-9A-F]/g, "").slice(0, 8);
 $("newChat").onclick = () => {
   if (S.tab === "status") return addStatus();
-  sheetMenu([["👤", "إضافة شخص بالكود", newByPin], ["👥", "مجموعة جديدة", newGroup]]);
+  sheetMenu([["👤", "إضافة شخص بالكود", newByPin], ["👥", "مجموعة جديدة", newGroup], ["⭐", "الرسائل المحفوظة", openSaved]]);
 };
 function newByPin() { openSheet("newSheet"); $("nErr").textContent = ""; $("nPin").value = ""; $("nMyPin").textContent = S.me.pin || ""; setTimeout(() => $("nPin").focus(), 50); }
 $("nPin").oninput = () => { const v = normPin($("nPin").value); if ($("nPin").value !== v) $("nPin").value = v; if (v.length === 8) $("nGo").focus(); };
@@ -1903,6 +2074,7 @@ function renderSecurity() {
   $("scAfterRow").classList.toggle("hidden", !SET.lock);
   $("scSecure").classList.toggle("hidden", !NAT.android);
   for (const b of $("scAfter").children) b.classList.toggle("on", Number(b.dataset.v) === SET.after);
+  api("/api/recovery/status").then((d) => { $("scRecS").textContent = d.set ? "✅ محفوظ — اضغط لإنشاء مفتاح جديد" : "⚠️ غير محفوظ — بدونه تفقد حسابك إذا نسيت كلمة المرور"; }).catch(() => {});
   api("/api/sessions").then((d) => ($("scSess").textContent = `مسجّل في ${d.count} ${d.count === 1 ? "جهاز" : "أجهزة"}`)).catch(() => {});
 }
 $("scLock").onclick = async () => {
@@ -1930,6 +2102,8 @@ $("scPass").onclick = async () => {
     toast("✅ تم تغيير كلمة المرور"); renderSecurity();
   } catch (e) { toast(e.message); }
 };
+$("scRec").onclick = setupRecovery;
+$("scLink").onclick = scanQR;
 $("scAll").onclick = async () => { const r = await ask("تسجيل الخروج من كل الأجهزة الأخرى؟", [], "تأكيد"); if (!r) return; await api("/api/logout-all", {}); toast("تم"); renderSecurity(); };
 $("scDel").onclick = async () => {
   const r = await ask("⚠️ حذف الحساب وكل الرسائل نهائياً", [{ ph: "اكتب كلمة المرور للتأكيد", type: "password" }], "حذف نهائياً");
@@ -2185,16 +2359,19 @@ function renderCalls() {
   const el = $("callList");
   if (!S.calls.length) { el.innerHTML = '<div class="empty">لا توجد مكالمات بعد.</div>'; return; }
   const L = { out: ["↗", "صادرة", ""], in: ["↙", "واردة", ""], missed: ["↙", "فائتة", "var(--red)"], declined: ["↙", "مرفوضة", "var(--red)"], noanswer: ["↗", "لم يتم الرد", "var(--red)"], cancelled: ["↗", "ملغاة", ""], rejected: ["↗", "مرفوضة", "var(--red)"], busy: ["↗", "مشغول", ""], unavailable: ["↗", "غير متصل", ""] };
-  el.innerHTML = "";
-  for (const c of S.calls) {
+  el.innerHTML = '<button class="older" id="clrCalls">🗑️ مسح سجل المكالمات</button>';
+  $("clrCalls").onclick = async () => { if (await ask("مسح سجل المكالمات كله؟", [], "مسح")) { S.calls = []; localStorage.setItem("w_calls", "[]"); renderCalls(); } };
+  S.calls.forEach((c, ci) => {
     const u = S.users[c.peer] || { id: c.peer, name: "…" }; const l = L[c.type] || L.out;
     const r = document.createElement("div"); r.className = "row"; r.style.animation = "none";
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm" style="color:${l[2] || "inherit"}">${esc(u.name)}</span><span class="tm">${shortTime(c.ts)} ${hm(c.ts)}</span></div>
       <div class="sub"><span class="pv">${l[0]} ${l[1]}${c.dur ? " • " + fmtDur(c.dur) : ""}</span><span>${c.video ? "📹" : "📞"}</span></div></div>`;
     avatar(r.querySelector(".av"), u);
-    r.onclick = () => { S.users[u.id] ||= u; startCall(c.video, u.id); };
-    el.append(r);
-  }
+    r.dataset.ci = ci;
+    r.onclick = () => { if (S.lpFired || S.swiping) return; S.users[u.id] ||= u; startCall(c.video, u.id); };
+    el.append(swipeable(r, () => { S.calls.splice(ci, 1); localStorage.setItem("w_calls", JSON.stringify(S.calls)); renderCalls(); }));
+  });
+  longPress(el, ".row[data-ci]", (r) => sheetMenu([["🗑️", "حذف من السجل", () => { S.calls.splice(Number(r.dataset.ci), 1); localStorage.setItem("w_calls", JSON.stringify(S.calls)); renderCalls(); }, "dz"], ["💬", "مراسلة", () => openChat("u" + S.calls[Number(r.dataset.ci)].peer)]]));
 }
 
 
@@ -2392,13 +2569,306 @@ $("gFlip").onclick = async () => {
   } catch { toast("تعذّر تبديل الكاميرا"); }
 };
 
+// ---------- مفتاح الاسترجاع (24 كلمة) ----------
+function genWords() { return Array.from(crypto.getRandomValues(new Uint16Array(24)), (x) => WORDS[x % 2048]); }
+const normWords = (s) => String(s).toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/).filter(Boolean);
+async function recAuth(email, words) {
+  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: TE.encode("wasel-rec-auth:" + email.trim().toLowerCase()), iterations: 200000 }, await pwKey(words.join(" ")), 256);
+  return b64(bits);
+}
+async function setupRecovery() {
+  const words = genWords();
+  $("recWords").innerHTML = words.map((w, i) => `<span><i>${i + 1}</i>${w}</span>`).join("");
+  openSheet("recSheet");
+  $("recCopy").onclick = () => navigator.clipboard?.writeText(words.join(" ")).then(() => toast("تم النسخ — احفظها في مكان آمن")).catch(() => {});
+  $("recOk").onclick = async () => {
+    const idx = [3, 11, 20].map((n) => n + Math.floor(Math.random() * 3));
+    closeSheets();
+    const r = await ask("للتأكد أنك حفظتها: اكتب الكلمات", idx.map((i) => ({ ph: `الكلمة رقم ${i + 1}`, max: 20 })), "تأكيد");
+    if (!r) return;
+    if (r.some((v, k) => v.trim().toLowerCase() !== words[idx[k]])) { toast("❌ غير مطابقة، حاول مرة أخرى"); return setupRecovery(); }
+    try {
+      toast("🔐 جارٍ الحفظ…");
+      await api("/api/recovery/set", { rauth: await recAuth(S.me.email, words), rbackup: await makeBackup(words.join(" "), localStorage.getItem("w_priv")) });
+      SET.recDone = true; saveSet(); renderSecurity(); toast("✅ تم حفظ مفتاح الاسترجاع");
+    } catch (e) { toast(e.message); }
+  };
+}
+$("aForgot").onclick = async () => {
+  const r = await ask("🔑 استرجاع الحساب", [{ ph: "البريد الإلكتروني", type: "email", max: 120 }, { ph: "الكلمات الـ 24 مفصولة بمسافات", max: 400 }, { ph: "كلمة مرور جديدة", type: "password" }, { ph: "أعد كتابتها", type: "password" }], "استرجاع");
+  if (!r) return;
+  const [email, ws, p1, p2] = r, words = normWords(ws);
+  if (words.length !== 24) return toast("يجب إدخال 24 كلمة");
+  if (p1.length < 6 || p1 !== p2) return toast("كلمة المرور قصيرة أو غير متطابقة");
+  try {
+    toast("🔐 جارٍ التحقق…");
+    const s1 = await api("/api/recover/start", { email, rauth: await recAuth(email, words) });
+    const priv = await openBackup(words.join(" "), s1.rbackup);
+    const d = await api("/api/recover/finish", { token: s1.token, password: await authKey(email, p1), backup: await makeBackup(p1, priv) });
+    localStorage.setItem("w_priv", priv); PRIV = null;
+    S.token = d.token; S.me = d.user;
+    localStorage.setItem("w_token", d.token); localStorage.setItem("w_me", JSON.stringify(d.user));
+    toast("✅ تم استرجاع حسابك"); start();
+  } catch (e) { toast(e.message.includes("decrypt") || e.name === "OperationError" ? "الكلمات غير صحيحة" : e.message); }
+};
+
+// ---------- ربط الكمبيوتر بمسح QR ----------
+const loadScript = (src) => new Promise((res, rej) => { if (document.querySelector(`script[src="${src}"]`)) return res(); const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = rej; document.head.append(s); });
+async function linkShared(priv, pubB64) {
+  const pk = await crypto.subtle.importKey("raw", ub64(pubB64), EC, false, []);
+  return crypto.subtle.deriveKey({ name: "ECDH", public: pk }, priv, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+}
+$("aQR").onclick = async () => {
+  try {
+    await loadScript("/lib/qr.js");
+    const kp = await crypto.subtle.generateKey(EC, true, ["deriveKey"]);
+    const pub = b64(await crypto.subtle.exportKey("raw", kp.publicKey));
+    const { lid } = await api("/api/link/new", {});
+    const qr = qrcode(0, "M"); qr.addData(`WASEL:${lid}:${pub}`); qr.make();
+    $("qrBox").innerHTML = qr.createSvgTag({ cellSize: 6, margin: 3, scalable: true });
+    openSheet("qrSheet");
+    clearInterval(S.linkT);
+    const t0 = Date.now();
+    S.linkT = setInterval(async () => {
+      if ($("qrSheet").classList.contains("hidden") || Date.now() - t0 > 175000) { clearInterval(S.linkT); if (Date.now() - t0 > 175000) $("qrBox").innerHTML = '<div class="empty">انتهت صلاحية الرمز — أعد المحاولة</div>'; return; }
+      const r = await fetch(`${API}/api/link/poll?lid=${lid}`).then((x) => x.json()).catch(() => ({}));
+      if (!r.token) return;
+      clearInterval(S.linkT);
+      const [iv, ct] = r.payload.split(":");
+      const key = await linkShared(kp.privateKey, r.epub);
+      const data = JSON.parse(TD.decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(iv) }, key, ub64(ct))));
+      localStorage.setItem("w_priv", data.priv); PRIV = null;
+      S.token = r.token; S.me = r.user;
+      localStorage.setItem("w_token", r.token); localStorage.setItem("w_me", JSON.stringify(r.user));
+      closeSheets(); toast("✅ تم ربط هذا الجهاز"); start();
+    }, 2000);
+  } catch (e) { toast(e.message || "تعذّر إنشاء الرمز"); }
+};
+async function approveLink(lid, pcPub) {
+  try {
+    const kp = await crypto.subtle.generateKey(EC, true, ["deriveKey"]);
+    const key = await linkShared(kp.privateKey, pcPub);
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, TE.encode(JSON.stringify({ priv: localStorage.getItem("w_priv") })));
+    await api("/api/link/approve", { lid, epub: b64(await crypto.subtle.exportKey("raw", kp.publicKey)), payload: b64(iv) + ":" + b64(ct) });
+    toast("✅ تم ربط الجهاز");
+  } catch (e) { toast(e.message); }
+}
+async function scanQR() {
+  try { await loadScript("/lib/jsqr.js"); } catch { return toast("تعذّر تحميل الماسح"); }
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); } catch { return toast("اسمح باستخدام الكاميرا"); }
+  $("scanner").classList.remove("hidden");
+  const v = $("scanVid"); v.srcObject = stream; await v.play().catch(() => {});
+  const cv = document.createElement("canvas"), cx = cv.getContext("2d", { willReadFrequently: true });
+  let done = false;
+  const stop = () => { done = true; stream.getTracks().forEach((t) => t.stop()); $("scanner").classList.add("hidden"); };
+  $("scanX").onclick = stop;
+  const tick = async () => {
+    if (done) return;
+    if (v.videoWidth) {
+      cv.width = v.videoWidth; cv.height = v.videoHeight; cx.drawImage(v, 0, 0);
+      const code = jsQR(cx.getImageData(0, 0, cv.width, cv.height).data, cv.width, cv.height);
+      const m = code && /^WASEL:([a-f0-9]{32}):([A-Za-z0-9+/=]{80,100})$/.exec(code.data);
+      if (m) {
+        stop();
+        if (!(await ask("ربط جهاز جديد بحسابك؟ سيتمكن من قراءة رسائلك.", [], "ربط"))) return;
+        approveLink(m[1], m[2]);
+        return;
+      }
+    }
+    requestAnimationFrame(tick);
+  };
+  tick();
+}
+
+// ---------- إشعار تحديث التطبيق ----------
+async function checkUpdate() {
+  if (!NAT.any) return;
+  try {
+    const v = await (await fetch(API + "/api/version")).json();
+    const mine = window.WASEL_REV || (NAT.android && window.WaselNative.rev ? window.WaselNative.rev() : null);
+    if (v.rev && mine !== v.rev && sessionStorage.getItem("updDismiss") !== v.rev) {
+      $("updBar").classList.remove("hidden");
+      $("updBar").href = v.url;
+      $("updX").onclick = (e) => { e.preventDefault(); e.stopPropagation(); sessionStorage.setItem("updDismiss", v.rev); $("updBar").classList.add("hidden"); };
+    }
+  } catch {}
+}
+
+// ---------- الإيموجي والملصقات ----------
+const EMOJIS = "😀😃😄😁😆😅😂🤣😊😇🙂😉😌😍🥰😘😗😋😛😜🤪😎🤩🥳😏😒😞😔😟😕🙁😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😱😨😰😥😓🤗🤔🤭🤫🤥😶😐😑😬🙄😯😦😧😮😲🥱😴🤤😪😵🤐🥴🤢🤮🤧😷🤒🤕🤑🤠😈👿👻💀👽🤖💩😺😸😹😻😼😽🙀😿😾👋🤚✋🖖👌🤌🤏✌️🤞🤟🤘🤙👈👉👆👇☝️👍👎✊👊🤛🤜👏🙌👐🤲🤝🙏💪❤️🧡💛💚💙💜🖤🤍🤎💔❣️💕💞💓💗💖💘💝🔥✨⭐🌟💫🎉🎊🎁🎂🌹🌸🌺🌻🌙☀️⚽🏆🎮🎧📱💻📷☕🍕🍔🍟🍩🍰🍫🍉🍓🚗✈️🏠🕌📿🤲🇧🇭🇸🇦🇦🇪🇰🇼🇶🇦🇴🇲".match(/\p{Extended_Pictographic}(️|‍\p{Extended_Pictographic})*|\p{Regional_Indicator}{2}/gu) || [];
+const STICKERS = [["😂", "bounce"], ["❤️", "pulse"], ["🔥", "wiggle"], ["👍", "bounce"], ["🥳", "spin"], ["😍", "pulse"], ["😭", "wiggle"], ["🤣", "spin"], ["😎", "bounce"], ["👋", "wave"], ["🙏", "pulse"], ["💯", "bounce"], ["🎉", "spin"], ["😡", "wiggle"], ["🤔", "wave"], ["😴", "pulse"], ["🤯", "bounce"], ["👏", "wave"], ["🌹", "pulse"], ["⚽", "spin"], ["☕", "wiggle"], ["🫡", "wave"], ["💪", "bounce"], ["🤝", "pulse"]];
+$("cEmoji").onclick = () => {
+  const p = $("emojiPanel");
+  if (!p.classList.contains("hidden")) return p.classList.add("hidden");
+  p.classList.remove("hidden"); emojiTab(S.emTab || "e");
+};
+function emojiTab(t) {
+  S.emTab = t;
+  for (const b of $("emTabs").children) b.classList.toggle("on", b.dataset.t === t);
+  $("emGrid").className = t === "s" ? "emgrid st" : "emgrid";
+  $("emGrid").innerHTML = t === "s" ? STICKERS.map(([e, a], i) => `<button data-s="${i}"><span class="stk ${a}">${e}</span></button>`).join("") : EMOJIS.map((e) => `<button data-e="${e}">${e}</button>`).join("");
+}
+$("emTabs").onclick = (e) => { const t = e.target.dataset.t; if (t) emojiTab(t); };
+$("emGrid").onclick = (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.e) { const i = $("cInput"); const p = i.selectionStart ?? i.value.length; i.value = i.value.slice(0, p) + b.dataset.e + i.value.slice(p); i.selectionStart = i.selectionEnd = p + b.dataset.e.length; i.dispatchEvent(new Event("input")); }
+  if (b.dataset.s) { const [em, an] = STICKERS[Number(b.dataset.s)]; const x = { e: em, a: an }; sendRaw(S.cur, JSON.stringify(x), "sticker", { meta: x }); $("emojiPanel").classList.add("hidden"); }
+};
+
+// ---------- الاستطلاعات ----------
+async function newPoll() {
+  const key = S.cur;
+  const r = await ask("📊 استطلاع جديد", [{ ph: "السؤال", max: 200 }, ...[1, 2, 3, 4, 5, 6].map((n) => ({ ph: `خيار ${n}${n > 2 ? " (اختياري)" : ""}`, max: 80 }))], "التالي");
+  if (!r) return;
+  const q = r[0].trim(), o = r.slice(1).map((x) => x.trim()).filter(Boolean);
+  if (!q || o.length < 2) return toast("اكتب سؤالاً وخيارين على الأقل");
+  sheetMenu([["1️⃣", "اختيار واحد", () => send(false)], ["✅", "عدة اختيارات", () => send(true)]], "طريقة التصويت");
+  function send(multi) { const x = { q, o, multi }; sendRaw(key, JSON.stringify(x), "poll", { meta: x }); }
+}
+function pollHtml(m, x) {
+  const votes = m.votes || {};
+  const total = Object.keys(votes).length;
+  const mine = votes[S.me.id] || [];
+  const counts = x.o.map((_, i) => Object.values(votes).filter((v) => v.includes(i)).length);
+  return `<div class="poll"><b>📊 ${esc(x.q)}</b><small>${x.multi ? "اختر خياراً أو أكثر" : "اختر خياراً واحداً"}</small>` +
+    x.o.map((o, i) => { const pct = total ? Math.round((counts[i] / total) * 100) : 0; return `<button class="popt ${mine.includes(i) ? "on" : ""}" data-vote="${i}"><span class="pbar" style="width:${pct}%"></span><span class="pchk">${mine.includes(i) ? "✓" : ""}</span><span class="ptx">${esc(o)}</span><span class="pct">${counts[i]}</span></button>`; }).join("") +
+    `<button class="link pvw" data-voters="1">${total} ${total === 1 ? "صوت" : "أصوات"} · عرض</button></div>`;
+}
+function vote(m, i) {
+  const x = meta(m); if (!x) return;
+  let mine = [...((m.votes || {})[S.me.id] || [])];
+  if (x.multi) mine = mine.includes(i) ? mine.filter((y) => y !== i) : [...mine, i];
+  else mine = mine.includes(i) ? [] : [i];
+  wsSend({ t: "vote", id: m.id, opts: mine });
+}
+function showVoters(m) {
+  const x = meta(m); const votes = m.votes || {};
+  const items = [];
+  x.o.forEach((o, i) => { const names = Object.entries(votes).filter(([, v]) => v.includes(i)).map(([u]) => (u == S.me.id ? "أنت" : S.users[u]?.name || "…")); items.push(["▫️", `${o}: ${names.join("، ") || "—"}`, () => {}]); });
+  sheetMenu(items, x.q);
+}
+
+// ---------- الإشارة @ في المجموعات ----------
+function mentionCheck() {
+  const c = cur(), box = $("mentionBox");
+  if (!c || c.type !== "g") return box.classList.add("hidden");
+  const i = $("cInput"), before = i.value.slice(0, i.selectionStart);
+  const mm = /(^|\s)@([^\s@]*)$/.exec(before);
+  if (!mm) return box.classList.add("hidden");
+  const q = mm[2].toLowerCase();
+  const list = (c.group.members || []).filter((m) => m.id !== S.me.id && m.name.toLowerCase().includes(q)).slice(0, 6);
+  if (!list.length) return box.classList.add("hidden");
+  box.innerHTML = list.map((m) => `<button data-n="${esc(m.name)}"><span class="av sm" data-u='${esc(JSON.stringify({ id: m.id, name: m.name, avatar: safeImg(m.avatar) }))}'></span>${esc(m.name)}</button>`).join("");
+  for (const el of box.querySelectorAll("[data-u]")) avatar(el, JSON.parse(el.dataset.u));
+  box.classList.remove("hidden");
+  box.onclick = (e) => {
+    const b = e.target.closest("[data-n]"); if (!b) return;
+    const name = b.dataset.n.replace(/\s+/g, "_");
+    const start = before.length - mm[2].length - 1;
+    i.value = i.value.slice(0, start) + "@" + name + " " + i.value.slice(i.selectionStart);
+    i.selectionStart = i.selectionEnd = start + name.length + 2;
+    box.classList.add("hidden"); i.focus();
+  };
+}
+function mentionsHtml(html, c) {
+  if (!c || c.type !== "g") return html;
+  for (const m of c.group?.members || []) {
+    const tag = "@" + m.name.replace(/\s+/g, "_");
+    html = html.split(esc(tag)).join(`<span class="mention${m.id === S.me.id ? " me" : ""}">${esc(tag)}</span>`);
+  }
+  return html;
+}
+const mentionsMe = (text, c) => c?.type === "g" && text && text.includes("@" + S.me.name.replace(/\s+/g, "_"));
+
+// ---------- رسائل الفيديو الدائرية ----------
+async function videoNote() {
+  const key = S.cur;
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 480 }, height: { ideal: 480 } }, audio: { echoCancellation: true, noiseSuppression: true } }); }
+  catch { return toast("اسمح باستخدام الكاميرا والمايك"); }
+  const ov = $("vnote"), v = $("vnVid");
+  ov.classList.remove("hidden"); v.srcObject = stream; v.play().catch(() => {});
+  const mime = ["video/mp4;codecs=avc1,mp4a.40.2", "video/mp4", "video/webm;codecs=vp8,opus", "video/webm"].find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || "";
+  let rec = null, chunks = [], t0 = 0, timer = null;
+  const close = () => { clearInterval(timer); try { rec && rec.state !== "inactive" && rec.stop(); } catch {} stream.getTracks().forEach((t) => t.stop()); ov.classList.add("hidden"); $("vnRec").classList.remove("on"); $("vnT").textContent = "0:00"; $("vnRing").style.strokeDashoffset = 0; };
+  $("vnX").onclick = () => { rec = null; close(); };
+  $("vnRec").onclick = () => {
+    if (!rec) {
+      rec = new MediaRecorder(stream, mime ? { mimeType: mime, videoBitsPerSecond: 900000 } : undefined);
+      rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
+      rec.onstop = async () => {
+        if (!chunks.length) return;
+        const dur = (Date.now() - t0) / 1000;
+        const type = (rec.mimeType || mime || "video/mp4").split(";")[0];
+        const f = new File([new Blob(chunks, { type })], "vnote." + (type.includes("webm") ? "webm" : "mp4"), { type });
+        S.cur = key; sendFile(f, "vnote", { dur });
+      };
+      rec.start(500); t0 = Date.now(); $("vnRec").classList.add("on");
+      timer = setInterval(() => { const s = (Date.now() - t0) / 1000; $("vnT").textContent = fmtDur(s); $("vnRing").style.strokeDashoffset = 754 * (1 - Math.min(1, s / 60)) - 754; if (s >= 60) $("vnRec").click(); }, 200);
+    } else { clearInterval(timer); rec.stop(); stream.getTracks().forEach((t) => t.stop()); ov.classList.add("hidden"); $("vnRec").classList.remove("on"); }
+  };
+}
+async function playVnote(el, x) {
+  const v = el.querySelector("video");
+  if (v.dataset.ready) { if (v.paused) { v.muted = false; v.play(); } else v.pause(); return; }
+  el.classList.add("loading");
+  try { const f = await loadFile(x); v.src = f.url; v.dataset.ready = 1; v.muted = false; v.loop = false; await v.play(); } catch { toast("الفيديو غير متاح"); }
+  el.classList.remove("loading");
+}
+
+// ---------- جدولة الرسائل ----------
+async function scheduleMsg() {
+  const key = S.cur;
+  const d = new Date(Date.now() + 3600000); d.setSeconds(0, 0);
+  const local = new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+  const r = await ask("⏰ جدولة رسالة", [{ ph: "نص الرسالة", max: 2000 }, { ph: "الوقت", type: "datetime-local" }], "جدولة", ["", local]);
+  if (!r || !r[0].trim()) return;
+  const at = new Date(r[1]).getTime();
+  if (!(at > Date.now() + 30000)) return toast("اختر وقتاً في المستقبل");
+  try { wsSend({ t: "schedule", ...wsTarget(key), body: await encFor(key, r[0]), kind: "text", at, cid: "s" + Date.now() }); }
+  catch { toast("تعذّر التشفير"); }
+}
+async function showScheduled() {
+  const key = S.cur;
+  try {
+    const d = await api("/api/scheduled?c=" + key);
+    const items = [];
+    for (const s of d.items) {
+      const t = await decMsg({ ...s, gid: s.gid || null, a: S.me.id, b: s.b });
+      items.push(["⏰", `${new Date(s.at).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })} — ${String(t).slice(0, 50)}`, async () => { if (await ask("إلغاء هذه الرسالة المجدولة؟", [], "إلغاء الجدولة")) { await api("/api/scheduled/cancel", { id: s.id }); toast("تم الإلغاء"); } }]);
+    }
+    sheetMenu(items.length ? items : [["📭", "لا توجد رسائل مجدولة", () => {}]], "الرسائل المجدولة (اضغط للإلغاء)");
+  } catch (e) { toast(e.message); }
+}
+
+// ---------- ألوان المحادثة ----------
+const BUB = ["linear-gradient(135deg,#00d1a0,#00a3ff)", "linear-gradient(135deg,#7b5cff,#c86dd7)", "linear-gradient(135deg,#ff6a88,#ff8e53)", "linear-gradient(135deg,#11998e,#38ef7d)", "linear-gradient(135deg,#f7971e,#ffd200)", "linear-gradient(135deg,#4facfe,#00f2fe)", "linear-gradient(135deg,#434343,#000000)", "linear-gradient(135deg,#e53935,#8e24aa)"];
+function chooseColor(c) {
+  const html = `<div class="bubpick">${BUB.map((g, i) => `<button data-e="${i}" style="background:${g}" class="${(SET.colors || {})[c.key] === i ? "on" : ""}"></button>`).join("")}</div>`;
+  sheetMenu([["↩️", "اللون الافتراضي", () => { delete (SET.colors ||= {})[c.key]; saveSet(); renderMsgs(); }]], "لون الفقاعات لهذه المحادثة", html, (i) => { (SET.colors ||= {})[c.key] = Number(i); saveSet(); closeSheets(); renderMsgs(); });
+}
+const bubbleColor = (key) => { const i = (SET.colors || {})[key]; return i !== undefined ? BUB[i] : ""; };
+
+// ---------- الرسائل المحفوظة ----------
+const isSelf = (c) => c && c.type === "u" && c.id === S.me?.id;
+function openSaved() { ensureConv("u" + S.me.id, { user: S.me }); openChat("u" + S.me.id); }
+
+// سرعة الرسائل الصوتية
+function cycleSpeed(btn) {
+  const sp = [1, 1.5, 2]; SET.vspeed = sp[(sp.indexOf(SET.vspeed || 1) + 1) % 3]; saveSet();
+  for (const b of document.querySelectorAll(".vspd")) b.textContent = SET.vspeed + "×";
+  if (VA) VA.playbackRate = SET.vspeed;
+}
+
 // ---------- البدء ----------
 function start() {
   S.users[S.me.id] = S.me; show("home"); renderChats(); renderCalls(); loadChats(); connect(); applySet(); setInterval(() => { if (S.view === "chat") renderMsgs(); }, 60000);
   history.replaceState({ v: "home" }, "");
   native({ type: "auth", token: S.token, me: S.me.id, server: API, name: S.me.name });
   native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure });
-  iceServers();
+  iceServers(); checkUpdate();
   api("/api/me").then((d) => { S.me = { ...S.me, ...d.user }; localStorage.setItem("w_me", JSON.stringify(S.me)); if (S.view === "settings") renderSettings(); }).catch(() => {});
 }
 buildPad(); applySet();

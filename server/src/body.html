@@ -16,6 +16,7 @@
   <div class="err" id="aErr"></div>
   <button class="btn" id="aGo">دخول</button>
   <button class="link" id="aSwitch">ليس لديك حساب؟ أنشئ حساباً</button>
+  <div style="display:flex;justify-content:center;gap:18px"><button class="link" id="aForgot">🔑 نسيت كلمة المرور؟</button><button class="link" id="aQR">🖥️ ربط بالجوال (QR)</button></div>
 </div>
 
 <!-- القائمة -->
@@ -25,6 +26,7 @@
     <button class="ib" id="hSettings"><svg><use href="#i-gear"/></svg></button>
   </header>
   <div class="conn hidden" id="connBar">جارٍ الاتصال…</div>
+  <a class="updbar hidden" id="updBar">⬆️ نسخة جديدة من التطبيق متوفرة — اضغط للتحميل <span id="updX">✕</span></a>
   <div class="search"><span>🔍</span><input id="hSearch" placeholder="بحث"></div>
   <div class="list" id="chatList"></div>
   <div class="list hidden" id="callList"></div>
@@ -46,8 +48,11 @@
   <div id="msgs"></div>
   <button class="blockedbar hidden" id="blockedBar">🚫 هذا الشخص محظور — اضغط لإلغاء الحظر</button>
   <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX">✕</button></div>
+  <div class="mentionbox hidden" id="mentionBox"></div>
+  <div class="emojipanel hidden" id="emojiPanel"><div class="emtabs" id="emTabs"><button data-t="e" class="on">😀 إيموجي</button><button data-t="s">✨ ملصقات</button></div><div class="emgrid" id="emGrid"></div></div>
   <div class="composer" id="composer">
     <button class="ib sm" id="cAttach">📎</button>
+    <button class="ib sm" id="cEmoji">😊</button>
     <textarea id="cInput" rows="1" placeholder="رسالة" maxlength="4000"></textarea>
     <div class="rec hidden" id="recBox"><i></i><span id="recT">0:00</span><span style="flex:1"></span><button class="ib sm" id="recX">🗑️</button></div>
     <button class="send" id="cSend"><svg><use href="#i-mic"/></svg></button>
@@ -118,6 +123,8 @@
     </div>
     <div class="card"><h4>الحساب</h4>
       <button class="it" id="scPass"><span class="ic" style="background:#ffffff14">🔑</span><span class="tx">تغيير كلمة المرور<small>يسجّل الخروج من باقي الأجهزة</small></span><span class="ch">‹</span></button>
+      <button class="it" id="scRec"><span class="ic" style="background:#ffffff14">🧩</span><span class="tx">مفتاح الاسترجاع (24 كلمة)<small id="scRecS"></small></span><span class="ch">‹</span></button>
+      <button class="it" id="scLink"><span class="ic" style="background:#ffffff14">🖥️</span><span class="tx">ربط جهاز (كمبيوتر)<small>امسح رمز QR من صفحة الدخول على الكمبيوتر</small></span><span class="ch">‹</span></button>
       <button class="it" id="scAll"><span class="ic" style="background:#ffffff14">📱</span><span class="tx">تسجيل الخروج من الأجهزة الأخرى<small id="scSess"></small></span><span class="ch">‹</span></button>
       <button class="it dz" id="scDel"><span class="ic" style="background:#ff5f6d22">🗑️</span><span class="tx">حذف الحساب نهائياً</span></button>
     </div>
@@ -182,6 +189,20 @@
 </div>
 <div class="sheet hidden" id="pickSheet"><div class="box"><h3 id="pickT"></h3><div id="pickList" class="picklist"></div><button class="btn" id="pickOk">تم</button><button class="link" id="pickNo">إلغاء</button></div></div>
 <div class="sheet hidden" id="mediaSheet"><div class="box"><h3>🖼️ الوسائط والملفات</h3><div id="mediaGrid" class="mgrid"></div><button class="link" data-close>إغلاق</button></div></div>
+<div class="sheet hidden" id="recSheet"><div class="box">
+  <h3>🧩 مفتاح الاسترجاع</h3>
+  <div style="color:var(--muted);font-size:13.5px;line-height:1.7">اكتب هذه الكلمات بالترتيب واحفظها في مكان آمن (ورقة أو خزنة). هي الطريقة الوحيدة لاسترجاع حسابك ورسائلك إذا نسيت كلمة المرور. <b style="color:var(--red)">لا تعطها لأحد.</b></div>
+  <div class="recwords" id="recWords" dir="ltr"></div>
+  <button class="btn alt" id="recCopy" style="background:var(--glass2)">📋 نسخ</button>
+  <button class="btn" id="recOk">حفظتها ✅</button><button class="link" data-close>لاحقاً</button>
+</div></div>
+<div class="sheet hidden" id="qrSheet"><div class="box" style="align-items:center;text-align:center">
+  <h3>🖥️ ربط بالجوال</h3>
+  <div style="color:var(--muted);font-size:13.5px;line-height:1.7">على جوالك افتح واصل ← الإعدادات ← الأمان ← ربط جهاز، ثم امسح هذا الرمز.</div>
+  <div class="qrbox" id="qrBox"></div><button class="link" data-close>إلغاء</button>
+</div></div>
+<div id="scanner" class="hidden"><video id="scanVid" playsinline muted></video><div class="scanframe"></div><div class="scantx">وجّه الكاميرا إلى رمز QR على الكمبيوتر</div><button class="ib" id="scanX">✕</button></div>
+<div id="vnote" class="hidden"><div class="vnwrap"><video id="vnVid" playsinline muted autoplay></video><svg viewBox="0 0 248 248"><circle cx="124" cy="124" r="120" id="vnRing"/></svg></div><span id="vnT">0:00</span><div class="vnctl"><button class="ib" id="vnX">✕</button><button class="vnrec" id="vnRec"></button></div><small>اضغط للتسجيل، واضغط مرة أخرى للإرسال (حتى 60 ثانية)</small></div>
 <input type="file" id="fStatus" accept="image/*" hidden>
 <input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
 <input type="file" id="fAny" multiple hidden>

@@ -54,12 +54,16 @@ async function showInfo() {
     ["🔍", "بحث في المحادثة", () => { closeSheets(); openSearch(); }],
     [c.prefs.muted ? "🔔" : "🔕", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
     ["⏱️", "الرسائل المختفية: " + TTL_LABEL[c.ttl || 0], () => chooseTTL(c)],
+    ["🎨", "لون الفقاعات", () => chooseColor(c)],
+    ["⏰", "الرسائل المجدولة", showScheduled],
+    ["🧹", "مسح محتوى المحادثة", () => clearChat(c, false)],
   );
-  if (c.type === "u") rows.push([c.blocked ? "✅" : "🚫", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
+  if (isSelf(c)) { /* لا حظر لنفسك */ } else if (c.type === "u") rows.push([c.blocked ? "✅" : "🚫", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
   else rows.push(["🚪", "مغادرة المجموعة", async () => { if (await ask("مغادرة المجموعة؟", [], "مغادرة")) { await api("/api/group/remove", { gid: c.id, uid: S.me.id }).catch((e) => toast(e.message)); } }, "dz"]);
   $("infoActs").innerHTML = rows.map((r, i) => `<button class="it ${r[3] || ""}" data-r="${i}"><span class="ic" style="background:#ffffff12">${r[0]}</span><span class="tx">${esc(r[1])}</span></button>`).join("");
   $("infoActs").onclick = (e) => { const b = e.target.closest("[data-r]"); if (b) { const fn = rows[Number(b.dataset.r)][2]; if (!["الوسائط والملفات", "بحث في المحادثة"].includes(rows[Number(b.dataset.r)][1])) closeSheets(); fn(); } };
-  $("iCall").classList.toggle("hidden", !!c.blocked); $("iVid").classList.toggle("hidden", !!c.blocked);
+  $("iCall").classList.toggle("hidden", !!c.blocked || isSelf(c)); $("iVid").classList.toggle("hidden", !!c.blocked || isSelf(c));
+  if (isSelf(c)) $("iSafe").classList.add("hidden");
   openSheet("infoSheet");
 }
 $("cWho").onclick = () => { const c = cur(); if (c?.type === "g" && (S.gcallState[c.id] || []).length && !GC) return joinGroupCall(c.id, false); showInfo(); };
@@ -126,7 +130,7 @@ async function addMember(c) {
 const normPin = (v) => v.toUpperCase().replace(/[^0-9A-F]/g, "").slice(0, 8);
 $("newChat").onclick = () => {
   if (S.tab === "status") return addStatus();
-  sheetMenu([["👤", "إضافة شخص بالكود", newByPin], ["👥", "مجموعة جديدة", newGroup]]);
+  sheetMenu([["👤", "إضافة شخص بالكود", newByPin], ["👥", "مجموعة جديدة", newGroup], ["⭐", "الرسائل المحفوظة", openSaved]]);
 };
 function newByPin() { openSheet("newSheet"); $("nErr").textContent = ""; $("nPin").value = ""; $("nMyPin").textContent = S.me.pin || ""; setTimeout(() => $("nPin").focus(), 50); }
 $("nPin").oninput = () => { const v = normPin($("nPin").value); if ($("nPin").value !== v) $("nPin").value = v; if (v.length === 8) $("nGo").focus(); };

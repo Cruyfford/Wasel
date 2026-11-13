@@ -4,7 +4,7 @@ function start() {
   history.replaceState({ v: "home" }, "");
   native({ type: "auth", token: S.token, me: S.me.id, server: API, name: S.me.name });
   native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure });
-  iceServers();
+  iceServers(); checkUpdate();
   api("/api/me").then((d) => { S.me = { ...S.me, ...d.user }; localStorage.setItem("w_me", JSON.stringify(S.me)); if (S.view === "settings") renderSettings(); }).catch(() => {});
 }
 buildPad(); applySet();

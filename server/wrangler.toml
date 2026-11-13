@@ -2,7 +2,7 @@ name = "wasel-chat"
 main = "worker.js"
 compatibility_date = "2025-06-01"
 
-rules = [{ type = "Text", globs = ["app.html"], fallthrough = true }]
+rules = [{ type = "Text", globs = ["app.html", "lib/*.txt"], fallthrough = true }]
 
 [[durable_objects.bindings]]
 name = "HUB"

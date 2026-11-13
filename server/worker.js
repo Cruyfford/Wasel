@@ -1,6 +1,8 @@
 // Wasel — سيرفر المراسلة والمكالمات (Cloudflare Worker + Durable Objects)
 // السيرفر لا يرى أي محتوى: الرسائل والملفات والحالات والإشارات مشفّرة على الجهاز قبل الإرسال.
 import APP_HTML from "./app.html";
+import JSQR from "./lib/jsqr.txt";
+import QRGEN from "./lib/qr.txt";
 
 const CORS = { "access-control-allow-origin": "*" };
 const JSON_H = { "content-type": "application/json; charset=utf-8", ...CORS };
@@ -28,6 +30,9 @@ export default {
       return new Response(null, { headers: { ...CORS, "access-control-allow-headers": "*", "access-control-allow-methods": "GET,POST" } });
     if (url.pathname === "/" || url.pathname === "/index.html") return new Response(APP_HTML, { headers: HTML_H });
     if (url.pathname === "/api/turn") return turn(env);
+    if (url.pathname === "/lib/jsqr.js" || url.pathname === "/lib/qr.js")
+      return new Response(url.pathname === "/lib/qr.js" ? QRGEN : JSQR, { headers: { "content-type": "application/javascript; charset=utf-8", "cache-control": "public, max-age=86400" } });
+    if (url.pathname === "/api/version") return json({ rev: env.NATIVE_REV || null, url: "https://github.com/Cruyfford/Wasel/releases/latest" });
     if (url.pathname === "/api/file") return env.HUB.get(env.HUB.idFromName("files")).fetch(req);
     if (url.pathname.startsWith("/api/") || url.pathname === "/ws") return env.HUB.get(env.HUB.idFromName("main")).fetch(req);
     return new Response("Not found", { status: 404 });
@@ -103,6 +108,7 @@ async function hashPass(pass, saltHex) {
 const randHex = (n) => hex(crypto.getRandomValues(new Uint8Array(n)));
 const safeEq = (a, b) => { if (a.length !== b.length) return false; let r = 0; for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i); return r === 0; };
 const okImg = (s) => typeof s === "string" && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(s) && s.length < 200000;
+const KINDS = ["text", "call", "file", "voice", "loc", "contact", "link", "poll", "sticker", "vnote"];
 const pairKey = (a, b) => "u" + Math.min(a, b) + "-" + Math.max(a, b);
 
 export class Hub {
@@ -130,8 +136,13 @@ export class Hub {
       CREATE TABLE IF NOT EXISTS srecv(sid INTEGER, uid INTEGER, viewed INTEGER DEFAULT 0, PRIMARY KEY(sid, uid));
       CREATE TABLE IF NOT EXISTS ratelimit(k TEXT PRIMARY KEY, n INTEGER, start INTEGER);
       CREATE TABLE IF NOT EXISTS gcalls(gid INTEGER, uid INTEGER, video INTEGER, joined INTEGER, PRIMARY KEY(gid, uid));
+      CREATE TABLE IF NOT EXISTS clears(uid INTEGER, ckey TEXT, upto INTEGER, PRIMARY KEY(uid, ckey));
+      CREATE TABLE IF NOT EXISTS votes(mid INTEGER, uid INTEGER, opts TEXT, PRIMARY KEY(mid, uid));
+      CREATE TABLE IF NOT EXISTS scheduled(id INTEGER PRIMARY KEY AUTOINCREMENT, a INTEGER, b INTEGER, gid INTEGER, body TEXT, kind TEXT, at INTEGER, created INTEGER);
+      CREATE TABLE IF NOT EXISTS recov(token TEXT PRIMARY KEY, uid INTEGER, exp INTEGER);
+      CREATE TABLE IF NOT EXISTS links(lid TEXT PRIMARY KEY, created INTEGER, uid INTEGER, token TEXT, epub TEXT, payload TEXT);
     `);
-    const ucols = ["pub TEXT", "backup TEXT", "avatar TEXT", "hide_seen INTEGER DEFAULT 0", "receipts INTEGER DEFAULT 1", "pin TEXT"];
+    const ucols = ["pub TEXT", "backup TEXT", "avatar TEXT", "hide_seen INTEGER DEFAULT 0", "receipts INTEGER DEFAULT 1", "pin TEXT", "rsalt TEXT", "rhash TEXT", "rbackup TEXT"];
     for (const c of ucols) { try { this.sql.exec(`ALTER TABLE users ADD COLUMN ${c}`); } catch {} }
     this.sql.exec("CREATE UNIQUE INDEX IF NOT EXISTS users_pin ON users(pin)");
     for (const r of this.all("SELECT id FROM users WHERE pin IS NULL AND hash<>''")) this.sql.exec("UPDATE users SET pin=? WHERE id=?", this.newPin(), r.id);
@@ -151,7 +162,19 @@ export class Hub {
     this.sql.exec("DELETE FROM pending_calls WHERE ts<?", now - 60000);
     this.sql.exec("DELETE FROM files WHERE ts<?", now - FILE_DAYS * DAY);
     this.sql.exec("DELETE FROM ratelimit WHERE start<?", now - DAY);
-    await this.ctx.storage.setAlarm(now + 3600000);
+    this.sql.exec("DELETE FROM recov WHERE exp<?", now);
+    this.sql.exec("DELETE FROM links WHERE created<?", now - 600000);
+    // الرسائل المجدولة
+    for (const s of this.all("SELECT * FROM scheduled WHERE at<=? ORDER BY at LIMIT 200", now + 1000)) {
+      this.sql.exec("DELETE FROM scheduled WHERE id=?", s.id);
+      try { this.deliver(s.a, { to: s.b, gid: s.gid, body: s.body, kind: s.kind }, null, null); } catch {}
+    }
+    await this.nextAlarm();
+  }
+  async nextAlarm() {
+    const n = this.one("SELECT MIN(at) AS at FROM scheduled");
+    const t = Math.min(Date.now() + 3600000, n && n.at ? Math.max(n.at, Date.now() + 1000) : Infinity);
+    await this.ctx.storage.setAlarm(t);
   }
 
   newPin() {
@@ -198,7 +221,7 @@ export class Hub {
     return true;
   }
   contactsOf(uid) {
-    return this.all("SELECT DISTINCT CASE WHEN a=? THEN b ELSE a END AS id FROM messages WHERE gid IS NULL AND (a=? OR b=?)", uid, uid, uid).map((r) => r.id);
+    return this.all("SELECT DISTINCT CASE WHEN a=? THEN b ELSE a END AS id FROM messages WHERE gid IS NULL AND (a=? OR b=?)", uid, uid, uid).map((r) => r.id).filter((id) => id !== uid);
   }
   members(gid) { return this.all("SELECT uid, admin FROM gmembers WHERE gid=?", gid); }
   isMember(gid, uid) { return this.one("SELECT admin FROM gmembers WHERE gid=? AND uid=?", gid, uid); }
@@ -214,6 +237,7 @@ export class Hub {
     if (!m.gid && m.a === me && m.status === 2) { const p = this.user(m.b); if (p && p.receipts === 0) m.status = 1; }
     const r = this.all("SELECT uid, e FROM reactions WHERE mid=?", m.id);
     if (r.length) m.reacts = Object.fromEntries(r.map((x) => [x.uid, x.e]));
+    if (m.kind === "poll") m.votes = this.votesOf(m.id);
     return m;
   }
   groupInfo(gid, me) {
@@ -222,6 +246,46 @@ export class Hub {
     const mem = this.members(gid);
     return { id: g.id, name: g.name, avatar: g.avatar, owner: g.owner, created: g.created, members: mem.map((x) => ({ ...this.pub(this.user(x.uid), x.uid === me), admin: !!x.admin })) };
   }
+  votesOf(mid) { return Object.fromEntries(this.all("SELECT uid, opts FROM votes WHERE mid=?", mid).map((v) => [v.uid, JSON.parse(v.opts)])); }
+  // تسليم رسالة (تُستخدم للإرسال الفوري والمجدول)
+  deliver(uid, m, ws, cid) {
+    const to = Number(m.to) || 0, gid = Number(m.gid) || 0;
+    const body = String(m.body || "").slice(0, 64000);
+    const kind = KINDS.includes(m.kind) ? m.kind : "text";
+    const reply = Number(m.reply) || null;
+    if (!body.trim()) return;
+    const now = Date.now();
+    const ack = (msg) => { if (ws) ws.send(JSON.stringify({ t: "ack", cid, m: msg })); };
+    if (gid) {
+      if (!this.isMember(gid, uid)) return;
+      const t = this.ttlOf("g" + gid);
+      this.sql.exec("INSERT INTO messages(a,b,body,kind,ts,status,reply,gid,fwd,expires) VALUES(?,?,?,?,?,?,?,?,?,?)", uid, 0, body, kind, now, 1, reply, gid, m.fwd ? 1 : 0, t ? now + t * 1000 : null);
+      const msg = this.one("SELECT * FROM messages WHERE id=last_insert_rowid()");
+      this.sql.exec("UPDATE gmembers SET last_read=? WHERE gid=? AND uid=?", msg.id, gid, uid);
+      ack(msg);
+      const sender = this.pub(this.user(uid));
+      const gname = (this.one("SELECT name FROM groups WHERE id=?", gid) || {}).name;
+      for (const x of this.members(gid)) {
+        if (x.uid === uid) { this.sendTo(uid, { t: "msg", m: msg }, ws); continue; }
+        this.sendTo(x.uid, { t: "msg", m: msg, user: sender, group: { id: gid, name: gname }, muted: !!this.prefsOf(x.uid, "g" + gid).muted });
+      }
+      return msg;
+    }
+    if (!to || !this.user(to)) return;
+    if (to !== uid && (this.blocked(to, uid) || this.blocked(uid, to))) {
+      ack({ id: -now, a: uid, b: to, body, kind, ts: now, status: 0, reply });
+      return;
+    }
+    const ck = pairKey(uid, to), t = this.ttlOf(ck);
+    const status = to === uid ? 2 : this.online(to) ? 1 : 0;
+    this.sql.exec("INSERT INTO messages(a,b,body,kind,ts,status,reply,fwd,expires) VALUES(?,?,?,?,?,?,?,?,?)", uid, to, body, kind, now, status, reply, m.fwd ? 1 : 0, t ? now + t * 1000 : null);
+    const msg = this.one("SELECT * FROM messages WHERE id=last_insert_rowid()");
+    ack(msg);
+    this.sendTo(uid, { t: "msg", m: msg }, ws);
+    if (to !== uid) this.sendTo(to, { t: "msg", m: msg, user: this.pub(this.user(uid)), muted: !!this.prefsOf(to, ck).muted });
+    return msg;
+  }
+  clearedUpto(uid, ckey) { const r = this.one("SELECT upto FROM clears WHERE uid=? AND ckey=?", uid, ckey); return r ? r.upto : 0; }
   prefsOf(uid, ckey) { return this.one("SELECT pinned, muted, archived FROM prefs WHERE uid=? AND ckey=?", uid, ckey) || { pinned: 0, muted: 0, archived: 0 }; }
   ttlOf(ckey) { const r = this.one("SELECT secs FROM ttl WHERE ckey=?", ckey); return r ? r.secs : 0; }
   sysMsg(gid, a, b, text) {
@@ -322,9 +386,68 @@ export class Hub {
         return json({ token: this.newSession(u.id), user: this.pub(u, true), backup: u.backup || null });
       }
 
+      // ---------- استرجاع الحساب بمفتاح الـ 24 كلمة ----------
+      if (p === "/api/recover/start") {
+        const email = String(body.email || "").trim().toLowerCase();
+        const ip = req.headers.get("cf-connecting-ip") || "x";
+        if (!this.limit("rec:" + email, 5, 3600000) || !this.limit("recip:" + ip, 20, DAY)) return json({ error: "محاولات كثيرة، حاول بعد ساعة" }, 429);
+        const u = this.one("SELECT * FROM users WHERE email=?", email);
+        if (!u || !u.rhash || !safeEq(await hashPass(String(body.rauth || ""), u.rsalt), u.rhash)) return json({ error: "البريد أو كلمات الاسترجاع غير صحيحة" }, 401);
+        const t = randHex(24);
+        this.sql.exec("INSERT INTO recov VALUES(?,?,?)", t, u.id, Date.now() + 600000);
+        return json({ token: t, rbackup: u.rbackup });
+      }
+      if (p === "/api/recover/finish") {
+        const r = this.one("SELECT * FROM recov WHERE token=? AND exp>?", String(body.token || ""), Date.now());
+        if (!r) return json({ error: "انتهت المهلة، أعد المحاولة" }, 401);
+        if (String(body.password || "").length < 6 || typeof body.backup !== "string") return json({ error: "بيانات ناقصة" }, 400);
+        const salt = randHex(16);
+        this.sql.exec("UPDATE users SET salt=?, hash=?, backup=? WHERE id=?", salt, await hashPass(String(body.password), salt), body.backup.slice(0, 2000), r.uid);
+        this.sql.exec("DELETE FROM recov WHERE uid=?", r.uid);
+        this.sql.exec("DELETE FROM sessions WHERE uid=?", r.uid);
+        for (const ws of this.ctx.getWebSockets(String(r.uid))) { try { ws.close(4001, "logout"); } catch {} }
+        const u = this.user(r.uid);
+        return json({ token: this.newSession(u.id), user: this.pub(u, true) });
+      }
+      // ---------- ربط جهاز آخر (الكمبيوتر) بمسح QR ----------
+      if (p === "/api/link/new") {
+        const ip = req.headers.get("cf-connecting-ip") || "x";
+        if (!this.limit("link:" + ip, 60, 3600000)) return json({ error: "محاولات كثيرة" }, 429);
+        const lid = randHex(16);
+        this.sql.exec("INSERT INTO links(lid, created) VALUES(?,?)", lid, Date.now());
+        return json({ lid });
+      }
+      if (p === "/api/link/poll") {
+        const l = this.one("SELECT * FROM links WHERE lid=?", String(url.searchParams.get("lid") || ""));
+        if (!l || l.created < Date.now() - 180000) return json({ error: "انتهت صلاحية الرمز" }, 410);
+        if (!l.token) return json({ pending: true });
+        this.sql.exec("DELETE FROM links WHERE lid=?", l.lid);
+        return json({ token: l.token, epub: l.epub, payload: l.payload, user: this.pub(this.user(l.uid), true) });
+      }
+
       const me = this.auth(req, url);
       if (!me) return json({ error: "unauthorized" }, 401);
       const token = (req.headers.get("authorization") || "").replace(/^Bearer /, "");
+
+      if (p === "/api/link/approve") {
+        const l = this.one("SELECT * FROM links WHERE lid=?", String(body.lid || ""));
+        if (!l || l.token || l.created < Date.now() - 180000) return json({ error: "الرمز منتهي أو مستخدم" }, 410);
+        this.sql.exec("UPDATE links SET uid=?, token=?, epub=?, payload=? WHERE lid=?", me.id, this.newSession(me.id), String(body.epub || "").slice(0, 200), String(body.payload || "").slice(0, 6000), l.lid);
+        return json({ ok: true });
+      }
+      if (p === "/api/recovery/set") {
+        if (typeof body.rauth !== "string" || typeof body.rbackup !== "string") return json({ error: "بيانات ناقصة" }, 400);
+        const rs = randHex(16);
+        this.sql.exec("UPDATE users SET rsalt=?, rhash=?, rbackup=? WHERE id=?", rs, await hashPass(body.rauth, rs), body.rbackup.slice(0, 2000), me.id);
+        return json({ ok: true });
+      }
+      if (p === "/api/recovery/status") return json({ set: !!me.rhash });
+      if (p === "/api/scheduled") {
+        const c = String(url.searchParams.get("c") || "");
+        const rows = c[0] === "g" ? this.all("SELECT * FROM scheduled WHERE a=? AND gid=? ORDER BY at", me.id, Number(c.slice(1))) : this.all("SELECT * FROM scheduled WHERE a=? AND b=? AND gid IS NULL ORDER BY at", me.id, Number(c.slice(1)));
+        return json({ items: rows });
+      }
+      if (p === "/api/scheduled/cancel") { this.sql.exec("DELETE FROM scheduled WHERE id=? AND a=?", Number(body.id), me.id); return json({ ok: true }); }
 
       if (p === "/api/me") {
         if (req.method === "POST") {
@@ -378,6 +501,8 @@ export class Hub {
         this.sql.exec("DELETE FROM messages WHERE (a=? OR b=?) AND gid IS NULL", me.id, me.id);
         this.sql.exec("DELETE FROM gmembers WHERE uid=?", me.id);
         this.sql.exec("DELETE FROM statuses WHERE uid=?", me.id);
+        this.sql.exec("DELETE FROM scheduled WHERE a=?", me.id);
+        this.sql.exec("UPDATE users SET rhash=NULL, rbackup=NULL WHERE id=?", me.id);
         this.sql.exec("UPDATE users SET email=?, name='حساب محذوف', about='', avatar=NULL, pub=NULL, backup=NULL, hash='', pin=NULL WHERE id=?", "deleted-" + me.id + "-" + randHex(4), me.id);
         return json({ ok: true });
       }
@@ -406,11 +531,13 @@ export class Hub {
            WHERE m.id IN (SELECT MAX(id) FROM messages WHERE gid IS NULL AND (a=?1 OR b=?1) GROUP BY CASE WHEN a=?1 THEN b ELSE a END)`, me.id);
         const chats = rows.map((m) => {
           const ck = pairKey(me.id, m.peer);
+          if (m.id <= this.clearedUpto(me.id, ck)) return null;
           const unread = this.one("SELECT COUNT(*) AS n FROM messages WHERE gid IS NULL AND a=? AND b=? AND status<2 AND deleted=0", m.peer, me.id).n;
           return { key: "u" + m.peer, user: this.pub(this.user(m.peer)), last: this.shape(m, me.id), unread, prefs: this.prefsOf(me.id, ck), ttl: this.ttlOf(ck), blocked: this.blocked(me.id, m.peer) };
-        });
+        }).filter(Boolean);
         for (const g of this.all("SELECT gid, last_read FROM gmembers WHERE uid=?", me.id)) {
-          const last = this.one("SELECT * FROM messages WHERE gid=? ORDER BY id DESC LIMIT 1", g.gid);
+          const cu = this.clearedUpto(me.id, "g" + g.gid);
+          const last = this.one("SELECT * FROM messages WHERE gid=? AND id>? ORDER BY id DESC LIMIT 1", g.gid, cu);
           const unread = this.one("SELECT COUNT(*) AS n FROM messages WHERE gid=? AND id>? AND a<>? AND deleted=0 AND kind<>'sys'", g.gid, g.last_read, me.id).n;
           chats.push({ key: "g" + g.gid, group: this.groupInfo(g.gid, me.id), last: last ? this.shape(last, me.id) : null, unread, prefs: this.prefsOf(me.id, "g" + g.gid), ttl: this.ttlOf("g" + g.gid) });
         }
@@ -423,16 +550,28 @@ export class Hub {
         const media = p === "/api/media" ? " AND kind IN ('file','voice') AND deleted=0" : "";
         const lim = media ? 300 : 80;
         const now = Date.now();
+        const ckc = this.ckeyFromClient(c, me.id);
+        const after = ckc ? this.clearedUpto(me.id, ckc) : 0;
         let msgs;
         if (c[0] === "g") {
           const gid = Number(c.slice(1));
           if (!this.isMember(gid, me.id)) return json({ error: "لست عضواً" }, 403);
-          msgs = this.all(`SELECT * FROM messages WHERE gid=? AND id<? AND (expires IS NULL OR expires>?)${media} ORDER BY id DESC LIMIT ?`, gid, before, now, lim);
+          msgs = this.all(`SELECT * FROM messages WHERE gid=? AND id<? AND id>? AND (expires IS NULL OR expires>?)${media} ORDER BY id DESC LIMIT ?`, gid, before, after, now, lim);
         } else {
           const w = Number(c.slice(1));
-          msgs = this.all(`SELECT * FROM messages WHERE gid IS NULL AND ((a=? AND b=?) OR (a=? AND b=?)) AND id<? AND (expires IS NULL OR expires>?)${media} ORDER BY id DESC LIMIT ?`, me.id, w, w, me.id, before, now, lim);
+          msgs = this.all(`SELECT * FROM messages WHERE gid IS NULL AND ((a=? AND b=?) OR (a=? AND b=?)) AND id<? AND id>? AND (expires IS NULL OR expires>?)${media} ORDER BY id DESC LIMIT ?`, me.id, w, w, me.id, before, after, now, lim);
         }
         return json({ messages: msgs.reverse().map((m) => this.shape(m, me.id)) });
+      }
+
+      if (p === "/api/chat/clear") {
+        const ck = this.ckeyFromClient(String(body.c || ""), me.id);
+        if (!ck) return json({ error: "bad" }, 400);
+        const mx = this.one("SELECT IFNULL(MAX(id),0) AS x FROM messages").x;
+        this.sql.exec("INSERT OR REPLACE INTO clears VALUES(?,?,?)", me.id, ck, mx);
+        if (ck[0] === "u") this.sql.exec("UPDATE messages SET status=2 WHERE gid IS NULL AND b=? AND status<2 AND a=?", me.id, Number(String(body.c).slice(1)));
+        if (body.hide) this.sql.exec("INSERT OR REPLACE INTO prefs VALUES(?,?,0,(SELECT IFNULL((SELECT muted FROM prefs WHERE uid=? AND ckey=?),0)),0)", me.id, ck, me.id, ck);
+        return json({ ok: true });
       }
 
       if (p === "/api/prefs") {
@@ -591,40 +730,32 @@ export class Hub {
         ws.send('{"t":"pong"}');
         break;
       case "send": {
-        const body = String(m.body || "").slice(0, 64000);
-        const kind = ["text", "call", "file", "voice", "loc", "contact", "link"].includes(m.kind) ? m.kind : "text";
-        const reply = Number(m.reply) || null;
-        if (!body.trim()) return;
         if (!this.limit("msg:" + uid, 600, 60000)) return;
-        const now = Date.now();
-        if (gid) {
-          if (!this.isMember(gid, uid)) return;
-          const t = this.ttlOf("g" + gid);
-          this.sql.exec("INSERT INTO messages(a,b,body,kind,ts,status,reply,gid,fwd,expires) VALUES(?,?,?,?,?,?,?,?,?,?)", uid, 0, body, kind, now, 1, reply, gid, m.fwd ? 1 : 0, t ? now + t * 1000 : null);
-          const msg = this.one("SELECT * FROM messages WHERE id=last_insert_rowid()");
-          this.sql.exec("UPDATE gmembers SET last_read=? WHERE gid=? AND uid=?", msg.id, gid, uid);
-          ws.send(JSON.stringify({ t: "ack", cid: m.cid, m: msg }));
-          const sender = this.pub(this.user(uid));
-          const gname = (this.one("SELECT name FROM groups WHERE id=?", gid) || {}).name;
-          for (const x of this.members(gid)) {
-            if (x.uid === uid) { this.sendTo(uid, { t: "msg", m: msg }, ws); continue; }
-            this.sendTo(x.uid, { t: "msg", m: msg, user: sender, group: { id: gid, name: gname }, muted: !!this.prefsOf(x.uid, "g" + gid).muted });
-          }
-          break;
-        }
-        if (!to || to === uid || !this.user(to)) return;
-        if (this.blocked(to, uid) || this.blocked(uid, to)) {
-          // المحظور لا تصل رسائله؛ يرى علامة واحدة فقط
-          ws.send(JSON.stringify({ t: "ack", cid: m.cid, m: { id: -now, a: uid, b: to, body, kind, ts: now, status: 0, reply } }));
-          return;
-        }
-        const ck = pairKey(uid, to), t = this.ttlOf(ck);
-        const status = this.online(to) ? 1 : 0;
-        this.sql.exec("INSERT INTO messages(a,b,body,kind,ts,status,reply,fwd,expires) VALUES(?,?,?,?,?,?,?,?,?)", uid, to, body, kind, now, status, reply, m.fwd ? 1 : 0, t ? now + t * 1000 : null);
-        const msg = this.one("SELECT * FROM messages WHERE id=last_insert_rowid()");
-        ws.send(JSON.stringify({ t: "ack", cid: m.cid, m: msg }));
-        this.sendTo(uid, { t: "msg", m: msg }, ws);
-        this.sendTo(to, { t: "msg", m: msg, user: this.pub(this.user(uid)), muted: !!this.prefsOf(to, ck).muted });
+        this.deliver(uid, m, ws, m.cid);
+        break;
+      }
+      case "schedule": {
+        const at = Number(m.at), now = Date.now();
+        if (!(at > now + 20000 && at < now + 365 * DAY)) return ws.send(JSON.stringify({ t: "err", msg: "وقت غير صالح" }));
+        if (gid ? !this.isMember(gid, uid) : !to || !this.user(to)) return;
+        if (this.one("SELECT COUNT(*) AS n FROM scheduled WHERE a=?", uid).n >= 100) return ws.send(JSON.stringify({ t: "err", msg: "الحد 100 رسالة مجدولة" }));
+        const kind = KINDS.includes(m.kind) ? m.kind : "text";
+        this.sql.exec("INSERT INTO scheduled(a,b,gid,body,kind,at,created) VALUES(?,?,?,?,?,?,?)", uid, gid ? 0 : to, gid || null, String(m.body || "").slice(0, 64000), kind, at, now);
+        ws.send(JSON.stringify({ t: "scheduled", cid: m.cid, at }));
+        const cur = await this.ctx.storage.getAlarm();
+        if (!cur || cur > at) await this.ctx.storage.setAlarm(at);
+        break;
+      }
+      case "vote": {
+        const msg = this.one("SELECT * FROM messages WHERE id=? AND kind='poll' AND deleted=0", Number(m.id));
+        if (!msg) return;
+        const aud = this.audience(msg);
+        if (!aud.includes(uid)) return;
+        const opts = Array.isArray(m.opts) ? [...new Set(m.opts.map(Number).filter((x) => x >= 0 && x < 12))] : [];
+        if (opts.length) this.sql.exec("INSERT OR REPLACE INTO votes VALUES(?,?,?)", msg.id, uid, JSON.stringify(opts));
+        else this.sql.exec("DELETE FROM votes WHERE mid=? AND uid=?", msg.id, uid);
+        const votes = this.votesOf(msg.id);
+        for (const u of aud) this.sendTo(u, { t: "votes", id: msg.id, votes, gid: msg.gid, a: msg.a, b: msg.b });
         break;
       }
       case "read": {

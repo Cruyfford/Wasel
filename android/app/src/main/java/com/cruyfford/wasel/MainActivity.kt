@@ -155,6 +155,9 @@ class MainActivity : AppCompatActivity() {
             .canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK) == BiometricManager.BIOMETRIC_SUCCESS
 
         @JavascriptInterface
+        fun rev(): String = BuildConfig.NATIVE_REV
+
+        @JavascriptInterface
         fun post(json: String) {
             val o = try { JSONObject(json) } catch (_: Exception) { return }
             runOnUiThread { onNative(o) }

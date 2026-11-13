@@ -10,8 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       url: ${{ steps.deploy.outputs.url }}
+      rev: ${{ steps.rev.outputs.rev }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Native revision
+        id: rev
+        run: echo "rev=$(git rev-parse HEAD:ios HEAD:android | sha1sum | cut -c1-10)" >> "$GITHUB_OUTPUT"
 
       - name: Deploy worker
         id: deploy
@@ -32,7 +37,7 @@ jobs:
             ACC=$(curl -s -H "Authorization: Bearer $T" "https://api.cloudflare.com/client/v4/accounts?per_page=5" | jq -r '.result[0].id // empty')
           fi
           export CLOUDFLARE_API_TOKEN="$T" CLOUDFLARE_ACCOUNT_ID="$ACC"
-          npx --yes wrangler@4 deploy 2>&1 | tee deploy.log
+          npx --yes wrangler@4 deploy --var NATIVE_REV:${{ steps.rev.outputs.rev }} 2>&1 | tee deploy.log
           if [ -n "$TURN_ID" ] && [ -n "$TURN_TOKEN" ]; then
             printf '%s' "$TURN_ID"    | npx --yes wrangler@4 secret put TURN_KEY_ID
             printf '%s' "$TURN_TOKEN" | npx --yes wrangler@4 secret put TURN_KEY_TOKEN
@@ -53,6 +58,7 @@ jobs:
           URL="${{ needs.server.outputs.url }}"
           echo "Server: $URL"
           /usr/libexec/PlistBuddy -c "Set :WaselServerURL $URL" ios/Wasel/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :WaselRev ${{ needs.server.outputs.rev }}" ios/Wasel/Info.plist
 
       - name: Generate Xcode project
         run: |
@@ -95,7 +101,7 @@ jobs:
       - name: Build APK
         working-directory: android
         run: |
-          gradle assembleRelease --no-daemon -PserverUrl="${{ needs.server.outputs.url }}"
+          gradle assembleRelease --no-daemon -PserverUrl="${{ needs.server.outputs.url }}" -PnativeRev="${{ needs.server.outputs.rev }}"
           cp app/build/outputs/apk/release/app-release.apk ../Wasel.apk
           ls -la ../Wasel.apk
       - uses: actions/upload-artifact@v4

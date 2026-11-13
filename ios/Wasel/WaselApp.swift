@@ -96,7 +96,8 @@ struct WebView: UIViewRepresentable {
         cfg.websiteDataStore = .default()
         let uc = WKUserContentController()
         uc.add(NativeHub.shared, name: "wasel")
-        uc.addUserScript(WKUserScript(source: "window.WASEL_BIO=\(NativeHub.hasBiometrics);window.WASEL_PLATFORM='ios';",
+        let rev = (Bundle.main.object(forInfoDictionaryKey: "WaselRev") as? String ?? "").filter { $0.isLetter || $0.isNumber }
+        uc.addUserScript(WKUserScript(source: "window.WASEL_BIO=\(NativeHub.hasBiometrics);window.WASEL_PLATFORM='ios';window.WASEL_REV='\(rev)';",
                                       injectionTime: .atDocumentStart, forMainFrameOnly: true))
         cfg.userContentController = uc
         let w = WKWebView(frame: .zero, configuration: cfg)

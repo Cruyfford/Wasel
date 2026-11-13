@@ -165,6 +165,9 @@ function preview(m) {
   if (m.deleted) return "🚫 تم حذف الرسالة";
   if (m.kind === "sys") return m.body;
   if (m.kind === "loc") return "📍 موقع";
+  if (m.kind === "poll") return "📊 " + (meta(m)?.q || "استطلاع");
+  if (m.kind === "sticker") return (meta(m)?.e || "") + " ملصق";
+  if (m.kind === "vnote") return "⭕ رسالة فيديو";
   if (m.kind === "contact") return "👤 " + (meta(m)?.name || "جهة اتصال");
   if (m.kind === "link") return meta(m)?.t || "🔗 رابط";
   if (m.kind === "file") { const x = meta(m); if (!x) return "📎 ملف"; return x.mime?.startsWith("image/") ? "📷 صورة" : x.mime?.startsWith("video/") ? "🎥 فيديو" : "📄 " + x.name; }

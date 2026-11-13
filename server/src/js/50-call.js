@@ -224,15 +224,18 @@ function renderCalls() {
   const el = $("callList");
   if (!S.calls.length) { el.innerHTML = '<div class="empty">لا توجد مكالمات بعد.</div>'; return; }
   const L = { out: ["↗", "صادرة", ""], in: ["↙", "واردة", ""], missed: ["↙", "فائتة", "var(--red)"], declined: ["↙", "مرفوضة", "var(--red)"], noanswer: ["↗", "لم يتم الرد", "var(--red)"], cancelled: ["↗", "ملغاة", ""], rejected: ["↗", "مرفوضة", "var(--red)"], busy: ["↗", "مشغول", ""], unavailable: ["↗", "غير متصل", ""] };
-  el.innerHTML = "";
-  for (const c of S.calls) {
+  el.innerHTML = '<button class="older" id="clrCalls">🗑️ مسح سجل المكالمات</button>';
+  $("clrCalls").onclick = async () => { if (await ask("مسح سجل المكالمات كله؟", [], "مسح")) { S.calls = []; localStorage.setItem("w_calls", "[]"); renderCalls(); } };
+  S.calls.forEach((c, ci) => {
     const u = S.users[c.peer] || { id: c.peer, name: "…" }; const l = L[c.type] || L.out;
     const r = document.createElement("div"); r.className = "row"; r.style.animation = "none";
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm" style="color:${l[2] || "inherit"}">${esc(u.name)}</span><span class="tm">${shortTime(c.ts)} ${hm(c.ts)}</span></div>
       <div class="sub"><span class="pv">${l[0]} ${l[1]}${c.dur ? " • " + fmtDur(c.dur) : ""}</span><span>${c.video ? "📹" : "📞"}</span></div></div>`;
     avatar(r.querySelector(".av"), u);
-    r.onclick = () => { S.users[u.id] ||= u; startCall(c.video, u.id); };
-    el.append(r);
-  }
+    r.dataset.ci = ci;
+    r.onclick = () => { if (S.lpFired || S.swiping) return; S.users[u.id] ||= u; startCall(c.video, u.id); };
+    el.append(swipeable(r, () => { S.calls.splice(ci, 1); localStorage.setItem("w_calls", JSON.stringify(S.calls)); renderCalls(); }));
+  });
+  longPress(el, ".row[data-ci]", (r) => sheetMenu([["🗑️", "حذف من السجل", () => { S.calls.splice(Number(r.dataset.ci), 1); localStorage.setItem("w_calls", JSON.stringify(S.calls)); renderCalls(); }, "dz"], ["💬", "مراسلة", () => openChat("u" + S.calls[Number(r.dataset.ci)].peer)]]));
 }
 

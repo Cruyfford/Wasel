@@ -9,10 +9,11 @@
 	<key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
 	<key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key><string>APPL</string>
-	<key>CFBundleShortVersionString</key><string>3.0</string>
+	<key>CFBundleShortVersionString</key><string>4.0</string>
 	<key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key><true/>
 	<key>WaselServerURL</key><string></string>
+	<key>WaselRev</key><string></string>
 	<key>NSCameraUsageDescription</key><string>الكاميرا مطلوبة لمكالمات الفيديو</string>
 	<key>NSFaceIDUsageDescription</key><string>لفتح قفل واصل ببصمة الوجه</string>
 	<key>NSLocationWhenInUseUsageDescription</key><string>لإرسال موقعك في المحادثة عندما تطلب ذلك</string>

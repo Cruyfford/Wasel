@@ -4,6 +4,7 @@ plugins {
 }
 
 val serverUrl = (project.findProperty("serverUrl") as String?) ?: ""
+val nativeRev = (project.findProperty("nativeRev") as String?) ?: ""
 
 android {
     namespace = "com.cruyfford.wasel"
@@ -12,9 +13,10 @@ android {
         applicationId = "com.cruyfford.wasel"
         minSdk = 24
         targetSdk = 34
-        versionCode = 3
-        versionName = "3.0"
+        versionCode = 4
+        versionName = "4.0"
         buildConfigField("String", "SERVER_URL", "\"$serverUrl\"")
+        buildConfigField("String", "NATIVE_REV", "\"$nativeRev\"")
     }
     signingConfigs {
         create("release") {

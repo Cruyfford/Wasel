@@ -39,7 +39,7 @@ async function uploadEncrypted(blob, onProg) {
 async function sendFile(file, kind = "file", extra = {}) {
   const key = S.cur; if (!key) return;
   if (file.size > 58 * 1048576) return toast("الحد الأقصى للملف 58MB");
-  const th = kind === "file" ? await makeThumb(file) : null;
+  const th = kind === "file" || kind === "vnote" ? await makeThumb(file) : null;
   const x = { name: file.name || "file", mime: file.type || "application/octet-stream", size: file.size, ...(th || {}), ...extra };
   const local = URL.createObjectURL(file);
   x.fid = "local-" + randHexJS(6);
@@ -111,6 +111,9 @@ $("cAttach").onclick = () => sheetMenu([
   ["📄", "ملف", () => $("fAny").click()],
   ["📍", "موقعي", sendLocation],
   ["👤", "جهة اتصال", sendContact],
+  ["⭕", "رسالة فيديو", videoNote],
+  ["📊", "استطلاع", newPoll],
+  ["⏰", "جدولة رسالة", scheduleMsg],
 ]);
 for (const id of ["fMedia", "fAny", "fCam"]) $(id).onchange = async (e) => { const fs = [...e.target.files]; e.target.value = ""; for (const f of fs) await sendFile(f); };
 function sendLocation() {
@@ -176,7 +179,7 @@ async function playVoice(el, x) {
   el.querySelector(".vp").textContent = "⏳";
   try {
     const f = await loadFile(x);
-    VA = new Audio(f.url); VEL = el;
+    VA = new Audio(f.url); VEL = el; VA.playbackRate = SET.vspeed || 1;
     VA.onplay = () => (el.querySelector(".vp").textContent = "⏸");
     VA.onpause = () => (el.querySelector(".vp").textContent = "▶");
     VA.ontimeupdate = () => { const d = VA.duration && isFinite(VA.duration) ? VA.duration : x.dur || 1; el.querySelector(".vbar i").style.width = (VA.currentTime / d) * 100 + "%"; el.querySelector("span").textContent = fmtDur(VA.currentTime); };
