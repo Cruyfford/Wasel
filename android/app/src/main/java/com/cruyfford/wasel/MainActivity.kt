@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     private val nprefs by lazy { WaselService.prefs(this) }
 
     private var autoAnswer: String? = null
+    private var geoCb: GeolocationPermissions.Callback? = null
+    private var geoOrigin: String? = null
 
     private val serverUrl: String
         get() = prefs.getString("server", null)?.takeIf { it.isNotBlank() } ?: BuildConfig.SERVER_URL
@@ -72,6 +74,7 @@ class MainActivity : AppCompatActivity() {
             mediaPlaybackRequiresUserGesture = false
             cacheMode = WebSettings.LOAD_DEFAULT
             allowFileAccess = false
+            setGeolocationEnabled(true)
             setSupportZoom(false)
         }
         web.addJavascriptInterface(Bridge(), "WaselNative")
@@ -79,6 +82,10 @@ class MainActivity : AppCompatActivity() {
         web.webChromeClient = object : WebChromeClient() {
             override fun onPermissionRequest(request: PermissionRequest) {
                 runOnUiThread { handlePermission(request) }
+            }
+            override fun onGeolocationPermissionsShowPrompt(origin: String, cb: GeolocationPermissions.Callback) {
+                if (ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) cb.invoke(origin, true, false)
+                else { geoCb = cb; geoOrigin = origin; ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 3) }
             }
             override fun onShowFileChooser(view: WebView, cb: ValueCallback<Array<Uri>>, params: FileChooserParams): Boolean {
                 fileCallback?.onReceiveValue(null)
@@ -135,9 +142,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun injectAnswer() {
         val id = autoAnswer ?: return
-        if (!id.matches(Regex("[a-z0-9]{1,20}"))) return
+        if (!id.matches(Regex("g?[a-z0-9]{1,20}"))) return
         autoAnswer = null
-        js("window.WASEL_AUTOANSWER='$id';try{if(typeof C!=='undefined'&&C&&C.id==='$id'&&C.state==='incoming')document.getElementById('kAccept').click()}catch(e){}")
+        js("window.WASEL_AUTOANSWER='$id';try{if(typeof C!=='undefined'&&C&&C.id==='$id'&&C.state==='incoming')document.getElementById('kAccept').click();if(typeof S!=='undefined'&&S.gring&&'g'+S.gring.gid==='$id')document.getElementById('gAccept').click()}catch(e){}")
     }
 
     private fun js(code: String) = runOnUiThread { web.evaluateJavascript(code, null) }
@@ -271,6 +278,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(code: Int, perms: Array<out String>, results: IntArray) {
         super.onRequestPermissionsResult(code, perms, results)
+        if (code == 3) {
+            val ok = results.isNotEmpty() && results.any { it == PackageManager.PERMISSION_GRANTED }
+            geoCb?.invoke(geoOrigin, ok, false); geoCb = null
+            return
+        }
         if (code != 1) return
         val req = pendingRequest ?: return
         pendingRequest = null

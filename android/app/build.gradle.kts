@@ -12,8 +12,8 @@ android {
         applicationId = "com.cruyfford.wasel"
         minSdk = 24
         targetSdk = 34
-        versionCode = 2
-        versionName = "2.0"
+        versionCode = 3
+        versionName = "3.0"
         buildConfigField("String", "SERVER_URL", "\"$serverUrl\"")
     }
     signingConfigs {

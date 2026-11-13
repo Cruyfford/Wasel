@@ -202,6 +202,95 @@ input[type=range]{width:100%;accent-color:var(--g1)}
 .pinv{font:800 30px ui-monospace,Menlo,monospace;letter-spacing:5px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;flex:1}
 .pincard small{color:var(--muted);font-size:12.5px}
 .pinin{text-align:center;font:700 24px ui-monospace,Menlo,monospace!important;letter-spacing:5px;text-transform:uppercase}
+/* v3 */
+.tabs button{padding:11px 16px}
+.row.arch{padding:12px 16px}
+.row .ics{display:flex;gap:4px;align-items:center;font-size:13px}
+.badge.mut{background:#ffffff33;box-shadow:none}
+.acth{margin:0 0 8px;font-size:15px;color:var(--muted);text-align:center}
+.qreact{display:flex;justify-content:space-around;padding:4px 0 10px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.qreact button{font-size:28px;width:48px;height:48px;border-radius:50%}
+.qreact button.on{background:var(--glass2)}
+.b .snd{display:block;font-size:12.5px;font-weight:800;margin-bottom:2px}
+.b .fwd{display:block;font-size:11.5px;opacity:.75;font-style:italic;margin-bottom:2px}
+.b.hasr{margin-bottom:16px}
+.b .reacts{position:absolute;bottom:-14px;left:8px;background:var(--panel,#1c2230);border:1px solid var(--line);border-radius:12px;padding:1px 7px;font-size:13px;white-space:nowrap;box-shadow:0 2px 8px #0006;cursor:pointer}
+.b.i .reacts{left:auto;right:8px}
+.b a{color:inherit;text-decoration:underline;word-break:break-all}
+.b.flash{animation:flash 1.2s}
+@keyframes flash{30%{filter:brightness(1.6)}}
+.sys{text-align:center;margin:8px 0}
+.sys span{display:inline-block;background:var(--glass2);color:var(--muted);font-size:12.5px;padding:6px 12px;border-radius:12px;max-width:85%}
+.older{display:block;margin:6px auto 10px;padding:8px 16px;border-radius:14px;background:var(--glass2);font-size:13px;color:var(--muted)}
+.chatsearch{margin:8px 12px 0;display:flex;align-items:center;gap:8px;padding:0 6px 0 14px;border-radius:18px;background:var(--glass);border:1px solid var(--line)}
+.chatsearch input{flex:1;background:none;border:0;outline:none;padding:11px 0;font-size:15px}
+.blockedbar{margin:0 12px calc(var(--sb) + 12px);padding:14px;border-radius:20px;background:#ff5f6d22;color:var(--red);font-weight:700}
+.mloc{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:200px;padding:6px}
+.mloc .mapic{font-size:40px}
+.mloc small{opacity:.8}
+.btn.sm{padding:8px 14px;font-size:13px;border-radius:14px;text-decoration:none!important;display:inline-block;margin-top:4px}
+.mcontact{display:flex;align-items:center;gap:10px;min-width:220px}
+.mcontact span{flex:1}
+.mcontact small{display:block;opacity:.8;font-size:12px}
+.lprev{display:block;text-decoration:none!important;background:#0003;border-radius:12px;overflow:hidden;margin:2px -4px 6px;max-width:260px}
+.lprev img{width:100%;max-height:150px;object-fit:cover;display:block}
+.lprev b,.lprev small,.lprev i{display:block;padding:0 10px}
+.lprev b{padding-top:8px;font-size:14px}
+.lprev small{font-size:12.5px;opacity:.8;padding-top:2px}
+.lprev i{font-size:11.5px;opacity:.6;padding:4px 10px 8px;font-style:normal}
+.img.gone,.mimg.gone{opacity:.4}
+.infobox{max-height:88vh;overflow-y:auto;align-items:center;text-align:center}
+.infobox .card{text-align:start}
+.infobox .it{font-size:15px}
+.adm{font-size:11px;color:var(--g1);border:1px solid var(--g1);border-radius:8px;padding:1px 6px}
+.picklist{max-height:50vh;overflow-y:auto}
+.picklist label.it{cursor:pointer}
+.picklist input[type=checkbox],.picklist input[type=radio]{width:22px;height:22px;accent-color:var(--g1)}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-height:60vh;overflow-y:auto}
+.mg{aspect-ratio:1;border-radius:12px;background:#ffffff14 center/cover;display:grid;place-items:center;font-size:24px;color:#fff;text-shadow:0 2px 6px #000}
+.mgf{display:flex;flex-direction:column;gap:4px;font-size:28px}
+.mgf small{font-size:10.5px;padding:0 4px;word-break:break-all}
+/* status */
+.sth{margin:14px 16px 4px;font-size:13px;color:var(--muted)}
+.stav.ring{box-shadow:0 0 0 2.5px var(--bg),0 0 0 5px var(--g1)}
+.stav.ring.seen{box-shadow:0 0 0 2.5px var(--bg),0 0 0 5px #ffffff40}
+#story{position:fixed;inset:0;z-index:70;background:#000;display:flex;flex-direction:column}
+.stbars{display:flex;gap:4px;padding:calc(var(--st) + 8px) 10px 6px;direction:ltr}
+.stbars i{flex:1;height:3px;border-radius:2px;background:#ffffff40;overflow:hidden}
+.stbars i.done b{width:100%}
+.stbars b{display:block;height:100%;width:0;background:#fff}
+.stbars b.run{animation:stp 5.5s linear forwards}
+@keyframes stp{to{width:100%}}
+.sthead{display:flex;align-items:center;gap:10px;padding:4px 12px;z-index:2}
+.sthead span{flex:1}
+.sthead small{display:block;color:#ffffffaa;font-size:12px}
+.stbody{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.sttext{position:absolute;inset:0;display:grid;place-items:center;padding:30px;font-size:28px;font-weight:800;text-align:center;line-height:1.5;white-space:pre-wrap}
+.stimg{max-width:100%;max-height:100%}
+.stcap{position:absolute;bottom:20px;left:16px;right:16px;text-align:center;background:#0008;padding:10px;border-radius:14px}
+.stfoot{display:flex;justify-content:center;gap:30px;padding:10px 0 calc(var(--sb) + 14px)}
+/* group call */
+#gcall{position:fixed;inset:0;z-index:55;background:#05070c;display:flex;flex-direction:column}
+.ghead{display:flex;justify-content:space-between;align-items:center;padding:calc(var(--st) + 12px) 18px 10px;font-size:17px}
+.ghead span{color:var(--muted);font-variant-numeric:tabular-nums}
+.ggrid{flex:1;display:grid;gap:6px;padding:6px;grid-template-columns:1fr;grid-auto-rows:1fr;padding-bottom:calc(var(--sb) + 110px)}
+.ggrid[data-n="2"]{grid-template-columns:1fr}
+.ggrid[data-n="3"],.ggrid[data-n="4"]{grid-template-columns:1fr 1fr}
+.ggrid[data-n="5"],.ggrid[data-n="6"],.ggrid[data-n="7"],.ggrid[data-n="8"]{grid-template-columns:1fr 1fr}
+.gt{position:relative;border-radius:18px;overflow:hidden;background:#151a24;min-height:0}
+.gt video{width:100%;height:100%;object-fit:cover}
+.gt.me video{transform:scaleX(-1)}
+.gt.me:not(.front) video{transform:none}
+.gt.me.front video,.gt.me video{transform:scaleX(-1)}
+.gt .av{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:26px;font-size:30px;display:none}
+.gt.novid .av{display:grid}
+.gt.novid video{opacity:0}
+.gt .gn{position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;background:#0008;padding:3px 10px;border-radius:10px}
+.gt.wait::after{content:"⏳";position:absolute;top:8px;left:10px}
+.gring{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px;text-align:center;font-size:17px}
+.gring .av{animation:pulse 2s infinite}
+#gcall .ctrls{position:absolute;bottom:calc(var(--sb) + 26px);left:50%;transform:translateX(-50%);display:flex;gap:16px;padding:12px 16px;border-radius:44px;background:#ffffff14;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid #ffffff22}
+#gIncoming{gap:60px!important;background:transparent!important;border:0!important}
 </style>
 </head>
 <body>
@@ -250,7 +339,8 @@ input[type=range]{width:100%;accent-color:var(--g1)}
   <div class="search"><span>🔍</span><input id="hSearch" placeholder="بحث"></div>
   <div class="list" id="chatList"></div>
   <div class="list hidden" id="callList"></div>
-  <div class="tabs"><button class="on" data-tab="chats">الدردشات</button><button data-tab="calls">المكالمات</button></div>
+  <div class="list hidden" id="statusList"></div>
+  <div class="tabs"><button class="on" data-tab="chats">الدردشات</button><button data-tab="status">الحالات</button><button data-tab="calls">المكالمات</button></div>
   <button class="fab" id="newChat"><svg><use href="#i-plus"/></svg></button>
 </div>
 
@@ -263,7 +353,9 @@ input[type=range]{width:100%;accent-color:var(--g1)}
     <button class="ib" id="cVideo"><svg><use href="#i-video"/></svg></button>
     <button class="ib" id="cVoice"><svg><use href="#i-phone"/></svg></button>
   </header>
+  <div class="chatsearch hidden" id="chatSearch"><span>🔍</span><input id="csInput" placeholder="ابحث في هذه المحادثة"><button class="ib sm" id="csX">✕</button></div>
   <div id="msgs"></div>
+  <button class="blockedbar hidden" id="blockedBar">🚫 هذا الشخص محظور — اضغط لإلغاء الحظر</button>
   <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX">✕</button></div>
   <div class="composer" id="composer">
     <button class="ib sm" id="cAttach">📎</button>
@@ -313,9 +405,16 @@ input[type=range]{width:100%;accent-color:var(--g1)}
     <div class="card">
       <button class="it" id="prSeen"><span class="tx">إخفاء آخر ظهور والاتصال<small>لن يرى أحد متى كنت متصلاً</small></span><span class="sw"></span></button>
       <button class="it" id="prRead"><span class="tx">علامات القراءة<small>إذا أطفأتها لن ترى أنت أيضاً علامات قراءة الآخرين</small></span><span class="sw"></span></button>
+      <button class="it" id="prBlocked"><span class="tx">🚫 المحظورون</span><span class="ch">‹</span></button>
     </div>
     <div class="card"><h4>الحماية الدائمة</h4><div class="it"><span class="tx">🔒 كل الرسائل والصور والملفات والمكالمات مشفّرة من طرف لطرف<small>حتى سيرفر واصل لا يستطيع قراءتها</small></span></div></div>
   </div>
+</div>
+
+<!-- المحظورون -->
+<div id="blocked" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>المحظورون</h1></header>
+  <div class="set"><div class="card" id="blockedList"></div></div>
 </div>
 
 <!-- الأمان -->
@@ -346,7 +445,8 @@ input[type=range]{width:100%;accent-color:var(--g1)}
       <div style="padding:0 16px 14px"><label style="color:var(--muted);font-size:13px">تعتيم الخلفية</label><input type="range" id="wDim" min="0" max="80"></div>
     </div>
     <div class="card"><h4>حجم الخط</h4><div class="seg" id="fsSeg"><button data-v="14px">صغير</button><button data-v="15.5px">متوسط</button><button data-v="18px">كبير</button></div></div>
-    <div class="card"><button class="it" id="csEnter"><span class="tx">زر الإدخال يرسل الرسالة</span><span class="sw"></span></button></div>
+    <div class="card"><button class="it" id="csEnter"><span class="tx">زر الإدخال يرسل الرسالة</span><span class="sw"></span></button>
+      <button class="it" id="csLp"><span class="tx">معاينة الروابط<small>يجلب عنوان وصورة الرابط عند إرساله</small></span><span class="sw"></span></button></div>
   </div>
 </div>
 
@@ -378,17 +478,22 @@ input[type=range]{width:100%;accent-color:var(--g1)}
 <div class="sheet hidden" id="askSheet"><div class="box"><h3 id="askT"></h3><div id="askF" style="display:flex;flex-direction:column;gap:10px"></div><div class="err" id="askE"></div><button class="btn" id="askOk"></button><button class="link" id="askNo">إلغاء</button></div></div>
 <div class="sheet hidden" id="actSheet"><div class="box"><div class="acts" id="acts"></div></div></div>
 <div class="sheet hidden" id="infoSheet">
-  <div class="box" style="align-items:center;text-align:center">
+  <div class="box infobox">
     <div class="av xl" id="iAv"></div><h3 id="iName" style="margin:6px 0 0"></h3><div id="iAbout" style="color:var(--muted)"></div><div id="iEmail" dir="ltr" style="color:var(--g1);font:700 15px ui-monospace,Menlo,monospace;letter-spacing:2px"></div>
     <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall">📞 صوت</button><button class="btn" style="flex:1" id="iVid">📹 فيديو</button></div>
-    <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px">
+    <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px" id="iSafe">
       <div style="font-weight:700">🔒 رقم الأمان</div>
       <div style="color:var(--muted);font-size:13px;line-height:1.7;margin:4px 0 8px">قارنه مع الرقم عند صديقك. إذا تطابق فالمحادثة والمكالمات مشفّرة بينكما فقط.</div>
       <div id="sNum" dir="ltr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px 12px;font:600 17px ui-monospace,Menlo,monospace"></div>
     </div>
+    <div class="card" style="align-self:stretch;margin:0" id="infoActs"></div>
+    <div class="card" style="align-self:stretch;margin:0" id="iMembers"></div>
     <button class="link" data-close>إغلاق</button>
   </div>
 </div>
+<div class="sheet hidden" id="pickSheet"><div class="box"><h3 id="pickT"></h3><div id="pickList" class="picklist"></div><button class="btn" id="pickOk">تم</button><button class="link" id="pickNo">إلغاء</button></div></div>
+<div class="sheet hidden" id="mediaSheet"><div class="box"><h3>🖼️ الوسائط والملفات</h3><div id="mediaGrid" class="mgrid"></div><button class="link" data-close>إغلاق</button></div></div>
+<input type="file" id="fStatus" accept="image/*" hidden>
 <input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
 <input type="file" id="fAny" multiple hidden>
 <input type="file" id="fCam" accept="image/*" capture="environment" hidden>
@@ -396,6 +501,28 @@ input[type=range]{width:100%;accent-color:var(--g1)}
 <input type="file" id="fWall" accept="image/*" hidden>
 
 <div id="viewer" class="hidden"><div class="vt"><button id="vX">✕</button><button id="vSave">⬇️</button></div><div id="vBody" style="display:contents"></div></div>
+
+<!-- عارض الحالات -->
+<div id="story" class="hidden">
+  <div class="stbars" id="stBars"></div>
+  <div class="sthead"><div class="av sm" id="stAv"></div><span><b id="stName"></b><small id="stTime"></small></span><button class="ib" id="stX">✕</button></div>
+  <div id="stBody" class="stbody"></div>
+  <div class="stfoot" id="stFoot"></div>
+</div>
+
+<!-- المكالمة الجماعية -->
+<div id="gcall" class="hidden">
+  <div class="ghead"><b id="gTitle"></b><span id="gTime"></span></div>
+  <div class="ggrid" id="gGrid"></div>
+  <div class="gring hidden" id="gRingInfo"><div class="av xl" id="gRAv"></div><span id="gRText"></span></div>
+  <div class="ctrls" id="gIncoming"><button class="cb grn" id="gAccept"><svg><use href="#i-phone"/></svg></button><button class="cb red" id="gDecline"><svg><use href="#i-phone"/></svg></button></div>
+  <div class="ctrls hidden" id="gActive">
+    <button class="cb" id="gMute"><svg><use href="#i-mic"/></svg></button>
+    <button class="cb gvidonly" id="gCam"><svg><use href="#i-video"/></svg></button>
+    <button class="cb gvidonly" id="gFlip"><svg><use href="#i-cam"/></svg></button>
+    <button class="cb red" id="gHang"><svg><use href="#i-phone"/></svg></button>
+  </div>
+</div>
 
 <!-- المكالمة -->
 <div id="call" class="hidden">
@@ -426,7 +553,7 @@ const S = {
   calls: JSON.parse(localStorage.getItem("w_calls") || "[]"),
 };
 const SET = Object.assign(
-  { wall: "glow", dim: 25, fs: "15.5px", enter: false, lock: null, bio: false, after: 0, secure: false, msgN: true, callN: true, sound: true },
+  { wall: "glow", dim: 25, fs: "15.5px", enter: false, lock: null, bio: false, after: 0, secure: false, msgN: true, callN: true, sound: true, lp: true },
   JSON.parse(localStorage.getItem("w_set") || "{}"));
 const saveSet = () => { localStorage.setItem("w_set", JSON.stringify(SET)); applySet(); native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure }); };
 const COLORS = ["linear-gradient(135deg,#ff6a88,#ff99ac)","linear-gradient(135deg,#43e97b,#38f9d7)","linear-gradient(135deg,#f6d365,#fda085)","linear-gradient(135deg,#4facfe,#00f2fe)","linear-gradient(135deg,#a18cd1,#fbc2eb)","linear-gradient(135deg,#fa709a,#fee140)","linear-gradient(135deg,#30cfd0,#7b5cff)","linear-gradient(135deg,#ff9a44,#fc6076)"];
@@ -438,7 +565,7 @@ function avatar(el, u, dot) {
   el.innerHTML = (img ? "" : esc((u?.name || "?").trim().charAt(0).toUpperCase())) + (dot && u?.online ? '<i class="dot"></i>' : "");
 }
 function toast(t) { const d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 2800); }
-const VIEWS = ["auth", "home", "chat", "settings", "profile", "privacy", "security", "chatset", "notifs"];
+const VIEWS = ["auth", "home", "chat", "settings", "profile", "privacy", "security", "chatset", "notifs", "blocked"];
 function show(id) { for (const v of VIEWS) $(v).classList.toggle("hidden", v !== id); S.view = id; }
 function go(id) { show(id); history.pushState({ v: id }, ""); }
 const pad = (n) => String(n).padStart(2, "0");
@@ -543,9 +670,34 @@ async function dec(uid, body) {
     PT.set(body, t); return t;
   } catch { return "🔒 تعذّر فك التشفير"; }
 }
-const txt = (m) => m.text ?? (PT.has(m.body) ? PT.get(m.body) : m.body && m.body.startsWith("e1:") ? "🔒 …" : m.body);
+const txt = (m) => m.text ?? (PT.has(m.body) ? PT.get(m.body) : m.body && /^(e1|g1):/.test(m.body) ? "🔒 …" : m.body);
 const meta = (m) => { if (m.meta) return m.meta; try { return (m.meta = JSON.parse(txt(m))); } catch { return null; } };
-const decAll = (peer, list) => Promise.all(list.map((m) => dec(peer, m.body)));
+// ظرف مشفّر لعدة مستلمين (المجموعات والحالات): مفتاح عشوائي يُشفَّر لكل مستلم بمفتاحه
+async function encEnv(ids, text) {
+  const raw = crypto.getRandomValues(new Uint8Array(32)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const ck = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["encrypt"]);
+  const ct = b64(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, ck, TE.encode(text)));
+  const k = {};
+  const all = [...new Set([...ids, S.me.id])];
+  S.users[S.me.id] = { ...S.users[S.me.id], ...S.me };
+  await Promise.all(all.map(async (id) => { try { k[id] = await enc(id, b64(raw)); } catch {} }));
+  const out = "g1:" + b64(TE.encode(JSON.stringify({ iv: b64(iv), ct, k })));
+  PT.set(out, text);
+  return out;
+}
+async function decEnv(sender, body) {
+  if (PT.has(body)) return PT.get(body);
+  try {
+    const o = JSON.parse(TD.decode(ub64(body.slice(3))));
+    const w = o.k[S.me.id]; if (!w) throw 0;
+    S.users[S.me.id] = { ...S.users[S.me.id], ...S.me };
+    const raw = await dec(sender, w);
+    if (raw.startsWith("🔒")) throw 0;
+    const ck = await crypto.subtle.importKey("raw", ub64(raw), "AES-GCM", false, ["decrypt"]);
+    const t = TD.decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(o.iv) }, ck, ub64(o.ct)));
+    PT.set(body, t); return t;
+  } catch { return "🔒 تعذّر فك التشفير"; }
+}
 async function safetyNumber(uid) {
   const keys = [S.me.pub, S.users[uid].pub].sort();
   const h = new Uint8Array(await crypto.subtle.digest("SHA-256", TE.encode(keys.join("|"))));
@@ -556,6 +708,10 @@ async function safetyNumber(uid) {
 function preview(m) {
   if (!m) return "";
   if (m.deleted) return "🚫 تم حذف الرسالة";
+  if (m.kind === "sys") return m.body;
+  if (m.kind === "loc") return "📍 موقع";
+  if (m.kind === "contact") return "👤 " + (meta(m)?.name || "جهة اتصال");
+  if (m.kind === "link") return meta(m)?.t || "🔗 رابط";
   if (m.kind === "file") { const x = meta(m); if (!x) return "📎 ملف"; return x.mime?.startsWith("image/") ? "📷 صورة" : x.mime?.startsWith("video/") ? "🎥 فيديو" : "📄 " + x.name; }
   if (m.kind === "voice") return "🎤 رسالة صوتية";
   if (m.kind === "game") return "🎴 دعوة لعبة";
@@ -621,7 +777,7 @@ document.addEventListener("visibilitychange", () => {
     if (SET.lock && hiddenAt && Date.now() - hiddenAt >= SET.after * 1000) lockNow();
     if (C && C.state === "incoming") ring("in");
     if (!S.wsOk && S.token) connect();
-    if (S.peer && S.view === "chat") wsSend({ t: "read", to: S.peer.id });
+    if (S.cur && S.view === "chat") markRead(S.cur);
   }
 });
 
@@ -679,277 +835,536 @@ function logout(silent) {
   localStorage.clear();
   if (keep) { const s = JSON.parse(keep); delete s.lock; s.bio = false; localStorage.setItem("w_set", JSON.stringify(s)); SET.lock = null; SET.bio = false; }
   if (wall) localStorage.setItem("w_wall", wall);
-  PRIV = null; PT.clear(); S.token = null; S.me = null; S.msgs = {}; S.chats = []; S.calls = [];
+  PRIV = null; PT.clear(); S.token = null; S.me = null; S.msgs = {}; S.convs = new Map(); S.cur = null; S.calls = [];
   try { S.ws && S.ws.close(); } catch {}
   show("auth");
 }
+
+
+// ---------- المحادثات (فردية u<id> وجماعية g<id>) ----------
+S.convs = new Map();
+const keyOfMsg = (m) => (m.gid ? "g" + m.gid : "u" + (m.a === S.me.id ? m.b : m.a));
+const cur = () => S.convs.get(S.cur);
+function ensureConv(key, extra = {}) {
+  let c = S.convs.get(key);
+  if (!c) {
+    c = { key, type: key[0], id: Number(key.slice(1)), last: null, unread: 0, prefs: { pinned: 0, muted: 0, archived: 0 }, ttl: 0 };
+    S.convs.set(key, c);
+  }
+  Object.assign(c, extra);
+  if (c.group) for (const u of c.group.members || []) S.users[u.id] = { ...S.users[u.id], ...u };
+  if (c.user) S.users[c.user.id] = { ...S.users[c.user.id], ...c.user };
+  return c;
+}
+function convName(c) { return c.type === "g" ? c.group?.name || "مجموعة" : (S.users[c.id] || c.user || {}).name || "…"; }
+function convAv(c) { return c.type === "g" ? { id: c.id + 3, name: c.group?.name || "؟", avatar: c.group?.avatar } : S.users[c.id] || c.user || { id: c.id, name: "…" }; }
+const memberIds = (c) => (c.group?.members || []).map((m) => m.id);
+const isAdmin = (c) => !!(c.group?.members || []).find((m) => m.id === S.me.id && m.admin);
+
+// التشفير حسب نوع المحادثة
+async function encFor(key, text) {
+  const c = S.convs.get(key) || ensureConv(key);
+  if (c.type === "u") return enc(c.id, text);
+  return encEnv(memberIds(c), text);
+}
+async function decMsg(m) {
+  if (!m || !m.body || m.kind === "sys") return m && m.body;
+  if (PT.has(m.body)) return PT.get(m.body);
+  if (m.body.startsWith("e1:")) return dec(m.a === S.me.id ? m.b : m.a, m.body);
+  if (m.body.startsWith("g1:")) return decEnv(m.a, m.body);
+  return m.body;
+}
+const decList = (list) => Promise.all(list.map(decMsg));
 
 // ---------- الاتصال اللحظي ----------
 function connect() {
   if (!S.token || (S.ws && S.ws.readyState <= 1)) return;
   const ws = new WebSocket(API.replace(/^http/, "ws") + "/ws?token=" + encodeURIComponent(S.token));
   S.ws = ws;
-  ws.onopen = () => { S.wsOk = true; S.retry = 0; $("connBar").classList.add("hidden"); loadChats(); if (S.peer && S.view === "chat") openChat(S.peer.id, true); flushQueue(); };
+  ws.onopen = () => { S.wsOk = true; S.retry = 0; $("connBar").classList.add("hidden"); loadChats(); if (S.cur && S.view === "chat") openChat(S.cur, true); flushQueue(); };
   ws.onclose = (e) => {
     S.wsOk = false; if (!S.token) return;
     if (e.code === 4001) { logout(true); toast("تم تسجيل خروجك من هذا الجهاز"); return; }
     $("connBar").classList.remove("hidden");
     setTimeout(connect, Math.min(10000, 800 * 2 ** S.retry++));
   };
-  ws.onmessage = (e) => { const m = JSON.parse(e.data); S.inq = (S.inq || Promise.resolve()).then(() => onWs(m)).catch(() => {}); };
+  ws.onmessage = (e) => { const m = JSON.parse(e.data); S.inq = (S.inq || Promise.resolve()).then(() => onWs(m)).catch((er) => console.warn(er)); };
 }
 setInterval(() => { if (S.wsOk) S.ws.send('{"t":"ping"}'); }, 25000);
 function wsSend(o) { if (S.wsOk) { S.ws.send(JSON.stringify(o)); return true; } return false; }
+const isOpen = (key) => S.cur === key && S.view === "chat" && !document.hidden;
 
 async function onWs(m) {
-  if (m.t === "msg") {
-    const msg = m.m, peer = msg.a === S.me.id ? msg.b : msg.a;
-    if (m.user) S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
-    await dec(peer, msg.body);
-    pushMsg(peer, msg);
-    const open = S.peer && S.peer.id === peer && !document.hidden && S.view === "chat";
-    if (open) wsSend({ t: "read", to: peer }); else if (msg.a !== S.me.id && SET.sound && !document.hidden) beep();
-    bumpChat(peer, msg, msg.a !== S.me.id);
-  } else if (m.t === "ack") {
-    const peer = m.m.b, list = S.msgs[peer] || [];
-    const i = list.findIndex((x) => x.cid === m.cid);
-    if (i >= 0) { const old = list[i]; list[i] = Object.assign(m.m, { meta: old.meta, local: old.local }); } else list.push(m.m);
-    S.queue = (S.queue || []).filter((q) => q.cid !== m.cid);
-    if (S.peer && S.peer.id === peer) renderMsgs();
-    bumpChat(peer, m.m, false);
-  } else if (m.t === "status") {
-    for (const x of S.msgs[m.with] || []) if (x.a === S.me.id && x.status < m.status && x.id) x.status = m.status;
-    const c = S.chats.find((c) => c.user.id === m.with); if (c && c.last.a === S.me.id) c.last.status = Math.max(c.last.status, m.status);
-    if (S.peer && S.peer.id === m.with) renderMsgs();
-    renderChats();
-  } else if (m.t === "deleted") {
-    const peer = m.a === S.me.id ? m.b : m.a;
-    for (const x of S.msgs[peer] || []) if (x.id === m.id) { x.deleted = 1; x.body = ""; x.meta = null; }
-    const c = S.chats.find((c) => c.user.id === peer); if (c && c.last.id === m.id) c.last.deleted = 1;
-    if (S.peer && S.peer.id === peer) renderMsgs();
-    renderChats();
-  } else if (m.t === "presence") {
-    const u = S.users[m.id]; if (u) { u.online = m.online; u.last_seen = m.last_seen; }
-    if (S.peer && S.peer.id === m.id) $("cStatus").textContent = lastSeen(u);
-    renderChats();
-  } else if (m.t === "profile") {
-    S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
-    renderChats();
-    if (S.peer && S.peer.id === m.user.id) { avatar($("cAv"), m.user); $("cName").textContent = m.user.name; }
-  } else if (m.t === "typing") {
-    if (S.peer && S.peer.id === m.from) {
-      $("cStatus").textContent = m.rec ? "يسجّل صوتاً… 🎤" : "يكتب…";
-      clearTimeout(S.typT); S.typT = setTimeout(() => ($("cStatus").textContent = lastSeen(S.users[m.from])), 3000);
+  switch (m.t) {
+    case "msg": {
+      const msg = m.m, key = keyOfMsg(msg);
+      if (m.user) S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
+      const c = ensureConv(key, m.group && m.group.members ? { group: m.group } : m.group ? { group: { ...(S.convs.get(key)?.group || {}), ...m.group } } : m.user && key[0] === "u" ? { user: m.user } : {});
+      if (key[0] === "g" && !c.group?.members) loadGroup(c.id);
+      await decMsg(msg);
+      pushMsg(key, msg);
+      if (isOpen(key)) markRead(key);
+      else if (msg.a !== S.me.id && msg.kind !== "sys" && SET.sound && !document.hidden && !c.prefs.muted) beep();
+      bumpConv(key, msg, msg.a !== S.me.id && msg.kind !== "sys");
+      break;
     }
-  } else if (m.t === "signal") {
-    if (m.user) S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
-    onSignal(m.from, m.data);
+    case "ack": {
+      const key = keyOfMsg(m.m), list = S.msgs[key] || [];
+      const i = list.findIndex((x) => x.cid === m.cid);
+      if (i >= 0) { const old = list[i]; list[i] = Object.assign(m.m, { meta: old.meta, local: old.local, text: old.text }); } else list.push(m.m);
+      S.queue = (S.queue || []).filter((q) => q.cid !== m.cid);
+      if (S.cur === key) renderMsgs();
+      bumpConv(key, m.m, false);
+      break;
+    }
+    case "status": {
+      const key = "u" + m.with;
+      for (const x of S.msgs[key] || []) if (x.a === S.me.id && x.status < m.status && x.id > 0) x.status = m.status;
+      const c = S.convs.get(key); if (c && c.last && c.last.a === S.me.id) c.last.status = Math.max(c.last.status, m.status);
+      if (S.cur === key) renderMsgs();
+      renderChats();
+      break;
+    }
+    case "deleted": case "edited": case "react": {
+      const mm = m.m || m, key = keyOfMsg(mm);
+      const list = S.msgs[key] || [];
+      const x = list.find((y) => y.id === (m.id || mm.id));
+      if (m.t === "deleted" && x) { x.deleted = 1; x.body = ""; x.meta = null; x.text = undefined; }
+      if (m.t === "edited") { await decMsg(m.m); if (x) { Object.assign(x, m.m); x.meta = null; x.text = undefined; } }
+      if (m.t === "react" && x) { x.reacts = { ...(x.reacts || {}) }; if (m.e) x.reacts[m.uid] = m.e; else delete x.reacts[m.uid]; }
+      const c = S.convs.get(key);
+      if (c && c.last && c.last.id === (m.id || mm.id) && m.t !== "react") { if (m.t === "deleted") c.last.deleted = 1; else c.last = m.m; }
+      if (S.cur === key) renderMsgs();
+      renderChats();
+      break;
+    }
+    case "presence": {
+      const u = S.users[m.id]; if (u) { u.online = m.online; u.last_seen = m.last_seen; }
+      if (S.cur === "u" + m.id) setHeader();
+      renderChats();
+      break;
+    }
+    case "profile":
+      S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
+      for (const c of S.convs.values()) if (c.group) for (const mem of c.group.members || []) if (mem.id === m.user.id) Object.assign(mem, m.user);
+      renderChats(); if (S.cur) setHeader();
+      break;
+    case "group": {
+      const c = ensureConv("g" + m.group.id, { group: m.group });
+      if (S.cur === c.key) { setHeader(); if (!$("infoSheet").classList.contains("hidden")) showInfo(); }
+      renderChats();
+      break;
+    }
+    case "group-removed": {
+      S.convs.delete("g" + m.gid); delete S.msgs["g" + m.gid];
+      if (S.cur === "g" + m.gid) { toast("لم تعد عضواً في هذه المجموعة"); history.back(); }
+      renderChats();
+      break;
+    }
+    case "typing": {
+      const key = m.gid ? "g" + m.gid : "u" + m.from;
+      if (S.cur === key) {
+        const who = m.gid ? (S.users[m.from]?.name || "") + " " : "";
+        $("cStatus").textContent = who + (m.rec ? "يسجّل صوتاً… 🎤" : "يكتب…");
+        clearTimeout(S.typT); S.typT = setTimeout(setHeader, 3000);
+      }
+      break;
+    }
+    case "signal":
+      if (m.user) S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
+      onSignal(m.from, m.data);
+      break;
+    case "gsignal": onGSignal(m.from, m.gid, m.data); break;
+    case "gcall": onGCall(m); break;
+    case "status-new": case "status-view": loadStatuses(); break;
   }
 }
 
-// ---------- الدردشات ----------
+// ---------- قائمة الدردشات ----------
 async function loadChats() {
   try {
     const d = await api("/api/chats");
-    for (const c of d.chats) S.users[c.user.id] = { ...S.users[c.user.id], ...c.user };
-    await Promise.all(d.chats.map((c) => dec(c.user.id, c.last.body)));
-    S.chats = d.chats;
+    const seen = new Set();
+    for (const c of d.chats) {
+      seen.add(c.key);
+      if (c.last) await decMsg(c.last);
+      ensureConv(c.key, c);
+    }
+    for (const k of [...S.convs.keys()]) if (!seen.has(k) && !(S.msgs[k] || []).length) S.convs.delete(k);
     renderChats();
   } catch {}
 }
-function bumpChat(peer, msg, incoming) {
-  let c = S.chats.find((c) => c.user.id === peer);
-  if (!c) { c = { user: S.users[peer] || { id: peer, name: "…" }, last: msg, unread: 0 }; S.chats.unshift(c); if (!S.users[peer]) fetchUser(peer); }
+async function loadGroup(gid) { try { const d = await api("/api/group/info?gid=" + gid); ensureConv("g" + gid, { group: d.group }); renderChats(); if (S.cur === "g" + gid) setHeader(); } catch {} }
+function bumpConv(key, msg, incoming) {
+  const c = ensureConv(key);
+  if (c.type === "u" && !S.users[c.id]) fetchUser(c.id);
   c.last = msg;
-  if (incoming && !(S.peer && S.peer.id === peer && S.view === "chat")) c.unread++;
-  S.chats.sort((a, b) => (b.last.ts || 0) - (a.last.ts || 0));
+  if (incoming && !isOpen(key)) c.unread++;
+  if (incoming && c.prefs.archived && !c.prefs.muted) { c.prefs.archived = 0; api("/api/prefs", { c: key, archived: false }).catch(() => {}); }
   renderChats();
 }
 async function fetchUser(id) { try { const d = await api("/api/user?id=" + id); S.users[id] = d.user; renderChats(); } catch {} }
 function ticks(m) {
-  if (m.a !== S.me.id || m.deleted) return "";
+  if (!m || m.a !== S.me.id || m.deleted || m.kind === "sys") return "";
   if (!m.id) return '<span class="tick">🕓</span>';
+  if (m.gid) return '<span class="tick">✓</span>';
   return m.status >= 2 ? '<span class="tick r">✓✓</span>' : m.status === 1 ? '<span class="tick">✓✓</span>' : '<span class="tick">✓</span>';
 }
 function renderChats() {
   const el = $("chatList"), q = $("hSearch").value.trim().toLowerCase();
-  const list = S.chats.filter((c) => { if (!q) return true; const u = S.users[c.user.id] || c.user; return (u.name || "").toLowerCase().includes(q) || preview(c.last).toLowerCase().includes(q); });
-  if (!list.length) { el.innerHTML = `<div class="empty">${q ? "لا توجد نتائج" : "لا توجد دردشات بعد.<br>اضغط + وأضف صديقك بكوده الخاص."}</div>`; return; }
-  el.innerHTML = ""; let i = 0;
+  const all = [...S.convs.values()].filter((c) => c.last || c.type === "g");
+  const archivedN = all.filter((c) => c.prefs.archived).length;
+  let list = all.filter((c) => !!c.prefs.archived === !!S.showArchived);
+  if (q) list = list.filter((c) => convName(c).toLowerCase().includes(q) || preview(c.last).toLowerCase().includes(q));
+  list.sort((a, b) => (b.prefs.pinned - a.prefs.pinned) || ((b.last?.ts || b.group?.created || 0) - (a.last?.ts || a.group?.created || 0)));
+  let html = "";
+  if (S.showArchived) html += `<div class="row arch" data-arch="0"><span class="em" style="font-size:22px">↩️</span><div class="mid"><b>رجوع للدردشات</b></div></div>`;
+  else if (archivedN && !q) html += `<div class="row arch" data-arch="1"><span class="em" style="font-size:22px">📦</span><div class="mid"><b>المؤرشفة</b> <small>(${archivedN})</small></div></div>`;
+  el.innerHTML = html;
+  if (!list.length) { el.innerHTML += `<div class="empty">${q ? "لا توجد نتائج" : S.showArchived ? "لا توجد دردشات مؤرشفة" : "لا توجد دردشات بعد.<br>اضغط + وأضف صديقك بكوده الخاص."}</div>`; bindRows(); return; }
+  let i = 0;
   for (const c of list) {
-    const u = S.users[c.user.id] || c.user;
-    const r = document.createElement("div"); r.className = "row";
+    const r = document.createElement("div"); r.className = "row"; r.dataset.key = c.key;
     if (!el.dataset.shown) r.style.animationDelay = Math.min(i++, 12) * 30 + "ms"; else r.style.animation = "none";
-    r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm">${esc(u.name)}</span><span class="tm ${c.unread ? "u" : ""}">${shortTime(c.last.ts)}</span></div>
-      <div class="sub"><span class="pv">${ticks(c.last)} ${esc(preview(c.last))}</span>${c.unread ? `<span class="badge">${c.unread}</span>` : ""}</div></div>`;
-    avatar(r.querySelector(".av"), u, true);
-    r.onclick = () => openChat(u.id);
+    const lastSender = c.type === "g" && c.last && c.last.kind !== "sys" ? (c.last.a === S.me.id ? "أنت: " : (S.users[c.last.a]?.name || "").split(" ")[0] + ": ") : "";
+    const icons = (c.prefs.pinned ? "📌" : "") + (c.prefs.muted ? "🔕" : "") + (c.ttl ? "⏱️" : "");
+    const gc = c.type === "g" && (S.gcallState[c.id] || []).length ? "📞 " : "";
+    r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm">${gc}${esc(convName(c))}</span><span class="tm ${c.unread && !c.prefs.muted ? "u" : ""}">${c.last ? shortTime(c.last.ts) : ""}</span></div>
+      <div class="sub"><span class="pv">${ticks(c.last)} ${esc(lastSender + preview(c.last))}</span><span class="ics">${icons}${c.unread ? `<span class="badge${c.prefs.muted ? " mut" : ""}">${c.unread}</span>` : ""}</span></div></div>`;
+    avatar(r.querySelector(".av"), convAv(c), c.type === "u");
     el.append(r);
   }
   el.dataset.shown = 1;
+  bindRows();
+}
+function bindRows() {
+  const el = $("chatList");
+  el.onclick = (e) => {
+    const a = e.target.closest("[data-arch]"); if (a) { S.showArchived = a.dataset.arch === "1"; renderChats(); return; }
+    const r = e.target.closest(".row[data-key]"); if (r && !S.lpFired) openChat(r.dataset.key);
+  };
+  longPress(el, ".row[data-key]", (r) => chatActions(S.convs.get(r.dataset.key)));
+}
+function longPress(root, sel, fn) {
+  if (root.dataset.lp) return; root.dataset.lp = 1;
+  let t = null, y0 = 0, x0 = 0;
+  root.addEventListener("pointerdown", (e) => { const el = e.target.closest(sel); if (!el) return; S.lpFired = false; y0 = e.clientY; x0 = e.clientX; t = setTimeout(() => { t = null; S.lpFired = true; if (navigator.vibrate) navigator.vibrate(15); fn(el); setTimeout(() => (S.lpFired = false), 400); }, 480); });
+  const cancel = () => { clearTimeout(t); t = null; };
+  root.addEventListener("pointerup", cancel); root.addEventListener("pointercancel", cancel);
+  root.addEventListener("pointermove", (e) => { if (Math.abs(e.clientY - y0) > 8 || Math.abs(e.clientX - x0) > 8) cancel(); });
+  root.addEventListener("contextmenu", (e) => { const el = e.target.closest(sel); if (el) { e.preventDefault(); fn(el); } });
+}
+async function setPref(c, patch) {
+  Object.assign(c.prefs, Object.fromEntries(Object.entries(patch).map(([k, v]) => [k, v ? 1 : 0])));
+  renderChats();
+  try { await api("/api/prefs", { c: c.key, ...patch }); } catch (e) { toast(e.message); }
+}
+function chatActions(c) {
+  if (!c) return;
+  sheetMenu([
+    [c.prefs.pinned ? "📍" : "📌", c.prefs.pinned ? "إلغاء التثبيت" : "تثبيت في الأعلى", () => setPref(c, { pinned: !c.prefs.pinned })],
+    [c.prefs.muted ? "🔔" : "🔕", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
+    [c.prefs.archived ? "📤" : "📦", c.prefs.archived ? "إلغاء الأرشفة" : "أرشفة", () => setPref(c, { archived: !c.prefs.archived })],
+  ], convName(c));
 }
 $("hSearch").oninput = renderChats;
-function pushMsg(peer, msg) {
-  const list = (S.msgs[peer] ||= []);
+function pushMsg(key, msg) {
+  const list = (S.msgs[key] ||= []);
   if (msg.id && list.some((x) => x.id === msg.id)) return;
   list.push(msg);
-  if (S.peer && S.peer.id === peer) renderMsgs(true);
+  if (S.cur === key && S.view === "chat") renderMsgs(true);
+}
+function markRead(key) {
+  const c = S.convs.get(key); if (!c) return;
+  wsSend(c.type === "g" ? { t: "read", gid: c.id } : { t: "read", to: c.id });
+  if (c.unread) { c.unread = 0; renderChats(); }
 }
 
-async function openChat(id, refresh) {
-  const u = S.users[id] || { id, name: "…" };
-  S.peer = u;
+// ---------- فتح محادثة ----------
+function setHeader() {
+  const c = cur(); if (!c) return;
+  avatar($("cAv"), convAv(c)); $("cName").textContent = (c.ttl ? "⏱️ " : "") + convName(c);
+  if (c.type === "g") {
+    const mem = c.group?.members || [];
+    const live = (S.gcallState[c.id] || []).length;
+    $("cStatus").textContent = live ? `📞 مكالمة جارية (${live}) — اضغط للانضمام` : mem.map((m) => (m.id === S.me.id ? "أنت" : m.name)).join("، ");
+  } else $("cStatus").textContent = c.blocked ? "🚫 محظور" : lastSeen(S.users[c.id]);
+  $("composer").classList.toggle("hidden", !!c.blocked);
+  $("blockedBar").classList.toggle("hidden", !c.blocked);
+}
+async function openChat(key, refresh) {
+  if (typeof key === "number") key = "u" + key;
+  const c = ensureConv(key);
+  S.cur = key;
   if (!refresh) {
-    avatar($("cAv"), u); $("cName").textContent = u.name; $("cStatus").textContent = lastSeen(u);
-    setReply(null); go("chat"); renderMsgs(true);
+    S.search = ""; $("chatSearch").classList.add("hidden"); $("csInput").value = "";
+    setHeader(); setReply(null); setEdit(null);
+    if (S.view === "chat") history.replaceState({ v: "chat" }, ""); else go("chat");
+    show("chat"); renderMsgs(true);
   }
   try {
-    const [d, ud] = await Promise.all([api("/api/messages?with=" + id), api("/api/user?id=" + id)]);
-    S.users[id] = ud.user; S.peer = ud.user;
-    await decAll(id, d.messages);
-    const pending = (S.msgs[id] || []).filter((m) => !m.id);
-    S.msgs[id] = d.messages.concat(pending);
-    avatar($("cAv"), ud.user); $("cName").textContent = ud.user.name; $("cStatus").textContent = lastSeen(ud.user);
-    renderMsgs(true);
+    const reqs = [api("/api/messages?c=" + key)];
+    reqs.push(c.type === "u" ? api("/api/user?id=" + c.id) : api("/api/group/info?gid=" + c.id));
+    const [d, info] = await Promise.all(reqs);
+    if (c.type === "u") { S.users[c.id] = info.user; c.user = info.user; c.blocked = info.blocked; } else ensureConv(key, { group: info.group });
+    await decList(d.messages);
+    const pending = (S.msgs[key] || []).filter((m) => !m.id);
+    S.msgs[key] = d.messages.concat(pending);
+    S.more = S.more || {}; S.more[key] = d.messages.length >= 80;
+    if (S.cur === key) { setHeader(); renderMsgs(!refresh); }
   } catch {}
-  wsSend({ t: "read", to: id });
-  const c = S.chats.find((c) => c.user.id === id); if (c) { c.unread = 0; renderChats(); }
+  if (S.cur === key) markRead(key);
+}
+async function loadOlder() {
+  const key = S.cur, list = S.msgs[key] || [];
+  const first = list.find((m) => m.id > 0); if (!first) return;
+  try {
+    const d = await api(`/api/messages?c=${key}&before=${first.id}`);
+    await decList(d.messages);
+    S.msgs[key] = d.messages.concat(list);
+    S.more[key] = d.messages.length >= 80;
+    const box = $("msgs"), h = box.scrollHeight;
+    S.rc[key] = S.msgs[key].length; renderMsgs(); box.scrollTop = box.scrollHeight - h;
+  } catch {}
 }
 
+// ---------- عرض الرسائل ----------
+const URL_RE = /\bhttps?:\/\/[^\s<>"']+[^\s<>"'.,;:!?)\]]/gi;
+function linkify(s) {
+  return esc(s).replace(/\bhttps?:\/\/[^\s<>"']+[^\s<>"'.,;:!?)\]]/gi, (u) => `<a href="${u}" ${NAT.any ? "" : 'target="_blank" rel="noopener noreferrer"'}>${u}</a>`);
+}
+function textOf(m) { if (m.kind === "link") return meta(m)?.t ?? ""; return txt(m); }
 function bubbleBody(m) {
   if (m.deleted) return "🚫 تم حذف هذه الرسالة";
-  const x = m.kind === "file" || m.kind === "voice" || m.kind === "game" ? meta(m) : null;
+  const k = m.kind;
+  const x = ["file", "voice", "loc", "contact", "link", "game"].includes(k) ? meta(m) : null;
   const prog = m.prog !== undefined ? `<div class="prog">${m.prog}%</div>` : "";
-  if (m.kind === "voice" && x) {
-    return `<div class="mvoice" data-fid="${esc(x.fid)}"><button class="vp">▶</button><div class="vbar"><i></i></div><span>${fmtDur(x.dur || 0)}</span></div>${prog}`;
+  if (k === "voice" && x) return `<div class="mvoice" data-fid="${esc(x.fid)}"><button class="vp">▶</button><div class="vbar"><i></i></div><span>${fmtDur(x.dur || 0)}</span></div>${prog}`;
+  if (k === "game") return "🎴 دعوة لعبة (لم تعد متاحة)";
+  if (k === "loc" && x) return `<div class="mloc"><div class="mapic">📍</div><b>موقع</b><small dir="ltr">${(+x.lat).toFixed(5)}, ${(+x.lng).toFixed(5)}</small><a class="btn sm" href="${mapsUrl(x.lat, x.lng)}" ${NAT.any ? "" : 'target="_blank" rel="noopener"'}>فتح في الخرائط</a></div>`;
+  if (k === "contact" && x) return `<div class="mcontact"><div class="av sm" data-cav='${esc(JSON.stringify({ id: x.id, name: x.name, avatar: safeImg(x.avatar) }))}'></div><span><b>${esc(x.name)}</b><small dir="ltr">PIN ${esc(x.pin)}</small></span><button class="btn sm" data-msgto="${esc(x.id)}">مراسلة</button></div>`;
+  if (k === "link" && x) {
+    const p = x.p || {};
+    return `${p.url ? `<a class="lprev" href="${esc(p.url)}" ${NAT.any ? "" : 'target="_blank" rel="noopener"'}>${safeImg(p.img) ? `<img src="${safeImg(p.img)}">` : ""}<b>${esc(p.title || "")}</b><small>${esc((p.desc || "").slice(0, 140))}</small><i>${esc(p.site || "")}</i></a>` : ""}${linkify(x.t || "")}`;
   }
-  if (m.kind === "game") return "🎴 دعوة لعبة (لم تعد متاحة)";
-  if (m.kind === "file" && x) {
+  if (k === "file" && x) {
     const url = FILES.get(x.fid)?.url || m.local;
-    if (x.mime?.startsWith("image/"))
-      return `<div style="position:relative"><img class="mimg" data-fid="${esc(x.fid)}" src="${esc(url || safeImg(x.thumb) || "")}">${prog}</div>`;
-    if (x.mime?.startsWith("video/"))
-      return `<div class="mvid" data-fid="${esc(x.fid)}" style="position:relative"><img class="mthumb" src="${esc(safeImg(x.thumb) || "")}"><span class="play">▶</span>${prog}</div>`;
+    if (x.mime?.startsWith("image/")) return `<div style="position:relative"><img class="mimg" data-fid="${esc(x.fid)}" src="${esc(url || safeImg(x.thumb) || "")}">${prog}</div>`;
+    if (x.mime?.startsWith("video/")) return `<div class="mvid" data-fid="${esc(x.fid)}" style="position:relative"><img class="mthumb" src="${esc(safeImg(x.thumb) || "")}"><span class="play">▶</span>${prog}</div>`;
     return `<div class="mfile" data-fid="${esc(x.fid)}" style="position:relative"><span class="fi">📄</span><span><b>${esc(x.name)}</b><small>${fmtSize(x.size)}</small></span>${prog}</div>`;
   }
-  return (m.kind === "call" ? "📞 " : "") + esc(txt(m));
+  if (k === "call") return "📞 " + esc(txt(m));
+  return linkify(txt(m));
 }
+const mapsUrl = (lat, lng) => (window.WASEL_PLATFORM === "ios" ? `https://maps.apple.com/?q=${+lat},${+lng}` : `https://www.google.com/maps?q=${+lat},${+lng}`);
+const NAME_COLORS = ["#ff8fa3", "#7ee0a1", "#ffd36e", "#7cc8ff", "#c7a6ff", "#ff9e6e", "#6ee7e0", "#f9a8d4"];
 function renderMsgs(scroll) {
-  if (!S.peer) return;
+  const c = cur(); if (!c) return;
   const box = $("msgs"), atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
-  const list = S.msgs[S.peer.id] || [];
-  let html = '<div class="e2e" id="e2eNote">🔒 الرسائل والمكالمات والملفات مشفّرة من طرف لطرف. لا أحد غيركما يقدر يقرأها أو يسمعها، ولا حتى السيرفر. اضغط للتحقق.</div>';
-  let lastDay = "", idx = 0;
-  const prev = (S.rc ||= {})[S.peer.id] ?? list.length;
-  const byId = {}; for (const m of list) if (m.id) byId[m.id] = m;
-  for (const m of list) {
-    const dl = dayLabel(m.ts);
-    if (dl !== lastDay) { html += `<div class="day clr"><span>${dl}</span></div>`; lastDay = dl; }
-    const mine = m.a === S.me.id, media = !m.deleted && (m.kind === "file" || m.kind === "voice");
-    let rq = "";
-    if (m.reply && byId[m.reply]) { const r = byId[m.reply]; rq = `<span class="rq"><b>${r.a === S.me.id ? "أنت" : esc(S.peer.name)}</b>${esc(preview(r)).slice(0, 90)}</span>`; }
-    html += `<div class="b ${idx++ >= prev ? "a " : ""}${mine ? "o" : "i"}${m.kind === "call" ? " call" : ""}${m.deleted ? " del" : ""}${media ? " media" : ""}" data-i="${idx - 1}">${rq}${bubbleBody(m)}<span class="meta">${hm(m.ts)}${ticks(m)}</span></div>`;
+  const now = Date.now();
+  let list = (S.msgs[S.cur] || []).filter((m) => !m.expires || m.expires > now);
+  const q = (S.search || "").trim().toLowerCase();
+  let html = "";
+  if (!q) {
+    if (S.more?.[S.cur]) html += '<button class="older" id="olderBtn">⬆️ تحميل رسائل أقدم</button>';
+    html += '<div class="e2e" id="e2eNote">🔒 الرسائل والمكالمات والملفات مشفّرة من طرف لطرف. لا أحد غيركم يقدر يقرأها أو يسمعها، ولا حتى السيرفر.' + (c.type === "u" ? " اضغط للتحقق." : "") + "</div>";
   }
-  S.rc[S.peer.id] = list.length;
+  if (q) { list = list.filter((m) => !m.deleted && preview(m).toLowerCase().includes(q)); html += `<div class="day clr"><span>${list.length} نتيجة</span></div>`; }
+  let lastDay = "", idx = 0, prevA = null;
+  const all = S.msgs[S.cur] || [];
+  const prev = (S.rc ||= {})[S.cur] ?? all.length;
+  const byId = {}; for (const m of all) if (m.id) byId[m.id] = m;
+  for (const m of list) {
+    const i = all.indexOf(m);
+    const dl = dayLabel(m.ts);
+    if (dl !== lastDay) { html += `<div class="day clr"><span>${dl}</span></div>`; lastDay = dl; prevA = null; }
+    if (m.kind === "sys") { html += `<div class="sys clr"><span>${esc(m.body)}</span></div>`; prevA = null; continue; }
+    const mine = m.a === S.me.id, media = !m.deleted && ["file", "voice"].includes(m.kind);
+    let head = "";
+    if (c.type === "g" && !mine && prevA !== m.a) { const u = S.users[m.a] || {}; head = `<span class="snd" style="color:${NAME_COLORS[m.a % NAME_COLORS.length]}">${esc(u.name || "…")}</span>`; }
+    prevA = m.a;
+    let rq = "";
+    if (m.reply && byId[m.reply]) { const r = byId[m.reply]; rq = `<span class="rq" data-goto="${r.id}"><b>${r.a === S.me.id ? "أنت" : esc(S.users[r.a]?.name || "")}</b>${esc(preview(r)).slice(0, 90)}</span>`; }
+    const fw = m.fwd && !m.deleted ? '<span class="fwd">↪️ محوّلة</span>' : "";
+    const re = m.reacts && Object.keys(m.reacts).length ? `<span class="reacts">${reactSummary(m.reacts)}</span>` : "";
+    html += `<div class="b ${i >= prev ? "a " : ""}${mine ? "o" : "i"}${m.kind === "call" ? " call" : ""}${m.deleted ? " del" : ""}${media ? " media" : ""}${re ? " hasr" : ""}" data-i="${i}" data-id="${m.id || ""}">${head}${fw}${rq}${bubbleBody(m)}<span class="meta">${m.edited ? "معدّلة · " : ""}${m.expires ? "⏱️ " : ""}${hm(m.ts)}${ticks(m)}</span>${re}</div>`;
+    idx++;
+  }
+  S.rc[S.cur] = all.length;
   box.innerHTML = html + '<div class="clr"></div>';
-  if (scroll || atBottom) box.scrollTop = box.scrollHeight;
-  // تحميل الصور تلقائياً
+  if ($("olderBtn")) $("olderBtn").onclick = loadOlder;
+  for (const el of box.querySelectorAll("[data-cav]")) { try { avatar(el, JSON.parse(el.dataset.cav)); } catch {} }
+  if ((scroll || atBottom) && !q) box.scrollTop = box.scrollHeight;
   for (const img of box.querySelectorAll("img.mimg")) {
     const fid = img.dataset.fid;
     if (FILES.get(fid)?.url) continue;
-    const m = list.find((x) => meta(x)?.fid === fid);
-    if (m && m.id) loadFile(meta(m)).then((f) => { for (const el of document.querySelectorAll(`img.mimg[data-fid="${CSS.escape(fid)}"]`)) el.src = f.url; }).catch(() => {});
+    const m = all.find((x) => meta(x)?.fid === fid);
+    if (m && m.id) loadFile(meta(m)).then((f) => { for (const el of document.querySelectorAll(`img.mimg[data-fid="${CSS.escape(fid)}"]`)) el.src = f.url; }).catch(() => img.classList.add("gone"));
   }
 }
+function reactSummary(r) {
+  const cnt = {}; for (const e of Object.values(r)) cnt[e] = (cnt[e] || 0) + 1;
+  return Object.entries(cnt).map(([e, n]) => e + (n > 1 ? n : "")).join(" ");
+}
 
-// تفاعل مع الفقاعات: ضغط مطوّل = خيارات، ضغط = فتح الوسائط
+// تفاعل مع الفقاعات
 (function bubbleEvents() {
   const box = $("msgs");
-  let t = null, startY = 0;
-  const msgOf = (el) => { const b = el.closest(".b"); return b ? (S.msgs[S.peer.id] || [])[Number(b.dataset.i)] : null; };
-  box.addEventListener("pointerdown", (e) => {
-    const m = msgOf(e.target); if (!m) return; startY = e.clientY;
-    t = setTimeout(() => { t = null; msgActions(m); if (navigator.vibrate) navigator.vibrate(15); }, 450);
-  });
-  const cancel = () => { clearTimeout(t); t = null; };
-  box.addEventListener("pointerup", cancel); box.addEventListener("pointercancel", cancel);
-  box.addEventListener("pointermove", (e) => { if (Math.abs(e.clientY - startY) > 8) cancel(); });
-  box.addEventListener("contextmenu", (e) => { const m = msgOf(e.target); if (m) { e.preventDefault(); msgActions(m); } });
+  const msgOf = (el) => { const b = el.closest(".b"); return b ? (S.msgs[S.cur] || [])[Number(b.dataset.i)] : null; };
+  longPress(box, ".b", (b) => { const m = (S.msgs[S.cur] || [])[Number(b.dataset.i)]; if (m) msgActions(m); });
   box.addEventListener("click", async (e) => {
-    if (e.target.closest("#e2eNote")) return showInfo();
+    if (S.lpFired) return;
+    if (e.target.closest("#e2eNote")) return cur()?.type === "u" && showInfo();
+    const go2 = e.target.closest("[data-goto]"); if (go2) { const el = box.querySelector(`.b[data-id="${go2.dataset.goto}"]`); if (el) { el.scrollIntoView({ block: "center", behavior: "smooth" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1200); } return; }
+    const mt = e.target.closest("[data-msgto]"); if (mt) { const id = Number(mt.dataset.msgto); if (id === S.me.id) return; return openChat("u" + id); }
+    if (e.target.closest(".reacts")) { const m = msgOf(e.target); if (m) return showReacts(m); }
+    if (e.target.closest("a")) return;
     const m = msgOf(e.target); if (!m || m.deleted) return;
     const x = meta(m); if (!x || !m.id) return;
     if (e.target.closest(".vp")) return playVoice(e.target.closest(".mvoice"), x);
     if (e.target.closest(".mimg,.mvid")) return openViewer(x);
-    if (e.target.closest(".mfile")) { toast("⏬ جارٍ التحميل…"); try { saveFile(await loadFile(x), x); } catch { toast("تعذّر تحميل الملف"); } }
+    if (e.target.closest(".mfile")) { toast("⏬ جارٍ التحميل…"); try { saveFile(await loadFile(x), x); } catch { toast("الملف غير متاح (ربما انتهت صلاحيته)"); } }
   });
 })();
-
+function showReacts(m) {
+  sheetMenu(Object.entries(m.reacts || {}).map(([uid, e]) => [e, uid == S.me.id ? "أنت (اضغط للإزالة)" : S.users[uid]?.name || "…", () => { if (uid == S.me.id) wsSend({ t: "react", id: m.id, e: "" }); }]), "التفاعلات");
+}
+const QUICK = ["❤️", "😂", "👍", "😮", "😢", "🙏"];
 function msgActions(m) {
-  if (m.deleted || !m.id) return;
+  if (m.deleted || !(m.id > 0) || m.kind === "sys") return;
   const mine = m.a === S.me.id;
-  const items = [["↩️", "رد", () => setReply(m)]];
-  if (m.kind === "text") items.push(["📋", "نسخ", () => { navigator.clipboard?.writeText(txt(m)).then(() => toast("تم النسخ")).catch(() => toast("تعذّر النسخ")); }]);
+  const items = [["↩️", "رد", () => setReply(m)], ["↪️", "تحويل", () => forward(m)]];
+  if (["text", "link"].includes(m.kind)) items.push(["📋", "نسخ", () => { navigator.clipboard?.writeText(textOf(m)).then(() => toast("تم النسخ")).catch(() => toast("تعذّر النسخ")); }]);
+  if (mine && ["text", "link"].includes(m.kind) && Date.now() - m.ts < 2 * 86400000) items.push(["✏️", "تعديل", () => setEdit(m)]);
   if (m.kind === "file") items.push(["⬇️", "حفظ", async () => { try { saveFile(await loadFile(meta(m)), meta(m)); } catch { toast("تعذّر التحميل"); } }]);
-  if (mine) items.push(["🗑️", "حذف عند الجميع", () => wsSend({ t: "delete", id: m.id }), "dz"]);
-  $("acts").innerHTML = items.map((it, i) => `<button data-a="${i}" class="${it[3] || ""}"><span class="em">${it[0]}</span>${it[1]}</button>`).join("");
-  $("acts").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; closeSheets(); items[Number(b.dataset.a)][2](); };
-  openSheet("actSheet");
+  if (mine) items.push(["🗑️", "حذف عند الجميع", async () => { if (await ask("حذف الرسالة عند الجميع؟", [], "حذف")) wsSend({ t: "delete", id: m.id }); }, "dz"]);
+  const myR = m.reacts?.[S.me.id];
+  sheetMenu(items, null, `<div class="qreact">${QUICK.map((e) => `<button data-e="${e}" class="${myR === e ? "on" : ""}">${e}</button>`).join("")}</div>`, (e) => { closeSheets(); wsSend({ t: "react", id: m.id, e: myR === e ? "" : e }); });
 }
 function setReply(m) {
   S.reply = m || null;
+  if (m) setEdit(null);
   $("replyBar").classList.toggle("hidden", !m);
-  if (m) { $("rbName").textContent = m.a === S.me.id ? "أنت" : S.peer.name; $("rbText").textContent = preview(m); $("cInput").focus(); }
+  if (m) { $("rbName").textContent = m.a === S.me.id ? "↩️ أنت" : "↩️ " + (S.users[m.a]?.name || ""); $("rbText").textContent = preview(m); $("cInput").focus(); }
 }
-$("rbX").onclick = () => setReply(null);
+function setEdit(m) {
+  S.editing = m || null;
+  if (m) { S.reply = null; $("replyBar").classList.remove("hidden"); $("rbName").textContent = "✏️ تعديل الرسالة"; $("rbText").textContent = textOf(m); $("cInput").value = textOf(m); $("cInput").focus(); updateSendBtn(); }
+  else if (!S.reply) $("replyBar").classList.add("hidden");
+}
+$("rbX").onclick = () => { if (S.editing) { $("cInput").value = ""; updateSendBtn(); } setReply(null); setEdit(null); };
 
 // ---------- الإرسال ----------
 function updateSendBtn() {
   const has = $("cInput").value.trim().length > 0 || REC.on;
   $("cSend").innerHTML = `<svg><use href="#i-${has ? "send" : "mic"}"/></svg>`;
 }
-async function send(text, kind, extra = {}) {
-  if (!S.peer || !text.trim()) return;
-  const peer = S.peer.id, cid = Math.random().toString(36).slice(2);
-  const reply = S.reply?.id || null; setReply(null);
-  const m = { cid, a: S.me.id, b: peer, body: "", text, kind: kind || "text", ts: Date.now(), status: 0, reply, ...extra };
-  pushMsg(peer, m); renderMsgs(true);
-  let body;
-  try { body = await enc(peer, text); }
-  catch { toast("هذا المستخدم يحتاج تحديث التطبيق لاستقبال الرسائل المشفّرة"); S.msgs[peer] = S.msgs[peer].filter((x) => x !== m); renderMsgs(); return; }
-  const q = { t: "send", to: peer, body, kind, cid, reply };
-  (S.queue ||= []).push(q);
-  wsSend(q);
+function wsTarget(key) { const c = S.convs.get(key); return c.type === "g" ? { gid: c.id } : { to: c.id }; }
+async function sendRaw(key, plain, kind = "text", opts = {}) {
+  const c = ensureConv(key);
+  const cid = Math.random().toString(36).slice(2);
+  const m = { cid, a: S.me.id, b: c.type === "u" ? c.id : 0, gid: c.type === "g" ? c.id : null, body: "", text: ["text", "call"].includes(kind) ? plain : undefined, kind, ts: Date.now(), status: 0, reply: opts.reply || null, fwd: opts.fwd ? 1 : 0, meta: opts.meta, local: opts.local };
+  pushMsg(key, m);
+  if (opts.prog !== undefined) m.prog = opts.prog;
+  if (opts.deferSend) return m;
+  await finishSend(key, m, plain, kind, opts);
   return m;
 }
-async function sendTo(peer, text, kind) {
-  try { wsSend({ t: "send", to: peer, body: await enc(peer, text), kind, cid: Math.random().toString(36).slice(2) }); } catch {}
+async function finishSend(key, m, plain, kind, opts = {}) {
+  let body;
+  try { body = await encFor(key, plain); }
+  catch { toast("لا يمكن التشفير: الطرف الآخر يحتاج تحديث التطبيق"); S.msgs[key] = (S.msgs[key] || []).filter((x) => x !== m); if (S.cur === key) renderMsgs(); return; }
+  m.kind = kind;
+  const q = { t: "send", ...wsTarget(key), body, kind, cid: m.cid, reply: m.reply, fwd: m.fwd };
+  (S.queue ||= []).push(q);
+  wsSend(q);
 }
 function flushQueue() { for (const q of S.queue || []) wsSend(q); }
+
+async function sendText(text) {
+  const key = S.cur, reply = S.reply?.id || null; setReply(null);
+  const url = SET.lp !== false ? (text.match(URL_RE) || [])[0] : null;
+  if (!url) return sendRaw(key, text, "text", { reply });
+  const m = await sendRaw(key, text, "text", { reply, deferSend: true });
+  let p = null;
+  try { p = (await Promise.race([api("/api/preview?url=" + encodeURIComponent(url)), new Promise((r) => setTimeout(() => r({}), 4500))])).preview; } catch {}
+  if (p) { m.kind = "link"; m.meta = { t: text, p }; m.text = undefined; if (S.cur === key) renderMsgs(); await finishSend(key, m, JSON.stringify({ t: text, p }), "link"); }
+  else await finishSend(key, m, text, "text");
+}
+async function sendEdit(m, text) {
+  setEdit(null);
+  const key = S.cur;
+  let plain = text, kind = "text";
+  if (m.kind === "link") { const x = meta(m) || {}; plain = JSON.stringify({ t: text, p: x.p }); kind = "link"; }
+  try { wsSend({ t: "edit", id: m.id, body: await encFor(key, plain), kind }); } catch { toast("تعذّر التعديل"); }
+}
 
 const inp = $("cInput");
 inp.oninput = () => {
   inp.style.height = "auto"; inp.style.height = Math.min(120, inp.scrollHeight) + "px";
   updateSendBtn();
-  const now = Date.now(); if (now - (S.lastTyp || 0) > 2000) { S.lastTyp = now; wsSend({ t: "typing", to: S.peer.id }); }
+  const now = Date.now(); if (now - (S.lastTyp || 0) > 2000 && S.cur) { S.lastTyp = now; wsSend({ t: "typing", ...wsTarget(S.cur) }); }
 };
 inp.onkeydown = (e) => { if (SET.enter && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("cSend").click(); } };
 $("cSend").onclick = () => {
   if (REC.on) return stopRec(true);
   const v = inp.value;
   if (!v.trim()) return startRec();
-  inp.value = ""; inp.style.height = "auto"; updateSendBtn(); send(v); inp.focus();
+  inp.value = ""; inp.style.height = "auto"; updateSendBtn();
+  if (S.editing) sendEdit(S.editing, v); else sendText(v);
+  inp.focus();
 };
 $("cBack").onclick = () => history.back();
 for (const b of document.querySelectorAll("[data-back]")) b.onclick = () => history.back();
 window.onpopstate = () => {
-  if (!$("call").classList.contains("hidden")) return;
+  if (!$("call").classList.contains("hidden") || !$("gcall").classList.contains("hidden")) return;
   if (!$("viewer").classList.contains("hidden")) { closeViewer(); return; }
+  if (!$("story").classList.contains("hidden")) { closeStory(); return; }
   const v = history.state?.v || "home";
-  if (v === "chat" && S.peer) show("chat");
+  if (v === "chat" && S.cur) show("chat");
   else if (VIEWS.includes(v) && v !== "auth" && v !== "chat") { show(v); if (v === "settings") renderSettings(); }
-  else { S.peer = null; show("home"); renderChats(); }
+  else { S.cur = null; show("home"); renderChats(); }
 };
+
+// بحث داخل المحادثة
+$("csInput").oninput = () => { S.search = $("csInput").value; renderMsgs(); };
+$("csX").onclick = () => { S.search = ""; $("csInput").value = ""; $("chatSearch").classList.add("hidden"); renderMsgs(true); };
+function openSearch() { $("chatSearch").classList.remove("hidden"); $("csInput").focus(); }
+
+// تحويل رسالة
+async function forward(m) {
+  const plain = ["text", "call"].includes(m.kind) ? txt(m) : JSON.stringify(meta(m));
+  const kind = m.kind === "call" ? "text" : m.kind;
+  const convs = [...S.convs.values()].filter((c) => !c.blocked).sort((a, b) => (b.last?.ts || 0) - (a.last?.ts || 0)).slice(0, 40);
+  sheetMenu(convs.map((c) => [c.type === "g" ? "👥" : "👤", convName(c), async () => {
+    await sendRaw(c.key, plain, kind, { fwd: 1, meta: kind === "text" ? undefined : meta(m) });
+    toast("↪️ تم التحويل إلى " + convName(c));
+  }]), "تحويل إلى…");
+}
+
+// معرض الوسائط
+async function showMedia() {
+  closeSheets();
+  $("mediaGrid").innerHTML = '<div class="empty">⏳</div>';
+  openSheet("mediaSheet");
+  try {
+    const d = await api("/api/media?c=" + S.cur);
+    await decList(d.messages);
+    const items = d.messages.map((m) => ({ m, x: meta(m) })).filter((o) => o.x).reverse();
+    if (!items.length) { $("mediaGrid").innerHTML = '<div class="empty">لا توجد وسائط بعد</div>'; return; }
+    $("mediaGrid").innerHTML = items.map(({ m, x }, i) => {
+      if (m.kind === "voice") return `<button class="mg mgf" data-i="${i}">🎤<small>${fmtDur(x.dur || 0)}</small></button>`;
+      if (x.mime?.startsWith("image/") || x.mime?.startsWith("video/")) return `<button class="mg" data-i="${i}" style="background-image:url('${safeImg(x.thumb) || ""}')">${x.mime.startsWith("video/") ? "▶" : ""}</button>`;
+      return `<button class="mg mgf" data-i="${i}">📄<small>${esc(x.name).slice(0, 18)}</small></button>`;
+    }).join("");
+    $("mediaGrid").onclick = async (e) => {
+      const b = e.target.closest("[data-i]"); if (!b) return;
+      const { m, x } = items[Number(b.dataset.i)];
+      if (m.kind === "file" && (x.mime?.startsWith("image/") || x.mime?.startsWith("video/"))) { closeSheets(); openViewer(x); }
+      else { try { toast("⏬ جارٍ التحميل…"); saveFile(await loadFile(x), x); } catch { toast("الملف غير متاح"); } }
+    };
+  } catch (e) { $("mediaGrid").innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
+}
 
 // ---------- الملفات (مشفّرة) ----------
 const FILES = new Map();
@@ -975,38 +1390,42 @@ async function makeThumb(file) {
     return { thumb: c.toDataURL("image/jpeg", 0.6), w, h, dur: src.duration || 0 };
   } catch { return null; }
 }
-async function sendFile(file, kind = "file", extra = {}) {
-  if (!S.peer) return;
-  if (file.size > 58 * 1048576) return toast("الحد الأقصى للملف 58MB");
-  const peer = S.peer.id;
-  try { await sharedKey(peer); } catch { return toast("هذا المستخدم يحتاج تحديث التطبيق"); }
-  const th = kind === "file" ? await makeThumb(file) : null;
+// رفع ملف مشفّر (يُستخدم للرسائل والحالات)
+async function uploadEncrypted(blob, onProg) {
   const fid = randHexJS(16);
   const key = crypto.getRandomValues(new Uint8Array(32)), iv = crypto.getRandomValues(new Uint8Array(12));
-  const x = { fid, k: b64(key), iv: b64(iv), name: file.name || "file", mime: file.type || "application/octet-stream", size: file.size, n: 0, ...(th || {}), ...extra };
+  const ck = await crypto.subtle.importKey("raw", key, "AES-GCM", false, ["encrypt"]);
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, ck, await blob.arrayBuffer()));
+  const n = Math.ceil(ct.length / CHUNK);
+  for (let i = 0; i < n; i++) {
+    const r = await fetch(`${API}/api/upload?id=${fid}&i=${i}`, { method: "POST", headers: { authorization: "Bearer " + S.token }, body: ct.subarray(i * CHUNK, (i + 1) * CHUNK) });
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || "upload");
+    onProg && onProg(Math.round(((i + 1) / n) * 100));
+  }
+  return { fid, k: b64(key), iv: b64(iv), n };
+}
+async function sendFile(file, kind = "file", extra = {}) {
+  const key = S.cur; if (!key) return;
+  if (file.size > 58 * 1048576) return toast("الحد الأقصى للملف 58MB");
+  const th = kind === "file" ? await makeThumb(file) : null;
+  const x = { name: file.name || "file", mime: file.type || "application/octet-stream", size: file.size, ...(th || {}), ...extra };
   const local = URL.createObjectURL(file);
-  FILES.set(fid, { url: local, blob: file });
-  const cid = Math.random().toString(36).slice(2);
-  const m = { cid, a: S.me.id, b: peer, body: "", kind, ts: Date.now(), status: 0, meta: x, local, prog: 0 };
-  pushMsg(peer, m); renderMsgs(true);
+  x.fid = "local-" + randHexJS(6);
+  const m = await sendRaw(key, "", kind, { meta: x, local, prog: 0, deferSend: true, reply: S.reply?.id || null });
+  setReply(null);
   try {
-    const ck = await crypto.subtle.importKey("raw", key, "AES-GCM", false, ["encrypt"]);
-    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, ck, await file.arrayBuffer()));
-    x.n = Math.ceil(ct.length / CHUNK);
-    for (let i = 0; i < x.n; i++) {
-      const r = await fetch(`${API}/api/upload?id=${fid}&i=${i}`, { method: "POST", headers: { authorization: "Bearer " + S.token }, body: ct.subarray(i * CHUNK, (i + 1) * CHUNK) });
-      if (!r.ok) throw new Error("upload");
-      m.prog = Math.round(((i + 1) / x.n) * 100);
-      if (S.peer && S.peer.id === peer) { const el = document.querySelector(`.b[data-i="${S.msgs[peer].indexOf(m)}"] .prog`); if (el) el.textContent = m.prog + "%"; }
-    }
+    const up = await uploadEncrypted(file, (p) => {
+      m.prog = p;
+      if (S.cur === key) { const el = document.querySelector(`.b[data-i="${(S.msgs[key] || []).indexOf(m)}"] .prog`); if (el) el.textContent = p + "%"; }
+    });
+    Object.assign(x, up);
+    FILES.set(x.fid, { url: local, blob: file });
     delete m.prog;
-    const body = await enc(peer, JSON.stringify(x));
-    const q = { t: "send", to: peer, body, kind, cid };
-    (S.queue ||= []).push(q); wsSend(q);
-    renderMsgs();
-  } catch {
-    S.msgs[peer] = S.msgs[peer].filter((y) => y !== m); renderMsgs();
-    toast("فشل رفع الملف");
+    await finishSend(key, m, JSON.stringify(x), kind);
+    if (S.cur === key) renderMsgs();
+  } catch (e) {
+    S.msgs[key] = (S.msgs[key] || []).filter((y) => y !== m); if (S.cur === key) renderMsgs();
+    toast("فشل رفع الملف" + (e.message && e.message !== "upload" ? ": " + e.message : ""));
   }
 }
 async function loadFile(x) {
@@ -1054,18 +1473,38 @@ function closeViewer() { $("viewer").classList.add("hidden"); $("vBody").innerHT
 $("vX").onclick = () => history.back();
 
 // المرفقات
-$("cAttach").onclick = () => {
-  const items = [["🖼️", "صور وفيديو", () => $("fMedia").click()], ["📸", "الكاميرا", () => $("fCam").click()], ["📄", "ملف", () => $("fAny").click()]];
-  $("acts").innerHTML = items.map((it, i) => `<button data-a="${i}"><span class="em">${it[0]}</span>${it[1]}</button>`).join("");
-  $("acts").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; closeSheets(); items[Number(b.dataset.a)][2](); };
-  openSheet("actSheet");
-};
+$("cAttach").onclick = () => sheetMenu([
+  ["🖼️", "صور وفيديو", () => $("fMedia").click()],
+  ["📸", "الكاميرا", () => $("fCam").click()],
+  ["📄", "ملف", () => $("fAny").click()],
+  ["📍", "موقعي", sendLocation],
+  ["👤", "جهة اتصال", sendContact],
+]);
 for (const id of ["fMedia", "fAny", "fCam"]) $(id).onchange = async (e) => { const fs = [...e.target.files]; e.target.value = ""; for (const f of fs) await sendFile(f); };
+function sendLocation() {
+  if (!navigator.geolocation) return toast("الموقع غير متاح");
+  toast("📍 جارٍ تحديد موقعك…");
+  const key = S.cur;
+  navigator.geolocation.getCurrentPosition(
+    (p) => { const x = { lat: +p.coords.latitude.toFixed(6), lng: +p.coords.longitude.toFixed(6), acc: Math.round(p.coords.accuracy) }; sendRaw(key, JSON.stringify(x), "loc", { meta: x }); },
+    () => toast("اسمح للتطبيق بالوصول إلى الموقع"),
+    { enableHighAccuracy: true, timeout: 15000 });
+}
+async function sendContact() {
+  const key = S.cur;
+  let users = [];
+  try { users = (await api("/api/contacts")).users; } catch {}
+  users = [S.me, ...users.filter((u) => u.id !== (cur()?.type === "u" ? cur().id : -1))];
+  sheetMenu(users.map((u) => ["👤", u.id === S.me.id ? "أنا (" + u.name + ")" : u.name, () => {
+    const x = { id: u.id, name: u.name, pin: u.pin, avatar: u.avatar || null };
+    sendRaw(key, JSON.stringify(x), "contact", { meta: x });
+  }]), "مشاركة جهة اتصال");
+}
 
 // ---------- الرسائل الصوتية ----------
 const REC = { on: false };
 async function startRec() {
-  if (!S.peer) return;
+  if (!S.cur) return;
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
     const mime = ["audio/mp4", "audio/webm;codecs=opus", "audio/webm"].find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || "";
@@ -1075,7 +1514,7 @@ async function startRec() {
     rec.start(250);
     $("cInput").classList.add("hidden"); $("cAttach").classList.add("hidden"); $("recBox").classList.remove("hidden");
     updateSendBtn();
-    REC.timer = setInterval(() => { $("recT").textContent = fmtDur((Date.now() - REC.t0) / 1000); wsSend({ t: "typing", to: S.peer.id, rec: true }); }, 1000);
+    REC.timer = setInterval(() => { $("recT").textContent = fmtDur((Date.now() - REC.t0) / 1000); wsSend({ t: "typing", ...wsTarget(S.cur), rec: true }); }, 1000);
     $("recT").textContent = "0:00";
   } catch { toast("اسمح للتطبيق باستخدام المايك"); }
 }
@@ -1114,13 +1553,14 @@ async function playVoice(el, x) {
   } catch { el.querySelector(".vp").textContent = "▶"; toast("تعذّر تشغيل الرسالة الصوتية"); }
 }
 
+
 // ---------- الأوراق المنبثقة ----------
 function openSheet(id) { $(id).classList.remove("hidden"); }
 function closeSheets() { for (const s of document.querySelectorAll(".sheet")) s.classList.add("hidden"); }
 for (const s of document.querySelectorAll(".sheet")) s.addEventListener("click", (e) => { if (e.target === s || e.target.closest("[data-close]")) { s.classList.add("hidden"); if (s.id === "askSheet" && S.askRes) { S.askRes(null); S.askRes = null; } } });
-function ask(title, fields, ok) {
+function ask(title, fields, ok, values = []) {
   $("askT").textContent = title; $("askE").textContent = ""; $("askOk").textContent = ok;
-  $("askF").innerHTML = fields.map((f, i) => `<input class="field" data-i="${i}" type="${f.type || "text"}" placeholder="${esc(f.ph)}" ${f.type === "password" ? 'dir="ltr"' : ""} ${f.mode ? `inputmode="${f.mode}"` : ""} maxlength="${f.max || 100}">`).join("");
+  $("askF").innerHTML = fields.map((f, i) => `<input class="field" data-i="${i}" type="${f.type || "text"}" placeholder="${esc(f.ph)}" ${f.type === "password" ? 'dir="ltr"' : ""} ${f.mode ? `inputmode="${f.mode}"` : ""} maxlength="${f.max || 100}" value="${esc(values[i] || "")}">`).join("");
   openSheet("askSheet");
   setTimeout(() => $("askF").querySelector("input")?.focus(), 80);
   return new Promise((res) => {
@@ -1129,24 +1569,122 @@ function ask(title, fields, ok) {
     $("askNo").onclick = () => { $("askSheet").classList.add("hidden"); S.askRes = null; res(null); };
   });
 }
-
-// معلومات جهة الاتصال + رقم الأمان
-async function showInfo() {
-  if (!S.peer) return;
-  const u = S.users[S.peer.id] || S.peer;
-  avatar($("iAv"), u); $("iName").textContent = u.name; $("iAbout").textContent = u.about || ""; $("iEmail").textContent = u.pin ? "PIN " + u.pin : "";
-  $("sNum").innerHTML = "…";
-  openSheet("infoSheet");
-  try { if (!u.pub) await sharedKey(u.id); $("sNum").innerHTML = (await safetyNumber(u.id)).map((g) => `<span>${g}</span>`).join(""); }
-  catch { $("sNum").textContent = "هذا المستخدم لم يفعّل التشفير بعد"; }
+// قائمة خيارات عامة
+function sheetMenu(items, title, topHtml = "", onTop) {
+  $("acts").innerHTML = (title ? `<h3 class="acth">${esc(title)}</h3>` : "") + topHtml + items.map((it, i) => `<button data-a="${i}" class="${it[3] || ""}"><span class="em">${it[0]}</span>${esc(it[1])}</button>`).join("");
+  $("acts").onclick = (e) => {
+    const t = e.target.closest("[data-e]"); if (t && onTop) return onTop(t.dataset.e);
+    const b = e.target.closest("button[data-a]"); if (!b) return; closeSheets(); items[Number(b.dataset.a)][2]();
+  };
+  openSheet("actSheet");
 }
-$("cWho").onclick = showInfo; $("cAv").onclick = showInfo;
+
+// ---------- معلومات المحادثة (شخص / مجموعة) ----------
+const TTL_LABEL = { 0: "إيقاف", 86400: "24 ساعة", 604800: "7 أيام", 7776000: "90 يوماً" };
+async function showInfo() {
+  const c = cur(); if (!c) return;
+  $("infoActs").innerHTML = ""; $("iMembers").innerHTML = ""; $("iSafe").classList.add("hidden");
+  avatar($("iAv"), convAv(c)); $("iName").textContent = convName(c);
+  const rows = [];
+  if (c.type === "u") {
+    const u = S.users[c.id] || c.user || {};
+    $("iAbout").textContent = u.about || ""; $("iEmail").textContent = u.pin ? "PIN " + u.pin : "";
+    $("iSafe").classList.remove("hidden"); $("sNum").innerHTML = "…";
+    try { if (!u.pub) await sharedKey(u.id); $("sNum").innerHTML = (await safetyNumber(u.id)).map((g) => `<span>${g}</span>`).join(""); }
+    catch { $("sNum").textContent = "هذا المستخدم لم يفعّل التشفير بعد"; }
+  } else {
+    const g = c.group || {};
+    $("iAbout").textContent = `مجموعة · ${(g.members || []).length} أعضاء`; $("iEmail").textContent = "";
+    const admin = isAdmin(c);
+    $("iMembers").innerHTML = `<h4>الأعضاء</h4>${admin ? '<button class="it" data-add="1"><span class="ic" style="background:#00d1a033">➕</span><span class="tx">إضافة عضو</span></button>' : ""}` +
+      (g.members || []).map((m) => `<button class="it" data-mem="${m.id}"><div class="av sm" data-u='${esc(JSON.stringify({ id: m.id, name: m.name, avatar: safeImg(m.avatar) }))}'></div><span class="tx">${m.id === S.me.id ? "أنت" : esc(m.name)}<small>${esc(m.about || "")}</small></span>${m.admin ? '<span class="adm">مشرف</span>' : ""}</button>`).join("");
+    for (const el of $("iMembers").querySelectorAll("[data-u]")) avatar(el, JSON.parse(el.dataset.u));
+    $("iMembers").onclick = (e) => {
+      if (e.target.closest("[data-add]")) return addMember(c);
+      const b = e.target.closest("[data-mem]"); if (b) memberActions(c, Number(b.dataset.mem));
+    };
+    if (admin) rows.push(["✏️", "تعديل الاسم", async () => { const r = await ask("اسم المجموعة", [{ ph: "الاسم", max: 60 }], "حفظ", [g.name]); if (r && r[0].trim()) groupUpdate(c, { name: r[0] }); }], ["🖼️", "تغيير صورة المجموعة", () => { S.avTarget = c; $("fAvatar").click(); }]);
+  }
+  rows.push(
+    ["🖼️", "الوسائط والملفات", showMedia],
+    ["🔍", "بحث في المحادثة", () => { closeSheets(); openSearch(); }],
+    [c.prefs.muted ? "🔔" : "🔕", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
+    ["⏱️", "الرسائل المختفية: " + TTL_LABEL[c.ttl || 0], () => chooseTTL(c)],
+  );
+  if (c.type === "u") rows.push([c.blocked ? "✅" : "🚫", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
+  else rows.push(["🚪", "مغادرة المجموعة", async () => { if (await ask("مغادرة المجموعة؟", [], "مغادرة")) { await api("/api/group/remove", { gid: c.id, uid: S.me.id }).catch((e) => toast(e.message)); } }, "dz"]);
+  $("infoActs").innerHTML = rows.map((r, i) => `<button class="it ${r[3] || ""}" data-r="${i}"><span class="ic" style="background:#ffffff12">${r[0]}</span><span class="tx">${esc(r[1])}</span></button>`).join("");
+  $("infoActs").onclick = (e) => { const b = e.target.closest("[data-r]"); if (b) { const fn = rows[Number(b.dataset.r)][2]; if (!["الوسائط والملفات", "بحث في المحادثة"].includes(rows[Number(b.dataset.r)][1])) closeSheets(); fn(); } };
+  $("iCall").classList.toggle("hidden", !!c.blocked); $("iVid").classList.toggle("hidden", !!c.blocked);
+  openSheet("infoSheet");
+}
+$("cWho").onclick = () => { const c = cur(); if (c?.type === "g" && (S.gcallState[c.id] || []).length && !GC) return joinGroupCall(c.id, false); showInfo(); };
+$("cAv").onclick = showInfo;
 $("iCall").onclick = () => { closeSheets(); startCall(false); };
 $("iVid").onclick = () => { closeSheets(); startCall(true); };
+$("blockedBar").onclick = () => { const c = cur(); if (c) setBlock(c.id, false); };
 
-// دردشة جديدة
+async function setBlock(uid, on) {
+  try {
+    await api("/api/block", { uid, on });
+    const c = S.convs.get("u" + uid); if (c) c.blocked = on;
+    toast(on ? "🚫 تم الحظر" : "✅ تم إلغاء الحظر");
+    if (S.cur === "u" + uid) setHeader();
+    renderChats();
+  } catch (e) { toast(e.message); }
+}
+function chooseTTL(c) {
+  sheetMenu(Object.entries(TTL_LABEL).map(([s, l]) => [Number(s) === (c.ttl || 0) ? "✅" : "⏱️", l, async () => {
+    try { await api("/api/ttl", { c: c.key, secs: Number(s) }); c.ttl = Number(s); setHeader(); renderChats(); } catch (e) { toast(e.message); }
+  }]), "الرسائل المختفية — تُحذف للجميع بعد المدة");
+}
+async function groupUpdate(c, patch) {
+  try { const d = await api("/api/group/update", { gid: c.id, ...patch }); ensureConv(c.key, { group: d.group }); setHeader(); renderChats(); toast("تم الحفظ"); } catch (e) { toast(e.message); }
+}
+function memberActions(c, uid) {
+  if (uid === S.me.id) return;
+  const m = (c.group.members || []).find((x) => x.id === uid); if (!m) return;
+  const items = [["💬", "مراسلة " + m.name, () => { closeSheets(); openChat("u" + uid); }]];
+  if (isAdmin(c)) {
+    items.push([m.admin ? "⬇️" : "⭐", m.admin ? "إزالة الإشراف" : "تعيين مشرفاً", () => api("/api/group/admin", { gid: c.id, uid, admin: !m.admin }).then((d) => { ensureConv(c.key, { group: d.group }); showInfo(); }).catch((e) => toast(e.message))]);
+    items.push(["➖", "إزالة من المجموعة", async () => { if (await ask(`إزالة ${m.name}؟`, [], "إزالة")) api("/api/group/remove", { gid: c.id, uid }).then(() => loadGroup(c.id)).catch((e) => toast(e.message)); }, "dz"]);
+  }
+  sheetMenu(items, m.name);
+}
+async function pickContacts(title, exclude = [], multi = true) {
+  let users = [];
+  try { users = (await api("/api/contacts")).users.filter((u) => !exclude.includes(u.id)); } catch {}
+  return new Promise((res) => {
+    $("pickT").textContent = title;
+    $("pickList").innerHTML = (users.length ? users.map((u) => `<label class="it"><div class="av sm" data-u='${esc(JSON.stringify({ id: u.id, name: u.name, avatar: safeImg(u.avatar) }))}'></div><span class="tx">${esc(u.name)}<small dir="ltr">${esc(u.pin || "")}</small></span><input type="${multi ? "checkbox" : "radio"}" name="pk" value="${u.id}"></label>`).join("") : '<div class="empty">لا توجد جهات اتصال بعد. راسل أصدقاءك أولاً، أو أضفهم بالكود.</div>') +
+      `<div style="display:flex;gap:8px;padding-top:8px"><input class="field pinin" id="pickPin" placeholder="أو اكتب كود PIN" dir="ltr" maxlength="9" style="font-size:17px!important;letter-spacing:3px"></div>`;
+    for (const el of $("pickList").querySelectorAll("[data-u]")) avatar(el, JSON.parse(el.dataset.u));
+    $("pickPin").oninput = () => { $("pickPin").value = normPin($("pickPin").value); };
+    openSheet("pickSheet");
+    $("pickOk").onclick = async () => {
+      const ids = [...$("pickList").querySelectorAll("input[name=pk]:checked")].map((i) => Number(i.value));
+      const pin = normPin($("pickPin").value);
+      if (pin.length === 8) { try { const d = await api("/api/find?pin=" + pin); S.users[d.user.id] = d.user; ids.push(d.user.id); } catch (e) { return toast(e.message); } }
+      closeSheets(); res(ids);
+    };
+    $("pickNo").onclick = () => { closeSheets(); res(null); };
+  });
+}
+async function addMember(c) {
+  closeSheets();
+  const ids = await pickContacts("إضافة أعضاء", memberIds(c));
+  if (!ids) return;
+  for (const uid of ids) { try { const d = await api("/api/group/add", { gid: c.id, uid }); ensureConv(c.key, { group: d.group }); } catch (e) { toast(e.message); } }
+  setHeader(); renderChats();
+}
+
+// ---------- إضافة شخص / مجموعة جديدة ----------
 const normPin = (v) => v.toUpperCase().replace(/[^0-9A-F]/g, "").slice(0, 8);
-$("newChat").onclick = () => { openSheet("newSheet"); $("nErr").textContent = ""; $("nPin").value = ""; $("nMyPin").textContent = S.me.pin || ""; setTimeout(() => $("nPin").focus(), 50); };
+$("newChat").onclick = () => {
+  if (S.tab === "status") return addStatus();
+  sheetMenu([["👤", "إضافة شخص بالكود", newByPin], ["👥", "مجموعة جديدة", newGroup]]);
+};
+function newByPin() { openSheet("newSheet"); $("nErr").textContent = ""; $("nPin").value = ""; $("nMyPin").textContent = S.me.pin || ""; setTimeout(() => $("nPin").focus(), 50); }
 $("nPin").oninput = () => { const v = normPin($("nPin").value); if ($("nPin").value !== v) $("nPin").value = v; if (v.length === 8) $("nGo").focus(); };
 $("nPin").onkeydown = (e) => { if (e.key === "Enter") $("nGo").click(); };
 $("nGo").onclick = async () => {
@@ -1155,18 +1693,140 @@ $("nGo").onclick = async () => {
     if (pin.length !== 8) throw new Error("الكود يتكون من 8 خانات (أرقام وحروف A-F)");
     const d = await api("/api/find?pin=" + pin);
     if (d.user.id === S.me.id) throw new Error("هذا كودك أنت 🙂");
-    S.users[d.user.id] = d.user; closeSheets(); openChat(d.user.id);
+    S.users[d.user.id] = d.user; closeSheets(); ensureConv("u" + d.user.id, { user: d.user }); openChat("u" + d.user.id);
   } catch (e) { $("nErr").textContent = e.message; }
 };
+async function newGroup() {
+  const r = await ask("👥 مجموعة جديدة", [{ ph: "اسم المجموعة", max: 60 }], "التالي");
+  if (!r || !r[0].trim()) return;
+  const ids = await pickContacts("اختر الأعضاء");
+  if (!ids) return;
+  try {
+    const d = await api("/api/group/create", { name: r[0], members: ids });
+    ensureConv("g" + d.group.id, { group: d.group });
+    openChat("g" + d.group.id);
+  } catch (e) { toast(e.message); }
+}
 
-// تبويبات
+// ---------- التبويبات ----------
+S.tab = "chats";
 for (const b of document.querySelectorAll(".tabs button")) b.onclick = () => {
+  S.tab = b.dataset.tab;
   for (const x of document.querySelectorAll(".tabs button")) x.classList.toggle("on", x === b);
-  const chats = b.dataset.tab === "chats";
-  $("chatList").classList.toggle("hidden", !chats); $("callList").classList.toggle("hidden", chats);
-  $("newChat").classList.toggle("hidden", !chats); document.querySelector(".search").classList.toggle("hidden", !chats);
-  renderCalls();
+  $("chatList").classList.toggle("hidden", S.tab !== "chats");
+  $("callList").classList.toggle("hidden", S.tab !== "calls");
+  $("statusList").classList.toggle("hidden", S.tab !== "status");
+  $("newChat").classList.toggle("hidden", S.tab === "calls");
+  $("newChat").innerHTML = S.tab === "status" ? '<span style="font-size:24px">📷</span>' : '<svg><use href="#i-plus"/></svg>';
+  document.querySelector(".search").classList.toggle("hidden", S.tab !== "chats");
+  if (S.tab === "calls") renderCalls();
+  if (S.tab === "status") loadStatuses();
 };
+
+// ---------- الحالات (تختفي بعد 24 ساعة، مشفّرة لجهات اتصالك فقط) ----------
+S.statuses = { mine: [], others: [] };
+const ST_BG = ["linear-gradient(135deg,#00d1a0,#00a3ff)", "linear-gradient(135deg,#ff6a88,#ff99ac)", "linear-gradient(135deg,#7b5cff,#30cfd0)", "linear-gradient(135deg,#f6d365,#fda085)", "linear-gradient(135deg,#232526,#414345)", "linear-gradient(135deg,#ff512f,#dd2476)"];
+async function loadStatuses() {
+  try {
+    const d = await api("/api/statuses");
+    for (const s of [...d.mine, ...d.others.flatMap((o) => o.items)]) await decEnv(s.uid, s.body);
+    for (const o of d.others) S.users[o.user.id] = { ...S.users[o.user.id], ...o.user };
+    S.statuses = d;
+    renderStatuses();
+  } catch {}
+}
+const stParse = (s) => { try { return JSON.parse(PT.get(s.body)); } catch { return null; } };
+function renderStatuses() {
+  const d = S.statuses, el = $("statusList");
+  let html = `<div class="row" data-st="me"><div class="av stav ${d.mine.length ? "ring seen" : ""}" id="stMeAv"></div><div class="mid"><div class="top"><span class="nm">حالتي</span></div><div class="sub"><span class="pv">${d.mine.length ? `${d.mine.length} حالة · اضغط للعرض` : "اضغط 📷 لإضافة حالة"}</span></div></div><button class="ib" data-add="1">➕</button></div>`;
+  if (d.others.length) html += '<h4 class="sth">التحديثات الأخيرة</h4>';
+  d.others.sort((a, b) => (a.items.every((i) => i.viewed) - b.items.every((i) => i.viewed)) || b.items.at(-1).ts - a.items.at(-1).ts);
+  for (const o of d.others) {
+    const seen = o.items.every((i) => i.viewed);
+    html += `<div class="row" data-st="${o.user.id}"><div class="av stav ring ${seen ? "seen" : ""}" data-u='${esc(JSON.stringify({ id: o.user.id, name: o.user.name, avatar: safeImg(o.user.avatar) }))}'></div><div class="mid"><div class="top"><span class="nm">${esc(o.user.name)}</span></div><div class="sub"><span class="pv">${shortTime(o.items.at(-1).ts)} · ${o.items.length} حالة</span></div></div></div>`;
+  }
+  if (!d.others.length) html += '<div class="empty" style="padding-top:40px">لا توجد حالات من أصدقائك.<br>الحالات تختفي بعد 24 ساعة 🕐</div>';
+  el.innerHTML = html;
+  avatar($("stMeAv"), S.me);
+  for (const a of el.querySelectorAll("[data-u]")) avatar(a, JSON.parse(a.dataset.u));
+  el.onclick = (e) => {
+    if (e.target.closest("[data-add]")) return addStatus();
+    const r = e.target.closest("[data-st]"); if (!r) return;
+    if (r.dataset.st === "me") { if (d.mine.length) openStory(S.me, d.mine, true); else addStatus(); }
+    else { const o = d.others.find((x) => x.user.id == r.dataset.st); if (o) openStory(o.user, o.items, false); }
+  };
+}
+function addStatus() {
+  sheetMenu([["📝", "حالة نصية", textStatus], ["🖼️", "صورة", () => $("fStatus").click()]], "حالة جديدة — تظهر لجهات اتصالك 24 ساعة");
+}
+async function statusRecipients() { try { return (await api("/api/contacts")).users.map((u) => { S.users[u.id] = { ...S.users[u.id], ...u }; return u.id; }); } catch { return []; } }
+async function postStatus(obj, kind) {
+  const to = await statusRecipients();
+  if (!to.length) toast("ستظهر حالتك فقط لمن تراسلهم");
+  const body = await encEnv(to, JSON.stringify(obj));
+  await api("/api/status", { body, kind, to });
+  toast("✅ تم نشر الحالة"); loadStatuses();
+}
+async function textStatus() {
+  const r = await ask("📝 حالة نصية", [{ ph: "اكتب شيئاً…", max: 300 }], "نشر");
+  if (!r || !r[0].trim()) return;
+  try { await postStatus({ type: "text", text: r[0].trim(), bg: Math.floor(Math.random() * ST_BG.length) }, "text"); } catch (e) { toast(e.message); }
+}
+$("fStatus").onchange = async (e) => {
+  const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+  try {
+    toast("⏫ جارٍ الرفع…");
+    const dataUrl = await resizeImage(f, 1280, false, 0.82);
+    const blob = await (await fetch(dataUrl)).blob();
+    const up = await uploadEncrypted(blob);
+    const cap = await ask("تعليق (اختياري)", [{ ph: "تعليق", max: 200 }], "نشر");
+    if (cap === null) return;
+    await postStatus({ type: "image", ...up, mime: "image/jpeg", cap: cap[0] || "", thumb: await resizeImage(f, 64, false, 0.5) }, "image");
+  } catch (er) { toast(er.message || "فشل الرفع"); }
+};
+let ST = null;
+function openStory(user, items, mine) {
+  ST = { user, items, mine, i: Math.max(0, mine ? 0 : items.findIndex((x) => !x.viewed)) };
+  if (ST.i < 0) ST.i = 0;
+  $("story").classList.remove("hidden");
+  history.pushState({ v: S.view, story: 1 }, "");
+  avatar($("stAv"), user); $("stName").textContent = mine ? "حالتي" : user.name;
+  showStoryItem();
+}
+async function showStoryItem() {
+  clearTimeout(ST?.t);
+  if (!ST) return;
+  const s = ST.items[ST.i]; if (!s) return history.back();
+  $("stBars").innerHTML = ST.items.map((_, i) => `<i class="${i < ST.i ? "done" : ""}"><b class="${i === ST.i ? "run" : ""}"></b></i>`).join("");
+  $("stTime").textContent = shortTime(s.ts) + " " + hm(s.ts);
+  const o = stParse(s);
+  const body = $("stBody");
+  $("stFoot").innerHTML = ST.mine ? `<button class="link" id="stViews">👁️ ${s.views.length}</button><button class="link" id="stDel" style="color:var(--red)">🗑️ حذف</button>` : "";
+  if (!o) body.innerHTML = '<div class="sttext" style="background:#222">🔒 تعذّر فك التشفير</div>';
+  else if (o.type === "text") body.innerHTML = `<div class="sttext" style="background:${ST_BG[o.bg % ST_BG.length]}">${esc(o.text)}</div>`;
+  else {
+    body.innerHTML = `<img class="stimg" src="${safeImg(o.thumb) || ""}">${o.cap ? `<div class="stcap">${esc(o.cap)}</div>` : ""}`;
+    try { const f = await loadFile({ ...o, name: "status.jpg" }); if (ST && ST.items[ST.i] === s) body.querySelector("img").src = f.url; } catch {}
+  }
+  const bar = $("stBars").querySelector(".run");
+  if (bar) { bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = ""; }
+  ST.t = setTimeout(() => { if (ST) { ST.i++; showStoryItem(); } }, 5500);
+  if (!ST.mine && !s.viewed) { s.viewed = 1; api("/api/status/view", { sid: s.id }).catch(() => {}); }
+  if (ST.mine) {
+    $("stViews").onclick = (e) => { e.stopPropagation(); clearTimeout(ST.t); sheetMenu(s.views.map((u) => ["👁️", u.name, () => {}]), s.views.length ? "شاهدها" : "لم يشاهدها أحد بعد"); };
+    $("stDel").onclick = async (e) => { e.stopPropagation(); clearTimeout(ST.t); if (!(await ask("حذف هذه الحالة؟", [], "حذف"))) return; await api("/api/status/delete", { sid: s.id }); ST.items.splice(ST.i, 1); if (!ST.items.length) history.back(); else showStoryItem(); loadStatuses(); };
+  }
+}
+function closeStory() { clearTimeout(ST?.t); ST = null; $("story").classList.add("hidden"); $("stBody").innerHTML = ""; renderStatuses(); }
+$("story").onclick = (e) => {
+  if (!ST || e.target.closest("#stFoot") || e.target.closest("#stX")) return;
+  const left = e.clientX < window.innerWidth / 2;
+  ST.i += left ? 1 : -1; // RTL: اليسار = التالي
+  if (ST.i < 0) ST.i = 0;
+  showStoryItem();
+};
+$("stX").onclick = (e) => { e.stopPropagation(); history.back(); };
+
 
 // ---------- الإعدادات ----------
 function sw(id, on) { $(id).querySelector(".sw").classList.toggle("on", !!on); }
@@ -1205,6 +1865,7 @@ async function setMe(patch) {
 }
 $("fAvatar").onchange = async (e) => {
   const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+  if (S.avTarget) { const c = S.avTarget; S.avTarget = null; try { await groupUpdate(c, { avatar: await resizeImage(f, 320, true, 0.8) }); } catch (er) { toast(er.message); } return; }
   try { await setMe({ avatar: await resizeImage(f, 320, true, 0.8) }); avatar($("pAv"), S.me); renderSettings(); toast("تم تحديث الصورة"); }
   catch (er) { toast(er.message || "تعذّر رفع الصورة"); }
 };
@@ -1213,6 +1874,17 @@ $("pSave").onclick = async () => { try { await setMe({ name: $("pName").value, a
 
 // الخصوصية
 function renderPrivacy() { sw("prSeen", S.me.hide_seen); sw("prRead", S.me.receipts !== false); }
+$("prBlocked").onclick = async () => {
+  go("blocked");
+  $("blockedList").innerHTML = '<div class="empty">⏳</div>';
+  try {
+    const d = await api("/api/blocks");
+    if (!d.users.length) { $("blockedList").innerHTML = '<div class="empty">لا يوجد أحد محظور</div>'; return; }
+    $("blockedList").innerHTML = d.users.map((u) => `<div class="it"><div class="av sm" data-u='${esc(JSON.stringify({ id: u.id, name: u.name, avatar: safeImg(u.avatar) }))}'></div><span class="tx">${esc(u.name)}<small dir="ltr">${esc(u.pin || "")}</small></span><button class="link" data-unb="${u.id}">إلغاء الحظر</button></div>`).join("");
+    for (const el of $("blockedList").querySelectorAll("[data-u]")) avatar(el, JSON.parse(el.dataset.u));
+    $("blockedList").onclick = async (e) => { const id = e.target.dataset.unb; if (!id) return; await setBlock(Number(id), false); $("prBlocked").click(); };
+  } catch (e) { $("blockedList").innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
+};
 $("prSeen").onclick = async () => { await setMe({ hide_seen: !S.me.hide_seen }); renderPrivacy(); };
 $("prRead").onclick = async () => { await setMe({ receipts: S.me.receipts === false }); renderPrivacy(); };
 
@@ -1262,7 +1934,7 @@ function renderChatSet() {
   $("walls").innerHTML = Object.entries(WALLS).map(([k, w]) => `<button data-w="${k}" class="${SET.wall === k ? "on" : ""}" style="background:${k === "glow" ? "radial-gradient(circle at 30% 20%,#00d1a055,transparent 60%),radial-gradient(circle at 80% 70%,#00a3ff44,transparent 60%),#07090f" : k === "custom" ? (localStorage.getItem("w_wall") ? wallCss("custom") : "#ffffff14") : w.css}">${k === "custom" ? "📷<br>" : ""}${w.n}</button>`).join("");
   $("wDim").value = SET.dim;
   for (const b of $("fsSeg").children) b.classList.toggle("on", b.dataset.v === SET.fs);
-  sw("csEnter", SET.enter);
+  sw("csEnter", SET.enter); sw("csLp", SET.lp !== false);
   applySet();
 }
 $("walls").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; if (b.dataset.w === "custom") return $("fWall").click(); SET.wall = b.dataset.w; saveSet(); renderChatSet(); };
@@ -1270,12 +1942,14 @@ $("fWall").onchange = async (e) => { const f = e.target.files[0]; e.target.value
 $("wDim").oninput = () => { SET.dim = Number($("wDim").value); saveSet(); };
 $("fsSeg").onclick = (e) => { const v = e.target.dataset.v; if (!v) return; SET.fs = v; saveSet(); renderChatSet(); };
 $("csEnter").onclick = () => { SET.enter = !SET.enter; saveSet(); renderChatSet(); };
+$("csLp").onclick = () => { SET.lp = SET.lp === false; saveSet(); renderChatSet(); };
 
 // الإشعارات
 function renderNotifs() { sw("nMsg", SET.msgN); sw("nCall", SET.callN); sw("nSound", SET.sound); }
 $("nMsg").onclick = () => { SET.msgN = !SET.msgN; saveSet(); renderNotifs(); };
 $("nCall").onclick = () => { SET.callN = !SET.callN; saveSet(); renderNotifs(); };
 $("nSound").onclick = () => { SET.sound = !SET.sound; saveSet(); renderNotifs(); };
+
 
 // ---------- الأصوات ----------
 let AC;
@@ -1357,10 +2031,11 @@ function goLive() {
   clearInterval(C.timer);
   C.timer = setInterval(() => { $("kState").textContent = fmtDur((Date.now() - C.start) / 1000).padStart(5, "0"); }, 1000);
 }
-async function startCall(video) {
-  if (C || !S.peer) return;
+async function startCall(video, uid) {
+  if (!uid) { const c = cur(); if (!c) return; if (c.type === "g") return startGroupCall(c.id, video); if (c.blocked) return toast("ألغِ الحظر أولاً"); uid = c.id; }
+  if (C || GC) return;
   if (!S.wsOk) return toast("غير متصل بالسيرفر");
-  const peer = S.peer.id;
+  const peer = uid;
   try { await sharedKey(peer); } catch { return toast("هذا المستخدم يحتاج تحديث التطبيق"); }
   C = { peer, id: Math.random().toString(36).slice(2), video, out: true, state: "calling", pendingIce: [] };
   callUI("calling"); ring("out");
@@ -1475,7 +2150,7 @@ function endCall(notify, reason) {
   if (notify) sig({ kind: "end" });
   const dur = C.start ? Math.floor((Date.now() - C.start) / 1000) : 0;
   logCall(C.out ? (dur ? "out" : reason === "noanswer" ? "noanswer" : "cancelled") : dur ? "in" : "missed", dur);
-  if (C.out) sendTo(C.peer, (C.video ? "مكالمة فيديو" : "مكالمة صوتية") + (dur ? " • " + fmtDur(dur) : " • لم يتم الرد"), "call");
+  if (C.out) sendRaw("u" + C.peer, (C.video ? "مكالمة فيديو" : "مكالمة صوتية") + (dur ? " • " + fmtDur(dur) : " • لم يتم الرد"), "call");
   cleanup();
 }
 function cleanup() {
@@ -1509,14 +2184,209 @@ function renderCalls() {
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm" style="color:${l[2] || "inherit"}">${esc(u.name)}</span><span class="tm">${shortTime(c.ts)} ${hm(c.ts)}</span></div>
       <div class="sub"><span class="pv">${l[0]} ${l[1]}${c.dur ? " • " + fmtDur(c.dur) : ""}</span><span>${c.video ? "📹" : "📞"}</span></div></div>`;
     avatar(r.querySelector(".av"), u);
-    r.onclick = () => { S.peer = u; S.users[u.id] ||= u; startCall(c.video); };
+    r.onclick = () => { S.users[u.id] ||= u; startCall(c.video, u.id); };
     el.append(r);
   }
 }
 
+
+// ---------- المكالمات الجماعية (حتى 8 أشخاص، كل اثنين متصلان مباشرة ومشفّران) ----------
+let GC = null;
+S.gcallState = {};
+S.gring = null;
+
+function gTile(uid) {
+  let t = document.querySelector(`#gGrid .gt[data-uid="${uid}"]`);
+  if (!t) {
+    t = document.createElement("div"); t.className = "gt"; t.dataset.uid = uid;
+    const u = uid === S.me.id ? S.me : S.users[uid] || { id: uid, name: "…" };
+    t.innerHTML = `<video autoplay playsinline ${uid === S.me.id ? "muted" : ""}></video><div class="av"></div><span class="gn">${esc(uid === S.me.id ? "أنت" : u.name)}</span>`;
+    avatar(t.querySelector(".av"), u);
+    $("gGrid").append(t);
+  }
+  layoutGrid();
+  return t;
+}
+function layoutGrid() { const n = $("gGrid").children.length; $("gGrid").dataset.n = Math.min(n, 8); }
+function setTileStream(uid, stream) {
+  const t = gTile(uid), v = t.querySelector("video");
+  v.srcObject = stream; v.play().catch(() => {});
+  const hasVid = () => stream.getVideoTracks().some((x) => x.enabled && x.readyState === "live" && !x.muted);
+  const upd = () => t.classList.toggle("novid", !hasVid());
+  upd();
+  for (const tr of stream.getTracks()) { tr.onmute = upd; tr.onunmute = upd; tr.onended = upd; }
+  stream.onaddtrack = upd;
+}
+
+function gcallUI(state) {
+  const c = S.convs.get("g" + (GC?.gid || S.gring?.gid));
+  $("gcall").classList.remove("hidden");
+  $("gTitle").textContent = c ? convName(c) : "مكالمة جماعية";
+  $("gIncoming").classList.toggle("hidden", state !== "incoming");
+  $("gActive").classList.toggle("hidden", state === "incoming");
+  $("gGrid").classList.toggle("hidden", state === "incoming");
+  $("gRingInfo").classList.toggle("hidden", state !== "incoming");
+  if (state === "incoming") {
+    const u = S.users[S.gring.from] || {};
+    avatar($("gRAv"), c ? convAv(c) : u);
+    $("gRText").textContent = `${u.name || ""} يدعوك لمكالمة ${S.gring.video ? "فيديو" : "صوتية"} جماعية`;
+  }
+  for (const b of document.querySelectorAll(".gvidonly")) b.classList.toggle("hidden", !GC?.video);
+  native({ type: "call", active: true });
+}
+
+async function startGroupCall(gid, video) {
+  if (GC || C) return;
+  if (!S.wsOk) return toast("غير متصل بالسيرفر");
+  const live = (S.gcallState[gid] || []).length;
+  if (!live && !(await ask(`بدء مكالمة ${video ? "فيديو" : "صوتية"} جماعية؟`, [], "اتصال"))) return;
+  joinGroupCall(gid, video);
+}
+async function joinGroupCall(gid, video) {
+  stopRing(); S.gring = null;
+  GC = { gid, video, peers: new Map(), start: Date.now(), facing: "user" };
+  $("gGrid").innerHTML = "";
+  gcallUI("active");
+  try {
+    GC.local = await getMedia(video);
+    if (!GC) { GC?.local?.getTracks().forEach((t) => t.stop()); return; }
+    setTileStream(S.me.id, GC.local);
+    gTile(S.me.id).classList.add("me");
+  } catch { toast("لم يُسمح بالمايك/الكاميرا"); return leaveGroupCall(); }
+  wsSend({ t: "gcall", a: "join", gid, video: !!video });
+  clearInterval(GC.timer);
+  GC.timer = setInterval(() => { if (GC) $("gTime").textContent = fmtDur((Date.now() - GC.start) / 1000); }, 1000);
+}
+function leaveGroupCall() {
+  if (!GC) return;
+  wsSend({ t: "gcall", a: "leave", gid: GC.gid });
+  for (const [, p] of GC.peers) { try { p.pc.close(); } catch {} }
+  try { GC.local && GC.local.getTracks().forEach((t) => t.stop()); } catch {}
+  clearInterval(GC.timer);
+  GC = null;
+  $("gGrid").innerHTML = "";
+  $("gcall").classList.add("hidden");
+  $("gMute").classList.remove("on"); $("gMute").innerHTML = '<svg><use href="#i-mic"/></svg>';
+  $("gCam").classList.remove("on"); $("gCam").innerHTML = '<svg><use href="#i-video"/></svg>';
+  native({ type: "call", active: false });
+}
+function gsig(uid, data) {
+  const gid = GC.gid, { kind, ...rest } = data;
+  S.gsigQ = (S.gsigQ || Promise.resolve()).then(async () => {
+    const payload = Object.keys(rest).length ? { e: await enc(uid, JSON.stringify(rest)) } : {};
+    wsSend({ t: "gsignal", gid, to: uid, data: { kind, ...payload } });
+  }).catch(() => {});
+}
+async function makeGPC(uid, initiator) {
+  const old = GC.peers.get(uid); if (old) { try { old.pc.close(); } catch {} }
+  const pc = new RTCPeerConnection({ iceServers: await iceServers(), bundlePolicy: "max-bundle" });
+  const peer = { pc, pending: [] };
+  GC.peers.set(uid, peer);
+  gTile(uid).classList.add("wait");
+  GC.local.getTracks().forEach((t) => pc.addTrack(t, GC.local));
+  pc.onicecandidate = (e) => { if (e.candidate && GC) gsig(uid, { kind: "ice", c: e.candidate.toJSON() }); };
+  pc.ontrack = (e) => { const st = e.streams[0] || new MediaStream([e.track]); setTileStream(uid, st); };
+  pc.onconnectionstatechange = () => {
+    const t = gTile(uid);
+    t.classList.toggle("wait", pc.connectionState !== "connected");
+    if (pc.connectionState === "failed" && initiator && GC) { pc.createOffer({ iceRestart: true }).then((o) => pc.setLocalDescription(o).then(() => gsig(uid, { kind: "offer", sdp: o.sdp }))).catch(() => {}); }
+  };
+  if (initiator) {
+    const o = await pc.createOffer();
+    await pc.setLocalDescription(o);
+    gsig(uid, { kind: "offer", sdp: o.sdp });
+  }
+  return peer;
+}
+function closePeer(uid) {
+  const p = GC?.peers.get(uid); if (p) { try { p.pc.close(); } catch {} GC.peers.delete(uid); }
+  document.querySelector(`#gGrid .gt[data-uid="${uid}"]`)?.remove(); layoutGrid();
+}
+async function onGSignal(from, gid, d) {
+  if (!GC || GC.gid !== gid) return;
+  if (d.e) { const plain = await dec(from, d.e); try { Object.assign(d, JSON.parse(plain)); } catch { return; } delete d.e; }
+  let p = GC.peers.get(from);
+  try {
+    if (d.kind === "offer") {
+      if (!p || p.pc.signalingState === "closed") p = await makeGPC(from, false);
+      await p.pc.setRemoteDescription({ type: "offer", sdp: d.sdp });
+      for (const c of p.pending) p.pc.addIceCandidate(c).catch(() => {}); p.pending = [];
+      const a = await p.pc.createAnswer(); await p.pc.setLocalDescription(a);
+      gsig(from, { kind: "answer", sdp: a.sdp });
+    } else if (d.kind === "answer" && p) {
+      await p.pc.setRemoteDescription({ type: "answer", sdp: d.sdp });
+      for (const c of p.pending) p.pc.addIceCandidate(c).catch(() => {}); p.pending = [];
+    } else if (d.kind === "ice" && p) {
+      if (p.pc.remoteDescription) p.pc.addIceCandidate(d.c).catch(() => {}); else p.pending.push(d.c);
+    } else if (d.kind === "ice") {
+      // وصل قبل العرض: نحتفظ به
+      (GC.early ||= {})[from] = [...(GC.early[from] || []), d.c];
+    }
+  } catch (e) { console.warn("gsignal", e); }
+}
+function onGCall(m) {
+  const gid = m.gid;
+  if (m.a === "state") {
+    S.gcallState[gid] = m.peers;
+    if (window.WASEL_AUTOANSWER === "g" + gid && m.peers.length && !GC && !C) { window.WASEL_AUTOANSWER = null; joinGroupCall(gid, false); }
+    if (S.gring && S.gring.gid === gid && !m.peers.length) { stopRing(); S.gring = null; $("gcall").classList.add("hidden"); native({ type: "call", active: false }); }
+    if (S.cur === "g" + gid) setHeader();
+    renderChats();
+    return;
+  }
+  if (m.a === "ring") {
+    if (m.user) S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
+    if (GC || C) return;
+    const c = S.convs.get("g" + gid);
+    S.gring = { gid, from: m.from, video: !!m.video };
+    if (locked) unlock();
+    gcallUI("incoming");
+    if (!(document.hidden && NAT.any) && !(c && c.prefs.muted)) ring("in");
+    clearTimeout(S.gringT); S.gringT = setTimeout(() => { if (S.gring && S.gring.gid === gid) { stopRing(); S.gring = null; $("gcall").classList.add("hidden"); } }, 45000);
+    if (window.WASEL_AUTOANSWER === "g" + gid) { window.WASEL_AUTOANSWER = null; setTimeout(() => $("gAccept").click(), 300); }
+    return;
+  }
+  if (!GC || GC.gid !== gid) return;
+  if (m.a === "joined") {
+    for (const uid of m.peers) makeGPC(uid, true).then((p) => { for (const c of GC?.early?.[uid] || []) p.pending.push(c); });
+  } else if (m.a === "peer-joined") {
+    if (m.user) S.users[m.user.id] = { ...S.users[m.user.id], ...m.user };
+    gTile(m.uid).classList.add("wait");
+    if (SET.sound) tone(880, 0.12);
+  } else if (m.a === "peer-left") {
+    closePeer(m.uid);
+  } else if (m.a === "full") {
+    toast("المكالمة ممتلئة (8 أشخاص)"); leaveGroupCall();
+  }
+}
+$("gAccept").onclick = () => { if (S.gring) joinGroupCall(S.gring.gid, S.gring.video); };
+$("gDecline").onclick = () => { stopRing(); S.gring = null; $("gcall").classList.add("hidden"); native({ type: "call", active: false }); };
+$("gHang").onclick = () => leaveGroupCall();
+$("gMute").onclick = () => {
+  const t = GC?.local?.getAudioTracks()[0]; if (!t) return; t.enabled = !t.enabled;
+  $("gMute").classList.toggle("on", !t.enabled); $("gMute").innerHTML = `<svg><use href="#i-${t.enabled ? "mic" : "micoff"}"/></svg>`;
+};
+$("gCam").onclick = () => {
+  const t = GC?.local?.getVideoTracks()[0]; if (!t) return; t.enabled = !t.enabled;
+  $("gCam").classList.toggle("on", !t.enabled); $("gCam").innerHTML = `<svg><use href="#i-${t.enabled ? "video" : "camoff"}"/></svg>`;
+  gTile(S.me.id).classList.toggle("novid", !t.enabled);
+};
+$("gFlip").onclick = async () => {
+  if (!GC?.video) return;
+  GC.facing = GC.facing === "environment" ? "user" : "environment";
+  try {
+    const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: GC.facing } });
+    const nt = s.getVideoTracks()[0];
+    for (const [, p] of GC.peers) { const snd = p.pc.getSenders().find((x) => x.track && x.track.kind === "video"); if (snd) await snd.replaceTrack(nt); }
+    const old = GC.local.getVideoTracks()[0]; GC.local.removeTrack(old); old.stop(); GC.local.addTrack(nt);
+    setTileStream(S.me.id, GC.local);
+    gTile(S.me.id).classList.toggle("front", GC.facing === "user");
+  } catch { toast("تعذّر تبديل الكاميرا"); }
+};
+
 // ---------- البدء ----------
 function start() {
-  show("home"); renderChats(); renderCalls(); loadChats(); connect(); applySet();
+  S.users[S.me.id] = S.me; show("home"); renderChats(); renderCalls(); loadChats(); connect(); applySet(); setInterval(() => { if (S.view === "chat") renderMsgs(); }, 60000);
   history.replaceState({ v: "home" }, "");
   native({ type: "auth", token: S.token, me: S.me.id, server: API, name: S.me.name });
   native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure });
@@ -1525,6 +2395,7 @@ function start() {
 }
 buildPad(); applySet();
 if (S.token && S.me && localStorage.getItem("w_priv")) { start(); if (SET.lock) lockNow(); } else { if (S.token) logout(true); show("auth"); }
+
 
 </script>
 </body>

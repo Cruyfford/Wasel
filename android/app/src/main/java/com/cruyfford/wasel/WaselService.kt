@@ -86,7 +86,7 @@ class WaselService : Service() {
         if (intent?.action == ACTION_DECLINE) {
             val id = intent.getStringExtra("callId")
             val to = intent.getIntExtra("from", 0)
-            if (id != null && to != 0) {
+            if (id != null && to != 0 && !id.startsWith("g")) {
                 ws?.send(JSONObject().put("t", "signal").put("to", to)
                     .put("data", JSONObject().put("kind", "reject").put("callId", id)).toString())
             }
@@ -152,16 +152,32 @@ class WaselService : Service() {
         when (o.optString("t")) {
             "msg" -> {
                 val m = o.getJSONObject("m")
-                if (m.optInt("a") == me || appVisible || !p.getBoolean("msgN", true)) return
-                val name = o.optJSONObject("user")?.optString("name") ?: "واصل"
+                if (m.optInt("a") == me || appVisible || !p.getBoolean("msgN", true) || o.optBoolean("muted")) return
+                if (m.optString("kind") == "sys") return
+                val sender = o.optJSONObject("user")?.optString("name") ?: "واصل"
+                val group = o.optJSONObject("group")
                 val text = when (m.optString("kind")) {
                     "file" -> "📎 أرسل ملفاً"
                     "voice" -> "🎤 رسالة صوتية"
-                    "game" -> "🎴 دعوة للعب ألوان"
+                    "loc" -> "📍 أرسل موقعاً"
+                    "contact" -> "👤 أرسل جهة اتصال"
                     "call" -> "📞 مكالمة"
                     else -> "🔒 رسالة جديدة"
                 }
-                notifyMsg(m.optInt("a"), name, text)
+                if (group != null) notifyMsg(100000 + group.optInt("id"), group.optString("name", "مجموعة"), "$sender: $text")
+                else notifyMsg(m.optInt("a"), sender, text)
+            }
+            "gcall" -> {
+                val gid = o.optInt("gid")
+                when (o.optString("a")) {
+                    "ring" -> {
+                        if (appVisible || !p.getBoolean("callN", true) || o.optBoolean("muted")) return
+                        val g = o.optJSONObject("group")?.optString("name") ?: "مجموعة"
+                        val who = o.optJSONObject("user")?.optString("name") ?: ""
+                        ringCall(0, "$g 👥", "g$gid", "📞 $who يدعوك لمكالمة جماعية")
+                    }
+                    "state" -> if (callId == "g$gid" && (o.optJSONArray("peers")?.length() ?: 0) == 0) cancelCall()
+                }
             }
             "signal" -> {
                 val d = o.getJSONObject("data")
@@ -169,7 +185,7 @@ class WaselService : Service() {
                 val id = d.optString("callId")
                 if (kind == "offer") {
                     if (appVisible || !p.getBoolean("callN", true)) return
-                    ringCall(o.optInt("from"), o.optJSONObject("user")?.optString("name") ?: "واصل", id)
+                    ringCall(o.optInt("from"), o.optJSONObject("user")?.optString("name") ?: "واصل", id, "📞 مكالمة واردة — واصل")
                 } else if (id == callId && kind in listOf("end", "reject", "handled", "answer", "busy")) {
                     cancelCall()
                 }
@@ -191,7 +207,7 @@ class WaselService : Service() {
         try { nm.notify(1000 + from, n) } catch (_: SecurityException) {}
     }
 
-    private fun ringCall(from: Int, name: String, id: String) {
+    private fun ringCall(from: Int, name: String, id: String, text: String) {
         callId = id; callFrom = from
         val openI = Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         val open = PendingIntent.getActivity(this, 7, openI, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
@@ -201,7 +217,7 @@ class WaselService : Service() {
         val n = NotificationCompat.Builder(this, CH_CALL)
             .setSmallIcon(android.R.drawable.stat_sys_phone_call)
             .setContentTitle(name)
-            .setContentText("📞 مكالمة واردة — واصل")
+            .setContentText(text)
             .setCategory(NotificationCompat.CATEGORY_CALL)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setOngoing(true)

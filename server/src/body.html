@@ -28,7 +28,8 @@
   <div class="search"><span>🔍</span><input id="hSearch" placeholder="بحث"></div>
   <div class="list" id="chatList"></div>
   <div class="list hidden" id="callList"></div>
-  <div class="tabs"><button class="on" data-tab="chats">الدردشات</button><button data-tab="calls">المكالمات</button></div>
+  <div class="list hidden" id="statusList"></div>
+  <div class="tabs"><button class="on" data-tab="chats">الدردشات</button><button data-tab="status">الحالات</button><button data-tab="calls">المكالمات</button></div>
   <button class="fab" id="newChat"><svg><use href="#i-plus"/></svg></button>
 </div>
 
@@ -41,7 +42,9 @@
     <button class="ib" id="cVideo"><svg><use href="#i-video"/></svg></button>
     <button class="ib" id="cVoice"><svg><use href="#i-phone"/></svg></button>
   </header>
+  <div class="chatsearch hidden" id="chatSearch"><span>🔍</span><input id="csInput" placeholder="ابحث في هذه المحادثة"><button class="ib sm" id="csX">✕</button></div>
   <div id="msgs"></div>
+  <button class="blockedbar hidden" id="blockedBar">🚫 هذا الشخص محظور — اضغط لإلغاء الحظر</button>
   <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX">✕</button></div>
   <div class="composer" id="composer">
     <button class="ib sm" id="cAttach">📎</button>
@@ -91,9 +94,16 @@
     <div class="card">
       <button class="it" id="prSeen"><span class="tx">إخفاء آخر ظهور والاتصال<small>لن يرى أحد متى كنت متصلاً</small></span><span class="sw"></span></button>
       <button class="it" id="prRead"><span class="tx">علامات القراءة<small>إذا أطفأتها لن ترى أنت أيضاً علامات قراءة الآخرين</small></span><span class="sw"></span></button>
+      <button class="it" id="prBlocked"><span class="tx">🚫 المحظورون</span><span class="ch">‹</span></button>
     </div>
     <div class="card"><h4>الحماية الدائمة</h4><div class="it"><span class="tx">🔒 كل الرسائل والصور والملفات والمكالمات مشفّرة من طرف لطرف<small>حتى سيرفر واصل لا يستطيع قراءتها</small></span></div></div>
   </div>
+</div>
+
+<!-- المحظورون -->
+<div id="blocked" class="view hidden">
+  <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>المحظورون</h1></header>
+  <div class="set"><div class="card" id="blockedList"></div></div>
 </div>
 
 <!-- الأمان -->
@@ -124,7 +134,8 @@
       <div style="padding:0 16px 14px"><label style="color:var(--muted);font-size:13px">تعتيم الخلفية</label><input type="range" id="wDim" min="0" max="80"></div>
     </div>
     <div class="card"><h4>حجم الخط</h4><div class="seg" id="fsSeg"><button data-v="14px">صغير</button><button data-v="15.5px">متوسط</button><button data-v="18px">كبير</button></div></div>
-    <div class="card"><button class="it" id="csEnter"><span class="tx">زر الإدخال يرسل الرسالة</span><span class="sw"></span></button></div>
+    <div class="card"><button class="it" id="csEnter"><span class="tx">زر الإدخال يرسل الرسالة</span><span class="sw"></span></button>
+      <button class="it" id="csLp"><span class="tx">معاينة الروابط<small>يجلب عنوان وصورة الرابط عند إرساله</small></span><span class="sw"></span></button></div>
   </div>
 </div>
 
@@ -156,17 +167,22 @@
 <div class="sheet hidden" id="askSheet"><div class="box"><h3 id="askT"></h3><div id="askF" style="display:flex;flex-direction:column;gap:10px"></div><div class="err" id="askE"></div><button class="btn" id="askOk"></button><button class="link" id="askNo">إلغاء</button></div></div>
 <div class="sheet hidden" id="actSheet"><div class="box"><div class="acts" id="acts"></div></div></div>
 <div class="sheet hidden" id="infoSheet">
-  <div class="box" style="align-items:center;text-align:center">
+  <div class="box infobox">
     <div class="av xl" id="iAv"></div><h3 id="iName" style="margin:6px 0 0"></h3><div id="iAbout" style="color:var(--muted)"></div><div id="iEmail" dir="ltr" style="color:var(--g1);font:700 15px ui-monospace,Menlo,monospace;letter-spacing:2px"></div>
     <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall">📞 صوت</button><button class="btn" style="flex:1" id="iVid">📹 فيديو</button></div>
-    <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px">
+    <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px" id="iSafe">
       <div style="font-weight:700">🔒 رقم الأمان</div>
       <div style="color:var(--muted);font-size:13px;line-height:1.7;margin:4px 0 8px">قارنه مع الرقم عند صديقك. إذا تطابق فالمحادثة والمكالمات مشفّرة بينكما فقط.</div>
       <div id="sNum" dir="ltr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px 12px;font:600 17px ui-monospace,Menlo,monospace"></div>
     </div>
+    <div class="card" style="align-self:stretch;margin:0" id="infoActs"></div>
+    <div class="card" style="align-self:stretch;margin:0" id="iMembers"></div>
     <button class="link" data-close>إغلاق</button>
   </div>
 </div>
+<div class="sheet hidden" id="pickSheet"><div class="box"><h3 id="pickT"></h3><div id="pickList" class="picklist"></div><button class="btn" id="pickOk">تم</button><button class="link" id="pickNo">إلغاء</button></div></div>
+<div class="sheet hidden" id="mediaSheet"><div class="box"><h3>🖼️ الوسائط والملفات</h3><div id="mediaGrid" class="mgrid"></div><button class="link" data-close>إغلاق</button></div></div>
+<input type="file" id="fStatus" accept="image/*" hidden>
 <input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
 <input type="file" id="fAny" multiple hidden>
 <input type="file" id="fCam" accept="image/*" capture="environment" hidden>
@@ -174,6 +190,28 @@
 <input type="file" id="fWall" accept="image/*" hidden>
 
 <div id="viewer" class="hidden"><div class="vt"><button id="vX">✕</button><button id="vSave">⬇️</button></div><div id="vBody" style="display:contents"></div></div>
+
+<!-- عارض الحالات -->
+<div id="story" class="hidden">
+  <div class="stbars" id="stBars"></div>
+  <div class="sthead"><div class="av sm" id="stAv"></div><span><b id="stName"></b><small id="stTime"></small></span><button class="ib" id="stX">✕</button></div>
+  <div id="stBody" class="stbody"></div>
+  <div class="stfoot" id="stFoot"></div>
+</div>
+
+<!-- المكالمة الجماعية -->
+<div id="gcall" class="hidden">
+  <div class="ghead"><b id="gTitle"></b><span id="gTime"></span></div>
+  <div class="ggrid" id="gGrid"></div>
+  <div class="gring hidden" id="gRingInfo"><div class="av xl" id="gRAv"></div><span id="gRText"></span></div>
+  <div class="ctrls" id="gIncoming"><button class="cb grn" id="gAccept"><svg><use href="#i-phone"/></svg></button><button class="cb red" id="gDecline"><svg><use href="#i-phone"/></svg></button></div>
+  <div class="ctrls hidden" id="gActive">
+    <button class="cb" id="gMute"><svg><use href="#i-mic"/></svg></button>
+    <button class="cb gvidonly" id="gCam"><svg><use href="#i-video"/></svg></button>
+    <button class="cb gvidonly" id="gFlip"><svg><use href="#i-cam"/></svg></button>
+    <button class="cb red" id="gHang"><svg><use href="#i-phone"/></svg></button>
+  </div>
+</div>
 
 <!-- المكالمة -->
 <div id="call" class="hidden">

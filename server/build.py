@@ -20,7 +20,7 @@ html = f'''<!DOCTYPE html>
 {icons}
 {(d / "body.html").read_text()}
 <script>
-{(d / "app.js").read_text()}
+{"".join((d / "js" / f).read_text() + "\n" for f in sorted(__import__("os").listdir(d / "js")) if f.endswith(".js"))}
 </script>
 </body>
 </html>

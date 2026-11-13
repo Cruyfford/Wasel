@@ -184,25 +184,39 @@ final class NativeHub: NSObject, WKScriptMessageHandler, UNUserNotificationCente
         let me = d.integer(forKey: "n_me")
         switch o["t"] as? String {
         case "msg":
-            guard (d.object(forKey: "n_msgN") as? Bool ?? true), let m = o["m"] as? [String: Any],
-                  let from = m["a"] as? Int, from != me else { return }
+            guard (d.object(forKey: "n_msgN") as? Bool ?? true), !(o["muted"] as? Bool ?? false),
+                  let m = o["m"] as? [String: Any], let from = m["a"] as? Int, from != me,
+                  (m["kind"] as? String) != "sys" else { return }
             let name = (o["user"] as? [String: Any])?["name"] as? String ?? "واصل"
-            let body: String
+            var body: String
             switch m["kind"] as? String {
             case "file": body = "📎 أرسل ملفاً"
             case "voice": body = "🎤 رسالة صوتية"
-            case "game": body = "🎴 دعوة للعب ألوان"
+            case "loc": body = "📍 أرسل موقعاً"
+            case "contact": body = "👤 أرسل جهة اتصال"
             case "call": body = "📞 مكالمة"
             default: body = "🔒 رسالة جديدة"
             }
-            notify(id: "m-\(from)-\(m["id"] ?? 0)", title: name, body: body, sound: .default)
+            var title = name
+            if let g = o["group"] as? [String: Any] { title = g["name"] as? String ?? "مجموعة"; body = "\(name): \(body)" }
+            notify(id: "m-\(from)-\(m["id"] ?? 0)", title: title, body: body, sound: .default)
+        case "gcall":
+            guard let gid = o["gid"] as? Int else { return }
+            if o["a"] as? String == "ring" {
+                guard (d.object(forKey: "n_callN") as? Bool ?? true), !(o["muted"] as? Bool ?? false) else { return }
+                let g = (o["group"] as? [String: Any])?["name"] as? String ?? "مجموعة"
+                let who = (o["user"] as? [String: Any])?["name"] as? String ?? ""
+                ring(id: "g\(gid)", from: 0, name: "\(g) 👥", body: "📞 \(who) يدعوك لمكالمة جماعية")
+            } else if o["a"] as? String == "state", (o["peers"] as? [Any])?.isEmpty ?? false, ringingCall?.id == "g\(gid)" {
+                stopRing(missedFrom: nil)
+            }
         case "signal":
             guard let data = o["data"] as? [String: Any], let kind = data["kind"] as? String else { return }
             let id = data["callId"] as? String ?? ""
             if kind == "offer" {
                 guard (d.object(forKey: "n_callN") as? Bool ?? true), let from = o["from"] as? Int else { return }
                 let name = (o["user"] as? [String: Any])?["name"] as? String ?? "واصل"
-                ring(id: id, from: from, name: name)
+                ring(id: id, from: from, name: name, body: "📞 مكالمة واردة — واصل")
             } else if ["end", "reject", "handled", "answer", "busy"].contains(kind), ringingCall?.id == id {
                 stopRing(missedFrom: kind == "end" ? (o["user"] as? [String: Any])?["name"] as? String : nil)
             }
@@ -218,11 +232,11 @@ final class NativeHub: NSObject, WKScriptMessageHandler, UNUserNotificationCente
         UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: id, content: c, trigger: nil))
     }
 
-    private func ring(id: String, from: Int, name: String) {
+    private func ring(id: String, from: Int, name: String, body: String) {
         ringingCall = (id, from)
         var count = 0
         let fire = { [weak self] in
-            self?.notify(id: "call", title: name, body: "📞 مكالمة واردة — واصل", sound: UNNotificationSound(named: UNNotificationSoundName("ring.wav")), category: "CALL")
+            self?.notify(id: "call", title: name, body: body, sound: UNNotificationSound(named: UNNotificationSoundName("ring.wav")), category: "CALL")
         }
         fire()
         ringTimer?.invalidate()
@@ -248,14 +262,15 @@ final class NativeHub: NSObject, WKScriptMessageHandler, UNUserNotificationCente
 
     func userNotificationCenter(_ c: UNUserNotificationCenter, didReceive r: UNNotificationResponse, withCompletionHandler done: @escaping () -> Void) {
         if r.notification.request.identifier == "call", let call = ringingCall {
-            if r.actionIdentifier == "decline" {
+            if r.actionIdentifier == "decline" && call.id.hasPrefix("g") { stopRing(missedFrom: nil) }
+            else if r.actionIdentifier == "decline" {
                 let msg = "{\"t\":\"signal\",\"to\":\(call.from),\"data\":{\"kind\":\"reject\",\"callId\":\"\(call.id)\"}}"
                 task?.send(.string(msg)) { _ in }
                 stopRing(missedFrom: nil)
             } else {
                 autoAnswer = r.actionIdentifier == "answer" ? call.id : nil
-                if let a = autoAnswer, a.range(of: "^[a-z0-9]{1,20}$", options: .regularExpression) != nil {
-                    js("window.WASEL_AUTOANSWER='\(a)';try{if(typeof C!=='undefined'&&C&&C.id==='\(a)'&&C.state==='incoming')document.getElementById('kAccept').click()}catch(e){}")
+                if let a = autoAnswer, a.range(of: "^g?[a-z0-9]{1,20}$", options: .regularExpression) != nil {
+                    js("window.WASEL_AUTOANSWER='\(a)';try{if(typeof C!=='undefined'&&C&&C.id==='\(a)'&&C.state==='incoming')document.getElementById('kAccept').click();if(typeof S!=='undefined'&&S.gring&&'g'+S.gring.gid==='\(a)')document.getElementById('gAccept').click()}catch(e){}")
                 }
             }
         }
