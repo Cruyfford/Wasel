@@ -1384,7 +1384,7 @@ function callUI(state) {
   native({ type: "call", active: true });
 }
 function makePC(servers) {
-  const pc = new RTCPeerConnection({ iceServers: servers });
+  const pc = new RTCPeerConnection({ iceServers: servers, iceCandidatePoolSize: 4, bundlePolicy: "max-bundle" });
   pc.onicecandidate = (e) => { if (e.candidate) sig({ kind: "ice", c: e.candidate.toJSON() }); };
   pc.ontrack = (e) => {
     const st = e.streams[0] || new MediaStream([e.track]);
@@ -1397,9 +1397,16 @@ function makePC(servers) {
     const s = pc.connectionState;
     if (s === "connected" && C.state !== "live") goLive();
     if (s === "failed") { toast("تعذّر الاتصال"); endCall(true); }
-    if (s === "disconnected") $("kState").textContent = "إعادة الاتصال…";
+    if (s === "disconnected") {
+      $("kState").textContent = "إعادة الاتصال…";
+      clearTimeout(C.dcT);
+      C.dcT = setTimeout(() => { if (C && C.pc === pc && pc.connectionState !== "connected" && C.out) restartIce(); }, 3000);
+    }
   };
   return pc;
+}
+async function restartIce() {
+  try { const o = await C.pc.createOffer({ iceRestart: true }); await C.pc.setLocalDescription(o); sig({ kind: "reoffer", sdp: o.sdp }); } catch {}
 }
 function sig(data) {
   const to = C.peer, callId = C.id, { kind, ...rest } = data;
@@ -1461,9 +1468,16 @@ async function onSignal(from, d) {
     case "ringing": if (C.state === "calling") { C.state = "ringing"; $("kState").textContent = "يرن…"; } break;
     case "answer":
       clearTimeout(C.noAns); stopRing(); C.state = "connecting"; callUI("connecting");
+      C.slowT = setTimeout(() => { if (C && C.state === "connecting") $("kState").textContent = "الشبكة بطيئة في التوصيل…"; }, 8000);
       await C.pc.setRemoteDescription({ type: "answer", sdp: d.sdp });
       for (const c of C.pendingIce) C.pc.addIceCandidate(c).catch(() => {});
       C.pendingIce = [];
+      break;
+    case "reoffer":
+      if (C.pc) { await C.pc.setRemoteDescription({ type: "offer", sdp: d.sdp }); const a = await C.pc.createAnswer(); await C.pc.setLocalDescription(a); sig({ kind: "reanswer", sdp: a.sdp }); }
+      break;
+    case "reanswer":
+      if (C.pc) await C.pc.setRemoteDescription({ type: "answer", sdp: d.sdp });
       break;
     case "ice":
       if (C.pc && C.pc.remoteDescription) C.pc.addIceCandidate(d.c).catch(() => {}); else C.pendingIce.push(d.c);
@@ -1713,6 +1727,7 @@ function start() {
   history.replaceState({ v: "home" }, "");
   native({ type: "auth", token: S.token, me: S.me.id, server: API, name: S.me.name });
   native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure });
+  iceServers();
   api("/api/me").then((d) => { S.me = { ...S.me, ...d.user }; localStorage.setItem("w_me", JSON.stringify(S.me)); }).catch(() => {});
 }
 buildPad(); applySet();
