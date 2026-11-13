@@ -177,3 +177,7 @@ input[type=range]{width:100%;accent-color:var(--g1)}
 .tabs{right:14px;left:88px;transform:none;justify-content:space-between}
 .tabs button{flex:1;padding:11px 6px;white-space:nowrap;font-size:14.5px;text-align:center}
 .fab{bottom:calc(var(--sb) + 14px);width:60px;height:60px}
+/* منع التحديد بالضغط المطوّل (مثل التطبيقات الأصلية) — مسموح فقط في حقول الكتابة */
+html,body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,[contenteditable]{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
