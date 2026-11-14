@@ -237,7 +237,7 @@ class MainActivity : AppCompatActivity() {
                     val dir = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "Wasel").apply { mkdirs() }
                     File(dir, clean).writeBytes(bytes)
                 }
-                runOnUiThread { Toast.makeText(this, "✅ تم الحفظ في التنزيلات/Wasel", Toast.LENGTH_SHORT).show() }
+                runOnUiThread { Toast.makeText(this, "تم الحفظ في التنزيلات/Wasel", Toast.LENGTH_SHORT).show() }
             } catch (e: Exception) {
                 runOnUiThread { Toast.makeText(this, "تعذّر الحفظ", Toast.LENGTH_SHORT).show() }
             }
@@ -247,7 +247,7 @@ class MainActivity : AppCompatActivity() {
     private fun showError() {
         val html = """
             <html dir="rtl"><body style="background:#07090f;color:#f2f4f8;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:90vh;gap:18px;text-align:center">
-            <div style="font-size:52px">📡</div><h3>تعذّر الاتصال بالسيرفر</h3>
+            <h3>تعذّر الاتصال بالسيرفر</h3>
             <a href="wasel://retry" style="background:linear-gradient(135deg,#00d1a0,#00a3ff);color:#fff;padding:14px 34px;border-radius:24px;text-decoration:none;font-weight:bold">إعادة المحاولة</a>
             <a href="wasel://server" style="color:#00d1a0">تغيير عنوان السيرفر</a></body></html>
         """.trimIndent()

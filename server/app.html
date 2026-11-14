@@ -377,6 +377,45 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
 .swrap .row{position:relative;z-index:1;background:var(--bg);touch-action:pan-y}
 .sdel{position:absolute;left:6px;top:6px;bottom:6px;width:86px;border-radius:18px;background:linear-gradient(135deg,#ff5f6d,#d7263d);color:#fff;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:20px;box-shadow:0 6px 18px #ff5f6d55}
 .sdel span{font-size:13px}
+/* أيقونات عصرية */
+.ico{width:20px;height:20px;flex:none;display:inline-block;vertical-align:middle}
+.ib .ico{width:22px;height:22px}
+.ib.sm .ico{width:22px;height:22px;color:var(--muted)}
+.composer .ib.sm .ico{color:#c9d1e3}
+.it .ic{width:36px;height:36px;border-radius:12px;color:#fff;box-shadow:inset 0 1px 0 #ffffff30}
+.it .ic .ico{width:20px;height:20px}
+.t-blue{background:linear-gradient(135deg,#4f8cff,#2563eb)!important}
+.t-green{background:linear-gradient(135deg,#1fd1a0,#059669)!important}
+.t-purple{background:linear-gradient(135deg,#a78bfa,#7c3aed)!important}
+.t-orange{background:linear-gradient(135deg,#fbbf24,#f97316)!important}
+.t-red{background:linear-gradient(135deg,#ff6b81,#e11d48)!important}
+.t-gray{background:linear-gradient(135deg,#4b5567,#2b3240)!important}
+.t-teal{background:linear-gradient(135deg,#22d3ee,#0891b2)!important}
+.it .ch{display:flex;color:#ffffff40}
+.it .ch .ico{width:18px;height:18px}
+.acts .em{display:grid;place-items:center;width:30px}
+.acts .em .ico{width:22px;height:22px;color:var(--g1)}
+.acts button.dz .em .ico{color:var(--red)}
+.row .ics .ico{width:15px;height:15px;color:var(--muted)}
+.row .nm .ico{width:16px;height:16px;color:var(--g1)}
+.row.arch .em .ico{width:22px;height:22px;color:var(--muted)}
+.sic{display:flex;color:var(--muted)}
+.sic .ico{width:18px;height:18px}
+.sdel .ico{width:24px;height:24px}
+.link .ico{width:17px;height:17px;margin-inline-end:2px}
+.btn .ico{width:19px;height:19px;margin-inline-end:4px}
+.blockedbar .ico,.updbar .ico{width:18px;height:18px}
+.updbar span .ico{width:14px;height:14px}
+.lockic{width:72px;height:72px;margin:0 auto 6px;border-radius:24px;background:var(--grad);display:grid;place-items:center;color:#fff}
+.lockic .ico{width:36px;height:36px}
+.b .fwd .ico{width:13px;height:13px}
+.mloc .mapic .ico{width:40px;height:40px;color:#fff}
+.b .mfile .fi .ico{width:24px;height:24px}
+.cic .ico{width:19px;height:19px;color:var(--g1)}
+.fab .ico{width:26px;height:26px;color:#fff}
+#gcall .ghead .ico,#viewer .ico,#story .ico,#scanner .ico,#vnote .ico{color:#fff}
+.pincard .ib .ico{color:var(--g1)}
+.older .ico{width:15px;height:15px}
 </style>
 </head>
 <body>
@@ -393,12 +432,68 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M20 5h-3.2L15 3H9L7.2 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-5 11.5V14H9v2.5L5.5 13 9 9.5V12h6V9.5l3.5 3.5-3.5 3.5z"/></symbol>
  <symbol id="i-camoff" viewBox="0 0 24 24"><path d="M21 6.5l-4 4V7c0-.6-.4-1-1-1H9.8L21 17.2V6.5zM3.3 2L2 3.3 4.7 6H4c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h12c.2 0 .4-.1.5-.2l3.2 3.2 1.3-1.3L3.3 2z"/></symbol>
  <symbol id="i-out" viewBox="0 0 24 24"><path d="M10 17l1.4-1.4L8.8 13H20v-2H8.8l2.6-2.6L10 7l-5 5 5 5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
+<symbol id="x-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="x-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="x-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.3-4.6A8.5 8.5 0 1 1 21 12z"/></symbol>
+<symbol id="x-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 1 1 12 0v5l2 2H4z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+<symbol id="x-bell-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 4.7A6 6 0 0 1 18 11v5l1 1M6 11v5l-2 2h14"/><path d="M10 20.5a2 2 0 0 0 4 0M3 3l18 18"/></symbol>
+<symbol id="x-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.2"/></symbol>
+<symbol id="x-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M9 8l-4 4 4 4M5 12h10"/></symbol>
+<symbol id="x-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.5"/><path d="M15.5 8.5V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7.5a2 2 0 0 0 2 2h2.5"/></symbol>
+<symbol id="x-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7.5 7.5L12 3l4.5 4.5"/><path d="M5 12.5V18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5.5"/></symbol>
+<symbol id="x-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15.5" r="4.5"/><path d="M11.2 12.3L20 3.5M16.5 7l2.5 2.5M14 9.5l2 2"/></symbol>
+<symbol id="x-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="x-finger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 11v3.5a9 9 0 0 1-1.6 5"/><path d="M8.5 12a3.5 3.5 0 0 1 7 0v2.5a13 13 0 0 1-.9 4.5"/><path d="M5.5 15.5c.3-1.1.5-2.3.5-3.5a6 6 0 0 1 10.5-4"/><path d="M18.4 11c.1.3.1.7.1 1v1.5a17 17 0 0 1-.5 4"/><path d="M4.3 9.5A8.5 8.5 0 0 1 19 6.5"/></symbol>
+<symbol id="x-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12.5" rx="2.5"/><path d="M8.5 20.5h7M12 16.5v4"/></symbol>
+<symbol id="x-phone-d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><path d="M11 18.5h2"/></symbol>
+<symbol id="x-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6"/><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4.5h6V7"/></symbol>
+<symbol id="x-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="x-user-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21a7.5 7.5 0 0 1 13.5-4.5M19 14v6M16 17h6"/></symbol>
+<symbol id="x-user-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21a7.5 7.5 0 0 1 13.5-4.5M16 17h6"/></symbol>
+<symbol id="x-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.3a6.5 6.5 0 0 1 3.5 5.7"/></symbol>
+<symbol id="x-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z"/></symbol>
+<symbol id="x-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 15.5l-5-5L6.5 20"/></symbol>
+<symbol id="x-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.8-2.6A1 1 0 0 1 9.6 5h4.8a1 1 0 0 1 .8.4L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+<symbol id="x-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+<symbol id="x-mappin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+<symbol id="x-contact" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.3"/><path d="M5.6 16.5a3.4 3.4 0 0 1 6.8 0M15 10h3M15 13.5h3"/></symbol>
+<symbol id="x-vnote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.8l5 3.2-5 3.2z"/></symbol>
+<symbol id="x-poll" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V4M19 20v-6"/></symbol>
+<symbol id="x-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
+<symbol id="x-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.5l2 1.5M9.5 2.5h5M12 2.5V6"/></symbol>
+<symbol id="x-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5L16 16"/></symbol>
+<symbol id="x-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5h6l-.8 5.5 3.8 3.5H6L9.8 9z"/><path d="M12 12.5v8"/></symbol>
+<symbol id="x-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1.5"/><path d="M5 9v9.5A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V9M10 13h4"/></symbol>
+<symbol id="x-reply" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6.5L4 12l5.5 5.5"/><path d="M4 12h10a6 6 0 0 1 6 6v1"/></symbol>
+<symbol id="x-forward" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5L20 12l-5.5 5.5"/><path d="M20 12H10a6 6 0 0 0-6 6v1"/></symbol>
+<symbol id="x-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M14.5 7.5l2 2"/></symbol>
+<symbol id="x-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></symbol>
+<symbol id="x-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0M9 9.7v.1M15 9.7v.1"/></symbol>
+<symbol id="x-clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.5l-8.6 8.6a5.2 5.2 0 0 1-7.4-7.4l8.8-8.8a3.5 3.5 0 0 1 4.9 4.9l-8.8 8.8a1.7 1.7 0 0 1-2.5-2.5l8.1-8.1"/></symbol>
+<symbol id="x-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></symbol>
+<symbol id="x-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="x-circle-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
+<symbol id="x-eraser" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h12M4.5 14.5l9.3-9.3a2 2 0 0 1 2.8 0l2.2 2.2a2 2 0 0 1 0 2.8L11 18.5H8.5z"/><path d="M9.5 9.5l5 5"/></symbol>
+<symbol id="x-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0 0 18c1 0 1.6-.8 1.6-1.6 0-.9-.8-1.3-.8-2.1 0-.9.7-1.6 1.6-1.6H17a4 4 0 0 0 4-4C21 6.9 17 3 12 3z"/><circle cx="7.5" cy="11.5" r="1.1"/><circle cx="10" cy="7.3" r="1.1"/><circle cx="15" cy="7.6" r="1.1"/></symbol>
+<symbol id="x-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1.2"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1.2"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1.2"/><path d="M14 14h2.5v2.5H14zM18 18h2.5v2.5H18zM18 14h2.5M14 18v2.5"/></symbol>
+<symbol id="x-shield-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><circle cx="12" cy="10.5" r="2.2"/><path d="M12 12.7V16"/></symbol>
+<symbol id="x-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="x-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="x-dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="x-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14M12 6v13M9 19h6"/></symbol>
+<symbol id="x-inbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l3-8h12l3 8v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1.5 2.5h5L16 13h5"/></symbol>
+<symbol id="x-call" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></symbol>
+<symbol id="x-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="12.5" height="12" rx="2.5"/><path d="M15.5 10.5L21 7v10l-5.5-3.5"/></symbol>
+<symbol id="x-update" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4.5h-4.5"/><path d="M12 8v5l3 1.8"/></symbol>
+<symbol id="x-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+<symbol id="x-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.6 1.6 0 0 0-1.1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.6 1.6 0 0 0 1.5-1.1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></symbol>
+<symbol id="x-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6l-6 6 6 6"/></symbol>
   <symbol id="i-gear" viewBox="0 0 24 24"><path d="M19.4 13c.04-.33.06-.66.06-1s-.02-.67-.06-1l2.1-1.65c.2-.15.25-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.49.49 0 0 0 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.33-.07.67-.07 1s.03.67.07 1l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.4 13zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></symbol>
 </svg>
 
 <!-- قفل التطبيق -->
 <div id="lock" class="view hidden">
-  <div class="logo" style="text-align:center"><div style="font-size:46px">🔒</div><h2 style="margin:6px 0 0">واصل مقفل</h2><p style="color:var(--muted);margin:6px 0 0" id="lockMsg">أدخل الرمز</p></div>
+  <div class="logo" style="text-align:center"><div class="lockic"><svg class="ico"><use href="#x-lock"/></svg></div><h2 style="margin:6px 0 0">واصل مقفل</h2><p style="color:var(--muted);margin:6px 0 0" id="lockMsg">أدخل الرمز</p></div>
   <div class="dots" id="lockDots"></div>
   <div class="pad" id="lockPad"></div>
   <button class="link" id="lockBio">استخدم البصمة / الوجه</button>
@@ -413,18 +508,18 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
   <div class="err" id="aErr"></div>
   <button class="btn" id="aGo">دخول</button>
   <button class="link" id="aSwitch">ليس لديك حساب؟ أنشئ حساباً</button>
-  <div style="display:flex;justify-content:center;gap:18px"><button class="link" id="aForgot">🔑 نسيت كلمة المرور؟</button><button class="link" id="aQR">🖥️ ربط بالجوال (QR)</button></div>
+  <div style="display:flex;justify-content:center;gap:18px"><button class="link" id="aForgot"><svg class="ico"><use href="#x-key"/></svg> نسيت كلمة المرور؟</button><button class="link" id="aQR"><svg class="ico"><use href="#x-qr"/></svg> ربط بالجوال</button></div>
 </div>
 
 <!-- القائمة -->
 <div id="home" class="view hidden">
   <header>
     <h1>واصل</h1>
-    <button class="ib" id="hSettings"><svg><use href="#i-gear"/></svg></button>
+    <button class="ib" id="hSettings"><svg class="ico"><use href="#x-gear"/></svg></button>
   </header>
   <div class="conn hidden" id="connBar">جارٍ الاتصال…</div>
-  <a class="updbar hidden" id="updBar">⬆️ نسخة جديدة من التطبيق متوفرة — اضغط للتحميل <span id="updX">✕</span></a>
-  <div class="search"><span>🔍</span><input id="hSearch" placeholder="بحث"></div>
+  <a class="updbar hidden" id="updBar"><svg class="ico"><use href="#x-update"/></svg> نسخة جديدة من التطبيق متوفرة — اضغط للتحميل <span id="updX"><svg class="ico"><use href="#x-x"/></svg></span></a>
+  <div class="search"><span class="sic"><svg class="ico"><use href="#x-search"/></svg></span><input id="hSearch" placeholder="بحث"></div>
   <div class="list" id="chatList"></div>
   <div class="list hidden" id="callList"></div>
   <div class="list hidden" id="statusList"></div>
@@ -441,17 +536,17 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
     <button class="ib" id="cVideo"><svg><use href="#i-video"/></svg></button>
     <button class="ib" id="cVoice"><svg><use href="#i-phone"/></svg></button>
   </header>
-  <div class="chatsearch hidden" id="chatSearch"><span>🔍</span><input id="csInput" placeholder="ابحث في هذه المحادثة"><button class="ib sm" id="csX">✕</button></div>
+  <div class="chatsearch hidden" id="chatSearch"><span class="sic"><svg class="ico"><use href="#x-search"/></svg></span><input id="csInput" placeholder="ابحث في هذه المحادثة"><button class="ib sm" id="csX"><svg class="ico"><use href="#x-x"/></svg></button></div>
   <div id="msgs"></div>
-  <button class="blockedbar hidden" id="blockedBar">🚫 هذا الشخص محظور — اضغط لإلغاء الحظر</button>
-  <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX">✕</button></div>
+  <button class="blockedbar hidden" id="blockedBar"><svg class="ico"><use href="#x-block"/></svg> هذا الشخص محظور — اضغط لإلغاء الحظر</button>
+  <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX"><svg class="ico"><use href="#x-x"/></svg></button></div>
   <div class="mentionbox hidden" id="mentionBox"></div>
   <div class="emojipanel hidden" id="emojiPanel"><div class="emtabs" id="emTabs"><button data-t="e" class="on">😀 إيموجي</button><button data-t="s">✨ ملصقات</button></div><div class="emgrid" id="emGrid"></div></div>
   <div class="composer" id="composer">
-    <button class="ib sm" id="cAttach">📎</button>
-    <button class="ib sm" id="cEmoji">😊</button>
+    <button class="ib sm" id="cAttach"><svg class="ico"><use href="#x-clip"/></svg></button>
+    <button class="ib sm" id="cEmoji"><svg class="ico"><use href="#x-smile"/></svg></button>
     <textarea id="cInput" rows="1" placeholder="رسالة" maxlength="4000"></textarea>
-    <div class="rec hidden" id="recBox"><i></i><span id="recT">0:00</span><span style="flex:1"></span><button class="ib sm" id="recX">🗑️</button></div>
+    <div class="rec hidden" id="recBox"><i></i><span id="recT">0:00</span><span style="flex:1"></span><button class="ib sm" id="recX"><svg class="ico"><use href="#x-trash"/></svg></button></div>
     <button class="send" id="cSend"><svg><use href="#i-mic"/></svg></button>
   </div>
 </div>
@@ -460,18 +555,18 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
 <div id="settings" class="view hidden">
   <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الإعدادات</h1></header>
   <div class="set">
-    <div class="card pincard"><h4>كودك الخاص</h4><div class="pinrow"><span class="pinv" id="sPin" dir="ltr"></span><button class="ib" id="sPinCopy">📋</button><button class="ib" id="sPinShare">📤</button></div><small>أعطه لأصدقائك ليضيفوك — مثل PIN البلاك بيري</small></div>
-    <div class="card"><button class="me-card it" id="sMe"><div class="av" id="sAv"></div><div class="tx"><b id="sName"></b><small id="sAbout"></small></div><span class="ch">‹</span></button></div>
+    <div class="card pincard"><h4>كودك الخاص</h4><div class="pinrow"><span class="pinv" id="sPin" dir="ltr"></span><button class="ib" id="sPinCopy"><svg class="ico"><use href="#x-copy"/></svg></button><button class="ib" id="sPinShare"><svg class="ico"><use href="#x-share"/></svg></button></div><small>أعطه لأصدقائك ليضيفوك — مثل PIN البلاك بيري</small></div>
+    <div class="card"><button class="me-card it" id="sMe"><div class="av" id="sAv"></div><div class="tx"><b id="sName"></b><small id="sAbout"></small></div><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button></div>
     <div class="card">
-      <button class="it" data-go="privacy"><span class="ic" style="background:#3b82f633">👁️</span><span class="tx">الخصوصية<small>آخر ظهور، علامات القراءة</small></span><span class="ch">‹</span></button>
-      <button class="it" data-go="security"><span class="ic" style="background:#00d1a033">🛡️</span><span class="tx">الأمان والحماية<small>قفل التطبيق، كلمة المرور، الأجهزة</small></span><span class="ch">‹</span></button>
-      <button class="it" data-go="chatset"><span class="ic" style="background:#a855f733">🎨</span><span class="tx">الدردشات<small>الخلفية، حجم الخط</small></span><span class="ch">‹</span></button>
-      <button class="it" data-go="notifs"><span class="ic" style="background:#f59e0b33">🔔</span><span class="tx">الإشعارات<small>الرسائل، رنين المكالمات</small></span><span class="ch">‹</span></button>
+      <button class="it" data-go="privacy"><span class="ic t-blue"><svg class="ico"><use href="#x-eye"/></svg></span><span class="tx">الخصوصية<small>آخر ظهور، علامات القراءة</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" data-go="security"><span class="ic t-green"><svg class="ico"><use href="#x-shield"/></svg></span><span class="tx">الأمان والحماية<small>قفل التطبيق، كلمة المرور، الأجهزة</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" data-go="chatset"><span class="ic t-purple"><svg class="ico"><use href="#x-chat"/></svg></span><span class="tx">الدردشات<small>الخلفية، حجم الخط</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" data-go="notifs"><span class="ic t-orange"><svg class="ico"><use href="#x-bell"/></svg></span><span class="tx">الإشعارات<small>الرسائل، رنين المكالمات</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
     </div>
     <div class="card">
-      <div class="it"><span class="ic" style="background:#ffffff14">ℹ️</span><span class="tx">واصل 2.0<small>مشفّر من طرف لطرف 🔒</small></span></div>
+      <div class="it"><span class="ic t-gray"><svg class="ico"><use href="#x-info"/></svg></span><span class="tx">واصل 4.0<small>مشفّر من طرف لطرف</small></span></div>
     </div>
-    <div class="card"><button class="it dz" id="sLogout"><span class="ic" style="background:#ff5f6d22">🚪</span><span class="tx">تسجيل الخروج</span></button></div>
+    <div class="card"><button class="it dz" id="sLogout"><span class="ic t-red"><svg class="ico"><use href="#x-logout"/></svg></span><span class="tx">تسجيل الخروج</span></button></div>
   </div>
 </div>
 
@@ -496,9 +591,9 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
     <div class="card">
       <button class="it" id="prSeen"><span class="tx">إخفاء آخر ظهور والاتصال<small>لن يرى أحد متى كنت متصلاً</small></span><span class="sw"></span></button>
       <button class="it" id="prRead"><span class="tx">علامات القراءة<small>إذا أطفأتها لن ترى أنت أيضاً علامات قراءة الآخرين</small></span><span class="sw"></span></button>
-      <button class="it" id="prBlocked"><span class="tx">🚫 المحظورون</span><span class="ch">‹</span></button>
+      <button class="it" id="prBlocked"><span class="tx">المحظورون</span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
     </div>
-    <div class="card"><h4>الحماية الدائمة</h4><div class="it"><span class="tx">🔒 كل الرسائل والصور والملفات والمكالمات مشفّرة من طرف لطرف<small>حتى سيرفر واصل لا يستطيع قراءتها</small></span></div></div>
+    <div class="card"><h4>الحماية الدائمة</h4><div class="it"><span class="ic t-green"><svg class="ico"><use href="#x-lock"/></svg></span><span class="tx">كل الرسائل والصور والملفات والمكالمات مشفّرة من طرف لطرف<small>حتى سيرفر واصل لا يستطيع قراءتها</small></span></div></div>
   </div>
 </div>
 
@@ -519,11 +614,11 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
       <button class="it" id="scSecure"><span class="tx">منع لقطة الشاشة<small>أندرويد: يحجب الشاشة في التصوير وقائمة التطبيقات</small></span><span class="sw"></span></button>
     </div>
     <div class="card"><h4>الحساب</h4>
-      <button class="it" id="scPass"><span class="ic" style="background:#ffffff14">🔑</span><span class="tx">تغيير كلمة المرور<small>يسجّل الخروج من باقي الأجهزة</small></span><span class="ch">‹</span></button>
-      <button class="it" id="scRec"><span class="ic" style="background:#ffffff14">🧩</span><span class="tx">مفتاح الاسترجاع (24 كلمة)<small id="scRecS"></small></span><span class="ch">‹</span></button>
-      <button class="it" id="scLink"><span class="ic" style="background:#ffffff14">🖥️</span><span class="tx">ربط جهاز (كمبيوتر)<small>امسح رمز QR من صفحة الدخول على الكمبيوتر</small></span><span class="ch">‹</span></button>
-      <button class="it" id="scAll"><span class="ic" style="background:#ffffff14">📱</span><span class="tx">تسجيل الخروج من الأجهزة الأخرى<small id="scSess"></small></span><span class="ch">‹</span></button>
-      <button class="it dz" id="scDel"><span class="ic" style="background:#ff5f6d22">🗑️</span><span class="tx">حذف الحساب نهائياً</span></button>
+      <button class="it" id="scPass"><span class="ic t-gray"><svg class="ico"><use href="#x-key"/></svg></span><span class="tx">تغيير كلمة المرور<small>يسجّل الخروج من باقي الأجهزة</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" id="scRec"><span class="ic t-teal"><svg class="ico"><use href="#x-shield-key"/></svg></span><span class="tx">مفتاح الاسترجاع (24 كلمة)<small id="scRecS"></small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" id="scLink"><span class="ic t-gray"><svg class="ico"><use href="#x-qr"/></svg></span><span class="tx">ربط جهاز (كمبيوتر)<small>امسح رمز QR من صفحة الدخول على الكمبيوتر</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" id="scAll"><span class="ic t-gray"><svg class="ico"><use href="#x-phone-d"/></svg></span><span class="tx">تسجيل الخروج من الأجهزة الأخرى<small id="scSess"></small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it dz" id="scDel"><span class="ic t-red"><svg class="ico"><use href="#x-trash"/></svg></span><span class="tx">حذف الحساب نهائياً</span></button>
     </div>
   </div>
 </div>
@@ -573,9 +668,9 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
 <div class="sheet hidden" id="infoSheet">
   <div class="box infobox">
     <div class="av xl" id="iAv"></div><h3 id="iName" style="margin:6px 0 0"></h3><div id="iAbout" style="color:var(--muted)"></div><div id="iEmail" dir="ltr" style="color:var(--g1);font:700 15px ui-monospace,Menlo,monospace;letter-spacing:2px"></div>
-    <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall">📞 صوت</button><button class="btn" style="flex:1" id="iVid">📹 فيديو</button></div>
+    <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall"><svg class="ico"><use href="#x-call"/></svg> صوت</button><button class="btn" style="flex:1" id="iVid"><svg class="ico"><use href="#x-video"/></svg> فيديو</button></div>
     <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px" id="iSafe">
-      <div style="font-weight:700">🔒 رقم الأمان</div>
+      <div style="font-weight:700;display:flex;gap:6px;align-items:center"><svg class="ico"><use href="#x-lock"/></svg> رقم الأمان</div>
       <div style="color:var(--muted);font-size:13px;line-height:1.7;margin:4px 0 8px">قارنه مع الرقم عند صديقك. إذا تطابق فالمحادثة والمكالمات مشفّرة بينكما فقط.</div>
       <div id="sNum" dir="ltr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px 12px;font:600 17px ui-monospace,Menlo,monospace"></div>
     </div>
@@ -585,21 +680,21 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
   </div>
 </div>
 <div class="sheet hidden" id="pickSheet"><div class="box"><h3 id="pickT"></h3><div id="pickList" class="picklist"></div><button class="btn" id="pickOk">تم</button><button class="link" id="pickNo">إلغاء</button></div></div>
-<div class="sheet hidden" id="mediaSheet"><div class="box"><h3>🖼️ الوسائط والملفات</h3><div id="mediaGrid" class="mgrid"></div><button class="link" data-close>إغلاق</button></div></div>
+<div class="sheet hidden" id="mediaSheet"><div class="box"><h3>الوسائط والملفات</h3><div id="mediaGrid" class="mgrid"></div><button class="link" data-close>إغلاق</button></div></div>
 <div class="sheet hidden" id="recSheet"><div class="box">
-  <h3>🧩 مفتاح الاسترجاع</h3>
+  <h3>مفتاح الاسترجاع</h3>
   <div style="color:var(--muted);font-size:13.5px;line-height:1.7">اكتب هذه الكلمات بالترتيب واحفظها في مكان آمن (ورقة أو خزنة). هي الطريقة الوحيدة لاسترجاع حسابك ورسائلك إذا نسيت كلمة المرور. <b style="color:var(--red)">لا تعطها لأحد.</b></div>
   <div class="recwords" id="recWords" dir="ltr"></div>
-  <button class="btn alt" id="recCopy" style="background:var(--glass2)">📋 نسخ</button>
-  <button class="btn" id="recOk">حفظتها ✅</button><button class="link" data-close>لاحقاً</button>
+  <button class="btn alt" id="recCopy" style="background:var(--glass2)"><svg class="ico"><use href="#x-copy"/></svg> نسخ</button>
+  <button class="btn" id="recOk">حفظتها</button><button class="link" data-close>لاحقاً</button>
 </div></div>
 <div class="sheet hidden" id="qrSheet"><div class="box" style="align-items:center;text-align:center">
-  <h3>🖥️ ربط بالجوال</h3>
+  <h3>ربط بالجوال</h3>
   <div style="color:var(--muted);font-size:13.5px;line-height:1.7">على جوالك افتح واصل ← الإعدادات ← الأمان ← ربط جهاز، ثم امسح هذا الرمز.</div>
   <div class="qrbox" id="qrBox"></div><button class="link" data-close>إلغاء</button>
 </div></div>
-<div id="scanner" class="hidden"><video id="scanVid" playsinline muted></video><div class="scanframe"></div><div class="scantx">وجّه الكاميرا إلى رمز QR على الكمبيوتر</div><button class="ib" id="scanX">✕</button></div>
-<div id="vnote" class="hidden"><div class="vnwrap"><video id="vnVid" playsinline muted autoplay></video><svg viewBox="0 0 248 248"><circle cx="124" cy="124" r="120" id="vnRing"/></svg></div><span id="vnT">0:00</span><div class="vnctl"><button class="ib" id="vnX">✕</button><button class="vnrec" id="vnRec"></button></div><small>اضغط للتسجيل، واضغط مرة أخرى للإرسال (حتى 60 ثانية)</small></div>
+<div id="scanner" class="hidden"><video id="scanVid" playsinline muted></video><div class="scanframe"></div><div class="scantx">وجّه الكاميرا إلى رمز QR على الكمبيوتر</div><button class="ib" id="scanX"><svg class="ico"><use href="#x-x"/></svg></button></div>
+<div id="vnote" class="hidden"><div class="vnwrap"><video id="vnVid" playsinline muted autoplay></video><svg viewBox="0 0 248 248"><circle cx="124" cy="124" r="120" id="vnRing"/></svg></div><span id="vnT">0:00</span><div class="vnctl"><button class="ib" id="vnX"><svg class="ico"><use href="#x-x"/></svg></button><button class="vnrec" id="vnRec"></button></div><small>اضغط للتسجيل، واضغط مرة أخرى للإرسال (حتى 60 ثانية)</small></div>
 <input type="file" id="fStatus" accept="image/*" hidden>
 <input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
 <input type="file" id="fAny" multiple hidden>
@@ -607,12 +702,12 @@ img,a{-webkit-user-drag:none;-webkit-touch-callout:none}
 <input type="file" id="fAvatar" accept="image/*" hidden>
 <input type="file" id="fWall" accept="image/*" hidden>
 
-<div id="viewer" class="hidden"><div class="vt"><button id="vX">✕</button><button id="vSave">⬇️</button></div><div id="vBody" style="display:contents"></div></div>
+<div id="viewer" class="hidden"><div class="vt"><button id="vX"><svg class="ico"><use href="#x-x"/></svg></button><button id="vSave"><svg class="ico"><use href="#x-download"/></svg></button></div><div id="vBody" style="display:contents"></div></div>
 
 <!-- عارض الحالات -->
 <div id="story" class="hidden">
   <div class="stbars" id="stBars"></div>
-  <div class="sthead"><div class="av sm" id="stAv"></div><span><b id="stName"></b><small id="stTime"></small></span><button class="ib" id="stX">✕</button></div>
+  <div class="sthead"><div class="av sm" id="stAv"></div><span><b id="stName"></b><small id="stTime"></small></span><button class="ib" id="stX"><svg class="ico"><use href="#x-x"/></svg></button></div>
   <div id="stBody" class="stbody"></div>
   <div class="stfoot" id="stFoot"></div>
 </div>
@@ -664,6 +759,8 @@ const SET = Object.assign(
   JSON.parse(localStorage.getItem("w_set") || "{}"));
 const saveSet = () => { localStorage.setItem("w_set", JSON.stringify(SET)); applySet(); native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure }); };
 const COLORS = ["linear-gradient(135deg,#ff6a88,#ff99ac)","linear-gradient(135deg,#43e97b,#38f9d7)","linear-gradient(135deg,#f6d365,#fda085)","linear-gradient(135deg,#4facfe,#00f2fe)","linear-gradient(135deg,#a18cd1,#fbc2eb)","linear-gradient(135deg,#fa709a,#fee140)","linear-gradient(135deg,#30cfd0,#7b5cff)","linear-gradient(135deg,#ff9a44,#fc6076)"];
+const ICO = (n) => `<svg class="ico"><use href="#x-${n}"/></svg>`;
+const icon = (n) => (/^[a-z][a-z-]*$/.test(n) ? ICO(n) : n);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const safeImg = (u) => (typeof u === "string" && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(u) ? u : null);
 function avatar(el, u, dot) {
@@ -775,9 +872,9 @@ async function dec(uid, body) {
     const [, iv, ct] = body.split(":");
     const t = TD.decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(iv) }, await sharedKey(uid), ub64(ct)));
     PT.set(body, t); return t;
-  } catch { return "🔒 تعذّر فك التشفير"; }
+  } catch { return "تعذّر فك التشفير"; }
 }
-const txt = (m) => m.text ?? (PT.has(m.body) ? PT.get(m.body) : m.body && /^(e1|g1):/.test(m.body) ? "🔒 …" : m.body);
+const txt = (m) => m.text ?? (PT.has(m.body) ? PT.get(m.body) : m.body && /^(e1|g1):/.test(m.body) ? "…" : m.body);
 const meta = (m) => { if (m.meta) return m.meta; try { return (m.meta = JSON.parse(txt(m))); } catch { return null; } };
 // ظرف مشفّر لعدة مستلمين (المجموعات والحالات): مفتاح عشوائي يُشفَّر لكل مستلم بمفتاحه
 async function encEnv(ids, text) {
@@ -803,7 +900,7 @@ async function decEnv(sender, body) {
     const ck = await crypto.subtle.importKey("raw", ub64(raw), "AES-GCM", false, ["decrypt"]);
     const t = TD.decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(o.iv) }, ck, ub64(o.ct)));
     PT.set(body, t); return t;
-  } catch { return "🔒 تعذّر فك التشفير"; }
+  } catch { return "تعذّر فك التشفير"; }
 }
 async function safetyNumber(uid) {
   const keys = [S.me.pub, S.users[uid].pub].sort();
@@ -906,7 +1003,7 @@ $("aGo").onclick = async () => {
   try {
     const email = $("aEmail").value.trim(), pass = $("aPass").value;
     if (pass.length < 6) throw new Error("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
-    $("aErr").textContent = "🔐 جارٍ تجهيز مفاتيح التشفير…";
+    $("aErr").textContent = "جارٍ تجهيز مفاتيح التشفير…";
     const ak = await authKey(email, pass);
     let d, priv;
     if (regMode) {
@@ -1094,7 +1191,7 @@ async function onWs(m) {
       if (x) { x.votes = m.votes; if (S.cur === key) renderMsgs(); }
       break;
     }
-    case "scheduled": toast("⏰ تمت الجدولة: " + new Date(m.at).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })); break;
+    case "scheduled": toast("تمت الجدولة: " + new Date(m.at).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })); break;
     case "err": toast(m.msg); break;
   }
 }
@@ -1137,8 +1234,8 @@ function renderChats() {
   if (q) list = list.filter((c) => convName(c).toLowerCase().includes(q) || preview(c.last).toLowerCase().includes(q));
   list.sort((a, b) => (b.prefs.pinned - a.prefs.pinned) || ((b.last?.ts || b.group?.created || 0) - (a.last?.ts || a.group?.created || 0)));
   let html = "";
-  if (S.showArchived) html += `<div class="row arch" data-arch="0"><span class="em" style="font-size:22px">↩️</span><div class="mid"><b>رجوع للدردشات</b></div></div>`;
-  else if (archivedN && !q) html += `<div class="row arch" data-arch="1"><span class="em" style="font-size:22px">📦</span><div class="mid"><b>المؤرشفة</b> <small>(${archivedN})</small></div></div>`;
+  if (S.showArchived) html += `<div class="row arch" data-arch="0"><span class="em">${ICO("reply")}</span><div class="mid"><b>رجوع للدردشات</b></div></div>`;
+  else if (archivedN && !q) html += `<div class="row arch" data-arch="1"><span class="em">${ICO("archive")}</span><div class="mid"><b>المؤرشفة</b> <small>(${archivedN})</small></div></div>`;
   el.innerHTML = html;
   if (!list.length) { el.innerHTML += `<div class="empty">${q ? "لا توجد نتائج" : S.showArchived ? "لا توجد دردشات مؤرشفة" : "لا توجد دردشات بعد.<br>اضغط + وأضف صديقك بكوده الخاص."}</div>`; bindRows(); return; }
   let i = 0;
@@ -1146,8 +1243,8 @@ function renderChats() {
     const r = document.createElement("div"); r.className = "row"; r.dataset.key = c.key;
     if (!el.dataset.shown) r.style.animationDelay = Math.min(i++, 12) * 30 + "ms"; else r.style.animation = "none";
     const lastSender = c.type === "g" && c.last && c.last.kind !== "sys" ? (c.last.a === S.me.id ? "أنت: " : (S.users[c.last.a]?.name || "").split(" ")[0] + ": ") : "";
-    const icons = (c.prefs.pinned ? "📌" : "") + (c.prefs.muted ? "🔕" : "") + (c.ttl ? "⏱️" : "");
-    const gc = c.type === "g" && (S.gcallState[c.id] || []).length ? "📞 " : "";
+    const icons = (c.prefs.pinned ? ICO("pin") : "") + (c.prefs.muted ? ICO("bell-off") : "") + (c.ttl ? ICO("timer") : "");
+    const gc = c.type === "g" && (S.gcallState[c.id] || []).length ? ICO("call") + " " : "";
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm">${gc}${esc(convName(c))}</span><span class="tm ${c.unread && !c.prefs.muted ? "u" : ""}">${c.last ? shortTime(c.last.ts) : ""}</span></div>
       <div class="sub"><span class="pv">${ticks(c.last)} ${esc(lastSender + preview(c.last))}</span><span class="ics">${icons}${c.unread ? `<span class="badge${c.prefs.muted ? " mut" : ""}">${c.unread}</span>` : ""}</span></div></div>`;
     avatar(r.querySelector(".av"), convAv(c), c.type === "u");
@@ -1167,7 +1264,7 @@ function bindRows() {
 // السحب لليمين يكشف زر حذف أحمر
 function swipeable(row, onDelete) {
   const w = document.createElement("div"); w.className = "swrap";
-  const del = document.createElement("button"); del.className = "sdel"; del.innerHTML = "🗑️<span>حذف</span>";
+  const del = document.createElement("button"); del.className = "sdel"; del.innerHTML = ICO("trash") + "<span>حذف</span>";
   w.append(del, row);
   let x0 = 0, y0 = 0, dx = 0, drag = false, decided = false, open = false;
   const set = (x, anim) => { row.style.transition = anim ? "transform .25s cubic-bezier(.2,.9,.25,1)" : "none"; row.style.transform = x ? `translateX(${x}px)` : ""; };
@@ -1211,11 +1308,11 @@ async function setPref(c, patch) {
 function chatActions(c) {
   if (!c) return;
   sheetMenu([
-    [c.prefs.pinned ? "📍" : "📌", c.prefs.pinned ? "إلغاء التثبيت" : "تثبيت في الأعلى", () => setPref(c, { pinned: !c.prefs.pinned })],
-    [c.prefs.muted ? "🔔" : "🔕", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
-    [c.prefs.archived ? "📤" : "📦", c.prefs.archived ? "إلغاء الأرشفة" : "أرشفة", () => setPref(c, { archived: !c.prefs.archived })],
-    ["🧹", "مسح محتوى المحادثة", () => clearChat(c, false), "dz"],
-    ["🗑️", "حذف الدردشة", () => clearChat(c, true), "dz"],
+    [c.prefs.pinned ? "pin" : "pin", c.prefs.pinned ? "إلغاء التثبيت" : "تثبيت في الأعلى", () => setPref(c, { pinned: !c.prefs.pinned })],
+    [c.prefs.muted ? "bell" : "bell-off", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
+    [c.prefs.archived ? "archive" : "archive", c.prefs.archived ? "إلغاء الأرشفة" : "أرشفة", () => setPref(c, { archived: !c.prefs.archived })],
+    ["eraser", "مسح محتوى المحادثة", () => clearChat(c, false), "dz"],
+    ["trash", "حذف الدردشة", () => clearChat(c, true), "dz"],
   ], convName(c));
 }
 $("hSearch").oninput = renderChats;
@@ -1240,7 +1337,7 @@ function setHeader() {
   if (c.type === "g") {
     const mem = c.group?.members || [];
     const live = (S.gcallState[c.id] || []).length;
-    $("cStatus").textContent = live ? `📞 مكالمة جارية (${live}) — اضغط للانضمام` : mem.map((m) => (m.id === S.me.id ? "أنت" : m.name)).join("، ");
+    $("cStatus").textContent = live ? `مكالمة جارية (${live}) — اضغط للانضمام` : mem.map((m) => (m.id === S.me.id ? "أنت" : m.name)).join("، ");
   } else $("cStatus").textContent = c.blocked ? "🚫 محظور" : lastSeen(S.users[c.id]);
   $("composer").classList.toggle("hidden", !!c.blocked);
   $("blockedBar").classList.toggle("hidden", !c.blocked);
@@ -1297,7 +1394,7 @@ function bubbleBody(m) {
   if (k === "sticker" && x) return `<span class="stk big ${esc(x.a || "")}">${esc(x.e || "")}</span>`;
   if (k === "poll" && x) return pollHtml(m, x);
   if (k === "vnote" && x) return `<div class="mvn" data-fid="${esc(x.fid)}"><video playsinline poster="${esc(safeImg(x.thumb) || "")}" ${m.local ? `src="${m.local}"` : ""}></video><span class="play">▶</span><span class="vnd">${fmtDur(x.dur || 0)}</span>${prog}</div>`;
-  if (k === "loc" && x) return `<div class="mloc"><div class="mapic">📍</div><b>موقع</b><small dir="ltr">${(+x.lat).toFixed(5)}, ${(+x.lng).toFixed(5)}</small><a class="btn sm" href="${mapsUrl(x.lat, x.lng)}" ${NAT.any ? "" : 'target="_blank" rel="noopener"'}>فتح في الخرائط</a></div>`;
+  if (k === "loc" && x) return `<div class="mloc"><div class="mapic">${ICO("mappin")}</div><b>موقع</b><small dir="ltr">${(+x.lat).toFixed(5)}, ${(+x.lng).toFixed(5)}</small><a class="btn sm" href="${mapsUrl(x.lat, x.lng)}" ${NAT.any ? "" : 'target="_blank" rel="noopener"'}>فتح في الخرائط</a></div>`;
   if (k === "contact" && x) return `<div class="mcontact"><div class="av sm" data-cav='${esc(JSON.stringify({ id: x.id, name: x.name, avatar: safeImg(x.avatar) }))}'></div><span><b>${esc(x.name)}</b><small dir="ltr">PIN ${esc(x.pin)}</small></span><button class="btn sm" data-msgto="${esc(x.id)}">مراسلة</button></div>`;
   if (k === "link" && x) {
     const p = x.p || {};
@@ -1307,7 +1404,7 @@ function bubbleBody(m) {
     const url = FILES.get(x.fid)?.url || m.local;
     if (x.mime?.startsWith("image/")) return `<div style="position:relative"><img class="mimg" data-fid="${esc(x.fid)}" src="${esc(url || safeImg(x.thumb) || "")}">${prog}</div>`;
     if (x.mime?.startsWith("video/")) return `<div class="mvid" data-fid="${esc(x.fid)}" style="position:relative"><img class="mthumb" src="${esc(safeImg(x.thumb) || "")}"><span class="play">▶</span>${prog}</div>`;
-    return `<div class="mfile" data-fid="${esc(x.fid)}" style="position:relative"><span class="fi">📄</span><span><b>${esc(x.name)}</b><small>${fmtSize(x.size)}</small></span>${prog}</div>`;
+    return `<div class="mfile" data-fid="${esc(x.fid)}" style="position:relative"><span class="fi">${ICO("file")}</span><span><b>${esc(x.name)}</b><small>${fmtSize(x.size)}</small></span>${prog}</div>`;
   }
   if (k === "call") return "📞 " + esc(txt(m));
   return mentionsHtml(linkify(txt(m)), S.convs.get(keyOfMsg(m)));
@@ -1322,8 +1419,8 @@ function renderMsgs(scroll) {
   const q = (S.search || "").trim().toLowerCase();
   let html = "";
   if (!q) {
-    if (S.more?.[S.cur]) html += '<button class="older" id="olderBtn">⬆️ تحميل رسائل أقدم</button>';
-    html += '<div class="e2e" id="e2eNote">🔒 الرسائل والمكالمات والملفات مشفّرة من طرف لطرف. لا أحد غيركم يقدر يقرأها أو يسمعها، ولا حتى السيرفر.' + (c.type === "u" ? " اضغط للتحقق." : "") + "</div>";
+    if (S.more?.[S.cur]) html += '<button class="older" id="olderBtn">تحميل رسائل أقدم</button>';
+    html += '<div class="e2e" id="e2eNote">الرسائل والمكالمات والملفات مشفّرة من طرف لطرف. لا أحد غيركم يقدر يقرأها أو يسمعها، ولا حتى السيرفر.' + (c.type === "u" ? " اضغط للتحقق." : "") + "</div>";
   }
   if (q) { list = list.filter((m) => !m.deleted && preview(m).toLowerCase().includes(q)); html += `<div class="day clr"><span>${list.length} نتيجة</span></div>`; }
   let lastDay = "", idx = 0, prevA = null;
@@ -1342,7 +1439,7 @@ function renderMsgs(scroll) {
     prevA = m.a;
     let rq = "";
     if (m.reply && byId[m.reply]) { const r = byId[m.reply]; rq = `<span class="rq" data-goto="${r.id}"><b>${r.a === S.me.id ? "أنت" : esc(S.users[r.a]?.name || "")}</b>${esc(preview(r)).slice(0, 90)}</span>`; }
-    const fw = m.fwd && !m.deleted ? '<span class="fwd">↪️ محوّلة</span>' : "";
+    const fw = m.fwd && !m.deleted ? '<span class="fwd">${ICO("forward")} محوّلة</span>' : "";
     const re = m.reacts && Object.keys(m.reacts).length ? `<span class="reacts">${reactSummary(m.reacts)}</span>` : "";
     html += `<div class="b ${i >= prev ? "a " : ""}${mine ? "o" : "i"}${m.kind === "call" ? " call" : ""}${m.deleted ? " del" : ""}${media ? " media" : ""}${bare ? " bare" : ""}${m.kind === "poll" ? " pollb" : ""}${re ? " hasr" : ""}" data-i="${i}" data-id="${m.id || ""}">${head}${fw}${rq}${bubbleBody(m)}<span class="meta">${m.edited ? "معدّلة · " : ""}${m.expires ? "⏱️ " : ""}${hm(m.ts)}${ticks(m)}</span>${re}</div>`;
     idx++;
@@ -1384,7 +1481,7 @@ function reactSummary(r) {
     if (e.target.closest(".vp")) return playVoice(e.target.closest(".mvoice"), x);
     if (e.target.closest(".mvn")) return playVnote(e.target.closest(".mvn"), x);
     if (e.target.closest(".mimg,.mvid")) return openViewer(x);
-    if (e.target.closest(".mfile")) { toast("⏬ جارٍ التحميل…"); try { saveFile(await loadFile(x), x); } catch { toast("الملف غير متاح (ربما انتهت صلاحيته)"); } }
+    if (e.target.closest(".mfile")) { toast("جارٍ التحميل…"); try { saveFile(await loadFile(x), x); } catch { toast("الملف غير متاح (ربما انتهت صلاحيته)"); } }
   });
 })();
 function showReacts(m) {
@@ -1394,11 +1491,11 @@ const QUICK = ["❤️", "😂", "👍", "😮", "😢", "🙏"];
 function msgActions(m) {
   if (m.deleted || !(m.id > 0) || m.kind === "sys") return;
   const mine = m.a === S.me.id;
-  const items = [["↩️", "رد", () => setReply(m)], ["↪️", "تحويل", () => forward(m)]];
-  if (["text", "link"].includes(m.kind)) items.push(["📋", "نسخ", () => { navigator.clipboard?.writeText(textOf(m)).then(() => toast("تم النسخ")).catch(() => toast("تعذّر النسخ")); }]);
-  if (mine && ["text", "link"].includes(m.kind) && Date.now() - m.ts < 2 * 86400000) items.push(["✏️", "تعديل", () => setEdit(m)]);
-  if (["file", "vnote"].includes(m.kind)) items.push(["⬇️", "حفظ", async () => { try { saveFile(await loadFile(meta(m)), meta(m)); } catch { toast("تعذّر التحميل"); } }]);
-  if (mine) items.push(["🗑️", "حذف عند الجميع", async () => { if (await ask("حذف الرسالة عند الجميع؟", [], "حذف")) wsSend({ t: "delete", id: m.id }); }, "dz"]);
+  const items = [["reply", "رد", () => setReply(m)], ["forward", "تحويل", () => forward(m)]];
+  if (["text", "link"].includes(m.kind)) items.push(["copy", "نسخ", () => { navigator.clipboard?.writeText(textOf(m)).then(() => toast("تم النسخ")).catch(() => toast("تعذّر النسخ")); }]);
+  if (mine && ["text", "link"].includes(m.kind) && Date.now() - m.ts < 2 * 86400000) items.push(["edit", "تعديل", () => setEdit(m)]);
+  if (["file", "vnote"].includes(m.kind)) items.push(["download", "حفظ", async () => { try { saveFile(await loadFile(meta(m)), meta(m)); } catch { toast("تعذّر التحميل"); } }]);
+  if (mine) items.push(["trash", "حذف عند الجميع", async () => { if (await ask("حذف الرسالة عند الجميع؟", [], "حذف")) wsSend({ t: "delete", id: m.id }); }, "dz"]);
   const myR = m.reacts?.[S.me.id];
   sheetMenu(items, null, `<div class="qreact">${QUICK.map((e) => `<button data-e="${e}" class="${myR === e ? "on" : ""}">${e}</button>`).join("")}</div>`, (e) => { closeSheets(); wsSend({ t: "react", id: m.id, e: myR === e ? "" : e }); });
 }
@@ -1406,11 +1503,11 @@ function setReply(m) {
   S.reply = m || null;
   if (m) setEdit(null);
   $("replyBar").classList.toggle("hidden", !m);
-  if (m) { $("rbName").textContent = m.a === S.me.id ? "↩️ أنت" : "↩️ " + (S.users[m.a]?.name || ""); $("rbText").textContent = preview(m); $("cInput").focus(); }
+  if (m) { $("rbName").textContent = m.a === S.me.id ? "أنت" : (S.users[m.a]?.name || ""); $("rbText").textContent = preview(m); $("cInput").focus(); }
 }
 function setEdit(m) {
   S.editing = m || null;
-  if (m) { S.reply = null; $("replyBar").classList.remove("hidden"); $("rbName").textContent = "✏️ تعديل الرسالة"; $("rbText").textContent = textOf(m); $("cInput").value = textOf(m); $("cInput").focus(); updateSendBtn(); }
+  if (m) { S.reply = null; $("replyBar").classList.remove("hidden"); $("rbName").textContent = "تعديل الرسالة"; $("rbText").textContent = textOf(m); $("cInput").value = textOf(m); $("cInput").focus(); updateSendBtn(); }
   else if (!S.reply) $("replyBar").classList.add("hidden");
 }
 $("rbX").onclick = () => { if (S.editing) { $("cInput").value = ""; updateSendBtn(); } setReply(null); setEdit(null); };
@@ -1508,9 +1605,9 @@ async function forward(m) {
   const plain = ["text", "call"].includes(m.kind) ? txt(m) : JSON.stringify(meta(m));
   const kind = m.kind === "call" ? "text" : m.kind;
   const convs = [...S.convs.values()].filter((c) => !c.blocked).sort((a, b) => (b.last?.ts || 0) - (a.last?.ts || 0)).slice(0, 40);
-  sheetMenu(convs.map((c) => [c.type === "g" ? "👥" : "👤", convName(c), async () => {
+  sheetMenu(convs.map((c) => [c.type === "g" ? "users" : "user", convName(c), async () => {
     await sendRaw(c.key, plain, kind, { fwd: 1, meta: kind === "text" ? undefined : meta(m) });
-    toast("↪️ تم التحويل إلى " + convName(c));
+    toast("تم التحويل إلى " + convName(c));
   }]), "تحويل إلى…");
 }
 
@@ -1533,7 +1630,7 @@ async function showMedia() {
       const b = e.target.closest("[data-i]"); if (!b) return;
       const { m, x } = items[Number(b.dataset.i)];
       if (m.kind === "file" && (x.mime?.startsWith("image/") || x.mime?.startsWith("video/"))) { closeSheets(); openViewer(x); }
-      else { try { toast("⏬ جارٍ التحميل…"); saveFile(await loadFile(x), x); } catch { toast("الملف غير متاح"); } }
+      else { try { toast("جارٍ التحميل…"); saveFile(await loadFile(x), x); } catch { toast("الملف غير متاح"); } }
     };
   } catch (e) { $("mediaGrid").innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
 }
@@ -1646,19 +1743,19 @@ $("vX").onclick = () => history.back();
 
 // المرفقات
 $("cAttach").onclick = () => sheetMenu([
-  ["🖼️", "صور وفيديو", () => $("fMedia").click()],
-  ["📸", "الكاميرا", () => $("fCam").click()],
-  ["📄", "ملف", () => $("fAny").click()],
-  ["📍", "موقعي", sendLocation],
-  ["👤", "جهة اتصال", sendContact],
-  ["⭕", "رسالة فيديو", videoNote],
-  ["📊", "استطلاع", newPoll],
-  ["⏰", "جدولة رسالة", scheduleMsg],
+  ["image", "صور وفيديو", () => $("fMedia").click()],
+  ["camera", "الكاميرا", () => $("fCam").click()],
+  ["file", "ملف", () => $("fAny").click()],
+  ["mappin", "موقعي", sendLocation],
+  ["user", "جهة اتصال", sendContact],
+  ["vnote", "رسالة فيديو", videoNote],
+  ["poll", "استطلاع", newPoll],
+  ["clock", "جدولة رسالة", scheduleMsg],
 ]);
 for (const id of ["fMedia", "fAny", "fCam"]) $(id).onchange = async (e) => { const fs = [...e.target.files]; e.target.value = ""; for (const f of fs) await sendFile(f); };
 function sendLocation() {
   if (!navigator.geolocation) return toast("الموقع غير متاح");
-  toast("📍 جارٍ تحديد موقعك…");
+  toast("جارٍ تحديد موقعك…");
   const key = S.cur;
   navigator.geolocation.getCurrentPosition(
     (p) => { const x = { lat: +p.coords.latitude.toFixed(6), lng: +p.coords.longitude.toFixed(6), acc: Math.round(p.coords.accuracy) }; sendRaw(key, JSON.stringify(x), "loc", { meta: x }); },
@@ -1670,7 +1767,7 @@ async function sendContact() {
   let users = [];
   try { users = (await api("/api/contacts")).users; } catch {}
   users = [S.me, ...users.filter((u) => u.id !== (cur()?.type === "u" ? cur().id : -1))];
-  sheetMenu(users.map((u) => ["👤", u.id === S.me.id ? "أنا (" + u.name + ")" : u.name, () => {
+  sheetMenu(users.map((u) => ["user", u.id === S.me.id ? "أنا (" + u.name + ")" : u.name, () => {
     const x = { id: u.id, name: u.name, pin: u.pin, avatar: u.avatar || null };
     sendRaw(key, JSON.stringify(x), "contact", { meta: x });
   }]), "مشاركة جهة اتصال");
@@ -1746,7 +1843,7 @@ function ask(title, fields, ok, values = []) {
 }
 // قائمة خيارات عامة
 function sheetMenu(items, title, topHtml = "", onTop) {
-  $("acts").innerHTML = (title ? `<h3 class="acth">${esc(title)}</h3>` : "") + topHtml + items.map((it, i) => `<button data-a="${i}" class="${it[3] || ""}"><span class="em">${it[0]}</span>${esc(it[1])}</button>`).join("");
+  $("acts").innerHTML = (title ? `<h3 class="acth">${esc(title)}</h3>` : "") + topHtml + items.map((it, i) => `<button data-a="${i}" class="${it[3] || ""}"><span class="em">${icon(it[0])}</span>${esc(it[1])}</button>`).join("");
   $("acts").onclick = (e) => {
     const t = e.target.closest("[data-e]"); if (t && onTop) return onTop(t.dataset.e);
     const b = e.target.closest("button[data-a]"); if (!b) return; closeSheets(); items[Number(b.dataset.a)][2]();
@@ -1771,27 +1868,27 @@ async function showInfo() {
     const g = c.group || {};
     $("iAbout").textContent = `مجموعة · ${(g.members || []).length} أعضاء`; $("iEmail").textContent = "";
     const admin = isAdmin(c);
-    $("iMembers").innerHTML = `<h4>الأعضاء</h4>${admin ? '<button class="it" data-add="1"><span class="ic" style="background:#00d1a033">➕</span><span class="tx">إضافة عضو</span></button>' : ""}` +
+    $("iMembers").innerHTML = `<h4>الأعضاء</h4>${admin ? '<button class="it" data-add="1"><span class="ic t-green">${ICO("user-plus")}</span><span class="tx">إضافة عضو</span></button>' : ""}` +
       (g.members || []).map((m) => `<button class="it" data-mem="${m.id}"><div class="av sm" data-u='${esc(JSON.stringify({ id: m.id, name: m.name, avatar: safeImg(m.avatar) }))}'></div><span class="tx">${m.id === S.me.id ? "أنت" : esc(m.name)}<small>${esc(m.about || "")}</small></span>${m.admin ? '<span class="adm">مشرف</span>' : ""}</button>`).join("");
     for (const el of $("iMembers").querySelectorAll("[data-u]")) avatar(el, JSON.parse(el.dataset.u));
     $("iMembers").onclick = (e) => {
       if (e.target.closest("[data-add]")) return addMember(c);
       const b = e.target.closest("[data-mem]"); if (b) memberActions(c, Number(b.dataset.mem));
     };
-    if (admin) rows.push(["✏️", "تعديل الاسم", async () => { const r = await ask("اسم المجموعة", [{ ph: "الاسم", max: 60 }], "حفظ", [g.name]); if (r && r[0].trim()) groupUpdate(c, { name: r[0] }); }], ["🖼️", "تغيير صورة المجموعة", () => { S.avTarget = c; $("fAvatar").click(); }]);
+    if (admin) rows.push(["edit", "تعديل الاسم", async () => { const r = await ask("اسم المجموعة", [{ ph: "الاسم", max: 60 }], "حفظ", [g.name]); if (r && r[0].trim()) groupUpdate(c, { name: r[0] }); }], ["image", "تغيير صورة المجموعة", () => { S.avTarget = c; $("fAvatar").click(); }]);
   }
   rows.push(
-    ["🖼️", "الوسائط والملفات", showMedia],
-    ["🔍", "بحث في المحادثة", () => { closeSheets(); openSearch(); }],
-    [c.prefs.muted ? "🔔" : "🔕", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
-    ["⏱️", "الرسائل المختفية: " + TTL_LABEL[c.ttl || 0], () => chooseTTL(c)],
-    ["🎨", "لون الفقاعات", () => chooseColor(c)],
-    ["⏰", "الرسائل المجدولة", showScheduled],
-    ["🧹", "مسح محتوى المحادثة", () => clearChat(c, false)],
+    ["image", "الوسائط والملفات", showMedia],
+    ["search", "بحث في المحادثة", () => { closeSheets(); openSearch(); }],
+    [c.prefs.muted ? "bell" : "bell-off", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
+    ["timer", "الرسائل المختفية: " + TTL_LABEL[c.ttl || 0], () => chooseTTL(c)],
+    ["palette", "لون الفقاعات", () => chooseColor(c)],
+    ["clock", "الرسائل المجدولة", showScheduled],
+    ["eraser", "مسح محتوى المحادثة", () => clearChat(c, false)],
   );
-  if (isSelf(c)) { /* لا حظر لنفسك */ } else if (c.type === "u") rows.push([c.blocked ? "✅" : "🚫", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
-  else rows.push(["🚪", "مغادرة المجموعة", async () => { if (await ask("مغادرة المجموعة؟", [], "مغادرة")) { await api("/api/group/remove", { gid: c.id, uid: S.me.id }).catch((e) => toast(e.message)); } }, "dz"]);
-  $("infoActs").innerHTML = rows.map((r, i) => `<button class="it ${r[3] || ""}" data-r="${i}"><span class="ic" style="background:#ffffff12">${r[0]}</span><span class="tx">${esc(r[1])}</span></button>`).join("");
+  if (isSelf(c)) { /* لا حظر لنفسك */ } else if (c.type === "u") rows.push([c.blocked ? "circle-check" : "block", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
+  else rows.push(["logout", "مغادرة المجموعة", async () => { if (await ask("مغادرة المجموعة؟", [], "مغادرة")) { await api("/api/group/remove", { gid: c.id, uid: S.me.id }).catch((e) => toast(e.message)); } }, "dz"]);
+  $("infoActs").innerHTML = rows.map((r, i) => `<button class="it ${r[3] || ""}" data-r="${i}"><span class="ic t-gray">${icon(r[0])}</span><span class="tx">${esc(r[1])}</span></button>`).join("");
   $("infoActs").onclick = (e) => { const b = e.target.closest("[data-r]"); if (b) { const fn = rows[Number(b.dataset.r)][2]; if (!["الوسائط والملفات", "بحث في المحادثة"].includes(rows[Number(b.dataset.r)][1])) closeSheets(); fn(); } };
   $("iCall").classList.toggle("hidden", !!c.blocked || isSelf(c)); $("iVid").classList.toggle("hidden", !!c.blocked || isSelf(c));
   if (isSelf(c)) $("iSafe").classList.add("hidden");
@@ -1813,7 +1910,7 @@ async function setBlock(uid, on) {
   } catch (e) { toast(e.message); }
 }
 function chooseTTL(c) {
-  sheetMenu(Object.entries(TTL_LABEL).map(([s, l]) => [Number(s) === (c.ttl || 0) ? "✅" : "⏱️", l, async () => {
+  sheetMenu(Object.entries(TTL_LABEL).map(([s, l]) => [Number(s) === (c.ttl || 0) ? "circle-check" : "timer", l, async () => {
     try { await api("/api/ttl", { c: c.key, secs: Number(s) }); c.ttl = Number(s); setHeader(); renderChats(); } catch (e) { toast(e.message); }
   }]), "الرسائل المختفية — تُحذف للجميع بعد المدة");
 }
@@ -1823,10 +1920,10 @@ async function groupUpdate(c, patch) {
 function memberActions(c, uid) {
   if (uid === S.me.id) return;
   const m = (c.group.members || []).find((x) => x.id === uid); if (!m) return;
-  const items = [["💬", "مراسلة " + m.name, () => { closeSheets(); openChat("u" + uid); }]];
+  const items = [["chat", "مراسلة " + m.name, () => { closeSheets(); openChat("u" + uid); }]];
   if (isAdmin(c)) {
-    items.push([m.admin ? "⬇️" : "⭐", m.admin ? "إزالة الإشراف" : "تعيين مشرفاً", () => api("/api/group/admin", { gid: c.id, uid, admin: !m.admin }).then((d) => { ensureConv(c.key, { group: d.group }); showInfo(); }).catch((e) => toast(e.message))]);
-    items.push(["➖", "إزالة من المجموعة", async () => { if (await ask(`إزالة ${m.name}؟`, [], "إزالة")) api("/api/group/remove", { gid: c.id, uid }).then(() => loadGroup(c.id)).catch((e) => toast(e.message)); }, "dz"]);
+    items.push([m.admin ? "download" : "star", m.admin ? "إزالة الإشراف" : "تعيين مشرفاً", () => api("/api/group/admin", { gid: c.id, uid, admin: !m.admin }).then((d) => { ensureConv(c.key, { group: d.group }); showInfo(); }).catch((e) => toast(e.message))]);
+    items.push(["user-minus", "إزالة من المجموعة", async () => { if (await ask(`إزالة ${m.name}؟`, [], "إزالة")) api("/api/group/remove", { gid: c.id, uid }).then(() => loadGroup(c.id)).catch((e) => toast(e.message)); }, "dz"]);
   }
   sheetMenu(items, m.name);
 }
@@ -1861,7 +1958,7 @@ async function addMember(c) {
 const normPin = (v) => v.toUpperCase().replace(/[^0-9A-F]/g, "").slice(0, 8);
 $("newChat").onclick = () => {
   if (S.tab === "status") return addStatus();
-  sheetMenu([["👤", "إضافة شخص بالكود", newByPin], ["👥", "مجموعة جديدة", newGroup], ["⭐", "الرسائل المحفوظة", openSaved]]);
+  sheetMenu([["user", "إضافة شخص بالكود", newByPin], ["users", "مجموعة جديدة", newGroup], ["star", "الرسائل المحفوظة", openSaved]]);
 };
 function newByPin() { openSheet("newSheet"); $("nErr").textContent = ""; $("nPin").value = ""; $("nMyPin").textContent = S.me.pin || ""; setTimeout(() => $("nPin").focus(), 50); }
 $("nPin").oninput = () => { const v = normPin($("nPin").value); if ($("nPin").value !== v) $("nPin").value = v; if (v.length === 8) $("nGo").focus(); };
@@ -1896,7 +1993,7 @@ for (const b of document.querySelectorAll(".tabs button")) b.onclick = () => {
   $("callList").classList.toggle("hidden", S.tab !== "calls");
   $("statusList").classList.toggle("hidden", S.tab !== "status");
   $("newChat").classList.toggle("hidden", S.tab === "calls");
-  $("newChat").innerHTML = S.tab === "status" ? '<span style="font-size:24px">📷</span>' : '<svg><use href="#i-plus"/></svg>';
+  $("newChat").innerHTML = S.tab === "status" ? ICO("camera") : '<svg><use href="#i-plus"/></svg>';
   document.querySelector(".search").classList.toggle("hidden", S.tab !== "chats");
   if (S.tab === "calls") renderCalls();
   if (S.tab === "status") loadStatuses();
@@ -1917,14 +2014,14 @@ async function loadStatuses() {
 const stParse = (s) => { try { return JSON.parse(PT.get(s.body)); } catch { return null; } };
 function renderStatuses() {
   const d = S.statuses, el = $("statusList");
-  let html = `<div class="row" data-st="me"><div class="av stav ${d.mine.length ? "ring seen" : ""}" id="stMeAv"></div><div class="mid"><div class="top"><span class="nm">حالتي</span></div><div class="sub"><span class="pv">${d.mine.length ? `${d.mine.length} حالة · اضغط للعرض` : "اضغط 📷 لإضافة حالة"}</span></div></div><button class="ib" data-add="1">➕</button></div>`;
+  let html = `<div class="row" data-st="me"><div class="av stav ${d.mine.length ? "ring seen" : ""}" id="stMeAv"></div><div class="mid"><div class="top"><span class="nm">حالتي</span></div><div class="sub"><span class="pv">${d.mine.length ? `${d.mine.length} حالة · اضغط للعرض` : "اضغط لإضافة حالة"}</span></div></div><button class="ib" data-add="1">${ICO("plus")}</button></div>`;
   if (d.others.length) html += '<h4 class="sth">التحديثات الأخيرة</h4>';
   d.others.sort((a, b) => (a.items.every((i) => i.viewed) - b.items.every((i) => i.viewed)) || b.items.at(-1).ts - a.items.at(-1).ts);
   for (const o of d.others) {
     const seen = o.items.every((i) => i.viewed);
     html += `<div class="row" data-st="${o.user.id}"><div class="av stav ring ${seen ? "seen" : ""}" data-u='${esc(JSON.stringify({ id: o.user.id, name: o.user.name, avatar: safeImg(o.user.avatar) }))}'></div><div class="mid"><div class="top"><span class="nm">${esc(o.user.name)}</span></div><div class="sub"><span class="pv">${shortTime(o.items.at(-1).ts)} · ${o.items.length} حالة</span></div></div></div>`;
   }
-  if (!d.others.length) html += '<div class="empty" style="padding-top:40px">لا توجد حالات من أصدقائك.<br>الحالات تختفي بعد 24 ساعة 🕐</div>';
+  if (!d.others.length) html += '<div class="empty" style="padding-top:40px">لا توجد حالات من أصدقائك.<br>الحالات تختفي بعد 24 ساعة</div>';
   el.innerHTML = html;
   avatar($("stMeAv"), S.me);
   for (const a of el.querySelectorAll("[data-u]")) avatar(a, JSON.parse(a.dataset.u));
@@ -1936,7 +2033,7 @@ function renderStatuses() {
   };
 }
 function addStatus() {
-  sheetMenu([["📝", "حالة نصية", textStatus], ["🖼️", "صورة", () => $("fStatus").click()]], "حالة جديدة — تظهر لجهات اتصالك 24 ساعة");
+  sheetMenu([["text", "حالة نصية", textStatus], ["image", "صورة", () => $("fStatus").click()]], "حالة جديدة — تظهر لجهات اتصالك 24 ساعة");
 }
 async function statusRecipients() { try { return (await api("/api/contacts")).users.map((u) => { S.users[u.id] = { ...S.users[u.id], ...u }; return u.id; }); } catch { return []; } }
 async function postStatus(obj, kind) {
@@ -1944,7 +2041,7 @@ async function postStatus(obj, kind) {
   if (!to.length) toast("ستظهر حالتك فقط لمن تراسلهم");
   const body = await encEnv(to, JSON.stringify(obj));
   await api("/api/status", { body, kind, to });
-  toast("✅ تم نشر الحالة"); loadStatuses();
+  toast("تم نشر الحالة"); loadStatuses();
 }
 async function textStatus() {
   const r = await ask("📝 حالة نصية", [{ ph: "اكتب شيئاً…", max: 300 }], "نشر");
@@ -1954,7 +2051,7 @@ async function textStatus() {
 $("fStatus").onchange = async (e) => {
   const f = e.target.files[0]; e.target.value = ""; if (!f) return;
   try {
-    toast("⏫ جارٍ الرفع…");
+    toast("جارٍ الرفع…");
     const dataUrl = await resizeImage(f, 1280, false, 0.82);
     const blob = await (await fetch(dataUrl)).blob();
     const up = await uploadEncrypted(blob);
@@ -1980,7 +2077,7 @@ async function showStoryItem() {
   $("stTime").textContent = shortTime(s.ts) + " " + hm(s.ts);
   const o = stParse(s);
   const body = $("stBody");
-  $("stFoot").innerHTML = ST.mine ? `<button class="link" id="stViews">👁️ ${s.views.length}</button><button class="link" id="stDel" style="color:var(--red)">🗑️ حذف</button>` : "";
+  $("stFoot").innerHTML = ST.mine ? `<button class="link" id="stViews">${ICO("eye")} ${s.views.length}</button><button class="link" id="stDel" style="color:var(--red)">${ICO("trash")} حذف</button>` : "";
   if (!o) body.innerHTML = '<div class="sttext" style="background:#222">🔒 تعذّر فك التشفير</div>';
   else if (o.type === "text") body.innerHTML = `<div class="sttext" style="background:${ST_BG[o.bg % ST_BG.length]}">${esc(o.text)}</div>`;
   else {
@@ -1992,7 +2089,7 @@ async function showStoryItem() {
   ST.t = setTimeout(() => { if (ST) { ST.i++; showStoryItem(); } }, 5500);
   if (!ST.mine && !s.viewed) { s.viewed = 1; api("/api/status/view", { sid: s.id }).catch(() => {}); }
   if (ST.mine) {
-    $("stViews").onclick = (e) => { e.stopPropagation(); clearTimeout(ST.t); sheetMenu(s.views.map((u) => ["👁️", u.name, () => {}]), s.views.length ? "شاهدها" : "لم يشاهدها أحد بعد"); };
+    $("stViews").onclick = (e) => { e.stopPropagation(); clearTimeout(ST.t); sheetMenu(s.views.map((u) => ["eye", u.name, () => {}]), s.views.length ? "شاهدها" : "لم يشاهدها أحد بعد"); };
     $("stDel").onclick = async (e) => { e.stopPropagation(); clearTimeout(ST.t); if (!(await ask("حذف هذه الحالة؟", [], "حذف"))) return; await api("/api/status/delete", { sid: s.id }); ST.items.splice(ST.i, 1); if (!ST.items.length) history.back(); else showStoryItem(); loadStatuses(); };
   }
 }
@@ -2085,7 +2182,7 @@ $("scLock").onclick = async () => {
   if (r[0] !== r[1]) return toast("الرمزان غير متطابقين");
   const salt = randHexJS(16);
   SET.lock = { salt, hash: await pinHash(r[0], salt), len: r[0].length };
-  saveSet(); renderSecurity(); toast("🔒 تم تفعيل القفل");
+  saveSet(); renderSecurity(); toast("تم تفعيل القفل");
 };
 $("scBio").onclick = async () => { if (!SET.bio) { const r = await nativeAsk({ type: "bio", reason: "تفعيل البصمة" }, "bio"); if (!r.ok) return; } SET.bio = !SET.bio; saveSet(); renderSecurity(); };
 $("scAfter").onclick = (e) => { const v = e.target.dataset.v; if (v === undefined) return; SET.after = Number(v); saveSet(); renderSecurity(); };
@@ -2096,10 +2193,10 @@ $("scPass").onclick = async () => {
   if (r[1].length < 6) return toast("كلمة المرور قصيرة");
   if (r[1] !== r[2]) return toast("كلمتا المرور غير متطابقتين");
   try {
-    toast("🔐 جارٍ إعادة تشفير المفاتيح…");
+    toast("جارٍ إعادة تشفير المفاتيح…");
     const backup = await makeBackup(r[1], localStorage.getItem("w_priv"));
     await api("/api/password", { old: await authKey(S.me.email, r[0]), password: await authKey(S.me.email, r[1]), backup });
-    toast("✅ تم تغيير كلمة المرور"); renderSecurity();
+    toast("تم تغيير كلمة المرور"); renderSecurity();
   } catch (e) { toast(e.message); }
 };
 $("scRec").onclick = setupRecovery;
@@ -2359,19 +2456,19 @@ function renderCalls() {
   const el = $("callList");
   if (!S.calls.length) { el.innerHTML = '<div class="empty">لا توجد مكالمات بعد.</div>'; return; }
   const L = { out: ["↗", "صادرة", ""], in: ["↙", "واردة", ""], missed: ["↙", "فائتة", "var(--red)"], declined: ["↙", "مرفوضة", "var(--red)"], noanswer: ["↗", "لم يتم الرد", "var(--red)"], cancelled: ["↗", "ملغاة", ""], rejected: ["↗", "مرفوضة", "var(--red)"], busy: ["↗", "مشغول", ""], unavailable: ["↗", "غير متصل", ""] };
-  el.innerHTML = '<button class="older" id="clrCalls">🗑️ مسح سجل المكالمات</button>';
+  el.innerHTML = `<button class="older" id="clrCalls">${ICO("trash")} مسح سجل المكالمات</button>`;
   $("clrCalls").onclick = async () => { if (await ask("مسح سجل المكالمات كله؟", [], "مسح")) { S.calls = []; localStorage.setItem("w_calls", "[]"); renderCalls(); } };
   S.calls.forEach((c, ci) => {
     const u = S.users[c.peer] || { id: c.peer, name: "…" }; const l = L[c.type] || L.out;
     const r = document.createElement("div"); r.className = "row"; r.style.animation = "none";
     r.innerHTML = `<div class="av"></div><div class="mid"><div class="top"><span class="nm" style="color:${l[2] || "inherit"}">${esc(u.name)}</span><span class="tm">${shortTime(c.ts)} ${hm(c.ts)}</span></div>
-      <div class="sub"><span class="pv">${l[0]} ${l[1]}${c.dur ? " • " + fmtDur(c.dur) : ""}</span><span>${c.video ? "📹" : "📞"}</span></div></div>`;
+      <div class="sub"><span class="pv">${l[0]} ${l[1]}${c.dur ? " • " + fmtDur(c.dur) : ""}</span><span class="cic">${ICO(c.video ? "video" : "call")}</span></div></div>`;
     avatar(r.querySelector(".av"), u);
     r.dataset.ci = ci;
     r.onclick = () => { if (S.lpFired || S.swiping) return; S.users[u.id] ||= u; startCall(c.video, u.id); };
     el.append(swipeable(r, () => { S.calls.splice(ci, 1); localStorage.setItem("w_calls", JSON.stringify(S.calls)); renderCalls(); }));
   });
-  longPress(el, ".row[data-ci]", (r) => sheetMenu([["🗑️", "حذف من السجل", () => { S.calls.splice(Number(r.dataset.ci), 1); localStorage.setItem("w_calls", JSON.stringify(S.calls)); renderCalls(); }, "dz"], ["💬", "مراسلة", () => openChat("u" + S.calls[Number(r.dataset.ci)].peer)]]));
+  longPress(el, ".row[data-ci]", (r) => sheetMenu([["trash", "حذف من السجل", () => { S.calls.splice(Number(r.dataset.ci), 1); localStorage.setItem("w_calls", JSON.stringify(S.calls)); renderCalls(); }, "dz"], ["chat", "مراسلة", () => openChat("u" + S.calls[Number(r.dataset.ci)].peer)]]));
 }
 
 
@@ -2586,11 +2683,11 @@ async function setupRecovery() {
     closeSheets();
     const r = await ask("للتأكد أنك حفظتها: اكتب الكلمات", idx.map((i) => ({ ph: `الكلمة رقم ${i + 1}`, max: 20 })), "تأكيد");
     if (!r) return;
-    if (r.some((v, k) => v.trim().toLowerCase() !== words[idx[k]])) { toast("❌ غير مطابقة، حاول مرة أخرى"); return setupRecovery(); }
+    if (r.some((v, k) => v.trim().toLowerCase() !== words[idx[k]])) { toast("غير مطابقة، حاول مرة أخرى"); return setupRecovery(); }
     try {
-      toast("🔐 جارٍ الحفظ…");
+      toast("جارٍ الحفظ…");
       await api("/api/recovery/set", { rauth: await recAuth(S.me.email, words), rbackup: await makeBackup(words.join(" "), localStorage.getItem("w_priv")) });
-      SET.recDone = true; saveSet(); renderSecurity(); toast("✅ تم حفظ مفتاح الاسترجاع");
+      SET.recDone = true; saveSet(); renderSecurity(); toast("تم حفظ مفتاح الاسترجاع");
     } catch (e) { toast(e.message); }
   };
 }
@@ -2601,14 +2698,14 @@ $("aForgot").onclick = async () => {
   if (words.length !== 24) return toast("يجب إدخال 24 كلمة");
   if (p1.length < 6 || p1 !== p2) return toast("كلمة المرور قصيرة أو غير متطابقة");
   try {
-    toast("🔐 جارٍ التحقق…");
+    toast("جارٍ التحقق…");
     const s1 = await api("/api/recover/start", { email, rauth: await recAuth(email, words) });
     const priv = await openBackup(words.join(" "), s1.rbackup);
     const d = await api("/api/recover/finish", { token: s1.token, password: await authKey(email, p1), backup: await makeBackup(p1, priv) });
     localStorage.setItem("w_priv", priv); PRIV = null;
     S.token = d.token; S.me = d.user;
     localStorage.setItem("w_token", d.token); localStorage.setItem("w_me", JSON.stringify(d.user));
-    toast("✅ تم استرجاع حسابك"); start();
+    toast("تم استرجاع حسابك"); start();
   } catch (e) { toast(e.message.includes("decrypt") || e.name === "OperationError" ? "الكلمات غير صحيحة" : e.message); }
 };
 
@@ -2640,7 +2737,7 @@ $("aQR").onclick = async () => {
       localStorage.setItem("w_priv", data.priv); PRIV = null;
       S.token = r.token; S.me = r.user;
       localStorage.setItem("w_token", r.token); localStorage.setItem("w_me", JSON.stringify(r.user));
-      closeSheets(); toast("✅ تم ربط هذا الجهاز"); start();
+      closeSheets(); toast("تم ربط هذا الجهاز"); start();
     }, 2000);
   } catch (e) { toast(e.message || "تعذّر إنشاء الرمز"); }
 };
@@ -2651,7 +2748,7 @@ async function approveLink(lid, pcPub) {
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, TE.encode(JSON.stringify({ priv: localStorage.getItem("w_priv") })));
     await api("/api/link/approve", { lid, epub: b64(await crypto.subtle.exportKey("raw", kp.publicKey)), payload: b64(iv) + ":" + b64(ct) });
-    toast("✅ تم ربط الجهاز");
+    toast("تم ربط الجهاز");
   } catch (e) { toast(e.message); }
 }
 async function scanQR() {
@@ -2724,7 +2821,7 @@ async function newPoll() {
   if (!r) return;
   const q = r[0].trim(), o = r.slice(1).map((x) => x.trim()).filter(Boolean);
   if (!q || o.length < 2) return toast("اكتب سؤالاً وخيارين على الأقل");
-  sheetMenu([["1️⃣", "اختيار واحد", () => send(false)], ["✅", "عدة اختيارات", () => send(true)]], "طريقة التصويت");
+  sheetMenu([["dot", "اختيار واحد", () => send(false)], ["circle-check", "عدة اختيارات", () => send(true)]], "طريقة التصويت");
   function send(multi) { const x = { q, o, multi }; sendRaw(key, JSON.stringify(x), "poll", { meta: x }); }
 }
 function pollHtml(m, x) {
@@ -2746,7 +2843,7 @@ function vote(m, i) {
 function showVoters(m) {
   const x = meta(m); const votes = m.votes || {};
   const items = [];
-  x.o.forEach((o, i) => { const names = Object.entries(votes).filter(([, v]) => v.includes(i)).map(([u]) => (u == S.me.id ? "أنت" : S.users[u]?.name || "…")); items.push(["▫️", `${o}: ${names.join("، ") || "—"}`, () => {}]); });
+  x.o.forEach((o, i) => { const names = Object.entries(votes).filter(([, v]) => v.includes(i)).map(([u]) => (u == S.me.id ? "أنت" : S.users[u]?.name || "…")); items.push(["dot", `${o}: ${names.join("، ") || "—"}`, () => {}]); });
   sheetMenu(items, x.q);
 }
 
@@ -2837,9 +2934,9 @@ async function showScheduled() {
     const items = [];
     for (const s of d.items) {
       const t = await decMsg({ ...s, gid: s.gid || null, a: S.me.id, b: s.b });
-      items.push(["⏰", `${new Date(s.at).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })} — ${String(t).slice(0, 50)}`, async () => { if (await ask("إلغاء هذه الرسالة المجدولة؟", [], "إلغاء الجدولة")) { await api("/api/scheduled/cancel", { id: s.id }); toast("تم الإلغاء"); } }]);
+      items.push(["clock", `${new Date(s.at).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })} — ${String(t).slice(0, 50)}`, async () => { if (await ask("إلغاء هذه الرسالة المجدولة؟", [], "إلغاء الجدولة")) { await api("/api/scheduled/cancel", { id: s.id }); toast("تم الإلغاء"); } }]);
     }
-    sheetMenu(items.length ? items : [["📭", "لا توجد رسائل مجدولة", () => {}]], "الرسائل المجدولة (اضغط للإلغاء)");
+    sheetMenu(items.length ? items : [["inbox", "لا توجد رسائل مجدولة", () => {}]], "الرسائل المجدولة (اضغط للإلغاء)");
   } catch (e) { toast(e.message); }
 }
 
@@ -2847,7 +2944,7 @@ async function showScheduled() {
 const BUB = ["linear-gradient(135deg,#00d1a0,#00a3ff)", "linear-gradient(135deg,#7b5cff,#c86dd7)", "linear-gradient(135deg,#ff6a88,#ff8e53)", "linear-gradient(135deg,#11998e,#38ef7d)", "linear-gradient(135deg,#f7971e,#ffd200)", "linear-gradient(135deg,#4facfe,#00f2fe)", "linear-gradient(135deg,#434343,#000000)", "linear-gradient(135deg,#e53935,#8e24aa)"];
 function chooseColor(c) {
   const html = `<div class="bubpick">${BUB.map((g, i) => `<button data-e="${i}" style="background:${g}" class="${(SET.colors || {})[c.key] === i ? "on" : ""}"></button>`).join("")}</div>`;
-  sheetMenu([["↩️", "اللون الافتراضي", () => { delete (SET.colors ||= {})[c.key]; saveSet(); renderMsgs(); }]], "لون الفقاعات لهذه المحادثة", html, (i) => { (SET.colors ||= {})[c.key] = Number(i); saveSet(); closeSheets(); renderMsgs(); });
+  sheetMenu([["reply", "اللون الافتراضي", () => { delete (SET.colors ||= {})[c.key]; saveSet(); renderMsgs(); }]], "لون الفقاعات لهذه المحادثة", html, (i) => { (SET.colors ||= {})[c.key] = Number(i); saveSet(); closeSheets(); renderMsgs(); });
 }
 const bubbleColor = (key) => { const i = (SET.colors || {})[key]; return i !== undefined ? BUB[i] : ""; };
 

@@ -1,7 +1,7 @@
 
 <!-- قفل التطبيق -->
 <div id="lock" class="view hidden">
-  <div class="logo" style="text-align:center"><div style="font-size:46px">🔒</div><h2 style="margin:6px 0 0">واصل مقفل</h2><p style="color:var(--muted);margin:6px 0 0" id="lockMsg">أدخل الرمز</p></div>
+  <div class="logo" style="text-align:center"><div class="lockic"><svg class="ico"><use href="#x-lock"/></svg></div><h2 style="margin:6px 0 0">واصل مقفل</h2><p style="color:var(--muted);margin:6px 0 0" id="lockMsg">أدخل الرمز</p></div>
   <div class="dots" id="lockDots"></div>
   <div class="pad" id="lockPad"></div>
   <button class="link" id="lockBio">استخدم البصمة / الوجه</button>
@@ -16,18 +16,18 @@
   <div class="err" id="aErr"></div>
   <button class="btn" id="aGo">دخول</button>
   <button class="link" id="aSwitch">ليس لديك حساب؟ أنشئ حساباً</button>
-  <div style="display:flex;justify-content:center;gap:18px"><button class="link" id="aForgot">🔑 نسيت كلمة المرور؟</button><button class="link" id="aQR">🖥️ ربط بالجوال (QR)</button></div>
+  <div style="display:flex;justify-content:center;gap:18px"><button class="link" id="aForgot"><svg class="ico"><use href="#x-key"/></svg> نسيت كلمة المرور؟</button><button class="link" id="aQR"><svg class="ico"><use href="#x-qr"/></svg> ربط بالجوال</button></div>
 </div>
 
 <!-- القائمة -->
 <div id="home" class="view hidden">
   <header>
     <h1>واصل</h1>
-    <button class="ib" id="hSettings"><svg><use href="#i-gear"/></svg></button>
+    <button class="ib" id="hSettings"><svg class="ico"><use href="#x-gear"/></svg></button>
   </header>
   <div class="conn hidden" id="connBar">جارٍ الاتصال…</div>
-  <a class="updbar hidden" id="updBar">⬆️ نسخة جديدة من التطبيق متوفرة — اضغط للتحميل <span id="updX">✕</span></a>
-  <div class="search"><span>🔍</span><input id="hSearch" placeholder="بحث"></div>
+  <a class="updbar hidden" id="updBar"><svg class="ico"><use href="#x-update"/></svg> نسخة جديدة من التطبيق متوفرة — اضغط للتحميل <span id="updX"><svg class="ico"><use href="#x-x"/></svg></span></a>
+  <div class="search"><span class="sic"><svg class="ico"><use href="#x-search"/></svg></span><input id="hSearch" placeholder="بحث"></div>
   <div class="list" id="chatList"></div>
   <div class="list hidden" id="callList"></div>
   <div class="list hidden" id="statusList"></div>
@@ -44,17 +44,17 @@
     <button class="ib" id="cVideo"><svg><use href="#i-video"/></svg></button>
     <button class="ib" id="cVoice"><svg><use href="#i-phone"/></svg></button>
   </header>
-  <div class="chatsearch hidden" id="chatSearch"><span>🔍</span><input id="csInput" placeholder="ابحث في هذه المحادثة"><button class="ib sm" id="csX">✕</button></div>
+  <div class="chatsearch hidden" id="chatSearch"><span class="sic"><svg class="ico"><use href="#x-search"/></svg></span><input id="csInput" placeholder="ابحث في هذه المحادثة"><button class="ib sm" id="csX"><svg class="ico"><use href="#x-x"/></svg></button></div>
   <div id="msgs"></div>
-  <button class="blockedbar hidden" id="blockedBar">🚫 هذا الشخص محظور — اضغط لإلغاء الحظر</button>
-  <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX">✕</button></div>
+  <button class="blockedbar hidden" id="blockedBar"><svg class="ico"><use href="#x-block"/></svg> هذا الشخص محظور — اضغط لإلغاء الحظر</button>
+  <div class="replybar hidden" id="replyBar"><div><b id="rbName"></b><span id="rbText"></span></div><button class="ib sm" id="rbX"><svg class="ico"><use href="#x-x"/></svg></button></div>
   <div class="mentionbox hidden" id="mentionBox"></div>
   <div class="emojipanel hidden" id="emojiPanel"><div class="emtabs" id="emTabs"><button data-t="e" class="on">😀 إيموجي</button><button data-t="s">✨ ملصقات</button></div><div class="emgrid" id="emGrid"></div></div>
   <div class="composer" id="composer">
-    <button class="ib sm" id="cAttach">📎</button>
-    <button class="ib sm" id="cEmoji">😊</button>
+    <button class="ib sm" id="cAttach"><svg class="ico"><use href="#x-clip"/></svg></button>
+    <button class="ib sm" id="cEmoji"><svg class="ico"><use href="#x-smile"/></svg></button>
     <textarea id="cInput" rows="1" placeholder="رسالة" maxlength="4000"></textarea>
-    <div class="rec hidden" id="recBox"><i></i><span id="recT">0:00</span><span style="flex:1"></span><button class="ib sm" id="recX">🗑️</button></div>
+    <div class="rec hidden" id="recBox"><i></i><span id="recT">0:00</span><span style="flex:1"></span><button class="ib sm" id="recX"><svg class="ico"><use href="#x-trash"/></svg></button></div>
     <button class="send" id="cSend"><svg><use href="#i-mic"/></svg></button>
   </div>
 </div>
@@ -63,18 +63,18 @@
 <div id="settings" class="view hidden">
   <header><button class="ib" data-back><svg><use href="#i-back"/></svg></button><h1>الإعدادات</h1></header>
   <div class="set">
-    <div class="card pincard"><h4>كودك الخاص</h4><div class="pinrow"><span class="pinv" id="sPin" dir="ltr"></span><button class="ib" id="sPinCopy">📋</button><button class="ib" id="sPinShare">📤</button></div><small>أعطه لأصدقائك ليضيفوك — مثل PIN البلاك بيري</small></div>
-    <div class="card"><button class="me-card it" id="sMe"><div class="av" id="sAv"></div><div class="tx"><b id="sName"></b><small id="sAbout"></small></div><span class="ch">‹</span></button></div>
+    <div class="card pincard"><h4>كودك الخاص</h4><div class="pinrow"><span class="pinv" id="sPin" dir="ltr"></span><button class="ib" id="sPinCopy"><svg class="ico"><use href="#x-copy"/></svg></button><button class="ib" id="sPinShare"><svg class="ico"><use href="#x-share"/></svg></button></div><small>أعطه لأصدقائك ليضيفوك — مثل PIN البلاك بيري</small></div>
+    <div class="card"><button class="me-card it" id="sMe"><div class="av" id="sAv"></div><div class="tx"><b id="sName"></b><small id="sAbout"></small></div><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button></div>
     <div class="card">
-      <button class="it" data-go="privacy"><span class="ic" style="background:#3b82f633">👁️</span><span class="tx">الخصوصية<small>آخر ظهور، علامات القراءة</small></span><span class="ch">‹</span></button>
-      <button class="it" data-go="security"><span class="ic" style="background:#00d1a033">🛡️</span><span class="tx">الأمان والحماية<small>قفل التطبيق، كلمة المرور، الأجهزة</small></span><span class="ch">‹</span></button>
-      <button class="it" data-go="chatset"><span class="ic" style="background:#a855f733">🎨</span><span class="tx">الدردشات<small>الخلفية، حجم الخط</small></span><span class="ch">‹</span></button>
-      <button class="it" data-go="notifs"><span class="ic" style="background:#f59e0b33">🔔</span><span class="tx">الإشعارات<small>الرسائل، رنين المكالمات</small></span><span class="ch">‹</span></button>
+      <button class="it" data-go="privacy"><span class="ic t-blue"><svg class="ico"><use href="#x-eye"/></svg></span><span class="tx">الخصوصية<small>آخر ظهور، علامات القراءة</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" data-go="security"><span class="ic t-green"><svg class="ico"><use href="#x-shield"/></svg></span><span class="tx">الأمان والحماية<small>قفل التطبيق، كلمة المرور، الأجهزة</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" data-go="chatset"><span class="ic t-purple"><svg class="ico"><use href="#x-chat"/></svg></span><span class="tx">الدردشات<small>الخلفية، حجم الخط</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" data-go="notifs"><span class="ic t-orange"><svg class="ico"><use href="#x-bell"/></svg></span><span class="tx">الإشعارات<small>الرسائل، رنين المكالمات</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
     </div>
     <div class="card">
-      <div class="it"><span class="ic" style="background:#ffffff14">ℹ️</span><span class="tx">واصل 2.0<small>مشفّر من طرف لطرف 🔒</small></span></div>
+      <div class="it"><span class="ic t-gray"><svg class="ico"><use href="#x-info"/></svg></span><span class="tx">واصل 4.0<small>مشفّر من طرف لطرف</small></span></div>
     </div>
-    <div class="card"><button class="it dz" id="sLogout"><span class="ic" style="background:#ff5f6d22">🚪</span><span class="tx">تسجيل الخروج</span></button></div>
+    <div class="card"><button class="it dz" id="sLogout"><span class="ic t-red"><svg class="ico"><use href="#x-logout"/></svg></span><span class="tx">تسجيل الخروج</span></button></div>
   </div>
 </div>
 
@@ -99,9 +99,9 @@
     <div class="card">
       <button class="it" id="prSeen"><span class="tx">إخفاء آخر ظهور والاتصال<small>لن يرى أحد متى كنت متصلاً</small></span><span class="sw"></span></button>
       <button class="it" id="prRead"><span class="tx">علامات القراءة<small>إذا أطفأتها لن ترى أنت أيضاً علامات قراءة الآخرين</small></span><span class="sw"></span></button>
-      <button class="it" id="prBlocked"><span class="tx">🚫 المحظورون</span><span class="ch">‹</span></button>
+      <button class="it" id="prBlocked"><span class="tx">المحظورون</span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
     </div>
-    <div class="card"><h4>الحماية الدائمة</h4><div class="it"><span class="tx">🔒 كل الرسائل والصور والملفات والمكالمات مشفّرة من طرف لطرف<small>حتى سيرفر واصل لا يستطيع قراءتها</small></span></div></div>
+    <div class="card"><h4>الحماية الدائمة</h4><div class="it"><span class="ic t-green"><svg class="ico"><use href="#x-lock"/></svg></span><span class="tx">كل الرسائل والصور والملفات والمكالمات مشفّرة من طرف لطرف<small>حتى سيرفر واصل لا يستطيع قراءتها</small></span></div></div>
   </div>
 </div>
 
@@ -122,11 +122,11 @@
       <button class="it" id="scSecure"><span class="tx">منع لقطة الشاشة<small>أندرويد: يحجب الشاشة في التصوير وقائمة التطبيقات</small></span><span class="sw"></span></button>
     </div>
     <div class="card"><h4>الحساب</h4>
-      <button class="it" id="scPass"><span class="ic" style="background:#ffffff14">🔑</span><span class="tx">تغيير كلمة المرور<small>يسجّل الخروج من باقي الأجهزة</small></span><span class="ch">‹</span></button>
-      <button class="it" id="scRec"><span class="ic" style="background:#ffffff14">🧩</span><span class="tx">مفتاح الاسترجاع (24 كلمة)<small id="scRecS"></small></span><span class="ch">‹</span></button>
-      <button class="it" id="scLink"><span class="ic" style="background:#ffffff14">🖥️</span><span class="tx">ربط جهاز (كمبيوتر)<small>امسح رمز QR من صفحة الدخول على الكمبيوتر</small></span><span class="ch">‹</span></button>
-      <button class="it" id="scAll"><span class="ic" style="background:#ffffff14">📱</span><span class="tx">تسجيل الخروج من الأجهزة الأخرى<small id="scSess"></small></span><span class="ch">‹</span></button>
-      <button class="it dz" id="scDel"><span class="ic" style="background:#ff5f6d22">🗑️</span><span class="tx">حذف الحساب نهائياً</span></button>
+      <button class="it" id="scPass"><span class="ic t-gray"><svg class="ico"><use href="#x-key"/></svg></span><span class="tx">تغيير كلمة المرور<small>يسجّل الخروج من باقي الأجهزة</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" id="scRec"><span class="ic t-teal"><svg class="ico"><use href="#x-shield-key"/></svg></span><span class="tx">مفتاح الاسترجاع (24 كلمة)<small id="scRecS"></small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" id="scLink"><span class="ic t-gray"><svg class="ico"><use href="#x-qr"/></svg></span><span class="tx">ربط جهاز (كمبيوتر)<small>امسح رمز QR من صفحة الدخول على الكمبيوتر</small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it" id="scAll"><span class="ic t-gray"><svg class="ico"><use href="#x-phone-d"/></svg></span><span class="tx">تسجيل الخروج من الأجهزة الأخرى<small id="scSess"></small></span><span class="ch"><svg class="ico"><use href="#x-chev"/></svg></span></button>
+      <button class="it dz" id="scDel"><span class="ic t-red"><svg class="ico"><use href="#x-trash"/></svg></span><span class="tx">حذف الحساب نهائياً</span></button>
     </div>
   </div>
 </div>
@@ -176,9 +176,9 @@
 <div class="sheet hidden" id="infoSheet">
   <div class="box infobox">
     <div class="av xl" id="iAv"></div><h3 id="iName" style="margin:6px 0 0"></h3><div id="iAbout" style="color:var(--muted)"></div><div id="iEmail" dir="ltr" style="color:var(--g1);font:700 15px ui-monospace,Menlo,monospace;letter-spacing:2px"></div>
-    <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall">📞 صوت</button><button class="btn" style="flex:1" id="iVid">📹 فيديو</button></div>
+    <div style="display:flex;gap:10px;align-self:stretch"><button class="btn" style="flex:1" id="iCall"><svg class="ico"><use href="#x-call"/></svg> صوت</button><button class="btn" style="flex:1" id="iVid"><svg class="ico"><use href="#x-video"/></svg> فيديو</button></div>
     <div class="card" style="align-self:stretch;margin:4px 0 0;padding:12px" id="iSafe">
-      <div style="font-weight:700">🔒 رقم الأمان</div>
+      <div style="font-weight:700;display:flex;gap:6px;align-items:center"><svg class="ico"><use href="#x-lock"/></svg> رقم الأمان</div>
       <div style="color:var(--muted);font-size:13px;line-height:1.7;margin:4px 0 8px">قارنه مع الرقم عند صديقك. إذا تطابق فالمحادثة والمكالمات مشفّرة بينكما فقط.</div>
       <div id="sNum" dir="ltr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px 12px;font:600 17px ui-monospace,Menlo,monospace"></div>
     </div>
@@ -188,21 +188,21 @@
   </div>
 </div>
 <div class="sheet hidden" id="pickSheet"><div class="box"><h3 id="pickT"></h3><div id="pickList" class="picklist"></div><button class="btn" id="pickOk">تم</button><button class="link" id="pickNo">إلغاء</button></div></div>
-<div class="sheet hidden" id="mediaSheet"><div class="box"><h3>🖼️ الوسائط والملفات</h3><div id="mediaGrid" class="mgrid"></div><button class="link" data-close>إغلاق</button></div></div>
+<div class="sheet hidden" id="mediaSheet"><div class="box"><h3>الوسائط والملفات</h3><div id="mediaGrid" class="mgrid"></div><button class="link" data-close>إغلاق</button></div></div>
 <div class="sheet hidden" id="recSheet"><div class="box">
-  <h3>🧩 مفتاح الاسترجاع</h3>
+  <h3>مفتاح الاسترجاع</h3>
   <div style="color:var(--muted);font-size:13.5px;line-height:1.7">اكتب هذه الكلمات بالترتيب واحفظها في مكان آمن (ورقة أو خزنة). هي الطريقة الوحيدة لاسترجاع حسابك ورسائلك إذا نسيت كلمة المرور. <b style="color:var(--red)">لا تعطها لأحد.</b></div>
   <div class="recwords" id="recWords" dir="ltr"></div>
-  <button class="btn alt" id="recCopy" style="background:var(--glass2)">📋 نسخ</button>
-  <button class="btn" id="recOk">حفظتها ✅</button><button class="link" data-close>لاحقاً</button>
+  <button class="btn alt" id="recCopy" style="background:var(--glass2)"><svg class="ico"><use href="#x-copy"/></svg> نسخ</button>
+  <button class="btn" id="recOk">حفظتها</button><button class="link" data-close>لاحقاً</button>
 </div></div>
 <div class="sheet hidden" id="qrSheet"><div class="box" style="align-items:center;text-align:center">
-  <h3>🖥️ ربط بالجوال</h3>
+  <h3>ربط بالجوال</h3>
   <div style="color:var(--muted);font-size:13.5px;line-height:1.7">على جوالك افتح واصل ← الإعدادات ← الأمان ← ربط جهاز، ثم امسح هذا الرمز.</div>
   <div class="qrbox" id="qrBox"></div><button class="link" data-close>إلغاء</button>
 </div></div>
-<div id="scanner" class="hidden"><video id="scanVid" playsinline muted></video><div class="scanframe"></div><div class="scantx">وجّه الكاميرا إلى رمز QR على الكمبيوتر</div><button class="ib" id="scanX">✕</button></div>
-<div id="vnote" class="hidden"><div class="vnwrap"><video id="vnVid" playsinline muted autoplay></video><svg viewBox="0 0 248 248"><circle cx="124" cy="124" r="120" id="vnRing"/></svg></div><span id="vnT">0:00</span><div class="vnctl"><button class="ib" id="vnX">✕</button><button class="vnrec" id="vnRec"></button></div><small>اضغط للتسجيل، واضغط مرة أخرى للإرسال (حتى 60 ثانية)</small></div>
+<div id="scanner" class="hidden"><video id="scanVid" playsinline muted></video><div class="scanframe"></div><div class="scantx">وجّه الكاميرا إلى رمز QR على الكمبيوتر</div><button class="ib" id="scanX"><svg class="ico"><use href="#x-x"/></svg></button></div>
+<div id="vnote" class="hidden"><div class="vnwrap"><video id="vnVid" playsinline muted autoplay></video><svg viewBox="0 0 248 248"><circle cx="124" cy="124" r="120" id="vnRing"/></svg></div><span id="vnT">0:00</span><div class="vnctl"><button class="ib" id="vnX"><svg class="ico"><use href="#x-x"/></svg></button><button class="vnrec" id="vnRec"></button></div><small>اضغط للتسجيل، واضغط مرة أخرى للإرسال (حتى 60 ثانية)</small></div>
 <input type="file" id="fStatus" accept="image/*" hidden>
 <input type="file" id="fMedia" accept="image/*,video/*" multiple hidden>
 <input type="file" id="fAny" multiple hidden>
@@ -210,12 +210,12 @@
 <input type="file" id="fAvatar" accept="image/*" hidden>
 <input type="file" id="fWall" accept="image/*" hidden>
 
-<div id="viewer" class="hidden"><div class="vt"><button id="vX">✕</button><button id="vSave">⬇️</button></div><div id="vBody" style="display:contents"></div></div>
+<div id="viewer" class="hidden"><div class="vt"><button id="vX"><svg class="ico"><use href="#x-x"/></svg></button><button id="vSave"><svg class="ico"><use href="#x-download"/></svg></button></div><div id="vBody" style="display:contents"></div></div>
 
 <!-- عارض الحالات -->
 <div id="story" class="hidden">
   <div class="stbars" id="stBars"></div>
-  <div class="sthead"><div class="av sm" id="stAv"></div><span><b id="stName"></b><small id="stTime"></small></span><button class="ib" id="stX">✕</button></div>
+  <div class="sthead"><div class="av sm" id="stAv"></div><span><b id="stName"></b><small id="stTime"></small></span><button class="ib" id="stX"><svg class="ico"><use href="#x-x"/></svg></button></div>
   <div id="stBody" class="stbody"></div>
   <div class="stfoot" id="stFoot"></div>
 </div>

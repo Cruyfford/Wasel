@@ -157,12 +157,12 @@ class WaselService : Service() {
                 val sender = o.optJSONObject("user")?.optString("name") ?: "واصل"
                 val group = o.optJSONObject("group")
                 val text = when (m.optString("kind")) {
-                    "file" -> "📎 أرسل ملفاً"
-                    "voice" -> "🎤 رسالة صوتية"
-                    "loc" -> "📍 أرسل موقعاً"
-                    "contact" -> "👤 أرسل جهة اتصال"
-                    "call" -> "📞 مكالمة"
-                    else -> "🔒 رسالة جديدة"
+                    "file" -> "أرسل ملفاً"
+                    "voice" -> "رسالة صوتية"
+                    "loc" -> "أرسل موقعاً"
+                    "contact" -> "أرسل جهة اتصال"
+                    "call" -> "مكالمة"
+                    else -> "رسالة جديدة"
                 }
                 if (group != null) notifyMsg(100000 + group.optInt("id"), group.optString("name", "مجموعة"), "$sender: $text")
                 else notifyMsg(m.optInt("a"), sender, text)
@@ -174,7 +174,7 @@ class WaselService : Service() {
                         if (appVisible || !p.getBoolean("callN", true) || o.optBoolean("muted")) return
                         val g = o.optJSONObject("group")?.optString("name") ?: "مجموعة"
                         val who = o.optJSONObject("user")?.optString("name") ?: ""
-                        ringCall(0, "$g 👥", "g$gid", "📞 $who يدعوك لمكالمة جماعية")
+                        ringCall(0, "$g", "g$gid", "$who يدعوك لمكالمة جماعية")
                     }
                     "state" -> if (callId == "g$gid" && (o.optJSONArray("peers")?.length() ?: 0) == 0) cancelCall()
                 }
@@ -185,7 +185,7 @@ class WaselService : Service() {
                 val id = d.optString("callId")
                 if (kind == "offer") {
                     if (appVisible || !p.getBoolean("callN", true)) return
-                    ringCall(o.optInt("from"), o.optJSONObject("user")?.optString("name") ?: "واصل", id, "📞 مكالمة واردة — واصل")
+                    ringCall(o.optInt("from"), o.optJSONObject("user")?.optString("name") ?: "واصل", id, "مكالمة واردة — واصل")
                 } else if (id == callId && kind in listOf("end", "reject", "handled", "answer", "busy")) {
                     cancelCall()
                 }

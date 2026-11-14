@@ -590,8 +590,8 @@ export class Hub {
         const secs = [0, 86400, 604800, 7776000].includes(Number(body.secs)) ? Number(body.secs) : 0;
         this.sql.exec("INSERT OR REPLACE INTO ttl VALUES(?,?)", ck, secs);
         const label = { 0: "أوقف الرسائل المختفية", 86400: "فعّل الرسائل المختفية: 24 ساعة", 604800: "فعّل الرسائل المختفية: 7 أيام", 7776000: "فعّل الرسائل المختفية: 90 يوماً" }[secs];
-        if (c[0] === "g") this.sysMsg(Number(c.slice(1)), me.id, 0, `⏱️ ${me.name} ${label}`);
-        else this.sysMsg(null, me.id, Number(c.slice(1)), `⏱️ ${me.name} ${label}`);
+        if (c[0] === "g") this.sysMsg(Number(c.slice(1)), me.id, 0, `${me.name} ${label}`);
+        else this.sysMsg(null, me.id, Number(c.slice(1)), `${me.name} ${label}`);
         return json({ ok: true, secs });
       }
 
@@ -840,7 +840,7 @@ export class Hub {
             const g = this.one("SELECT name FROM groups WHERE id=?", gid);
             const caller = this.pub(this.user(uid));
             for (const x of this.members(gid)) if (x.uid !== uid) this.sendTo(x.uid, { t: "gcall", a: "ring", gid, from: uid, user: caller, video: !!m.video, group: { id: gid, name: g ? g.name : "" }, muted: !!this.prefsOf(x.uid, "g" + gid).muted });
-            this.sysMsg(gid, uid, 0, `📞 ${caller.name} بدأ مكالمة ${m.video ? "فيديو" : "صوتية"} جماعية`);
+            this.sysMsg(gid, uid, 0, `${caller.name} بدأ مكالمة ${m.video ? "فيديو" : "صوتية"} جماعية`);
           }
           for (const x of this.members(gid)) this.sendTo(x.uid, { t: "gcall", a: "state", gid, peers: peers() });
         } else if (m.a === "leave") {

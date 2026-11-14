@@ -190,12 +190,12 @@ final class NativeHub: NSObject, WKScriptMessageHandler, UNUserNotificationCente
             let name = (o["user"] as? [String: Any])?["name"] as? String ?? "واصل"
             var body: String
             switch m["kind"] as? String {
-            case "file": body = "📎 أرسل ملفاً"
-            case "voice": body = "🎤 رسالة صوتية"
-            case "loc": body = "📍 أرسل موقعاً"
-            case "contact": body = "👤 أرسل جهة اتصال"
-            case "call": body = "📞 مكالمة"
-            default: body = "🔒 رسالة جديدة"
+            case "file": body = "أرسل ملفاً"
+            case "voice": body = "رسالة صوتية"
+            case "loc": body = "أرسل موقعاً"
+            case "contact": body = "أرسل جهة اتصال"
+            case "call": body = "مكالمة"
+            default: body = "رسالة جديدة"
             }
             var title = name
             if let g = o["group"] as? [String: Any] { title = g["name"] as? String ?? "مجموعة"; body = "\(name): \(body)" }
@@ -206,7 +206,7 @@ final class NativeHub: NSObject, WKScriptMessageHandler, UNUserNotificationCente
                 guard (d.object(forKey: "n_callN") as? Bool ?? true), !(o["muted"] as? Bool ?? false) else { return }
                 let g = (o["group"] as? [String: Any])?["name"] as? String ?? "مجموعة"
                 let who = (o["user"] as? [String: Any])?["name"] as? String ?? ""
-                ring(id: "g\(gid)", from: 0, name: "\(g) 👥", body: "📞 \(who) يدعوك لمكالمة جماعية")
+                ring(id: "g\(gid)", from: 0, name: "\(g)", body: "\(who) يدعوك لمكالمة جماعية")
             } else if o["a"] as? String == "state", (o["peers"] as? [Any])?.isEmpty ?? false, ringingCall?.id == "g\(gid)" {
                 stopRing(missedFrom: nil)
             }
@@ -216,7 +216,7 @@ final class NativeHub: NSObject, WKScriptMessageHandler, UNUserNotificationCente
             if kind == "offer" {
                 guard (d.object(forKey: "n_callN") as? Bool ?? true), let from = o["from"] as? Int else { return }
                 let name = (o["user"] as? [String: Any])?["name"] as? String ?? "واصل"
-                ring(id: id, from: from, name: name, body: "📞 مكالمة واردة — واصل")
+                ring(id: id, from: from, name: name, body: "مكالمة واردة — واصل")
             } else if ["end", "reject", "handled", "answer", "busy"].contains(kind), ringingCall?.id == id {
                 stopRing(missedFrom: kind == "end" ? (o["user"] as? [String: Any])?["name"] as? String : nil)
             }
@@ -252,7 +252,7 @@ final class NativeHub: NSObject, WKScriptMessageHandler, UNUserNotificationCente
         ringTimer?.invalidate(); ringTimer = nil
         ringingCall = nil
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ["call"])
-        if let n = missedFrom { notify(id: "missed-\(Date().timeIntervalSince1970)", title: n, body: "📵 مكالمة فائتة", sound: .default) }
+        if let n = missedFrom { notify(id: "missed-\(Date().timeIntervalSince1970)", title: n, body: "مكالمة فائتة", sound: .default) }
     }
 
     // MARK: - الإشعارات

@@ -12,6 +12,8 @@ const SET = Object.assign(
   JSON.parse(localStorage.getItem("w_set") || "{}"));
 const saveSet = () => { localStorage.setItem("w_set", JSON.stringify(SET)); applySet(); native({ type: "prefs", msgN: SET.msgN, callN: SET.callN, secure: SET.secure }); };
 const COLORS = ["linear-gradient(135deg,#ff6a88,#ff99ac)","linear-gradient(135deg,#43e97b,#38f9d7)","linear-gradient(135deg,#f6d365,#fda085)","linear-gradient(135deg,#4facfe,#00f2fe)","linear-gradient(135deg,#a18cd1,#fbc2eb)","linear-gradient(135deg,#fa709a,#fee140)","linear-gradient(135deg,#30cfd0,#7b5cff)","linear-gradient(135deg,#ff9a44,#fc6076)"];
+const ICO = (n) => `<svg class="ico"><use href="#x-${n}"/></svg>`;
+const icon = (n) => (/^[a-z][a-z-]*$/.test(n) ? ICO(n) : n);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const safeImg = (u) => (typeof u === "string" && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(u) ? u : null);
 function avatar(el, u, dot) {
@@ -123,9 +125,9 @@ async function dec(uid, body) {
     const [, iv, ct] = body.split(":");
     const t = TD.decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(iv) }, await sharedKey(uid), ub64(ct)));
     PT.set(body, t); return t;
-  } catch { return "🔒 تعذّر فك التشفير"; }
+  } catch { return "تعذّر فك التشفير"; }
 }
-const txt = (m) => m.text ?? (PT.has(m.body) ? PT.get(m.body) : m.body && /^(e1|g1):/.test(m.body) ? "🔒 …" : m.body);
+const txt = (m) => m.text ?? (PT.has(m.body) ? PT.get(m.body) : m.body && /^(e1|g1):/.test(m.body) ? "…" : m.body);
 const meta = (m) => { if (m.meta) return m.meta; try { return (m.meta = JSON.parse(txt(m))); } catch { return null; } };
 // ظرف مشفّر لعدة مستلمين (المجموعات والحالات): مفتاح عشوائي يُشفَّر لكل مستلم بمفتاحه
 async function encEnv(ids, text) {
@@ -151,7 +153,7 @@ async function decEnv(sender, body) {
     const ck = await crypto.subtle.importKey("raw", ub64(raw), "AES-GCM", false, ["decrypt"]);
     const t = TD.decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(o.iv) }, ck, ub64(o.ct)));
     PT.set(body, t); return t;
-  } catch { return "🔒 تعذّر فك التشفير"; }
+  } catch { return "تعذّر فك التشفير"; }
 }
 async function safetyNumber(uid) {
   const keys = [S.me.pub, S.users[uid].pub].sort();
@@ -254,7 +256,7 @@ $("aGo").onclick = async () => {
   try {
     const email = $("aEmail").value.trim(), pass = $("aPass").value;
     if (pass.length < 6) throw new Error("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
-    $("aErr").textContent = "🔐 جارٍ تجهيز مفاتيح التشفير…";
+    $("aErr").textContent = "جارٍ تجهيز مفاتيح التشفير…";
     const ak = await authKey(email, pass);
     let d, priv;
     if (regMode) {

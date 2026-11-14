@@ -15,7 +15,7 @@ function ask(title, fields, ok, values = []) {
 }
 // قائمة خيارات عامة
 function sheetMenu(items, title, topHtml = "", onTop) {
-  $("acts").innerHTML = (title ? `<h3 class="acth">${esc(title)}</h3>` : "") + topHtml + items.map((it, i) => `<button data-a="${i}" class="${it[3] || ""}"><span class="em">${it[0]}</span>${esc(it[1])}</button>`).join("");
+  $("acts").innerHTML = (title ? `<h3 class="acth">${esc(title)}</h3>` : "") + topHtml + items.map((it, i) => `<button data-a="${i}" class="${it[3] || ""}"><span class="em">${icon(it[0])}</span>${esc(it[1])}</button>`).join("");
   $("acts").onclick = (e) => {
     const t = e.target.closest("[data-e]"); if (t && onTop) return onTop(t.dataset.e);
     const b = e.target.closest("button[data-a]"); if (!b) return; closeSheets(); items[Number(b.dataset.a)][2]();
@@ -40,27 +40,27 @@ async function showInfo() {
     const g = c.group || {};
     $("iAbout").textContent = `مجموعة · ${(g.members || []).length} أعضاء`; $("iEmail").textContent = "";
     const admin = isAdmin(c);
-    $("iMembers").innerHTML = `<h4>الأعضاء</h4>${admin ? '<button class="it" data-add="1"><span class="ic" style="background:#00d1a033">➕</span><span class="tx">إضافة عضو</span></button>' : ""}` +
+    $("iMembers").innerHTML = `<h4>الأعضاء</h4>${admin ? '<button class="it" data-add="1"><span class="ic t-green">${ICO("user-plus")}</span><span class="tx">إضافة عضو</span></button>' : ""}` +
       (g.members || []).map((m) => `<button class="it" data-mem="${m.id}"><div class="av sm" data-u='${esc(JSON.stringify({ id: m.id, name: m.name, avatar: safeImg(m.avatar) }))}'></div><span class="tx">${m.id === S.me.id ? "أنت" : esc(m.name)}<small>${esc(m.about || "")}</small></span>${m.admin ? '<span class="adm">مشرف</span>' : ""}</button>`).join("");
     for (const el of $("iMembers").querySelectorAll("[data-u]")) avatar(el, JSON.parse(el.dataset.u));
     $("iMembers").onclick = (e) => {
       if (e.target.closest("[data-add]")) return addMember(c);
       const b = e.target.closest("[data-mem]"); if (b) memberActions(c, Number(b.dataset.mem));
     };
-    if (admin) rows.push(["✏️", "تعديل الاسم", async () => { const r = await ask("اسم المجموعة", [{ ph: "الاسم", max: 60 }], "حفظ", [g.name]); if (r && r[0].trim()) groupUpdate(c, { name: r[0] }); }], ["🖼️", "تغيير صورة المجموعة", () => { S.avTarget = c; $("fAvatar").click(); }]);
+    if (admin) rows.push(["edit", "تعديل الاسم", async () => { const r = await ask("اسم المجموعة", [{ ph: "الاسم", max: 60 }], "حفظ", [g.name]); if (r && r[0].trim()) groupUpdate(c, { name: r[0] }); }], ["image", "تغيير صورة المجموعة", () => { S.avTarget = c; $("fAvatar").click(); }]);
   }
   rows.push(
-    ["🖼️", "الوسائط والملفات", showMedia],
-    ["🔍", "بحث في المحادثة", () => { closeSheets(); openSearch(); }],
-    [c.prefs.muted ? "🔔" : "🔕", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
-    ["⏱️", "الرسائل المختفية: " + TTL_LABEL[c.ttl || 0], () => chooseTTL(c)],
-    ["🎨", "لون الفقاعات", () => chooseColor(c)],
-    ["⏰", "الرسائل المجدولة", showScheduled],
-    ["🧹", "مسح محتوى المحادثة", () => clearChat(c, false)],
+    ["image", "الوسائط والملفات", showMedia],
+    ["search", "بحث في المحادثة", () => { closeSheets(); openSearch(); }],
+    [c.prefs.muted ? "bell" : "bell-off", c.prefs.muted ? "إلغاء الكتم" : "كتم الإشعارات", () => setPref(c, { muted: !c.prefs.muted })],
+    ["timer", "الرسائل المختفية: " + TTL_LABEL[c.ttl || 0], () => chooseTTL(c)],
+    ["palette", "لون الفقاعات", () => chooseColor(c)],
+    ["clock", "الرسائل المجدولة", showScheduled],
+    ["eraser", "مسح محتوى المحادثة", () => clearChat(c, false)],
   );
-  if (isSelf(c)) { /* لا حظر لنفسك */ } else if (c.type === "u") rows.push([c.blocked ? "✅" : "🚫", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
-  else rows.push(["🚪", "مغادرة المجموعة", async () => { if (await ask("مغادرة المجموعة؟", [], "مغادرة")) { await api("/api/group/remove", { gid: c.id, uid: S.me.id }).catch((e) => toast(e.message)); } }, "dz"]);
-  $("infoActs").innerHTML = rows.map((r, i) => `<button class="it ${r[3] || ""}" data-r="${i}"><span class="ic" style="background:#ffffff12">${r[0]}</span><span class="tx">${esc(r[1])}</span></button>`).join("");
+  if (isSelf(c)) { /* لا حظر لنفسك */ } else if (c.type === "u") rows.push([c.blocked ? "circle-check" : "block", c.blocked ? "إلغاء الحظر" : "حظر", async () => { if (c.blocked || (await ask(`حظر ${convName(c)}؟ لن يستطيع مراسلتك أو الاتصال بك.`, [], "حظر"))) setBlock(c.id, !c.blocked); }, "dz"]);
+  else rows.push(["logout", "مغادرة المجموعة", async () => { if (await ask("مغادرة المجموعة؟", [], "مغادرة")) { await api("/api/group/remove", { gid: c.id, uid: S.me.id }).catch((e) => toast(e.message)); } }, "dz"]);
+  $("infoActs").innerHTML = rows.map((r, i) => `<button class="it ${r[3] || ""}" data-r="${i}"><span class="ic t-gray">${icon(r[0])}</span><span class="tx">${esc(r[1])}</span></button>`).join("");
   $("infoActs").onclick = (e) => { const b = e.target.closest("[data-r]"); if (b) { const fn = rows[Number(b.dataset.r)][2]; if (!["الوسائط والملفات", "بحث في المحادثة"].includes(rows[Number(b.dataset.r)][1])) closeSheets(); fn(); } };
   $("iCall").classList.toggle("hidden", !!c.blocked || isSelf(c)); $("iVid").classList.toggle("hidden", !!c.blocked || isSelf(c));
   if (isSelf(c)) $("iSafe").classList.add("hidden");
@@ -82,7 +82,7 @@ async function setBlock(uid, on) {
   } catch (e) { toast(e.message); }
 }
 function chooseTTL(c) {
-  sheetMenu(Object.entries(TTL_LABEL).map(([s, l]) => [Number(s) === (c.ttl || 0) ? "✅" : "⏱️", l, async () => {
+  sheetMenu(Object.entries(TTL_LABEL).map(([s, l]) => [Number(s) === (c.ttl || 0) ? "circle-check" : "timer", l, async () => {
     try { await api("/api/ttl", { c: c.key, secs: Number(s) }); c.ttl = Number(s); setHeader(); renderChats(); } catch (e) { toast(e.message); }
   }]), "الرسائل المختفية — تُحذف للجميع بعد المدة");
 }
@@ -92,10 +92,10 @@ async function groupUpdate(c, patch) {
 function memberActions(c, uid) {
   if (uid === S.me.id) return;
   const m = (c.group.members || []).find((x) => x.id === uid); if (!m) return;
-  const items = [["💬", "مراسلة " + m.name, () => { closeSheets(); openChat("u" + uid); }]];
+  const items = [["chat", "مراسلة " + m.name, () => { closeSheets(); openChat("u" + uid); }]];
   if (isAdmin(c)) {
-    items.push([m.admin ? "⬇️" : "⭐", m.admin ? "إزالة الإشراف" : "تعيين مشرفاً", () => api("/api/group/admin", { gid: c.id, uid, admin: !m.admin }).then((d) => { ensureConv(c.key, { group: d.group }); showInfo(); }).catch((e) => toast(e.message))]);
-    items.push(["➖", "إزالة من المجموعة", async () => { if (await ask(`إزالة ${m.name}؟`, [], "إزالة")) api("/api/group/remove", { gid: c.id, uid }).then(() => loadGroup(c.id)).catch((e) => toast(e.message)); }, "dz"]);
+    items.push([m.admin ? "download" : "star", m.admin ? "إزالة الإشراف" : "تعيين مشرفاً", () => api("/api/group/admin", { gid: c.id, uid, admin: !m.admin }).then((d) => { ensureConv(c.key, { group: d.group }); showInfo(); }).catch((e) => toast(e.message))]);
+    items.push(["user-minus", "إزالة من المجموعة", async () => { if (await ask(`إزالة ${m.name}؟`, [], "إزالة")) api("/api/group/remove", { gid: c.id, uid }).then(() => loadGroup(c.id)).catch((e) => toast(e.message)); }, "dz"]);
   }
   sheetMenu(items, m.name);
 }
@@ -130,7 +130,7 @@ async function addMember(c) {
 const normPin = (v) => v.toUpperCase().replace(/[^0-9A-F]/g, "").slice(0, 8);
 $("newChat").onclick = () => {
   if (S.tab === "status") return addStatus();
-  sheetMenu([["👤", "إضافة شخص بالكود", newByPin], ["👥", "مجموعة جديدة", newGroup], ["⭐", "الرسائل المحفوظة", openSaved]]);
+  sheetMenu([["user", "إضافة شخص بالكود", newByPin], ["users", "مجموعة جديدة", newGroup], ["star", "الرسائل المحفوظة", openSaved]]);
 };
 function newByPin() { openSheet("newSheet"); $("nErr").textContent = ""; $("nPin").value = ""; $("nMyPin").textContent = S.me.pin || ""; setTimeout(() => $("nPin").focus(), 50); }
 $("nPin").oninput = () => { const v = normPin($("nPin").value); if ($("nPin").value !== v) $("nPin").value = v; if (v.length === 8) $("nGo").focus(); };
@@ -165,7 +165,7 @@ for (const b of document.querySelectorAll(".tabs button")) b.onclick = () => {
   $("callList").classList.toggle("hidden", S.tab !== "calls");
   $("statusList").classList.toggle("hidden", S.tab !== "status");
   $("newChat").classList.toggle("hidden", S.tab === "calls");
-  $("newChat").innerHTML = S.tab === "status" ? '<span style="font-size:24px">📷</span>' : '<svg><use href="#i-plus"/></svg>';
+  $("newChat").innerHTML = S.tab === "status" ? ICO("camera") : '<svg><use href="#i-plus"/></svg>';
   document.querySelector(".search").classList.toggle("hidden", S.tab !== "chats");
   if (S.tab === "calls") renderCalls();
   if (S.tab === "status") loadStatuses();
@@ -186,14 +186,14 @@ async function loadStatuses() {
 const stParse = (s) => { try { return JSON.parse(PT.get(s.body)); } catch { return null; } };
 function renderStatuses() {
   const d = S.statuses, el = $("statusList");
-  let html = `<div class="row" data-st="me"><div class="av stav ${d.mine.length ? "ring seen" : ""}" id="stMeAv"></div><div class="mid"><div class="top"><span class="nm">حالتي</span></div><div class="sub"><span class="pv">${d.mine.length ? `${d.mine.length} حالة · اضغط للعرض` : "اضغط 📷 لإضافة حالة"}</span></div></div><button class="ib" data-add="1">➕</button></div>`;
+  let html = `<div class="row" data-st="me"><div class="av stav ${d.mine.length ? "ring seen" : ""}" id="stMeAv"></div><div class="mid"><div class="top"><span class="nm">حالتي</span></div><div class="sub"><span class="pv">${d.mine.length ? `${d.mine.length} حالة · اضغط للعرض` : "اضغط لإضافة حالة"}</span></div></div><button class="ib" data-add="1">${ICO("plus")}</button></div>`;
   if (d.others.length) html += '<h4 class="sth">التحديثات الأخيرة</h4>';
   d.others.sort((a, b) => (a.items.every((i) => i.viewed) - b.items.every((i) => i.viewed)) || b.items.at(-1).ts - a.items.at(-1).ts);
   for (const o of d.others) {
     const seen = o.items.every((i) => i.viewed);
     html += `<div class="row" data-st="${o.user.id}"><div class="av stav ring ${seen ? "seen" : ""}" data-u='${esc(JSON.stringify({ id: o.user.id, name: o.user.name, avatar: safeImg(o.user.avatar) }))}'></div><div class="mid"><div class="top"><span class="nm">${esc(o.user.name)}</span></div><div class="sub"><span class="pv">${shortTime(o.items.at(-1).ts)} · ${o.items.length} حالة</span></div></div></div>`;
   }
-  if (!d.others.length) html += '<div class="empty" style="padding-top:40px">لا توجد حالات من أصدقائك.<br>الحالات تختفي بعد 24 ساعة 🕐</div>';
+  if (!d.others.length) html += '<div class="empty" style="padding-top:40px">لا توجد حالات من أصدقائك.<br>الحالات تختفي بعد 24 ساعة</div>';
   el.innerHTML = html;
   avatar($("stMeAv"), S.me);
   for (const a of el.querySelectorAll("[data-u]")) avatar(a, JSON.parse(a.dataset.u));
@@ -205,7 +205,7 @@ function renderStatuses() {
   };
 }
 function addStatus() {
-  sheetMenu([["📝", "حالة نصية", textStatus], ["🖼️", "صورة", () => $("fStatus").click()]], "حالة جديدة — تظهر لجهات اتصالك 24 ساعة");
+  sheetMenu([["text", "حالة نصية", textStatus], ["image", "صورة", () => $("fStatus").click()]], "حالة جديدة — تظهر لجهات اتصالك 24 ساعة");
 }
 async function statusRecipients() { try { return (await api("/api/contacts")).users.map((u) => { S.users[u.id] = { ...S.users[u.id], ...u }; return u.id; }); } catch { return []; } }
 async function postStatus(obj, kind) {
@@ -213,7 +213,7 @@ async function postStatus(obj, kind) {
   if (!to.length) toast("ستظهر حالتك فقط لمن تراسلهم");
   const body = await encEnv(to, JSON.stringify(obj));
   await api("/api/status", { body, kind, to });
-  toast("✅ تم نشر الحالة"); loadStatuses();
+  toast("تم نشر الحالة"); loadStatuses();
 }
 async function textStatus() {
   const r = await ask("📝 حالة نصية", [{ ph: "اكتب شيئاً…", max: 300 }], "نشر");
@@ -223,7 +223,7 @@ async function textStatus() {
 $("fStatus").onchange = async (e) => {
   const f = e.target.files[0]; e.target.value = ""; if (!f) return;
   try {
-    toast("⏫ جارٍ الرفع…");
+    toast("جارٍ الرفع…");
     const dataUrl = await resizeImage(f, 1280, false, 0.82);
     const blob = await (await fetch(dataUrl)).blob();
     const up = await uploadEncrypted(blob);
@@ -249,7 +249,7 @@ async function showStoryItem() {
   $("stTime").textContent = shortTime(s.ts) + " " + hm(s.ts);
   const o = stParse(s);
   const body = $("stBody");
-  $("stFoot").innerHTML = ST.mine ? `<button class="link" id="stViews">👁️ ${s.views.length}</button><button class="link" id="stDel" style="color:var(--red)">🗑️ حذف</button>` : "";
+  $("stFoot").innerHTML = ST.mine ? `<button class="link" id="stViews">${ICO("eye")} ${s.views.length}</button><button class="link" id="stDel" style="color:var(--red)">${ICO("trash")} حذف</button>` : "";
   if (!o) body.innerHTML = '<div class="sttext" style="background:#222">🔒 تعذّر فك التشفير</div>';
   else if (o.type === "text") body.innerHTML = `<div class="sttext" style="background:${ST_BG[o.bg % ST_BG.length]}">${esc(o.text)}</div>`;
   else {
@@ -261,7 +261,7 @@ async function showStoryItem() {
   ST.t = setTimeout(() => { if (ST) { ST.i++; showStoryItem(); } }, 5500);
   if (!ST.mine && !s.viewed) { s.viewed = 1; api("/api/status/view", { sid: s.id }).catch(() => {}); }
   if (ST.mine) {
-    $("stViews").onclick = (e) => { e.stopPropagation(); clearTimeout(ST.t); sheetMenu(s.views.map((u) => ["👁️", u.name, () => {}]), s.views.length ? "شاهدها" : "لم يشاهدها أحد بعد"); };
+    $("stViews").onclick = (e) => { e.stopPropagation(); clearTimeout(ST.t); sheetMenu(s.views.map((u) => ["eye", u.name, () => {}]), s.views.length ? "شاهدها" : "لم يشاهدها أحد بعد"); };
     $("stDel").onclick = async (e) => { e.stopPropagation(); clearTimeout(ST.t); if (!(await ask("حذف هذه الحالة؟", [], "حذف"))) return; await api("/api/status/delete", { sid: s.id }); ST.items.splice(ST.i, 1); if (!ST.items.length) history.back(); else showStoryItem(); loadStatuses(); };
   }
 }

@@ -76,7 +76,7 @@ $("scLock").onclick = async () => {
   if (r[0] !== r[1]) return toast("الرمزان غير متطابقين");
   const salt = randHexJS(16);
   SET.lock = { salt, hash: await pinHash(r[0], salt), len: r[0].length };
-  saveSet(); renderSecurity(); toast("🔒 تم تفعيل القفل");
+  saveSet(); renderSecurity(); toast("تم تفعيل القفل");
 };
 $("scBio").onclick = async () => { if (!SET.bio) { const r = await nativeAsk({ type: "bio", reason: "تفعيل البصمة" }, "bio"); if (!r.ok) return; } SET.bio = !SET.bio; saveSet(); renderSecurity(); };
 $("scAfter").onclick = (e) => { const v = e.target.dataset.v; if (v === undefined) return; SET.after = Number(v); saveSet(); renderSecurity(); };
@@ -87,10 +87,10 @@ $("scPass").onclick = async () => {
   if (r[1].length < 6) return toast("كلمة المرور قصيرة");
   if (r[1] !== r[2]) return toast("كلمتا المرور غير متطابقتين");
   try {
-    toast("🔐 جارٍ إعادة تشفير المفاتيح…");
+    toast("جارٍ إعادة تشفير المفاتيح…");
     const backup = await makeBackup(r[1], localStorage.getItem("w_priv"));
     await api("/api/password", { old: await authKey(S.me.email, r[0]), password: await authKey(S.me.email, r[1]), backup });
-    toast("✅ تم تغيير كلمة المرور"); renderSecurity();
+    toast("تم تغيير كلمة المرور"); renderSecurity();
   } catch (e) { toast(e.message); }
 };
 $("scRec").onclick = setupRecovery;

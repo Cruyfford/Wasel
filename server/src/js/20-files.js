@@ -106,19 +106,19 @@ $("vX").onclick = () => history.back();
 
 // المرفقات
 $("cAttach").onclick = () => sheetMenu([
-  ["🖼️", "صور وفيديو", () => $("fMedia").click()],
-  ["📸", "الكاميرا", () => $("fCam").click()],
-  ["📄", "ملف", () => $("fAny").click()],
-  ["📍", "موقعي", sendLocation],
-  ["👤", "جهة اتصال", sendContact],
-  ["⭕", "رسالة فيديو", videoNote],
-  ["📊", "استطلاع", newPoll],
-  ["⏰", "جدولة رسالة", scheduleMsg],
+  ["image", "صور وفيديو", () => $("fMedia").click()],
+  ["camera", "الكاميرا", () => $("fCam").click()],
+  ["file", "ملف", () => $("fAny").click()],
+  ["mappin", "موقعي", sendLocation],
+  ["user", "جهة اتصال", sendContact],
+  ["vnote", "رسالة فيديو", videoNote],
+  ["poll", "استطلاع", newPoll],
+  ["clock", "جدولة رسالة", scheduleMsg],
 ]);
 for (const id of ["fMedia", "fAny", "fCam"]) $(id).onchange = async (e) => { const fs = [...e.target.files]; e.target.value = ""; for (const f of fs) await sendFile(f); };
 function sendLocation() {
   if (!navigator.geolocation) return toast("الموقع غير متاح");
-  toast("📍 جارٍ تحديد موقعك…");
+  toast("جارٍ تحديد موقعك…");
   const key = S.cur;
   navigator.geolocation.getCurrentPosition(
     (p) => { const x = { lat: +p.coords.latitude.toFixed(6), lng: +p.coords.longitude.toFixed(6), acc: Math.round(p.coords.accuracy) }; sendRaw(key, JSON.stringify(x), "loc", { meta: x }); },
@@ -130,7 +130,7 @@ async function sendContact() {
   let users = [];
   try { users = (await api("/api/contacts")).users; } catch {}
   users = [S.me, ...users.filter((u) => u.id !== (cur()?.type === "u" ? cur().id : -1))];
-  sheetMenu(users.map((u) => ["👤", u.id === S.me.id ? "أنا (" + u.name + ")" : u.name, () => {
+  sheetMenu(users.map((u) => ["user", u.id === S.me.id ? "أنا (" + u.name + ")" : u.name, () => {
     const x = { id: u.id, name: u.name, pin: u.pin, avatar: u.avatar || null };
     sendRaw(key, JSON.stringify(x), "contact", { meta: x });
   }]), "مشاركة جهة اتصال");

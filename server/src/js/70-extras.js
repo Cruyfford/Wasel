@@ -15,11 +15,11 @@ async function setupRecovery() {
     closeSheets();
     const r = await ask("للتأكد أنك حفظتها: اكتب الكلمات", idx.map((i) => ({ ph: `الكلمة رقم ${i + 1}`, max: 20 })), "تأكيد");
     if (!r) return;
-    if (r.some((v, k) => v.trim().toLowerCase() !== words[idx[k]])) { toast("❌ غير مطابقة، حاول مرة أخرى"); return setupRecovery(); }
+    if (r.some((v, k) => v.trim().toLowerCase() !== words[idx[k]])) { toast("غير مطابقة، حاول مرة أخرى"); return setupRecovery(); }
     try {
-      toast("🔐 جارٍ الحفظ…");
+      toast("جارٍ الحفظ…");
       await api("/api/recovery/set", { rauth: await recAuth(S.me.email, words), rbackup: await makeBackup(words.join(" "), localStorage.getItem("w_priv")) });
-      SET.recDone = true; saveSet(); renderSecurity(); toast("✅ تم حفظ مفتاح الاسترجاع");
+      SET.recDone = true; saveSet(); renderSecurity(); toast("تم حفظ مفتاح الاسترجاع");
     } catch (e) { toast(e.message); }
   };
 }
@@ -30,14 +30,14 @@ $("aForgot").onclick = async () => {
   if (words.length !== 24) return toast("يجب إدخال 24 كلمة");
   if (p1.length < 6 || p1 !== p2) return toast("كلمة المرور قصيرة أو غير متطابقة");
   try {
-    toast("🔐 جارٍ التحقق…");
+    toast("جارٍ التحقق…");
     const s1 = await api("/api/recover/start", { email, rauth: await recAuth(email, words) });
     const priv = await openBackup(words.join(" "), s1.rbackup);
     const d = await api("/api/recover/finish", { token: s1.token, password: await authKey(email, p1), backup: await makeBackup(p1, priv) });
     localStorage.setItem("w_priv", priv); PRIV = null;
     S.token = d.token; S.me = d.user;
     localStorage.setItem("w_token", d.token); localStorage.setItem("w_me", JSON.stringify(d.user));
-    toast("✅ تم استرجاع حسابك"); start();
+    toast("تم استرجاع حسابك"); start();
   } catch (e) { toast(e.message.includes("decrypt") || e.name === "OperationError" ? "الكلمات غير صحيحة" : e.message); }
 };
 
@@ -69,7 +69,7 @@ $("aQR").onclick = async () => {
       localStorage.setItem("w_priv", data.priv); PRIV = null;
       S.token = r.token; S.me = r.user;
       localStorage.setItem("w_token", r.token); localStorage.setItem("w_me", JSON.stringify(r.user));
-      closeSheets(); toast("✅ تم ربط هذا الجهاز"); start();
+      closeSheets(); toast("تم ربط هذا الجهاز"); start();
     }, 2000);
   } catch (e) { toast(e.message || "تعذّر إنشاء الرمز"); }
 };
@@ -80,7 +80,7 @@ async function approveLink(lid, pcPub) {
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, TE.encode(JSON.stringify({ priv: localStorage.getItem("w_priv") })));
     await api("/api/link/approve", { lid, epub: b64(await crypto.subtle.exportKey("raw", kp.publicKey)), payload: b64(iv) + ":" + b64(ct) });
-    toast("✅ تم ربط الجهاز");
+    toast("تم ربط الجهاز");
   } catch (e) { toast(e.message); }
 }
 async function scanQR() {
@@ -153,7 +153,7 @@ async function newPoll() {
   if (!r) return;
   const q = r[0].trim(), o = r.slice(1).map((x) => x.trim()).filter(Boolean);
   if (!q || o.length < 2) return toast("اكتب سؤالاً وخيارين على الأقل");
-  sheetMenu([["1️⃣", "اختيار واحد", () => send(false)], ["✅", "عدة اختيارات", () => send(true)]], "طريقة التصويت");
+  sheetMenu([["dot", "اختيار واحد", () => send(false)], ["circle-check", "عدة اختيارات", () => send(true)]], "طريقة التصويت");
   function send(multi) { const x = { q, o, multi }; sendRaw(key, JSON.stringify(x), "poll", { meta: x }); }
 }
 function pollHtml(m, x) {
@@ -175,7 +175,7 @@ function vote(m, i) {
 function showVoters(m) {
   const x = meta(m); const votes = m.votes || {};
   const items = [];
-  x.o.forEach((o, i) => { const names = Object.entries(votes).filter(([, v]) => v.includes(i)).map(([u]) => (u == S.me.id ? "أنت" : S.users[u]?.name || "…")); items.push(["▫️", `${o}: ${names.join("، ") || "—"}`, () => {}]); });
+  x.o.forEach((o, i) => { const names = Object.entries(votes).filter(([, v]) => v.includes(i)).map(([u]) => (u == S.me.id ? "أنت" : S.users[u]?.name || "…")); items.push(["dot", `${o}: ${names.join("، ") || "—"}`, () => {}]); });
   sheetMenu(items, x.q);
 }
 
@@ -266,9 +266,9 @@ async function showScheduled() {
     const items = [];
     for (const s of d.items) {
       const t = await decMsg({ ...s, gid: s.gid || null, a: S.me.id, b: s.b });
-      items.push(["⏰", `${new Date(s.at).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })} — ${String(t).slice(0, 50)}`, async () => { if (await ask("إلغاء هذه الرسالة المجدولة؟", [], "إلغاء الجدولة")) { await api("/api/scheduled/cancel", { id: s.id }); toast("تم الإلغاء"); } }]);
+      items.push(["clock", `${new Date(s.at).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })} — ${String(t).slice(0, 50)}`, async () => { if (await ask("إلغاء هذه الرسالة المجدولة؟", [], "إلغاء الجدولة")) { await api("/api/scheduled/cancel", { id: s.id }); toast("تم الإلغاء"); } }]);
     }
-    sheetMenu(items.length ? items : [["📭", "لا توجد رسائل مجدولة", () => {}]], "الرسائل المجدولة (اضغط للإلغاء)");
+    sheetMenu(items.length ? items : [["inbox", "لا توجد رسائل مجدولة", () => {}]], "الرسائل المجدولة (اضغط للإلغاء)");
   } catch (e) { toast(e.message); }
 }
 
@@ -276,7 +276,7 @@ async function showScheduled() {
 const BUB = ["linear-gradient(135deg,#00d1a0,#00a3ff)", "linear-gradient(135deg,#7b5cff,#c86dd7)", "linear-gradient(135deg,#ff6a88,#ff8e53)", "linear-gradient(135deg,#11998e,#38ef7d)", "linear-gradient(135deg,#f7971e,#ffd200)", "linear-gradient(135deg,#4facfe,#00f2fe)", "linear-gradient(135deg,#434343,#000000)", "linear-gradient(135deg,#e53935,#8e24aa)"];
 function chooseColor(c) {
   const html = `<div class="bubpick">${BUB.map((g, i) => `<button data-e="${i}" style="background:${g}" class="${(SET.colors || {})[c.key] === i ? "on" : ""}"></button>`).join("")}</div>`;
-  sheetMenu([["↩️", "اللون الافتراضي", () => { delete (SET.colors ||= {})[c.key]; saveSet(); renderMsgs(); }]], "لون الفقاعات لهذه المحادثة", html, (i) => { (SET.colors ||= {})[c.key] = Number(i); saveSet(); closeSheets(); renderMsgs(); });
+  sheetMenu([["reply", "اللون الافتراضي", () => { delete (SET.colors ||= {})[c.key]; saveSet(); renderMsgs(); }]], "لون الفقاعات لهذه المحادثة", html, (i) => { (SET.colors ||= {})[c.key] = Number(i); saveSet(); closeSheets(); renderMsgs(); });
 }
 const bubbleColor = (key) => { const i = (SET.colors || {})[key]; return i !== undefined ? BUB[i] : ""; };
 
